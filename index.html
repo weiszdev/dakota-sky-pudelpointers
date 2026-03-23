@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dakota Sky Pudelpointers - Premier Hunting Dogs & Training</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --hunter-green: #1B4332;
+            --saddle-brown: #8B5E3C;
+            --wheat-gold: #D4A843;
+            --off-white: #FAF8F5;
+            --charcoal: #2D2D2D;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: var(--charcoal);
+            background-color: var(--off-white);
+        }
+
+        /* HEADER & NAVIGATION */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: var(--off-white);
+            border-bottom: 1px solid rgba(27, 67, 50, 0.1);
+            padding: 1rem 0;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--hunter-green);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--charcoal);
+            margin-left: 2rem;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            font-family: 'Arial', sans-serif;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: var(--hunter-green);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 90vh;
+            background: linear-gradient(rgba(27, 67, 50, 0.7), rgba(27, 67, 50, 0.85)), url('images/hero-main.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(212, 168, 67, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(139, 94, 60, 0.05) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .hero .subheading {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            font-family: 'Arial', sans-serif;
+            font-weight: 300;
+            opacity: 0.95;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            border: 2px solid white;
+            background: transparent;
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Arial', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-btn:hover {
+            background-color: var(--wheat-gold);
+            border-color: var(--wheat-gold);
+            color: var(--charcoal);
+        }
+
+        .cta-btn.primary {
+            background-color: var(--wheat-gold);
+            border-color: var(--wheat-gold);
+            color: var(--charcoal);
+        }
+
+        .cta-btn.primary:hover {
+            background-color: white;
+            border-color: white;
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            color: var(--hunter-green);
+            text-align: center;
+        }
+
+        section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--hunter-green);
+        }
+
+        /* PHILOSOPHY SECTION */
+        .philosophy {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .philosophy-text p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+            color: var(--charcoal);
+        }
+
+        .photo-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #e8e4d8 0%, #d8d2c4 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-size: 1.1rem;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        .photo-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* BREED INFO SECTION */
+        .breed-info {
+            background: linear-gradient(135deg, rgba(27, 67, 50, 0.05) 0%, rgba(212, 168, 67, 0.03) 100%);
+            border-radius: 8px;
+            padding: 3rem;
+        }
+
+        .breed-info p {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .breed-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .highlight {
+            padding: 1.5rem;
+            background: white;
+            border-left: 4px solid var(--wheat-gold);
+            border-radius: 4px;
+        }
+
+        .highlight h4 {
+            color: var(--hunter-green);
+            margin-bottom: 0.5rem;
+            font-family: 'Arial', sans-serif;
+            font-weight: 600;
+        }
+
+        .highlight p {
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
+        /* SERVICES GRID */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--charcoal);
+            display: block;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(27, 67, 50, 0.15);
+        }
+
+        .service-card h3 {
+            margin-top: 0;
+        }
+
+        .service-card p {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card-link {
+            color: var(--hunter-green);
+            font-weight: 600;
+            text-decoration: none;
+            font-family: 'Arial', sans-serif;
+            display: inline-block;
+            transition: color 0.3s ease;
+        }
+
+        .service-card-link:hover {
+            color: var(--wheat-gold);
+        }
+
+        /* TESTIMONIALS */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--hunter-green);
+            font-family: 'Arial', sans-serif;
+        }
+
+        .testimonial-detail {
+            font-size: 0.9rem;
+            color: #888;
+            margin-top: 0.5rem;
+        }
+
+        /* NEWS/BLOG SECTION */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(27, 67, 50, 0.15);
+        }
+
+        .news-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #e8e4d8 0%, #d8d2c4 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            overflow: hidden;
+        }
+
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .news-content {
+            padding: 2rem;
+        }
+
+        .news-date {
+            font-size: 0.85rem;
+            color: var(--wheat-gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Arial', sans-serif;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-card h3 {
+            margin-bottom: 1rem;
+        }
+
+        .news-card p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--charcoal);
+            color: var(--off-white);
+            padding: 4rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: var(--wheat-gold);
+            font-family: 'Arial', sans-serif;
+            font-weight: 600;
+        }
+
+        .footer-section p, .footer-section a {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: var(--off-white);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.75rem;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .footer-section a:hover {
+            color: var(--wheat-gold);
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 4px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .newsletter-form button {
+            padding: 0.75rem 1.5rem;
+            background-color: var(--wheat-gold);
+            border: none;
+            color: var(--charcoal);
+            cursor: pointer;
+            border-radius: 4px;
+            font-family: 'Arial', sans-serif;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background-color: var(--hunter-green);
+            color: var(--off-white);
+        }
+
+        .footer-divider {
+            border-top: 1px solid rgba(212, 168, 67, 0.2);
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: var(--hunter-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--wheat-gold);
+        }
+
+        /* MOBILE RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subheading {
+                font-size: 1.1rem;
+            }
+
+            .cta-group {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            section {
+                padding: 4rem 1.5rem;
+            }
+
+            section h2 {
+                font-size: 2rem;
+            }
+
+            .philosophy {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">DAKOTA SKY</a>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="breeding.html">Breeding</a>
+                <a href="training.html">Training</a>
+                <a href="boarding.html">Boarding</a>
+                <a href="nutrition.html">Nutrition</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Bred for the Field. Built for the Home.</h1>
+            <p class="subheading">Dakota Sky Pudelpointers — North Dakota's premier Pudelpointer kennel. Breeding, training, and raising versatile gun dogs for hunters who demand excellence.</p>
+            <div class="cta-group">
+                <a href="breeding.html" class="cta-btn primary">View Available Dogs</a>
+                <a href="contact.html" class="cta-btn">Apply for a Puppy</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- PHILOSOPHY -->
+    <section class="philosophy" style="padding-bottom: 4rem;">
+        <div class="philosophy-text">
+            <h2 style="text-align: left; font-size: 2.5rem; margin-bottom: 2rem;">Our Philosophy</h2>
+            <p>We built Dakota Sky on four pillars: disposition, conformation, hunting ability, and soundness. Every dog in our program earns its place through proven performance in the field and proven temperament in the home.</p>
+            <p>Glen and Stacey Koffler have dedicated their lives to producing the finest versatile hunting companions in the Northern Plains. With decades of experience and an unwavering commitment to excellence, we don't just breed dogs—we develop partners.</p>
+        </div>
+        <div class="photo-placeholder"><img src="images/field-point.jpg" alt="Dakota Sky Pudelpointer on point in grassland" loading="lazy" onerror="this.style.display='none'"></div>
+    </section>
+
+    <!-- WHAT MAKES A PUDELPOINTER -->
+    <section>
+        <h2>What Makes a Pudelpointer?</h2>
+        <div class="breed-info">
+            <p>The Pudelpointer is a rare German gun dog that combines the best of two worlds: the pointing instinct and athleticism of the English Pointer with the intelligence and water aptitude of the Standard Poodle. The result? A versatile hunter that excels on upland birds, waterfowl, and even tracking furred game—all while maintaining an exceptional temperament in the home.</p>
+
+            <div class="breed-highlights">
+                <div class="highlight">
+                    <h4>Wire Coat</h4>
+                    <p>Low-shedding, weather-resistant coat perfect for harsh Northern Plains conditions</p>
+                </div>
+                <div class="highlight">
+                    <h4>Remarkable Intelligence</h4>
+                    <p>One of the smartest sporting breeds, with a strong desire to please</p>
+                </div>
+                <div class="highlight">
+                    <h4>Family-Friendly</h4>
+                    <p>Beyond the field, they are loyal, affectionate home companions</p>
+                </div>
+                <div class="highlight">
+                    <h4>Versatile Hunter</h4>
+                    <p>Upland birds, waterfowl, tracking—true all-purpose gun dogs</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section>
+        <h2>Our Services</h2>
+        <div class="services-grid">
+            <a href="breeding.html" class="service-card">
+                <h3>Breeding Program</h3>
+                <p>We produce world-class Pudelpointers through rigorous health testing, field trials, and temperament evaluation. Every dog earns its place in our program.</p>
+                <span class="service-card-link">Learn More →</span>
+            </a>
+            <a href="training.html" class="service-card">
+                <h3>Professional Training</h3>
+                <p>From puppy foundations to finished hunting dogs, our training programs develop confident, capable companions for the field and home.</p>
+                <span class="service-card-link">Learn More →</span>
+            </a>
+            <a href="boarding.html" class="service-card">
+                <h3>Boarding & Daycare</h3>
+                <p>Your dog's home away from home. Climate-controlled facility, premium nutrition, and expert care—6 days a week.</p>
+                <span class="service-card-link">Learn More →</span>
+            </a>
+            <a href="nutrition.html" class="service-card">
+                <h3>Inukshuk Nutrition</h3>
+                <p>We feed all our dogs Inukshuk premium Canadian nutrition. Now available for your hunting companions, locally.</p>
+                <span class="service-card-link">Learn More →</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section>
+        <h2>From the Field</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <p class="testimonial-text">"Our Dakota Sky Pudelpointer has been the most versatile dog I've ever owned. Pheasants, ducks, and foot-tracks—she handles it all with grace and intelligence. An absolute game-changer."</p>
+                <p class="testimonial-author">Mark Peterson</p>
+                <p class="testimonial-detail">South Dakota upland hunter</p>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">"Glen and Stacey don't just sell puppies—they provide lifetime support and genuine partnership. That level of commitment is what sets Dakota Sky apart."</p>
+                <p class="testimonial-author">Jennifer Hartley</p>
+                <p class="testimonial-detail">Minnesota hunting family</p>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">"Best decision we made was getting our boy from Dakota Sky. He hunts like a champion and cuddles on the couch like a family member. The perfect dog."</p>
+                <p class="testimonial-author">Robert Chen</p>
+                <p class="testimonial-detail">North Dakota waterfowler</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEWS/UPDATES -->
+    <section>
+        <h2>Latest from Dakota Sky</h2>
+        <div class="news-grid">
+            <div class="news-card">
+                <div class="news-image"><img src="images/puppy-litter.jpg" alt="Newborn Pudelpointer litter with dam" loading="lazy" onerror="this.style.display='none'"></div>
+                <div class="news-content">
+                    <p class="news-date">Spring 2026</p>
+                    <h3>Spring 2026 Litter Announcement</h3>
+                    <p>We're thrilled to announce our upcoming spring litter. The dam and sire pairing brings together our finest bloodlines. Waitlist applications are now open.</p>
+                </div>
+            </div>
+            <div class="news-card">
+                <div class="news-image"><img src="images/hero-training.jpg" alt="Dakota Sky Pudelpointer dog on point in field" loading="lazy" onerror="this.style.display='none'"></div>
+                <div class="news-content">
+                    <p class="news-date">March 2026</p>
+                    <h3>Training Update: Spring Conditioning</h3>
+                    <p>Our current training dogs are in peak condition as we prepare for spring bird season. Watch for video updates from the field coming soon.</p>
+                </div>
+            </div>
+            <div class="news-card">
+                <div class="news-image"><img src="images/inukshuk-bag.jpg" alt="Inukshuk premium dog food bag" loading="lazy" onerror="this.style.display='none'"></div>
+                <div class="news-content">
+                    <p class="news-date">February 2026</p>
+                    <h3>Why Inukshuk Makes the Difference</h3>
+                    <p>Learn why we chose Inukshuk as our exclusive nutrition partner and how premium Canadian performance food enhances hunting dog development.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <p>10525 Highway 10</p>
+                <p>Dickinson, ND 58601</p>
+                <p>(701) 290-1492</p>
+                <p><a href="mailto:dakotasky.nd@gmail.com">dakotasky.nd@gmail.com</a></p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="breeding.html">Breeding Program</a>
+                <a href="training.html">Professional Training</a>
+                <a href="boarding.html">Boarding & Daycare</a>
+                <a href="nutrition.html">Inukshuk Nutrition</a>
+                <a href="about.html">About Glen & Stacey</a>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="https://facebook.com/Pudlepointers" title="Facebook">f</a>
+                    <a href="https://instagram.com/dakotaskypudelpointers" title="Instagram">@</a>
+                </div>
+                <p style="margin-top: 1.5rem;">Join our mailing list for updates, training tips, and announcements.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-divider">
+            <p>&copy; 2026 Dakota Sky Pudelpointers. All rights reserved. Glen & Stacey Koffler, Dickinson, ND.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You! | Dakota Sky Pudelpointers</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #FAF8F5;
+            color: #2D2D2D;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: Georgia, serif;
+            color: #1B4332;
+        }
+
+        h1 { font-size: 2.8rem; line-height: 1.2; }
+        h2 { font-size: 1.8rem; margin: 2rem 0 1rem; }
+        h3 { font-size: 1.3rem; margin: 1.5rem 0 0.75rem; }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 1.8rem;
+            background-color: #1B4332;
+            color: #FAF8F5;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: #0F2818;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1B4332 0%, #0F2818 100%);
+            color: #FAF8F5;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            color: #D4A843;
+            margin-bottom: 1.5rem;
+            font-size: 3rem;
+        }
+
+        .checkmark {
+            display: inline-block;
+            width: 80px;
+            height: 80px;
+            background-color: #D4A843;
+            border-radius: 50%;
+            line-height: 80px;
+            font-size: 3rem;
+            color: #1B4332;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #FAF8F5;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* While You Wait Section */
+        .wait-section {
+            padding: 4rem 2rem;
+        }
+
+        .wait-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(27, 67, 50, 0.1);
+            border-left: 5px solid #8B5E3C;
+        }
+
+        .wait-content h2 {
+            margin-bottom: 2rem;
+        }
+
+        .wait-list {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .wait-list li {
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            background: #FAF8F5;
+            border-radius: 6px;
+            border-left: 4px solid #D4A843;
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+        }
+
+        .wait-list-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #D4A843;
+            color: #1B4332;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .wait-list-content {
+            flex-grow: 1;
+        }
+
+        .wait-list-title {
+            color: #1B4332;
+            font-weight: 600;
+            font-family: Georgia, serif;
+            margin-bottom: 0.25rem;
+        }
+
+        .wait-list-desc {
+            color: #2D2D2D;
+            font-size: 0.95rem;
+        }
+
+        /* CTA Grid */
+        .explore-section {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .explore-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .explore-card {
+            background: #FAF8F5;
+            padding: 2.5rem;
+            border-radius: 8px;
+            border-top: 4px solid #D4A843;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .explore-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .explore-card h3 {
+            color: #1B4332;
+            margin-bottom: 1rem;
+        }
+
+        .explore-card p {
+            color: #2D2D2D;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .explore-card .btn {
+            display: block;
+        }
+
+        /* Social Section */
+        .social-section {
+            padding: 4rem 2rem;
+        }
+
+        .social-box {
+            background: linear-gradient(135deg, #1B4332 0%, #0F2818 100%);
+            color: #FAF8F5;
+            padding: 3rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .social-box h2 {
+            color: #D4A843;
+            margin-bottom: 1rem;
+        }
+
+        .social-box p {
+            font-size: 1.05rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: #D4A843;
+            color: #1B4332;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: #C4974D;
+        }
+
+        /* FAQ CTA */
+        .faq-section {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .faq-box {
+            background: #FAF8F5;
+            padding: 3rem;
+            border-radius: 8px;
+            border-left: 5px solid #8B5E3C;
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+
+        .faq-box h3 {
+            margin-bottom: 1rem;
+        }
+
+        .faq-box p {
+            color: #2D2D2D;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .faq-box a {
+            color: #1B4332;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .faq-box a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2D2D2D;
+            color: #FAF8F5;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.5rem; }
+            .hero h1 { font-size: 2.2rem; }
+            .checkmark { width: 60px; height: 60px; line-height: 60px; font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="checkmark">✓</div>
+            <h1>Your Guide Is On Its Way!</h1>
+            <p>Check your email in the next few minutes. We've sent "Your Pudelpointer's First 30 Days" directly to your inbox.</p>
+        </div>
+    </section>
+
+    <!-- While You Wait -->
+    <section class="wait-section">
+        <div class="container">
+            <div class="wait-content">
+                <h2>While You Wait...</h2>
+
+                <ul class="wait-list">
+                    <li>
+                        <div class="wait-list-number">1</div>
+                        <div class="wait-list-content">
+                            <div class="wait-list-title">Check Your Email</div>
+                            <div class="wait-list-desc">Look for a message from Dakota Sky. If you don't see it, check your spam folder just in case.</div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="wait-list-number">2</div>
+                        <div class="wait-list-content">
+                            <div class="wait-list-title">Watch: How We Raise Puppies</div>
+                            <div class="wait-list-desc">See behind the scenes at Dakota Sky. Short video of our puppy-raising process.</div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="wait-list-number">3</div>
+                        <div class="wait-list-content">
+                            <div class="wait-list-title">Explore Our Puppy Packages</div>
+                            <div class="wait-list-desc">Ready to get started? See how we bundle training and nutrition with every puppy.</div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="wait-list-number">4</div>
+                        <div class="wait-list-content">
+                            <div class="wait-list-title">Join Our Community</div>
+                            <div class="wait-list-desc">Connect with other Pudelpointer owners and get tips from Glen and Stacey.</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Explore Dakota Sky -->
+    <section class="explore-section">
+        <div class="container">
+            <h2 style="text-align: center;">Explore Dakota Sky</h2>
+
+            <div class="explore-grid">
+                <div class="explore-card">
+                    <h3>Our Breeding Program</h3>
+                    <p>Health-tested NAVHDA-eligible Pudelpointers, bred for hunting ability and temperament. Every puppy is raised with attention to detail.</p>
+                    <a href="puppy-package.html" class="btn">See Our Puppies</a>
+                </div>
+
+                <div class="explore-card">
+                    <h3>Training Services</h3>
+                    <p>Professional board & train programs from Glen and Stacey. Transform your dog from raw potential to finished hunting companion.</p>
+                    <a href="training-consultation.html" class="btn">Book Consultation</a>
+                </div>
+
+                <div class="explore-card">
+                    <h3>Inukshuk Nutrition</h3>
+                    <p>Subscribe to premium dog food and save on the same nutrition we feed our champions. Multiple formulas for every dog.</p>
+                    <a href="food-subscription.html" class="btn">Shop Food</a>
+                </div>
+
+                <div class="explore-card">
+                    <h3>Training Course (2026)</h3>
+                    <p>Glen and Stacey's complete training system coming soon. Learn to train your gun dog from home. Join the waitlist.</p>
+                    <a href="digital-course.html" class="btn">Get on Waitlist</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Section -->
+    <section class="social-section">
+        <div class="container">
+            <div class="social-box">
+                <h2>Follow Us For Daily Tips</h2>
+                <p>Behind-the-scenes content, training tips, hunting stories, and updates about available puppies.</p>
+
+                <div class="social-links">
+                    <a href="https://facebook.com/dakotaskydog" target="_blank">Facebook</a>
+                    <a href="https://instagram.com/dakotaskydog" target="_blank">Instagram</a>
+                    <a href="https://youtube.com/dakotaskydog" target="_blank">YouTube</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 style="text-align: center;">Questions?</h2>
+
+            <div class="faq-box">
+                <h3>Didn't get the email?</h3>
+                <p>Check your spam or promotions folder. If you still don't see it, <a href="mailto:dakotasky.nd@gmail.com">email us</a> and we'll resend it right away.</p>
+            </div>
+
+            <div class="faq-box">
+                <h3>Want to talk about your dog?</h3>
+                <p>The guide is great, but sometimes you need personal advice. <a href="training-consultation.html">Book a free training consultation</a> with Glen or Stacey. 15 minutes. No pressure.</p>
+            </div>
+
+            <div class="faq-box">
+                <h3>Ready for a puppy?</h3>
+                <p>If you're ready to bring home a Dakota Sky puppy, check out <a href="puppy-package.html">our packages</a> or <a href="contact.html">apply to get on our waiting list.</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Dakota Sky Pudelpointers. Dickinson, North Dakota. All rights reserved.</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem;">Questions? Call us at (701) 290-1492 or visit <strong>www.dakotasky.com</strong></p>
+        </div>
+    </footer>
+</body>
+</html>

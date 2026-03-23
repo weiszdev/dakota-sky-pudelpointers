@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Guide: Pudelpointer's First 30 Days | Dakota Sky</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #FAF8F5;
+            color: #2D2D2D;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: Georgia, serif;
+            color: #1B4332;
+        }
+
+        h1 { font-size: 2.8rem; line-height: 1.2; }
+        h2 { font-size: 1.8rem; margin: 2.5rem 0 1.5rem; }
+        h3 { font-size: 1.3rem; margin: 1.5rem 0 0.75rem; }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2rem;
+            background-color: #1B4332;
+            color: #FAF8F5;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: #0F2818;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(27, 67, 50, 0.7), rgba(27, 67, 50, 0.85)), url('images/puppy-hero.jpg') center/cover no-repeat;
+            color: #FAF8F5;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            color: #D4A843;
+            margin-bottom: 1rem;
+        }
+
+        .hero .subheading {
+            font-size: 1.2rem;
+            color: #FAF8F5;
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* What's Inside */
+        .whats-inside {
+            padding: 4rem 2rem;
+        }
+
+        .inside-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .inside-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(27, 67, 50, 0.1);
+            border-left: 5px solid #D4A843;
+        }
+
+        .inside-card h3 {
+            color: #1B4332;
+            margin-bottom: 1rem;
+        }
+
+        .inside-card p {
+            color: #2D2D2D;
+            line-height: 1.8;
+        }
+
+        .inside-card ul {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .inside-card li {
+            padding: 0.5rem 0;
+            color: #2D2D2D;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .inside-card li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #1B4332;
+            font-weight: bold;
+        }
+
+        /* Signup Form */
+        .signup-section {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .signup-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #1B4332 0%, #0F2818 100%);
+            color: #FAF8F5;
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 30px rgba(27, 67, 50, 0.2);
+        }
+
+        .signup-container h2 {
+            color: #D4A843;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .signup-container > p {
+            text-align: center;
+            color: #FAF8F5;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        .signup-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            color: #FAF8F5;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        input[type="text"],
+        input[type="email"] {
+            padding: 0.9rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            color: #2D2D2D;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(212, 168, 67, 0.3);
+        }
+
+        .submit-btn {
+            background-color: #D4A843;
+            color: #1B4332;
+            padding: 1rem;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1.05rem;
+            transition: background-color 0.3s;
+            margin-top: 0.5rem;
+        }
+
+        .submit-btn:hover {
+            background-color: #C4974D;
+        }
+
+        .privacy-note {
+            font-size: 0.8rem;
+            color: #E8E5DC;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        /* About Dakota Sky */
+        .about-section {
+            padding: 4rem 2rem;
+        }
+
+        .about-box {
+            background: white;
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(27, 67, 50, 0.1);
+            border-top: 5px solid #8B5E3C;
+        }
+
+        .about-box h2 {
+            margin-bottom: 1rem;
+        }
+
+        .about-box p {
+            color: #2D2D2D;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .about-box strong {
+            color: #1B4332;
+        }
+
+        .about-ctas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .about-ctas a {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: #1B4332;
+            color: #FAF8F5;
+            text-decoration: none;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .about-ctas a:hover {
+            background-color: #0F2818;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2D2D2D;
+            color: #FAF8F5;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.4rem; }
+            .hero h1 { font-size: 2rem; }
+            .signup-container { padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1>Your Pudelpointer's First 30 Days</h1>
+            <p class="subheading">The essential checklist every new Pudelpointer owner needs — from a kennel that's raised hundreds.</p>
+        </div>
+    </section>
+
+    <!-- What's Inside -->
+    <section class="whats-inside">
+        <div class="container">
+            <h2 style="text-align: center;">What's Inside Your Free Guide</h2>
+            <img src="images/puppy-litter.jpg" alt="Newborn Pudelpointer litter" loading="lazy" style="width: 100%; max-height: 300px; object-fit: cover; border-radius: 8px; margin-bottom: 2rem;" onerror="this.style.display='none'">
+
+            <div class="inside-grid">
+                <div class="inside-card">
+                    <h3>Days 1–7: Settling In</h3>
+                    <ul>
+                        <li>Crate training fundamentals</li>
+                        <li>House rules and boundaries</li>
+                        <li>Bonding with your new puppy</li>
+                        <li>First-night checklist</li>
+                    </ul>
+                </div>
+
+                <div class="inside-card">
+                    <h3>Days 8–14: Foundation Habits</h3>
+                    <ul>
+                        <li>Recall training (name response)</li>
+                        <li>Basic sit and release</li>
+                        <li>Socialization plan</li>
+                        <li>First veterinary visit prep</li>
+                    </ul>
+                </div>
+
+                <div class="inside-card">
+                    <h3>Days 15–21: Field Introduction</h3>
+                    <ul>
+                        <li>Introduction to birds</li>
+                        <li>Scenting exercises</li>
+                        <li>Building prey drive</li>
+                        <li>Field safety and protocols</li>
+                    </ul>
+                </div>
+
+                <div class="inside-card">
+                    <h3>Days 22–30: Drive & Focus</h3>
+                    <ul>
+                        <li>Building motivation</li>
+                        <li>Introduction to whistle</li>
+                        <li>Routine establishment</li>
+                        <li>First 30-day assessment</li>
+                    </ul>
+                </div>
+
+                <div class="inside-card">
+                    <h3>Complete Schedules</h3>
+                    <ul>
+                        <li>Feeding schedule by age & weight</li>
+                        <li>Vaccination timeline</li>
+                        <li>Deworming protocol</li>
+                        <li>Health checkup milestones</li>
+                    </ul>
+                </div>
+
+                <div class="inside-card">
+                    <h3>Common Mistakes to Avoid</h3>
+                    <ul>
+                        <li>What NOT to do early on</li>
+                        <li>Training pitfalls</li>
+                        <li>Health & nutrition errors</li>
+                        <li>How to course-correct</li>
+                    </ul>
+                </div>
+            </div>
+
+            <p style="text-align: center; color: #2D2D2D; font-size: 1.05rem; margin-top: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                <strong>Plus:</strong> Inukshuk nutrition recommendations, a 30-day training journal template, and resources for health records tracking.
+            </p>
+        </div>
+    </section>
+
+    <!-- Signup Section -->
+    <section class="signup-section">
+        <div class="container">
+            <div class="signup-container">
+                <h2>Get Your Free Guide</h2>
+                <p>Enter your details below and we'll send it straight to your email.</p>
+
+                <form class="signup-form" id="signupForm">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Send My Free Guide</button>
+                </form>
+
+                <p class="privacy-note">
+                    We respect your privacy. Your email will never be shared. You can unsubscribe anytime.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Dakota Sky -->
+    <section class="about-section">
+        <div class="container">
+            <div class="about-box">
+                <h2>About Dakota Sky Pudelpointers</h2>
+
+                <p>
+                    <strong>Glen and Stacey Koffler</strong> have been breeding and training Pudelpointers for over 20 years at Dakota Sky, a premium hunting dog kennel in Dickinson, North Dakota.
+                </p>
+
+                <p>
+                    Every puppy from Dakota Sky comes from NAVHDA-tested parents and is raised with the same care and attention to detail that goes into our training dogs. We don't just breed puppies — we prepare them for success in the field and in your home.
+                </p>
+
+                <p>
+                    This free guide represents the wisdom Glen and Stacey have gained from raising hundreds of puppies. It's the same foundation we use at Dakota Sky, and now you can apply it to your own dog.
+                </p>
+
+                <p>
+                    <strong>Whether you're getting a Dakota Sky puppy or any Pudelpointer,</strong> this guide gives you the roadmap to a confident, well-trained hunting companion.
+                </p>
+
+                <div class="about-ctas">
+                    <a href="puppy-package.html">Explore Our Puppies</a>
+                    <a href="training-consultation.html">Talk to Us</a>
+                    <a href="food-subscription.html">Premium Nutrition</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Dakota Sky Pudelpointers. Dickinson, North Dakota. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+
+            console.log('Signup:', { name, email });
+
+            // Show thank you message
+            alert(`Thanks ${name}! Check your email for "Your Pudelpointer's First 30 Days" guide.`);
+
+            // In production, this would redirect to thank-you.html or send data to a backend
+            window.location.href = 'thank-you.html';
+        });
+    </script>
+</body>
+</html>

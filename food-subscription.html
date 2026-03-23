@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inukshuk Food Subscription | Dakota Sky Pudelpointers</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #FAF8F5;
+            color: #2D2D2D;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: Georgia, serif;
+            color: #1B4332;
+        }
+
+        h1 { font-size: 3rem; line-height: 1.2; }
+        h2 { font-size: 2.2rem; margin: 3rem 0 1.5rem; }
+        h3 { font-size: 1.5rem; margin: 1.5rem 0 0.75rem; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 1.8rem;
+            background-color: #1B4332;
+            color: #FAF8F5;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: #0F2818;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1B4332 0%, #0F2818 100%);
+            color: #FAF8F5;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            color: #D4A843;
+            margin-bottom: 1rem;
+        }
+
+        .hero .subheading {
+            font-size: 1.3rem;
+            color: #FAF8F5;
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* Product Cards */
+        .product-section {
+            padding: 4rem 2rem;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(27, 67, 50, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(27, 67, 50, 0.15);
+        }
+
+        .product-header {
+            background: linear-gradient(135deg, #1B4332 0%, #0F2818 100%);
+            color: #FAF8F5;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .product-name {
+            color: #D4A843;
+            font-family: Georgia, serif;
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-specs {
+            font-size: 0.85rem;
+            color: #E8E5DC;
+            font-weight: 300;
+        }
+
+        .product-body {
+            padding: 2rem;
+        }
+
+        .product-price {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .price-regular {
+            font-size: 1.4rem;
+            color: #2D2D2D;
+            margin-bottom: 0.5rem;
+        }
+
+        .price-label {
+            font-size: 0.9rem;
+            color: #8B5E3C;
+        }
+
+        .subscribe-price {
+            text-align: center;
+            background: #f9f7f4;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+        }
+
+        .subscribe-amount {
+            font-size: 1.8rem;
+            color: #D4A843;
+            font-weight: bold;
+        }
+
+        .subscribe-label {
+            font-size: 0.85rem;
+            color: #8B5E3C;
+            margin-top: 0.25rem;
+        }
+
+        .save-badge {
+            display: inline-block;
+            background-color: #D4A843;
+            color: #1B4332;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .product-description {
+            color: #2D2D2D;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .product-best-for {
+            background: #FAF8F5;
+            padding: 1rem;
+            border-left: 3px solid #8B5E3C;
+            margin-bottom: 1.5rem;
+            border-radius: 4px;
+        }
+
+        .best-for-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: #8B5E3C;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .best-for-text {
+            color: #2D2D2D;
+        }
+
+        .product-card .btn {
+            width: 100%;
+            text-align: center;
+            display: block;
+            padding: 1rem;
+        }
+
+        /* How It Works */
+        .how-section {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .how-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .how-step {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background-color: #D4A843;
+            color: #1B4332;
+            border-radius: 50%;
+            line-height: 50px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .how-step h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .how-step p {
+            color: #2D2D2D;
+            line-height: 1.7;
+        }
+
+        /* Multi-Dog Discount */
+        .discount-section {
+            padding: 4rem 2rem;
+        }
+
+        .discount-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(27, 67, 50, 0.1);
+        }
+
+        .discount-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .discount-item {
+            background: #FAF8F5;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 8px;
+            border-top: 4px solid #D4A843;
+        }
+
+        .discount-title {
+            color: #1B4332;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .discount-amount {
+            font-size: 2rem;
+            color: #D4A843;
+            font-weight: bold;
+            margin: 0.5rem 0;
+        }
+
+        .discount-description {
+            color: #2D2D2D;
+            font-size: 0.9rem;
+        }
+
+        .kennel-note {
+            background: linear-gradient(135deg, #1B4332 0%, #0F2818 100%);
+            color: #FAF8F5;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .kennel-note strong {
+            color: #D4A843;
+        }
+
+        /* Why Choose */
+        .why-section {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .why-card {
+            background: #FAF8F5;
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid #8B5E3C;
+        }
+
+        .why-card h3 {
+            color: #1B4332;
+            margin-bottom: 0.75rem;
+        }
+
+        .why-card p {
+            color: #2D2D2D;
+            line-height: 1.7;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #1B4332 0%, #0F2818 100%);
+            color: #FAF8F5;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            color: #D4A843;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin: 1rem 0 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2D2D2D;
+            color: #FAF8F5;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.5rem; }
+            .hero h1 { font-size: 2.2rem; }
+            .product-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1>Premium Fuel. Delivered to Your Door.</h1>
+            <p class="subheading">Subscribe to Inukshuk professional dog food and save on premium nutrition for your hunting dog.</p>
+        </div>
+    </section>
+
+    <!-- Product Section -->
+    <section class="product-section">
+        <div class="container">
+            <h2>Choose Your Formula</h2>
+
+            <div class="product-grid">
+                <!-- Inukshuk 32/32 Pro -->
+                <div class="product-card">
+                    <div class="product-header">
+                        <div class="product-name">Inukshuk 32/32 Pro</div>
+                        <div class="product-specs">High-Performance Formula</div>
+                    </div>
+                    <div class="product-body">
+                        <div class="product-price">
+                            <div class="price-regular">$89 per bag</div>
+                            <div class="price-label">Retail price (44 lb)</div>
+                        </div>
+
+                        <div class="subscribe-price">
+                            <div class="subscribe-amount">$79/bag</div>
+                            <div class="subscribe-label">Monthly subscription</div>
+                            <div style="margin-top: 0.5rem;">
+                                <span class="save-badge">Save $120/year</span>
+                            </div>
+                        </div>
+
+                        <div class="product-best-for">
+                            <div class="best-for-label">Best for:</div>
+                            <div class="best-for-text">Hard-working hunting dogs, sled dogs, elite sport dogs</div>
+                        </div>
+
+                        <p class="product-description">
+                            Our premium formula designed for extreme performance. 32% protein, 25% fat. Feeds the champions.
+                        </p>
+
+                        <button class="btn" onclick="selectFormula('32/32 Pro', 79)">Subscribe Now</button>
+                    </div>
+                </div>
+
+                <!-- Inukshuk 30/25 Active -->
+                <div class="product-card">
+                    <div class="product-header">
+                        <div class="product-name">Inukshuk 30/25 Active</div>
+                        <div class="product-specs">All-Purpose Active Formula</div>
+                    </div>
+                    <div class="product-body">
+                        <div class="product-price">
+                            <div class="price-regular">$79 per bag</div>
+                            <div class="price-label">Retail price (44 lb)</div>
+                        </div>
+
+                        <div class="subscribe-price">
+                            <div class="subscribe-amount">$69/bag</div>
+                            <div class="subscribe-label">Monthly subscription</div>
+                            <div style="margin-top: 0.5rem;">
+                                <span class="save-badge">Save $120/year</span>
+                            </div>
+                        </div>
+
+                        <div class="product-best-for">
+                            <div class="best-for-label">Best for:</div>
+                            <div class="best-for-text">Active sporting dogs, training season, year-round active breeds</div>
+                        </div>
+
+                        <p class="product-description">
+                            Balanced performance formula. 30% protein, 25% fat. Perfect for dogs in regular training.
+                        </p>
+
+                        <button class="btn" onclick="selectFormula('30/25 Active', 69)">Subscribe Now</button>
+                    </div>
+                </div>
+
+                <!-- Inukshuk 26/16 Maintenance -->
+                <div class="product-card">
+                    <div class="product-header">
+                        <div class="product-name">Inukshuk 26/16 Maintenance</div>
+                        <div class="product-specs">Maintenance Formula</div>
+                    </div>
+                    <div class="product-body">
+                        <div class="product-price">
+                            <div class="price-regular">$69 per bag</div>
+                            <div class="price-label">Retail price (44 lb)</div>
+                        </div>
+
+                        <div class="subscribe-price">
+                            <div class="subscribe-amount">$59/bag</div>
+                            <div class="subscribe-label">Monthly subscription</div>
+                            <div style="margin-top: 0.5rem;">
+                                <span class="save-badge">Save $120/year</span>
+                            </div>
+                        </div>
+
+                        <div class="product-best-for">
+                            <div class="best-for-label">Best for:</div>
+                            <div class="best-for-text">Off-season, older dogs, moderate activity</div>
+                        </div>
+
+                        <p class="product-description">
+                            Maintenance formula for moderate activity. 26% protein, 16% fat. Quality nutrition for life stages.
+                        </p>
+
+                        <button class="btn" onclick="selectFormula('26/16 Maintenance', 59)">Subscribe Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-section">
+        <div class="container">
+            <h2>How Subscription Works</h2>
+
+            <div class="how-grid">
+                <div class="how-step">
+                    <div class="step-number">1</div>
+                    <h3>Choose</h3>
+                    <p>Select your formula and quantity based on your dog's needs and activity level.</p>
+                </div>
+
+                <div class="how-step">
+                    <div class="step-number">2</div>
+                    <h3>Subscribe</h3>
+                    <p>Set up automatic monthly delivery or arrange local pickup in Dickinson.</p>
+                </div>
+
+                <div class="how-step">
+                    <div class="step-number">3</div>
+                    <h3>Save</h3>
+                    <p>Lock in subscriber pricing and save $120-$130 per year vs. retail.</p>
+                </div>
+
+                <div class="how-step">
+                    <div class="step-number">4</div>
+                    <h3>Flexibility</h3>
+                    <p>Cancel, pause, or switch formulas anytime. No contracts. No commitment.</p>
+                </div>
+            </div>
+
+            <p style="text-align: center; color: #2D2D2D; margin-top: 3rem; font-size: 1.1rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                <strong>"You're feeding the same food we feed our champions."</strong> — Glen & Stacey Koffler. Every Dakota Sky dog eats premium Inukshuk. Now your dog can too.
+            </p>
+        </div>
+    </section>
+
+    <!-- Multi-Dog Discount -->
+    <section class="discount-section">
+        <div class="container">
+            <h2>Multi-Dog Discount</h2>
+
+            <div class="discount-content">
+                <p style="color: #2D2D2D; margin-bottom: 2rem; font-size: 1.1rem;">
+                    Feeding multiple dogs? We reward loyalty and bulk orders with discounts that add up.
+                </p>
+
+                <div class="discount-grid">
+                    <div class="discount-item">
+                        <div class="discount-title">Single Dog</div>
+                        <div class="discount-amount">No Discount</div>
+                        <div class="discount-description">Your chosen formula at subscriber price</div>
+                    </div>
+
+                    <div class="discount-item">
+                        <div class="discount-title">Two Dogs</div>
+                        <div class="discount-amount">10% Off</div>
+                        <div class="discount-description">Total order discount on all bags</div>
+                    </div>
+
+                    <div class="discount-item">
+                        <div class="discount-title">Three+ Dogs</div>
+                        <div class="discount-amount">15% Off</div>
+                        <div class="discount-description">Premium discount for kennel operations</div>
+                    </div>
+                </div>
+
+                <div class="kennel-note">
+                    <p>
+                        <strong>Breeder & Kennel Pricing Available</strong><br>
+                        If you're a professional breeder or run a kennel operation, call us for custom pricing. We work with other breeders across the upper Midwest.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Inukshuk -->
+    <section class="why-section">
+        <div class="container">
+            <h2>Why Inukshuk?</h2>
+
+            <div class="why-grid">
+                <div class="why-card">
+                    <h3>Formulated for Performance</h3>
+                    <p>Not a generic pet food. Inukshuk is designed specifically for active, working dogs that need fuel for real work.</p>
+                </div>
+
+                <div class="why-card">
+                    <h3>Quality Ingredients</h3>
+                    <p>Premium proteins, balanced fat, and nutrients that support muscle development and sustained energy.</p>
+                </div>
+
+                <div class="why-card">
+                    <h3>We Use It</h3>
+                    <p>Every Dakota Sky puppy and training dog eats Inukshuk. We don't recommend what we don't feed our own dogs.</p>
+                </div>
+
+                <div class="why-card">
+                    <h3>Local Dealer</h3>
+                    <p>We're the Inukshuk dealer in northwest North Dakota. Direct relationships mean reliable inventory and competitive pricing.</p>
+                </div>
+
+                <div class="why-card">
+                    <h3>Proven Results</h3>
+                    <p>Dogs on Inukshuk show better coat, better energy, and better field performance. See it for yourself.</p>
+                </div>
+
+                <div class="why-card">
+                    <h3>Subscription Support</h3>
+                    <p>Questions about nutrition? Glen and Stacey are always happy to talk about feeding your dog for peak performance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Start Feeding for Success</h2>
+            <p>Your dog's performance starts with proper nutrition. Subscribe to Inukshuk and join hundreds of hunting dogs nationwide getting premium fuel.</p>
+            <button class="btn" onclick="scrollToProduct()">Browse Formulas</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Dakota Sky Pudelpointers. Dickinson, North Dakota. All rights reserved.</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem;">Questions? Call us at (701) 290-1492</p>
+        </div>
+    </footer>
+
+    <script>
+        function selectFormula(formulaName, price) {
+            alert(`You selected: ${formulaName} at $${price}/bag\n\nIn production, this would take you to a checkout page.`);
+        }
+
+        function scrollToProduct() {
+            document.querySelector('.product-section').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

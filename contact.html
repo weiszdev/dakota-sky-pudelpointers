@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact & Apply - Dakota Sky Pudelpointers</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --hunter-green: #1B4332;
+            --saddle-brown: #8B5E3C;
+            --wheat-gold: #D4A843;
+            --off-white: #FAF8F5;
+            --charcoal: #2D2D2D;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: var(--charcoal);
+            background-color: var(--off-white);
+        }
+
+        /* HEADER & NAVIGATION */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: var(--off-white);
+            border-bottom: 1px solid rgba(27, 67, 50, 0.1);
+            padding: 1rem 0;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--hunter-green);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--charcoal);
+            margin-left: 2rem;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            font-family: 'Arial', sans-serif;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: var(--hunter-green);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 60vh;
+            background: linear-gradient(135deg, #8B6F47 0%, #1B4332 50%, #2D5A3D 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 4rem 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            font-family: 'Arial', sans-serif;
+            font-weight: 300;
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2.5rem;
+            color: var(--hunter-green);
+        }
+
+        section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--hunter-green);
+        }
+
+        p {
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        /* CONTACT INFO GRID */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-top: 4px solid var(--hunter-green);
+        }
+
+        .contact-card h3 {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-card p {
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .contact-card a {
+            color: var(--hunter-green);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .contact-card a:hover {
+            color: var(--wheat-gold);
+        }
+
+        /* FORMS SECTION */
+        .forms-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .form-box {
+            background: white;
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-box h3 {
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--wheat-gold);
+            padding-bottom: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--hunter-green);
+            font-weight: 600;
+            font-family: 'Arial', sans-serif;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Arial', sans-serif;
+            font-size: 0.95rem;
+            color: var(--charcoal);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--hunter-green);
+            box-shadow: 0 0 0 3px rgba(27, 67, 50, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-button {
+            padding: 1rem 2.5rem;
+            background-color: var(--hunter-green);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-family: 'Arial', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        .form-button:hover {
+            background-color: var(--wheat-gold);
+            color: var(--charcoal);
+        }
+
+        /* PUPPY APPLICATION */
+        .application-intro {
+            background: linear-gradient(135deg, rgba(27, 67, 50, 0.05) 0%, rgba(212, 168, 67, 0.03) 100%);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--hunter-green);
+        }
+
+        .application-intro p {
+            margin-bottom: 0;
+        }
+
+        /* PUPPY APPLICATION FORM */
+        .puppy-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            margin-bottom: 3rem;
+        }
+
+        .puppy-form h3 {
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--wheat-gold);
+            padding-bottom: 1rem;
+        }
+
+        .form-section-title {
+            font-size: 1.1rem;
+            color: var(--hunter-green);
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .form-grid.full {
+            grid-template-columns: 1fr;
+        }
+
+        /* MAP SECTION */
+        .map-section {
+            background: linear-gradient(135deg, rgba(27, 67, 50, 0.05) 0%, rgba(212, 168, 67, 0.03) 100%);
+            padding: 3rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid var(--hunter-green);
+        }
+
+        .map-section h3 {
+            margin-bottom: 1.5rem;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #e8e4d8 0%, #d8d2c4 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        .map-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .map-info {
+            margin-top: 2rem;
+        }
+
+        .map-info p {
+            font-size: 0.95rem;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--charcoal);
+            color: var(--off-white);
+            padding: 4rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: var(--wheat-gold);
+            font-family: 'Arial', sans-serif;
+            font-weight: 600;
+        }
+
+        .footer-section p, .footer-section a {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: var(--off-white);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.75rem;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .footer-section a:hover {
+            color: var(--wheat-gold);
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 4px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .newsletter-form button {
+            padding: 0.75rem 1.5rem;
+            background-color: var(--wheat-gold);
+            border: none;
+            color: var(--charcoal);
+            cursor: pointer;
+            border-radius: 4px;
+            font-family: 'Arial', sans-serif;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background-color: var(--hunter-green);
+            color: var(--off-white);
+        }
+
+        .footer-divider {
+            border-top: 1px solid rgba(212, 168, 67, 0.2);
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: var(--hunter-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--wheat-gold);
+        }
+
+        /* MOBILE */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 3rem 1.5rem;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .forms-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">DAKOTA SKY</a>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="breeding.html">Breeding</a>
+                <a href="training.html">Training</a>
+                <a href="boarding.html">Boarding</a>
+                <a href="nutrition.html">Nutrition</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div>
+            <h1>Let's Talk Dogs.</h1>
+            <p>Questions about puppies, training, boarding, or nutrition? We're here to help.</p>
+        </div>
+    </div>
+
+    <!-- CONTACT INFO -->
+    <section>
+        <h2>Contact Information</h2>
+        <div class="contact-grid">
+            <div class="contact-card">
+                <h3>Call Us</h3>
+                <p><strong>(701) 290-1492</strong></p>
+                <p>Best times: Mornings 8-10am, Evenings 5-7pm (CT)</p>
+            </div>
+            <div class="contact-card">
+                <h3>Email</h3>
+                <p><strong><a href="mailto:dakotasky.nd@gmail.com">dakotasky.nd@gmail.com</a></strong></p>
+                <p>We respond to emails within 24 hours.</p>
+            </div>
+            <div class="contact-card">
+                <h3>Visit Us</h3>
+                <p><strong>10525 Highway 10<br>Dickinson, ND 58601</strong></p>
+                <p>By appointment. Give us a call to schedule a visit.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUICK CONTACT & INQUIRY FORMS -->
+    <section>
+        <h2 style="margin-bottom: 1rem;">Get in Touch</h2>
+        <p style="text-align: center; margin-bottom: 3rem;">Use the form below for general inquiries. For puppy applications, see below.</p>
+        <div class="forms-grid">
+            <div class="form-box">
+                <h3>General Inquiry</h3>
+                <form>
+                    <div class="form-group">
+                        <label for="inquiry-name">Your Name</label>
+                        <input type="text" id="inquiry-name" name="inquiry-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="inquiry-email">Email</label>
+                        <input type="email" id="inquiry-email" name="inquiry-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="inquiry-phone">Phone</label>
+                        <input type="tel" id="inquiry-phone" name="inquiry-phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="inquiry-subject">Subject</label>
+                        <select id="inquiry-subject" name="inquiry-subject" required>
+                            <option value="">Select a subject</option>
+                            <option value="puppy">Puppy Inquiry</option>
+                            <option value="training">Training Question</option>
+                            <option value="boarding">Boarding Inquiry</option>
+                            <option value="nutrition">Nutrition Question</option>
+                            <option value="general">General Question</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="inquiry-message">Message</label>
+                        <textarea id="inquiry-message" name="inquiry-message" required></textarea>
+                    </div>
+                    <button type="submit" class="form-button">Send Message</button>
+                </form>
+            </div>
+
+            <div class="form-box">
+                <h3>Quick Call Request</h3>
+                <p style="font-size: 0.95rem; margin-bottom: 1.5rem;">Schedule a callback at a time that works for you. We'll call within 24 hours.</p>
+                <form>
+                    <div class="form-group">
+                        <label for="callback-name">Your Name</label>
+                        <input type="text" id="callback-name" name="callback-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="callback-phone">Phone</label>
+                        <input type="tel" id="callback-phone" name="callback-phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="callback-email">Email</label>
+                        <input type="email" id="callback-email" name="callback-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="callback-topic">What's This About?</label>
+                        <select id="callback-topic" name="callback-topic" required>
+                            <option value="">Select a topic</option>
+                            <option value="puppy">Waiting for a Puppy</option>
+                            <option value="training">Training Program Info</option>
+                            <option value="boarding">Boarding Availability</option>
+                            <option value="nutrition">Inukshuk Nutrition</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="callback-time">Best Time to Call</label>
+                        <select id="callback-time" name="callback-time" required>
+                            <option value="">Select a time</option>
+                            <option value="morning">Morning (8am-12pm)</option>
+                            <option value="afternoon">Afternoon (12pm-5pm)</option>
+                            <option value="evening">Evening (5pm-8pm)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="form-button">Request Call</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- PUPPY APPLICATION -->
+    <section>
+        <h2>Puppy Application</h2>
+        <img src="images/puppy-hero.jpg" alt="Happy Pudelpointer puppy giving high-five" loading="lazy" style="width: 100%; max-height: 300px; object-fit: cover; border-radius: 8px; margin-bottom: 2rem;" onerror="this.style.display='none'">
+        <div class="application-intro">
+            <p>Interested in a Dakota Sky puppy? Start here. This application helps us understand your situation and match you with the right dog. There's no obligation—just a conversation about whether Dakota Sky is the right fit for your family and hunting goals.</p>
+        </div>
+
+        <div class="puppy-form">
+            <h3>Dakota Sky Puppy Application</h3>
+
+            <form>
+                <!-- PERSONAL INFORMATION -->
+                <div class="form-section-title">Personal Information</div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="app-first-name">First Name</label>
+                        <input type="text" id="app-first-name" name="app-first-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="app-last-name">Last Name</label>
+                        <input type="text" id="app-last-name" name="app-last-name" required>
+                    </div>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="app-email">Email</label>
+                        <input type="email" id="app-email" name="app-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="app-phone">Phone</label>
+                        <input type="tel" id="app-phone" name="app-phone" required>
+                    </div>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="app-address">Street Address</label>
+                        <input type="text" id="app-address" name="app-address" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="app-city">City, State, Zip</label>
+                        <input type="text" id="app-city" name="app-city" required>
+                    </div>
+                </div>
+
+                <!-- HUNTING EXPERIENCE -->
+                <div class="form-section-title">Hunting Experience</div>
+                <div class="form-grid full">
+                    <div class="form-group">
+                        <label for="app-hunting-exp">Tell us about your hunting experience. What game do you hunt? How long have you been hunting?</label>
+                        <textarea id="app-hunting-exp" name="app-hunting-exp" required placeholder="Describe your hunting background..."></textarea>
+                    </div>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="app-pointing-breed">Have you owned a pointing breed before?</label>
+                        <select id="app-pointing-breed" name="app-pointing-breed" required>
+                            <option value="">Select</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="app-past-dogs">If yes, what breed(s)?</label>
+                        <input type="text" id="app-past-dogs" name="app-past-dogs" placeholder="e.g., German Shorthaired Pointer, English Setter">
+                    </div>
+                </div>
+
+                <!-- LIVING SITUATION -->
+                <div class="form-section-title">Living Situation</div>
+                <div class="form-grid full">
+                    <div class="form-group">
+                        <label for="app-living">Tell us about your living situation. Do you have a house, yard, other pets, kids?</label>
+                        <textarea id="app-living" name="app-living" required placeholder="Describe your home and family situation..."></textarea>
+                    </div>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="app-yard">Yard Size</label>
+                        <select id="app-yard" name="app-yard" required>
+                            <option value="">Select</option>
+                            <option value="large">Large fenced yard (1+ acres)</option>
+                            <option value="medium">Medium yard (typical suburban)</option>
+                            <option value="small">Small yard or no yard</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="app-other-pets">Other pets?</label>
+                        <input type="text" id="app-other-pets" name="app-other-pets" placeholder="Dogs, cats, etc.">
+                    </div>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="app-children">Children in home?</label>
+                        <select id="app-children" name="app-children" required>
+                            <option value="">Select</option>
+                            <option value="none">No</option>
+                            <option value="young">Yes, young (under 8)</option>
+                            <option value="school">Yes, school age (8-13)</option>
+                            <option value="teen">Yes, teenagers</option>
+                            <option value="adults">Yes, adults only</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="app-active">Activity Level</label>
+                        <select id="app-active" name="app-active" required>
+                            <option value="">Select</option>
+                            <option value="very-active">Very active (hiking, training, outdoor activities)</option>
+                            <option value="active">Active (regular exercise, some training)</option>
+                            <option value="moderate">Moderate (daily walks, casual outdoor time)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- GOALS & EXPECTATIONS -->
+                <div class="form-section-title">Goals & Expectations</div>
+                <div class="form-grid full">
+                    <div class="form-group">
+                        <label for="app-goals">What are your goals for a Pudelpointer? (e.g., hunting companion, family pet, hunt test competitor, etc.)</label>
+                        <textarea id="app-goals" name="app-goals" required placeholder="Describe your goals..."></textarea>
+                    </div>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="app-training">Are you planning to train the dog yourself or use a professional trainer?</label>
+                        <select id="app-training" name="app-training" required>
+                            <option value="">Select</option>
+                            <option value="self">Self training</option>
+                            <option value="professional">Professional training</option>
+                            <option value="both">Both</option>
+                            <option value="dakota-sky">Dakota Sky training</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="app-timeline">When are you looking to bring a puppy home?</label>
+                        <select id="app-timeline" name="app-timeline" required>
+                            <option value="">Select</option>
+                            <option value="asap">ASAP</option>
+                            <option value="6-months">6 months</option>
+                            <option value="1-year">1 year</option>
+                            <option value="flexible">Flexible / No rush</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- WAITLIST -->
+                <div class="form-section-title">Other Breeders</div>
+                <div class="form-grid full">
+                    <div class="form-group">
+                        <label for="app-waitlists">Are you on any other breeders' waitlists?</label>
+                        <select id="app-waitlists" name="app-waitlists" required>
+                            <option value="">Select</option>
+                            <option value="no">No</option>
+                            <option value="yes-few">Yes, a few</option>
+                            <option value="yes-several">Yes, several</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-grid full">
+                    <div class="form-group">
+                        <label for="app-referral">How did you hear about Dakota Sky?</label>
+                        <select id="app-referral" name="app-referral" required>
+                            <option value="">Select</option>
+                            <option value="facebook">Facebook</option>
+                            <option value="instagram">Instagram</option>
+                            <option value="website">Website</option>
+                            <option value="referral">Referral from friend/dog owner</option>
+                            <option value="hunt-test">Hunt test or show</option>
+                            <option value="google">Google search</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- FINAL QUESTION -->
+                <div class="form-section-title">Final Thoughts</div>
+                <div class="form-grid full">
+                    <div class="form-group">
+                        <label for="app-final">Anything else you'd like us to know?</label>
+                        <textarea id="app-final" name="app-final" placeholder="Optional - share anything else relevant to your application..."></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="form-button" style="margin-top: 2rem;">Submit Application</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- MAP & DIRECTIONS -->
+    <section>
+        <div class="map-section">
+            <h3>Find Us</h3>
+            <p>Located just off Highway 10 in Dickinson, North Dakota. On the way to or coming from Theodore Roosevelt National Park.</p>
+            <div class="map-placeholder">Interactive Map Coming Soon</div>
+            <div class="map-info">
+                <p><strong>10525 Highway 10, Dickinson, ND 58601</strong></p>
+                <p>Phone: <strong>(701) 290-1492</strong></p>
+                <p>Email: <strong>dakotasky.nd@gmail.com</strong></p>
+                <p style="margin-top: 1.5rem;">Visit by appointment. Please call ahead to schedule.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <p>10525 Highway 10</p>
+                <p>Dickinson, ND 58601</p>
+                <p>(701) 290-1492</p>
+                <p><a href="mailto:dakotasky.nd@gmail.com">dakotasky.nd@gmail.com</a></p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="breeding.html">Breeding Program</a>
+                <a href="training.html">Professional Training</a>
+                <a href="boarding.html">Boarding & Daycare</a>
+                <a href="nutrition.html">Inukshuk Nutrition</a>
+                <a href="about.html">About Glen & Stacey</a>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="https://facebook.com/Pudlepointers" title="Facebook">f</a>
+                    <a href="https://instagram.com/dakotaskypudelpointers" title="Instagram">@</a>
+                </div>
+                <p style="margin-top: 1.5rem;">Join our mailing list for updates, training tips, and announcements.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-divider">
+            <p>&copy; 2026 Dakota Sky Pudelpointers. All rights reserved. Glen & Stacey Koffler, Dickinson, ND.</p>
+        </div>
+    </footer>
+</body>
+</html>

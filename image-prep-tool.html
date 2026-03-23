@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dakota Sky — Image Prep Tool</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f2b1d; color: #FAF8F5; min-height: 100vh; }
+.container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+h1 { font-family: Georgia, serif; font-size: 2rem; color: #D4A843; margin-bottom: 0.5rem; }
+.subtitle { color: #a0a0a0; margin-bottom: 2rem; }
+.instructions { background: #1a3d2a; border: 1px solid #2d5a3d; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; }
+.instructions h2 { color: #D4A843; font-size: 1.1rem; margin-bottom: 0.75rem; }
+.instructions ol { padding-left: 1.5rem; line-height: 1.8; }
+.instructions li { margin-bottom: 0.25rem; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+.slot { background: #1a3d2a; border: 2px dashed #2d5a3d; border-radius: 12px; padding: 1rem; text-align: center; transition: all 0.3s; min-height: 240px; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; cursor: pointer; }
+.slot:hover { border-color: #D4A843; background: #1f4430; }
+.slot.filled { border-style: solid; border-color: #4ade80; }
+.slot .label { font-weight: 700; color: #D4A843; font-size: 0.95rem; margin-bottom: 0.25rem; }
+.slot .description { color: #a0a0a0; font-size: 0.8rem; margin-bottom: 0.75rem; line-height: 1.4; }
+.slot .dimensions { color: #666; font-size: 0.7rem; }
+.slot img { max-width: 100%; max-height: 160px; border-radius: 8px; object-fit: cover; margin-bottom: 0.5rem; }
+.slot .check { position: absolute; top: 8px; right: 8px; background: #4ade80; color: #0f2b1d; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.1rem; }
+.slot input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.drop-hint { font-size: 2rem; color: #2d5a3d; margin-bottom: 0.5rem; }
+.progress { background: #1a3d2a; border: 1px solid #2d5a3d; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; display: flex; align-items: center; gap: 1.5rem; }
+.progress-bar { flex: 1; height: 12px; background: #0f2b1d; border-radius: 6px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, #D4A843, #4ade80); border-radius: 6px; transition: width 0.5s; width: 0%; }
+.progress-text { color: #D4A843; font-weight: 700; font-size: 1.1rem; white-space: nowrap; }
+.download-btn { display: none; background: #D4A843; color: #0f2b1d; border: none; padding: 1rem 2.5rem; font-size: 1.1rem; font-weight: 700; border-radius: 8px; cursor: pointer; margin: 2rem auto; text-align: center; }
+.download-btn:hover { background: #c49a3a; }
+.download-btn.show { display: block; }
+.section-header { color: #D4A843; font-family: Georgia, serif; font-size: 1.3rem; margin: 2rem 0 0.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid #2d5a3d; }
+.tag { display: inline-block; font-size: 0.65rem; padding: 2px 8px; border-radius: 4px; margin-bottom: 0.5rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+.tag.required { background: #7f1d1d; color: #fca5a5; }
+.tag.optional { background: #1e3a5f; color: #93c5fd; }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>Dakota Sky Pudelpointers — Image Prep Tool</h1>
+    <p class="subtitle">Click each slot (or drag & drop) to add photos. They'll be renamed automatically for the website.</p>
+
+    <div class="instructions">
+        <h2>How to Use This Tool</h2>
+        <ol>
+            <li><strong>Open your Facebook page</strong> in another tab: <a href="https://www.facebook.com/Pudlepointers/photos" target="_blank" style="color:#D4A843;">Dakota Sky Photos</a></li>
+            <li><strong>Right-click a photo → "Save Image As"</strong> to your Desktop (any name is fine)</li>
+            <li><strong>Click the matching slot below</strong> and select that saved image</li>
+            <li>Repeat for all 14 required photos (bonus ones are optional)</li>
+            <li><strong>Click "Download All Images"</strong> at the bottom — you'll get a ZIP with every file correctly named</li>
+            <li><strong>Unzip into the <code>images/</code> folder</strong> next to your HTML files. Done!</li>
+        </ol>
+    </div>
+
+    <div class="progress">
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        <div class="progress-text" id="progressText">0 / 14 required</div>
+    </div>
+
+    <h3 class="section-header">Hero / Cover Photos</h3>
+    <div class="grid" id="heroGrid"></div>
+
+    <h3 class="section-header">Dog Roster</h3>
+    <div class="grid" id="dogGrid"></div>
+
+    <h3 class="section-header">Puppy Photos</h3>
+    <div class="grid" id="puppyGrid"></div>
+
+    <h3 class="section-header">Field & Lifestyle</h3>
+    <div class="grid" id="fieldGrid"></div>
+
+    <h3 class="section-header">Bonus Photos (Optional)</h3>
+    <div class="grid" id="bonusGrid"></div>
+
+    <button class="download-btn" id="downloadBtn" onclick="downloadAll()">Download All Images as ZIP</button>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+<script>
+const imageSlots = [
+    // Hero
+    { id: 'hero-main', filename: 'hero-main.jpg', label: 'Homepage Hero', description: 'Two puppies by the fireplace (your current cover photo)', required: true, group: 'heroGrid', suggestion: 'Use your Facebook cover photo' },
+    { id: 'hero-breeding', filename: 'hero-breeding.jpg', label: 'Breeding Page Hero', description: 'A dam with her litter, or your best breeding dog in the field', required: true, group: 'heroGrid', suggestion: 'Best litter photo or dam portrait' },
+    { id: 'hero-training', filename: 'hero-training.jpg', label: 'Training Page Hero', description: 'Dog on point in the field or retrieving a bird', required: true, group: 'heroGrid', suggestion: 'The Ivy in cattails photo (396 likes!)' },
+    { id: 'hero-about', filename: 'hero-about.jpg', label: 'About Page Hero', description: 'Glen and Stacey together with dogs — warm, personal', required: true, group: 'heroGrid', suggestion: 'A candid photo of you both with dogs' },
+
+    // Dogs
+    { id: 'dog-1', filename: 'dog-1.jpg', label: 'Breeding Dog #1', description: 'Top sire — best field or conformation shot', required: true, group: 'dogGrid', suggestion: 'Your #1 male' },
+    { id: 'dog-2', filename: 'dog-2.jpg', label: 'Breeding Dog #2', description: 'Top dam — best field or conformation shot', required: true, group: 'dogGrid', suggestion: 'Your #1 female' },
+    { id: 'dog-3', filename: 'dog-3.jpg', label: 'Breeding Dog #3', description: 'Another breeding dog — field or portrait', required: true, group: 'dogGrid', suggestion: 'Next best dog' },
+    { id: 'dog-4', filename: 'dog-4.jpg', label: 'Breeding Dog #4', description: 'Another breeding dog — field or portrait', required: true, group: 'dogGrid', suggestion: 'Another standout' },
+
+    // Puppies
+    { id: 'puppy-hero', filename: 'puppy-hero.jpg', label: 'Puppy Hero Shot', description: 'The "high five" puppy — Stevie/Dakota Sky Ridge (243 likes!)', required: true, group: 'puppyGrid', suggestion: 'THE money shot — the high-five pup' },
+    { id: 'puppy-litter', filename: 'puppy-litter.jpg', label: 'Newborn Litter', description: 'Newborn litter photo — the red-toned litter shot', required: true, group: 'puppyGrid', suggestion: 'Whole litter together' },
+    { id: 'puppy-training', filename: 'puppy-training.jpg', label: 'Puppy in Training', description: 'Young dog carrying bumper or pointing', required: true, group: 'puppyGrid', suggestion: 'Dog with orange bumper' },
+
+    // Field
+    { id: 'field-point', filename: 'field-point.jpg', label: 'Dog on Point', description: 'Dog on point in tall grass or cattails', required: true, group: 'fieldGrid', suggestion: 'Ivy in cattails = your brand' },
+    { id: 'field-retrieve', filename: 'field-retrieve.jpg', label: 'Dog Retrieving', description: 'Dog retrieving a bird or swimming', required: true, group: 'fieldGrid', suggestion: 'Best retrieve or water photo' },
+    { id: 'kennel-facility', filename: 'kennel-facility.jpg', label: 'Kennel / Property', description: 'Your kennel facility, runs, or beautiful property', required: true, group: 'fieldGrid', suggestion: 'Show off the land' },
+
+    // Bonus
+    { id: 'glen-portrait', filename: 'glen-portrait.jpg', label: 'Glen Portrait', description: 'Headshot or candid with a dog', required: false, group: 'bonusGrid', suggestion: '' },
+    { id: 'stacey-portrait', filename: 'stacey-portrait.jpg', label: 'Stacey Portrait', description: 'Headshot or candid with a dog', required: false, group: 'bonusGrid', suggestion: '' },
+    { id: 'hunt-day', filename: 'hunt-day.jpg', label: 'Hunt Day', description: 'Group photo: people + dogs + birds', required: false, group: 'bonusGrid', suggestion: '' },
+    { id: 'inukshuk-bag', filename: 'inukshuk-bag.jpg', label: 'Inukshuk Food', description: 'Photo of Inukshuk dog food bag', required: false, group: 'bonusGrid', suggestion: '' },
+    { id: 'navhda-test', filename: 'navhda-test.jpg', label: 'NAVHDA / Awards', description: 'Dog at test or with prize ribbons', required: false, group: 'bonusGrid', suggestion: '' },
+    { id: 'testimonial-1', filename: 'testimonial-1.jpg', label: 'Happy Client #1', description: 'Client with their Dakota Sky dog', required: false, group: 'bonusGrid', suggestion: '' },
+    { id: 'testimonial-2', filename: 'testimonial-2.jpg', label: 'Happy Client #2', description: 'Another client photo', required: false, group: 'bonusGrid', suggestion: '' },
+    { id: 'testimonial-3', filename: 'testimonial-3.jpg', label: 'Happy Client #3', description: 'Another client photo', required: false, group: 'bonusGrid', suggestion: '' },
+];
+
+const imageData = {};
+
+function createSlot(slot) {
+    const div = document.createElement('div');
+    div.className = 'slot';
+    div.id = 'slot-' + slot.id;
+    div.innerHTML = `
+        <span class="tag ${slot.required ? 'required' : 'optional'}">${slot.required ? 'Required' : 'Optional'}</span>
+        <div class="drop-hint">+</div>
+        <div class="label">${slot.label}</div>
+        <div class="description">${slot.description}</div>
+        ${slot.suggestion ? '<div class="dimensions">Tip: ' + slot.suggestion + '</div>' : ''}
+        <input type="file" accept="image/*" onchange="handleFile(event, '${slot.id}')">
+    `;
+
+    div.addEventListener('dragover', (e) => { e.preventDefault(); div.style.borderColor = '#D4A843'; });
+    div.addEventListener('dragleave', () => { div.style.borderColor = imageData[slot.id] ? '#4ade80' : '#2d5a3d'; });
+    div.addEventListener('drop', (e) => {
+        e.preventDefault();
+        if (e.dataTransfer.files.length) {
+            processFile(e.dataTransfer.files[0], slot.id);
+        }
+    });
+
+    document.getElementById(slot.group).appendChild(div);
+}
+
+function handleFile(event, slotId) {
+    if (event.target.files.length) {
+        processFile(event.target.files[0], slotId);
+    }
+}
+
+function processFile(file, slotId) {
+    const slot = imageSlots.find(s => s.id === slotId);
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        // Resize to max 1920px wide for web optimization
+        const img = new Image();
+        img.onload = function() {
+            const canvas = document.createElement('canvas');
+            const maxW = 1920;
+            let w = img.width, h = img.height;
+            if (w > maxW) { h = h * (maxW / w); w = maxW; }
+            canvas.width = w;
+            canvas.height = h;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, w, h);
+
+            canvas.toBlob(function(blob) {
+                imageData[slotId] = { blob, filename: slot.filename };
+
+                const slotEl = document.getElementById('slot-' + slotId);
+                slotEl.classList.add('filled');
+                slotEl.innerHTML = `
+                    <div class="check">✓</div>
+                    <img src="${URL.createObjectURL(blob)}">
+                    <div class="label">${slot.label}</div>
+                    <div class="dimensions">${Math.round(w)}×${Math.round(h)} · ${Math.round(blob.size/1024)} KB → ${slot.filename}</div>
+                    <input type="file" accept="image/*" onchange="handleFile(event, '${slotId}')">
+                `;
+                updateProgress();
+            }, 'image/jpeg', 0.9);
+        };
+        img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+}
+
+function updateProgress() {
+    const required = imageSlots.filter(s => s.required);
+    const filled = required.filter(s => imageData[s.id]);
+    const pct = Math.round((filled.length / required.length) * 100);
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressText').textContent = filled.length + ' / ' + required.length + ' required';
+    document.getElementById('downloadBtn').className = 'download-btn' + (filled.length > 0 ? ' show' : '');
+}
+
+async function downloadAll() {
+    const zip = new JSZip();
+    const imgFolder = zip.folder('images');
+
+    for (const [id, data] of Object.entries(imageData)) {
+        imgFolder.file(data.filename, data.blob);
+    }
+
+    const content = await zip.generateAsync({ type: 'blob' });
+    saveAs(content, 'dakota-sky-images.zip');
+}
+
+// Build all slots
+imageSlots.forEach(createSlot);
+updateProgress();
+</script>
+</body>
+</html>

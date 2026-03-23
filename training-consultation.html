@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Training Consultation | Dakota Sky Pudelpointers</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #FAF8F5;
+            color: #2D2D2D;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: Georgia, serif;
+            color: #1B4332;
+        }
+
+        h1 { font-size: 2.8rem; line-height: 1.2; }
+        h2 { font-size: 2rem; margin: 2.5rem 0 1.5rem; }
+        h3 { font-size: 1.4rem; margin: 1.5rem 0 0.75rem; }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 1.8rem;
+            background-color: #1B4332;
+            color: #FAF8F5;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: #0F2818;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(27, 67, 50, 0.7), rgba(27, 67, 50, 0.85)), url('images/hero-training.jpg') center/cover no-repeat;
+            color: #FAF8F5;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            color: #D4A843;
+            margin-bottom: 1rem;
+        }
+
+        .hero .subheading {
+            font-size: 1.3rem;
+            color: #FAF8F5;
+            max-width: 800px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* What We'll Cover */
+        .what-section {
+            padding: 4rem 2rem;
+        }
+
+        .what-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .what-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(27, 67, 50, 0.1);
+            border-left: 5px solid #D4A843;
+        }
+
+        .what-card p {
+            color: #2D2D2D;
+            line-height: 1.8;
+        }
+
+        .what-card strong {
+            color: #1B4332;
+        }
+
+        /* Form Section */
+        .form-section {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .form-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: 600;
+            color: #1B4332;
+            margin-bottom: 0.5rem;
+            font-family: Georgia, serif;
+            font-size: 1rem;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"],
+        textarea,
+        select {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 1rem;
+            color: #2D2D2D;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        input[type="number"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #1B4332;
+            box-shadow: 0 0 0 3px rgba(27, 67, 50, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Checkboxes */
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+        }
+
+        input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-right: 0.75rem;
+            cursor: pointer;
+            accent-color: #1B4332;
+        }
+
+        .checkbox-item label {
+            margin: 0;
+            font-weight: normal;
+            cursor: pointer;
+        }
+
+        /* Radio Buttons */
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+        }
+
+        input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            margin-right: 0.75rem;
+            cursor: pointer;
+            accent-color: #1B4332;
+        }
+
+        .radio-item label {
+            margin: 0;
+            font-weight: normal;
+            cursor: pointer;
+        }
+
+        .form-submit {
+            background-color: #1B4332;
+            color: #FAF8F5;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 1rem;
+        }
+
+        .form-submit:hover {
+            background-color: #0F2818;
+        }
+
+        /* Why Dakota Sky */
+        .why-section {
+            padding: 4rem 2rem;
+        }
+
+        .why-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(27, 67, 50, 0.1);
+        }
+
+        .why-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: #FAF8F5;
+            border-radius: 8px;
+            border-top: 4px solid #D4A843;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            color: #D4A843;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #1B4332;
+            font-weight: 600;
+            font-family: Georgia, serif;
+        }
+
+        .why-text {
+            color: #2D2D2D;
+            line-height: 1.8;
+            margin: 1.5rem 0;
+        }
+
+        /* CTA */
+        .cta-banner {
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, #1B4332 0%, #0F2818 100%);
+            color: #FAF8F5;
+            text-align: center;
+        }
+
+        .cta-banner h2 {
+            color: #D4A843;
+        }
+
+        .cta-banner p {
+            margin: 1rem 0 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2D2D2D;
+            color: #FAF8F5;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.4rem; }
+            .hero h1 { font-size: 2rem; }
+            .stat-number { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1>Not Sure What Training Your Dog Needs?</h1>
+            <p class="subheading">Let's figure it out together. Book a free 15-minute phone consultation with Glen or Stacey.</p>
+        </div>
+    </section>
+
+    <!-- What We'll Cover -->
+    <section class="what-section">
+        <div class="container">
+            <h2>What We'll Cover</h2>
+            <img src="images/field-point.jpg" alt="Dakota Sky Pudelpointer on point in training" loading="lazy" style="width: 100%; max-height: 300px; object-fit: cover; border-radius: 8px; margin-bottom: 2rem;" onerror="this.style.display='none'">
+
+            <div class="what-grid">
+                <div class="what-card">
+                    <h3>Your Dog Right Now</h3>
+                    <p>We'll talk about your dog's age, experience, and temperament. No judgment — every dog is different.</p>
+                </div>
+
+                <div class="what-card">
+                    <h3>Your Hunting Goals</h3>
+                    <p>Upland? Waterfowl? NAVHDA testing? Family companion? Your goals shape the training path we recommend.</p>
+                </div>
+
+                <div class="what-card">
+                    <h3>The Right Program</h3>
+                    <p>We'll match you with the training program that fits your dog, your timeline, and your budget.</p>
+                </div>
+
+                <div class="what-card">
+                    <h3>Realistic Expectations</h3>
+                    <p>Honest talk about what's possible, what takes time, and how you can support your dog's progress.</p>
+                </div>
+
+                <div class="what-card">
+                    <h3>No Pressure</h3>
+                    <p>No sales pitch. Just advice from people who have trained hundreds of dogs and genuinely want to help.</p>
+                </div>
+
+                <div class="what-card">
+                    <h3>A Plan Forward</h3>
+                    <p>Walk away with clear next steps, whether that's professional training, at-home work, or more information.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form Section -->
+    <section class="form-section">
+        <div class="container">
+            <div class="form-container">
+                <h2 style="text-align: center;">Book Your Free Consultation</h2>
+
+                <form id="consultationForm">
+                    <!-- Name -->
+                    <div class="form-group">
+                        <label for="name">Your Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+
+                    <!-- Dog's Name -->
+                    <div class="form-group">
+                        <label for="dogName">Dog's Name (if you have one)</label>
+                        <input type="text" id="dogName" name="dogName">
+                    </div>
+
+                    <!-- Dog's Breed -->
+                    <div class="form-group">
+                        <label for="dogBreed">Breed</label>
+                        <input type="text" id="dogBreed" name="dogBreed" placeholder="Pudelpointer, Labrador, etc.">
+                    </div>
+
+                    <!-- Dog's Age -->
+                    <div class="form-group">
+                        <label for="dogAge">Dog's Age (months or years)</label>
+                        <input type="text" id="dogAge" name="dogAge" placeholder="e.g., 4 months or 2 years">
+                    </div>
+
+                    <!-- Main Goals (Checkboxes) -->
+                    <div class="form-group">
+                        <label>What are your main goals? (select all that apply)</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="upland" name="goals" value="Upland hunting">
+                                <label for="upland">Upland hunting</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="waterfowl" name="goals" value="Waterfowl">
+                                <label for="waterfowl">Waterfowl</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="navhda" name="goals" value="NAVHDA prep">
+                                <label for="navhda">NAVHDA prep</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="obedience" name="goals" value="Obedience">
+                                <label for="obedience">Obedience</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="companion" name="goals" value="Family companion">
+                                <label for="companion">Family companion</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="allAround" name="goals" value="All-around hunting">
+                                <label for="allAround">All-around hunting</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Challenges -->
+                    <div class="form-group">
+                        <label for="challenges">What challenges are you experiencing? (or what do you want to prevent?)</label>
+                        <textarea id="challenges" name="challenges" placeholder="Tell us what's on your mind..."></textarea>
+                    </div>
+
+                    <!-- Preferred Call Time -->
+                    <div class="form-group">
+                        <label>Preferred call time *</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="morning" name="callTime" value="Morning (7am-11am)" required>
+                                <label for="morning">Morning (7am-11am CT)</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="afternoon" name="callTime" value="Afternoon (12pm-5pm)">
+                                <label for="afternoon">Afternoon (12pm-5pm CT)</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="evening" name="callTime" value="Evening (5pm-8pm)">
+                                <label for="evening">Evening (5pm-8pm CT)</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit -->
+                    <button type="submit" class="form-submit">Book My Free Consultation</button>
+                </form>
+
+                <p style="text-align: center; color: #8B5E3C; margin-top: 2rem; font-size: 0.95rem;">
+                    We'll contact you within 1-2 business days to schedule your call.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Dakota Sky Training -->
+    <section class="why-section">
+        <div class="container">
+            <h2>Why Dakota Sky Training?</h2>
+
+            <div class="why-content">
+                <div class="why-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">20+</div>
+                        <div class="stat-label">Years of Experience</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Dogs Trained</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">30+</div>
+                        <div class="stat-label">NAVHDA Titles Earned</div>
+                    </div>
+                </div>
+
+                <p class="why-text">
+                    <strong>Glen and Stacey Koffler</strong> aren't just trainers — they're breeders who understand gun dogs from the ground up. Every method we use is grounded in years of field experience and proven results.
+                </p>
+
+                <p class="why-text">
+                    <strong>We train with Inukshuk nutrition</strong> because performance starts with proper fuel. Your dog won't reach its potential on a generic kibble. That's why our packages lock in premium food.
+                </p>
+
+                <p class="why-text">
+                    <strong>We care about YOUR success.</strong> Training doesn't end when your dog leaves. We stay in touch, answer questions, and help you navigate the first year — the most critical phase of your dog's development.
+                </p>
+
+                <p class="why-text">
+                    Ready to explore training? Let's start with a conversation. <a href="#consultationForm" style="color: #1B4332; font-weight: 600; text-decoration: none;">Scroll up to book your consultation.</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="cta-banner">
+        <div class="container">
+            <h2>Questions Before You Book?</h2>
+            <p>That's what the consultation is for. No question is too small.</p>
+            <p style="font-size: 0.95rem; margin-top: 1.5rem;">Call us directly at <strong>(701) 290-1492</strong> or <a href="#consultationForm" style="color: #D4A843; text-decoration: none; font-weight: 600;">fill out the form above.</a></p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Dakota Sky Pudelpointers. Dickinson, North Dakota. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('consultationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Collect form data
+            const formData = new FormData(this);
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                dogName: formData.get('dogName'),
+                dogBreed: formData.get('dogBreed'),
+                dogAge: formData.get('dogAge'),
+                goals: formData.getAll('goals'),
+                challenges: formData.get('challenges'),
+                callTime: formData.get('callTime')
+            };
+
+            // Log to console (in production, this would send to a backend)
+            console.log('Consultation form submitted:', data);
+
+            // Show confirmation (in production, this would redirect or show a thank you page)
+            alert('Thank you! We will contact you within 1-2 business days to schedule your consultation.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

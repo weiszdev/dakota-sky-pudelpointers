@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dakota Sky Puppy Package | Premium Pudelpointers</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #FAF8F5;
+            color: #2D2D2D;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: Georgia, serif;
+            color: #1B4332;
+            margin-bottom: 1rem;
+        }
+
+        h1 { font-size: 3rem; line-height: 1.2; }
+        h2 { font-size: 2.2rem; line-height: 1.3; margin-top: 3rem; }
+        h3 { font-size: 1.6rem; margin-top: 2rem; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background-color: #1B4332;
+            color: #FAF8F5;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: #0F2818;
+        }
+
+        .btn-secondary {
+            background-color: #8B5E3C;
+        }
+
+        .btn-secondary:hover {
+            background-color: #6B4428;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(27, 67, 50, 0.7), rgba(27, 67, 50, 0.85)), url('images/puppy-hero.jpg') center/cover no-repeat;
+            color: #FAF8F5;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            color: #D4A843;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero .subheading {
+            font-size: 1.4rem;
+            color: #FAF8F5;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            font-weight: 300;
+        }
+
+        /* Packages Section */
+        .packages {
+            padding: 4rem 2rem;
+        }
+
+        .package-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .package-card {
+            background: white;
+            border-left: 6px solid #8B5E3C;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(27, 67, 50, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .package-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(27, 67, 50, 0.15);
+        }
+
+        .package-card.featured {
+            border-left: 6px solid #D4A843;
+            transform: scale(1.05);
+        }
+
+        .package-card h3 {
+            color: #1B4332;
+            margin-bottom: 0.5rem;
+        }
+
+        .package-price {
+            font-size: 2.5rem;
+            color: #D4A843;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .package-value {
+            color: #8B5E3C;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .package-features {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .package-features li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.95rem;
+            color: #2D2D2D;
+        }
+
+        .package-features li:last-child {
+            border-bottom: none;
+        }
+
+        .package-features li:before {
+            content: "✓ ";
+            color: #1B4332;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .package-cta {
+            margin-top: 2rem;
+        }
+
+        /* Comparison Table */
+        .comparison {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .comparison table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+
+        .comparison th, .comparison td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .comparison th {
+            background-color: #1B4332;
+            color: #FAF8F5;
+            font-family: Georgia, serif;
+            font-size: 1.1rem;
+        }
+
+        .comparison tr:hover {
+            background-color: #FAF8F5;
+        }
+
+        .comparison .feature-name {
+            font-weight: 600;
+            color: #1B4332;
+        }
+
+        .comparison .checkmark {
+            color: #1B4332;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        /* Why Bundle */
+        .why-bundle {
+            padding: 4rem 2rem;
+        }
+
+        .why-bundle-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .why-card {
+            background: #f9f7f4;
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid #D4A843;
+        }
+
+        .why-card p {
+            color: #2D2D2D;
+            line-height: 1.8;
+        }
+
+        /* Payment Plans */
+        .payment-plans {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .plan-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .plan-card {
+            background: #f9f7f4;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+        .plan-card:hover {
+            border-color: #8B5E3C;
+        }
+
+        .plan-card h4 {
+            color: #1B4332;
+            margin-bottom: 1rem;
+        }
+
+        .plan-card .amount {
+            font-size: 1.5rem;
+            color: #D4A843;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .plan-card p {
+            color: #2D2D2D;
+            font-size: 0.95rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 4rem 2rem;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(27, 67, 50, 0.1);
+            border-top: 4px solid #D4A843;
+        }
+
+        .testimonial-text {
+            color: #2D2D2D;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: #1B4332;
+        }
+
+        .testimonial-location {
+            font-size: 0.9rem;
+            color: #8B5E3C;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #1B4332 0%, #0F2818 100%);
+            color: #FAF8F5;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            color: #D4A843;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin: 1rem 0 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2D2D2D;
+            color: #FAF8F5;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.6rem; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero .subheading { font-size: 1.1rem; }
+            .package-card.featured { transform: scale(1); }
+            .comparison table { font-size: 0.9rem; }
+            .comparison th, .comparison td { padding: 0.75rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1>Every Dakota Sky Puppy Comes Ready.</h1>
+            <p class="subheading">Our puppies aren't just bred well — they leave prepared. Choose the package that fits your journey.</p>
+        </div>
+    </section>
+
+    <!-- Packages -->
+    <section class="packages">
+        <div class="container">
+            <h2>Choose Your Package</h2>
+
+            <div class="package-grid">
+                <!-- Foundation Package -->
+                <div class="package-card">
+                    <h3>The Foundation Package</h3>
+                    <div class="package-price">$2,800</div>
+                    <p class="package-value">Included with every puppy</p>
+
+                    <ul class="package-features">
+                        <li>Health-tested, NAVHDA-eligible puppy</li>
+                        <li>First vaccinations and deworming</li>
+                        <li>Microchipped</li>
+                        <li>AKC/FDSB registration</li>
+                        <li>Puppy starter kit with Inukshuk sample</li>
+                        <li>Dakota Sky Puppy Handbook (printed)</li>
+                        <li>Private Dakota Sky Owners Facebook group</li>
+                        <li>Lifetime breeder support</li>
+                        <li>Temperament evaluation report</li>
+                    </ul>
+
+                    <div class="package-cta">
+                        <a href="contact.html" class="btn">Apply Now</a>
+                    </div>
+                </div>
+
+                <!-- Hunter's Start Package -->
+                <div class="package-card featured">
+                    <h3>The Hunter's Start Package</h3>
+                    <div class="package-price">$5,400</div>
+                    <p class="package-value">Save $600 | Value: $7,400</p>
+
+                    <ul class="package-features">
+                        <li>Everything in Foundation</li>
+                        <li>2 months Puppy Foundation Training</li>
+                        <li>1-year Inukshuk 30/25 food subscription</li>
+                        <li>Digital Training Course access (2026)</li>
+                        <li>Priority training scheduling</li>
+                        <li>Quarterly check-ins with Glen or Stacey</li>
+                    </ul>
+
+                    <div class="package-cta">
+                        <a href="contact.html" class="btn">Apply Now</a>
+                    </div>
+                </div>
+
+                <!-- Complete Companion Package -->
+                <div class="package-card featured">
+                    <h3>The Complete Companion Package</h3>
+                    <div class="package-price">$9,800</div>
+                    <p class="package-value">Save $2,200 | Value: $12,000+</p>
+
+                    <ul class="package-features">
+                        <li>Everything in Hunter's Start</li>
+                        <li>Full 4-month Started Dog Training program</li>
+                        <li>Extended 1-year Inukshuk 32/32 Pro formula</li>
+                        <li>NAVHDA Natural Ability prep and entry</li>
+                        <li>Professional hunting photos</li>
+                        <li>Signed Glen & Stacey book (when published)</li>
+                        <li>VIP access to annual Dakota Sky Hunt Day</li>
+                    </ul>
+
+                    <div class="package-cta">
+                        <a href="contact.html" class="btn">Apply Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section class="comparison">
+        <div class="container">
+            <h2>Compare Packages</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th style="text-align: center;">Foundation</th>
+                        <th style="text-align: center;">Hunter's Start</th>
+                        <th style="text-align: center;">Complete Companion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="feature-name">Health-tested NAVHDA-eligible puppy</td>
+                        <td class="checkmark">✓</td>
+                        <td class="checkmark">✓</td>
+                        <td class="checkmark">✓</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">First vaccinations and deworming</td>
+                        <td class="checkmark">✓</td>
+                        <td class="checkmark">✓</td>
+                        <td class="checkmark">✓</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">AKC/FDSB registration</td>
+                        <td class="checkmark">✓</td>
+                        <td class="checkmark">✓</td>
+                        <td class="checkmark">✓</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">Puppy starter kit</td>
+                        <td class="checkmark">✓</td>
+                        <td class="checkmark">✓</td>
+                        <td class="checkmark">✓</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">Lifetime breeder support</td>
+                        <td class="checkmark">✓</td>
+                        <td class="checkmark">✓</td>
+                        <td class="checkmark">✓</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">Puppy Foundation Training (2 months)</td>
+                        <td></td>
+                        <td class="checkmark">✓</td>
+                        <td class="checkmark">✓</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">Started Dog Training (4 months)</td>
+                        <td></td>
+                        <td></td>
+                        <td class="checkmark">✓</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">1-year Inukshuk food subscription</td>
+                        <td></td>
+                        <td class="checkmark">✓</td>
+                        <td class="checkmark">✓</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">Digital Training Course (2026)</td>
+                        <td></td>
+                        <td class="checkmark">✓</td>
+                        <td class="checkmark">✓</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">Quarterly phone check-ins</td>
+                        <td></td>
+                        <td class="checkmark">✓</td>
+                        <td class="checkmark">✓</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">NAVHDA Natural Ability prep</td>
+                        <td></td>
+                        <td></td>
+                        <td class="checkmark">✓</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">Professional hunting photos</td>
+                        <td></td>
+                        <td></td>
+                        <td class="checkmark">✓</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">Signed book (when published)</td>
+                        <td></td>
+                        <td></td>
+                        <td class="checkmark">✓</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">VIP Hunt Day access</td>
+                        <td></td>
+                        <td></td>
+                        <td class="checkmark">✓</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Why Bundle -->
+    <section class="why-bundle">
+        <div class="container">
+            <h2>Why Bundle?</h2>
+
+            <div class="why-bundle-grid">
+                <div class="why-card">
+                    <h3>Training Matters Early</h3>
+                    <p>The first year is when habits are formed. Professional training in months 2–6 sets your dog up for a lifetime of success. You can't replicate this foundational work later.</p>
+                </div>
+
+                <div class="why-card">
+                    <h3>Nutrition = Development</h3>
+                    <p>Consistent, premium nutrition from day one means better muscle development, coat health, and performance. We feed Inukshuk because we know it works. Why switch?</p>
+                </div>
+
+                <div class="why-card">
+                    <h3>You Save Money</h3>
+                    <p>Bundle pricing locks in today's rates for training and food. Hire a trainer independently, and you'll pay $1,200+/month. Our packages save you thousands while ensuring continuity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Plans -->
+    <section class="payment-plans">
+        <div class="container">
+            <h2>Payment Plans Available</h2>
+            <p style="text-align: center; color: #2D2D2D; font-size: 1.1rem; margin-bottom: 2rem;">No interest. No credit check. Just a commitment to your dog's future.</p>
+
+            <div class="plan-grid">
+                <div class="plan-card">
+                    <h4>Hunter's Start Package</h4>
+                    <p style="margin-bottom: 1rem; color: #8B5E3C;">$5,400 total</p>
+                    <div class="amount">$1,800</div>
+                    <p>× 3 monthly payments</p>
+                </div>
+
+                <div class="plan-card">
+                    <h4>Complete Companion Package</h4>
+                    <p style="margin-bottom: 1rem; color: #8B5E3C;">$9,800 total</p>
+                    <div class="amount">$1,635</div>
+                    <p>× 6 monthly payments</p>
+                </div>
+
+                <div class="plan-card">
+                    <h4>Complete Companion Package</h4>
+                    <p style="margin-bottom: 1rem; color: #8B5E3C;">$9,800 total</p>
+                    <div class="amount">$820</div>
+                    <p>× 12 monthly payments</p>
+                </div>
+            </div>
+
+            <p style="text-align: center; color: #2D2D2D; margin-top: 2rem;">Questions about payment? <a href="contact.html" style="color: #1B4332; font-weight: 600; text-decoration: none;">Contact us</a></p>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2>What Graduates Look Like</h2>
+            <img src="images/puppy-litter.jpg" alt="Dakota Sky Pudelpointer newborn litter with dam" loading="lazy" style="width: 100%; max-height: 300px; object-fit: cover; border-radius: 8px; margin-bottom: 2rem;" onerror="this.style.display='none'">
+
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"We got Mako through the Hunter's Start package and never looked back. The training gave us a confident dog, and the food made all the difference. We're already thinking about our second Dakota Sky puppy."</p>
+                    <p class="testimonial-author">— Chris Hansen</p>
+                    <p class="testimonial-location">South Dakota</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"The Complete Companion Package was the best investment. Our dog earned her natural ability prize just months after coming home. Glen's training is incredible, and having Glen and Stacey check in every quarter made us feel supported."</p>
+                    <p class="testimonial-author">— Jennifer Murphy</p>
+                    <p class="testimonial-location">Montana</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"We weren't sure if we were ready for training, but the Foundation package gave us the puppy handbook and Facebook group support we needed. Now we're upgrading to Hunter's Start for our second season together."</p>
+                    <p class="testimonial-author">— Tom Eriksson</p>
+                    <p class="testimonial-location">North Dakota</p>
+                </div>
+            </div>
+            <img src="images/puppy-training.jpg" alt="Young Dakota Sky Pudelpointer in training" loading="lazy" style="width: 100%; max-height: 300px; object-fit: cover; border-radius: 8px; margin-top: 2rem;" onerror="this.style.display='none'">
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Find Your Puppy?</h2>
+            <p>Every Dakota Sky puppy comes with the foundation to succeed. Choose your package and let's get started.</p>
+            <a href="contact.html" class="btn">Apply for Your Puppy</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Dakota Sky Pudelpointers. Dickinson, North Dakota. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
