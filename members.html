@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dakota Sky Insiders - Premium Membership | Dakota Sky Pudelpointers</title>
+    <style>
+        :root {
+            --hunter-green: #1B4332;
+            --saddle-brown: #8B5E3C;
+            --wheat-gold: #D4A843;
+            --off-white: #FAF8F5;
+            --charcoal: #2D2D2D;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: var(--charcoal);
+            background-color: var(--off-white);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: Georgia, serif;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--hunter-green);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: Georgia, serif;
+            font-size: 1.8rem;
+            color: var(--wheat-gold);
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: var(--off-white);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--wheat-gold);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--wheat-gold);
+            margin: 5px 0;
+            border-radius: 3px;
+            transition: 0.3s;
+        }
+
+        /* Mobile Menu */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background-color: var(--hunter-green);
+                padding: 2rem;
+                gap: 1rem;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-menu a {
+                padding: 0.5rem 0;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--hunter-green) 0%, rgba(27, 67, 50, 0.95) 100%);
+            color: var(--off-white);
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                radial-gradient(circle at 20% 50%, rgba(212, 168, 67, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(139, 94, 60, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--wheat-gold);
+            letter-spacing: -1px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: rgba(250, 248, 245, 0.95);
+            line-height: 1.8;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* What You Get Section */
+        .benefits-section {
+            padding: 4rem 2rem;
+            background-color: var(--off-white);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--hunter-green);
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--wheat-gold);
+            border-radius: 2px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border-left: 5px solid var(--wheat-gold);
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .benefit-card h3 {
+            color: var(--hunter-green);
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .benefit-card p {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Value Stack Section */
+        .value-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(27, 67, 50, 0.03) 0%, rgba(139, 94, 60, 0.03) 100%);
+        }
+
+        .value-grid {
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .value-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .value-item:last-child {
+            border-bottom: none;
+            padding-top: 1.5rem;
+            border-top: 2px solid var(--wheat-gold);
+            margin-top: 1rem;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .value-item:last-child .label {
+            color: var(--hunter-green);
+        }
+
+        .value-item:last-child .price {
+            color: var(--saddle-brown);
+            font-size: 1.3rem;
+        }
+
+        .label {
+            color: #333;
+            font-size: 0.95rem;
+        }
+
+        .price {
+            color: var(--wheat-gold);
+            font-weight: 600;
+        }
+
+        /* The Offer Section */
+        .offer-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--hunter-green) 0%, rgba(27, 67, 50, 0.9) 100%);
+            color: var(--off-white);
+            text-align: center;
+        }
+
+        .offer-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .offer-container h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .price-display {
+            margin-bottom: 2rem;
+        }
+
+        .original-price {
+            font-size: 2rem;
+            color: rgba(250, 248, 245, 0.6);
+            text-decoration: line-through;
+            margin-bottom: 0.5rem;
+            text-decoration-thickness: 3px;
+        }
+
+        .actual-price {
+            font-size: 3.5rem;
+            color: var(--wheat-gold);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            letter-spacing: -1px;
+        }
+
+        .price-period {
+            font-size: 1.1rem;
+            color: rgba(250, 248, 245, 0.9);
+        }
+
+        .urgency-message {
+            background: rgba(212, 168, 67, 0.2);
+            border: 2px solid var(--wheat-gold);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .urgency-message p {
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .spots-remaining {
+            font-size: 1.3rem;
+            color: var(--wheat-gold);
+            font-weight: bold;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            background: var(--wheat-gold);
+            color: var(--hunter-green);
+            padding: 1.2rem 3rem;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(212, 168, 67, 0.3);
+        }
+
+        .cta-button:hover {
+            background: #e5bb2b;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(212, 168, 67, 0.4);
+        }
+
+        .cta-button:active {
+            transform: translateY(0);
+        }
+
+        /* Signup Form Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: var(--off-white);
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-content h2 {
+            color: var(--hunter-green);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--charcoal);
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--wheat-gold);
+            box-shadow: 0 0 0 3px rgba(212, 168, 67, 0.1);
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .modal-buttons button {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn {
+            background: var(--hunter-green);
+            color: white;
+        }
+
+        .submit-btn:hover {
+            background: #0f2818;
+        }
+
+        .cancel-btn {
+            background: #e0e0e0;
+            color: var(--charcoal);
+        }
+
+        .cancel-btn:hover {
+            background: #d0d0d0;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 4rem 2rem;
+            background-color: var(--off-white);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-question {
+            background: white;
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .faq-question:hover {
+            background: rgba(27, 67, 50, 0.02);
+            border-left: 4px solid var(--wheat-gold);
+            padding-left: calc(1.5rem - 2px);
+        }
+
+        .faq-question h3 {
+            color: var(--hunter-green);
+            font-size: 1.1rem;
+            margin: 0;
+        }
+
+        .faq-toggle {
+            color: var(--wheat-gold);
+            font-size: 1.3rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 1.5rem;
+            background: rgba(250, 248, 245, 0.5);
+            border-top: 2px solid #e0e0e0;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--hunter-green);
+            color: var(--off-white);
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h4 {
+            color: var(--wheat-gold);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: rgba(250, 248, 245, 0.9);
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--wheat-gold);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 2rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(212, 168, 67, 0.3);
+            text-align: center;
+            color: rgba(250, 248, 245, 0.8);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .actual-price {
+                font-size: 2.5rem;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            background: #4caf50;
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">Dakota Sky Pudelpointers</a>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="breeding.html">Breeding</a></li>
+                    <li><a href="training.html">Training</a></li>
+                    <li><a href="boarding.html">Boarding</a></li>
+                    <li><a href="nutrition.html">Nutrition</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Dakota Sky Insiders</h1>
+            <p>Join an exclusive community of serious hunters and DSP family members. Get premium access to products, training insights, and behind-the-scenes content—for just $9.95 a month.</p>
+        </div>
+    </section>
+
+    <!-- What You Get Section -->
+    <section class="benefits-section">
+        <div class="container">
+            <h2 class="section-title">What You Get</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <h3>10% Off Inukshuk Deliveries</h3>
+                    <p>Save on every monthly Inukshuk premium dog nutrition subscription. Quality nutrition for your hunting partners.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>First Access to New Products</h3>
+                    <p>Be the first to discover and purchase new hunting tools like the Quill Jig and other exclusive DSP-developed products.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>20% Off All Merchandise</h3>
+                    <p>Exclusive discounts on Dakota Sky branded apparel, hats, and merchandise. Represent DSP with pride.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>Pre-Release Podcast Episodes</h3>
+                    <p>Access exclusive podcast episodes before they're released to the public. Hunting tips, training advice, and insider stories.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>Behind-the-Scenes Content</h3>
+                    <p>Get exclusive updates from the kennel, breeding insights, and personal stories from Glen & Stacey about our dogs.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>Free Training Guide Access</h3>
+                    <p>Full access to the new Dakota Sky Training Guide. Complimentary for all previous DSP puppy owners.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Value Stack Section -->
+    <section class="value-section">
+        <div class="container">
+            <h2 class="section-title">The Real Value</h2>
+            <div class="value-grid">
+                <div class="value-item">
+                    <span class="label">Monthly Inukshuk Savings</span>
+                    <span class="price">$18/mo</span>
+                </div>
+                <div class="value-item">
+                    <span class="label">New Product Early Access</span>
+                    <span class="price">$29/mo</span>
+                </div>
+                <div class="value-item">
+                    <span class="label">Merchandise Discounts Value</span>
+                    <span class="price">$25/mo</span>
+                </div>
+                <div class="value-item">
+                    <span class="label">Exclusive Podcast Episodes</span>
+                    <span class="price">$19/mo</span>
+                </div>
+                <div class="value-item">
+                    <span class="label">Behind-the-Scenes Access</span>
+                    <span class="price">$29/mo</span>
+                </div>
+                <div class="value-item">
+                    <span class="label">DSP Training Guide</span>
+                    <span class="price">$79</span>
+                </div>
+                <div class="value-item">
+                    <span class="label">Total Monthly Value</span>
+                    <span class="price">$199.00+</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Offer Section -->
+    <section class="offer-section">
+        <div class="offer-container">
+            <h2>Limited Time Offer</h2>
+            <div class="price-display">
+                <div class="original-price">$199.00+/month value</div>
+                <div class="actual-price">$9.95</div>
+                <div class="price-period">/month</div>
+            </div>
+            <div class="urgency-message">
+                <p><strong>Exclusive membership for serious hunters</strong></p>
+                <p>Only available to the first 100 members</p>
+                <p class="spots-remaining"><span id="spotsRemaining">37</span> spots remaining</p>
+            </div>
+            <button class="cta-button" id="ctaButton">Join the Inner Circle — $9.95/mo</button>
+        </div>
+    </section>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <h2>Join Dakota Sky Insiders</h2>
+            <div id="successMessage" class="success-message">
+                Thank you! Your signup data has been recorded.
+            </div>
+            <form id="signupForm" onsubmit="handleSignup(event)">
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="modal-buttons">
+                    <button type="submit" class="submit-btn">Complete Signup</button>
+                    <button type="button" class="cancel-btn" onclick="closeModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What exactly am I paying for?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You're joining an exclusive membership community that gives you access to premium benefits worth over $199 monthly. This includes discounts on Inukshuk nutrition, early access to new hunting products, merchandise discounts, exclusive podcast episodes, behind-the-scenes kennel content, and the DSP Training Guide. All for just $9.95 a month.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Is there a long-term contract or commitment?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No contracts required. Your membership is month-to-month. You can cancel anytime without penalties. We believe if you're getting real value, you'll want to stay. Contact us if you have any issues.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Do I have to be a DSP puppy owner?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No. While DSP puppy owners do get complimentary access to the Training Guide, the membership is open to anyone passionate about hunting and interested in our kennel's insights and products. Serious hunters of all backgrounds are welcome.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>When do I get access to the benefits?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You'll receive immediate access to all membership benefits after completing your signup. You'll get instructions to access the private podcast feed, member-only content portal, and information on claiming your discounts on Inukshuk and DSP merchandise.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How does the 10% Inukshuk discount work?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>As a member, you'll receive a discount code to apply to any Inukshuk subscription order. The 10% savings applies to your monthly deliveries for as long as you're an active member. It stacks on top of any other promotions Inukshuk may be running.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Can I gift a membership?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! Membership gift codes are available. Contact us at dakotasky.nd@gmail.com or call (701) 290-1492 to purchase gift codes for fellow hunters who would appreciate DSP Insider benefits.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What if I have issues with billing?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We're here to help. Contact Glen and Stacey directly if you have any concerns about your account, billing, or membership. Call (701) 290-1492 or email dakotasky.nd@gmail.com and we'll get it sorted quickly.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Dakota Sky Pudelpointers</h4>
+                <p>10525 Highway 10</p>
+                <p>Dickinson, ND 58601</p>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><a href="tel:+17012901492">(701) 290-1492</a></p>
+                <p><a href="mailto:dakotasky.nd@gmail.com">dakotasky.nd@gmail.com</a></p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <p><a href="index.html">Home</a></p>
+                <p><a href="breeding.html">Breeding</a></p>
+                <p><a href="training.html">Training</a></p>
+                <p><a href="about.html">About Us</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Dakota Sky Pudelpointers. All rights reserved. Glen & Stacey Koffler, Dickinson, ND.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Spots Remaining Counter
+        let spotsRemaining = 37;
+        document.getElementById('spotsRemaining').textContent = spotsRemaining;
+
+        // CTA Button - Open Modal
+        document.getElementById('ctaButton').addEventListener('click', () => {
+            document.getElementById('signupModal').style.display = 'block';
+            document.getElementById('signupForm').reset();
+            document.getElementById('successMessage').style.display = 'none';
+        });
+
+        // Close Modal
+        function closeModal() {
+            document.getElementById('signupModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside of it
+        window.addEventListener('click', (event) => {
+            const modal = document.getElementById('signupModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Handle Signup Form
+        function handleSignup(event) {
+            event.preventDefault();
+
+            const formData = {
+                fullName: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                timestamp: new Date().toISOString()
+            };
+
+            console.log('Dakota Sky Insiders Signup:', formData);
+
+            // Show success message
+            document.getElementById('successMessage').style.display = 'block';
+            document.getElementById('signupForm').style.display = 'none';
+
+            // Reset after 3 seconds and close modal
+            setTimeout(() => {
+                closeModal();
+                document.getElementById('signupForm').style.display = 'block';
+            }, 3000);
+        }
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                faqItem.classList.toggle('active');
+            });
+        });
+
+        // Animate spots remaining countdown (simulated)
+        setInterval(() => {
+            // Randomly decrease spots to create urgency (in real scenario, this would update from backend)
+            if (Math.random() > 0.85 && spotsRemaining > 5) {
+                spotsRemaining--;
+                document.getElementById('spotsRemaining').textContent = spotsRemaining;
+            }
+        }, 15000); // Check every 15 seconds
+    </script>
+</body>
+</html>

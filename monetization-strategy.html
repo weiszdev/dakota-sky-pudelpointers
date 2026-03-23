@@ -225,6 +225,19 @@
     </style>
 </head>
 <body>
+    <!-- PASSWORD GATE -->
+    <div id="passwordGate" style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#1B4332 0%,#0F2818 100%);font-family:Georgia,serif;">
+        <div style="background:#FAF8F5;padding:3rem;border-radius:12px;max-width:420px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.3);">
+            <div style="font-size:2.5rem;margin-bottom:1rem;">🔒</div>
+            <h2 style="color:#1B4332;font-size:1.5rem;margin-bottom:0.5rem;">Authorized Access Only</h2>
+            <p style="color:#666;font-family:Arial,sans-serif;font-size:0.95rem;margin-bottom:1.5rem;">This document is restricted to Dakota Sky Pudelpointers ownership.</p>
+            <input type="password" id="pwInput" placeholder="Enter access code" style="width:100%;padding:0.85rem 1rem;border:2px solid #ddd;border-radius:6px;font-size:1rem;font-family:Arial,sans-serif;margin-bottom:1rem;text-align:center;" onkeydown="if(event.key==='Enter')checkPW()">
+            <button onclick="checkPW()" style="width:100%;padding:0.85rem;background:#D4A843;color:#2D2D2D;border:none;border-radius:6px;font-size:1rem;font-family:Arial,sans-serif;font-weight:600;cursor:pointer;transition:background 0.3s;">Access Document</button>
+            <p id="pwError" style="color:#e74c3c;margin-top:0.75rem;font-family:Arial,sans-serif;font-size:0.9rem;display:none;">Invalid access code. Please try again.</p>
+        </div>
+    </div>
+    <div id="protectedContent" style="display:none;">
+
     <div class="internal-banner">
         ⚠️ INTERNAL DOCUMENT FOR GLEN & STACEY KOFFLER — NOT FOR PUBLIC DISTRIBUTION
     </div>
@@ -766,5 +779,19 @@ RETENTION & LOYALTY:
             <p style="margin-top: 1rem; font-size: 0.9rem;">Questions or feedback? Discuss with Glen & Stacey during strategic planning meetings.</p>
         </div>
     </footer>
+    </div><!-- end protectedContent -->
+    <script>
+        function checkPW() {
+            if (document.getElementById('pwInput').value === 'GSK167') {
+                document.getElementById('passwordGate').style.display = 'none';
+                document.getElementById('protectedContent').style.display = 'block';
+            } else {
+                document.getElementById('pwError').style.display = 'block';
+                document.getElementById('pwInput').value = '';
+                document.getElementById('pwInput').focus();
+            }
+        }
+        document.getElementById('pwInput').focus();
+    </script>
 </body>
 </html>

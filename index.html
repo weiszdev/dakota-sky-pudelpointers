@@ -494,6 +494,72 @@
             background-color: var(--wheat-gold);
         }
 
+        /* HAMBURGER MENU */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--charcoal);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -6px);
+        }
+
+        /* MEMBERS ONLY BANNER */
+        .members-banner {
+            background: linear-gradient(135deg, var(--hunter-green) 0%, #0F2818 100%);
+            padding: 1rem 2rem;
+            text-align: center;
+        }
+
+        .members-banner a {
+            color: var(--wheat-gold);
+            text-decoration: none;
+            font-family: 'Arial', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .members-banner a:hover {
+            color: white;
+        }
+
+        .members-banner .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: #e74c3c;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.3); }
+        }
+
         /* MOBILE RESPONSIVE */
         @media (max-width: 768px) {
             .hero h1 {
@@ -514,8 +580,32 @@
                 max-width: 300px;
             }
 
+            .hamburger {
+                display: flex;
+            }
+
             nav {
                 display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: var(--off-white);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                z-index: 1000;
+            }
+
+            nav.open {
+                display: flex;
+            }
+
+            nav a {
+                margin: 0;
+                padding: 1rem;
+                font-size: 1.3rem;
             }
 
             section {
@@ -537,11 +627,21 @@
     </style>
 </head>
 <body>
+    <!-- MEMBERS ONLY BANNER -->
+    <div class="members-banner">
+        <a href="members.html"><span class="pulse-dot"></span> EXCLUSIVE: Join the Dakota Sky Insiders — Limited to First 100 Members</a>
+    </div>
+
     <!-- HEADER -->
     <header>
         <div class="header-container">
             <a href="index.html" class="logo">DAKOTA SKY</a>
-            <nav>
+            <div class="hamburger" onclick="toggleNav()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav id="mainNav">
                 <a href="index.html">Home</a>
                 <a href="breeding.html">Breeding</a>
                 <a href="training.html">Training</a>
@@ -717,5 +817,17 @@
             <p>&copy; 2026 Dakota Sky Pudelpointers. All rights reserved. Glen & Stacey Koffler, Dickinson, ND.</p>
         </div>
     </footer>
+    <script>
+        function toggleNav() {
+            document.getElementById('mainNav').classList.toggle('open');
+            document.querySelector('.hamburger').classList.toggle('active');
+        }
+        document.querySelectorAll('#mainNav a').forEach(a => {
+            a.addEventListener('click', () => {
+                document.getElementById('mainNav').classList.remove('open');
+                document.querySelector('.hamburger').classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>
