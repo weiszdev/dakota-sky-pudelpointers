@@ -1,819 +1,1155 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact & Apply - Dakota Sky Pudelpointers</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - Dakota Sky Pudelpointers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-        :root {
-            --hunter-green: #1B4332;
-            --saddle-brown: #8B5E3C;
-            --wheat-gold: #D4A843;
-            --off-white: #FAF8F5;
-            --charcoal: #2D2D2D;
-        }
+  <style>
+    :root {
+      --dsp-forest-dark: #1a3c34;
+      --dsp-forest: #2d6a4f;
+      --dsp-forest-light: #52796f;
+      --dsp-cream: #F4F2ED;
+      --dsp-warm-white: #FAFAF7;
+      --dsp-earth: #8B5E3C;
+      --dsp-gold: #D4A843;
+      --dsp-charcoal: #333333;
+      --dsp-text-light: #6b6b6b;
+      --dsp-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      --dsp-radius: 8px;
+    }
 
-        body {
-            font-family: 'Georgia', serif;
-            line-height: 1.6;
-            color: var(--charcoal);
-            background-color: var(--off-white);
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        /* HEADER & NAVIGATION */
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background-color: var(--off-white);
-            border-bottom: 1px solid rgba(27, 67, 50, 0.1);
-            padding: 1rem 0;
-        }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--dsp-charcoal);
+      line-height: 1.6;
+      background-color: var(--dsp-warm-white);
+    }
 
-        .header-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    /* Header & Navigation */
+    header {
+      background-color: var(--dsp-forest-dark);
+      color: white;
+      padding: 1.5rem 2rem;
+      box-shadow: var(--dsp-shadow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--hunter-green);
-            text-decoration: none;
-            letter-spacing: 1px;
-        }
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-        nav a {
-            text-decoration: none;
-            color: var(--charcoal);
-            margin-left: 2rem;
-            font-size: 0.95rem;
-            transition: color 0.3s ease;
-            font-family: 'Arial', sans-serif;
-            font-weight: 500;
-        }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
 
-        nav a:hover {
-            color: var(--hunter-green);
-        }
+    nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
 
-        nav {
-            display: flex;
-            align-items: center;
-        }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+    }
 
-        /* HERO */
-        .hero {
-            min-height: 60vh;
-            background: linear-gradient(135deg, #8B6F47 0%, #1B4332 50%, #2D5A3D 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            padding: 4rem 2rem;
-        }
+    nav a:hover {
+      color: var(--dsp-gold);
+    }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-        }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 6px;
+    }
 
-        .hero p {
-            font-size: 1.2rem;
-            font-family: 'Arial', sans-serif;
-            font-weight: 300;
-        }
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+      transition: all 0.3s ease;
+    }
 
-        /* SECTIONS */
-        section {
-            padding: 5rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(8px, 8px);
+    }
 
-        section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2.5rem;
-            color: var(--hunter-green);
-        }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
 
-        section h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--hunter-green);
-        }
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
 
-        p {
-            font-size: 1rem;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--dsp-forest);
+        padding: 2rem;
+        gap: 1.5rem;
+        width: 100%;
+      }
 
-        /* CONTACT INFO GRID */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            margin-bottom: 3rem;
-        }
+      nav.active {
+        display: flex;
+      }
 
-        .contact-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            border-top: 4px solid var(--hunter-green);
-        }
+      .hamburger {
+        display: flex;
+      }
+    }
 
-        .contact-card h3 {
-            margin-bottom: 1.5rem;
-        }
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, var(--dsp-forest-dark) 0%, var(--dsp-forest) 100%);
+      color: white;
+      min-height: 40vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 3rem 2rem;
+    }
 
-        .contact-card p {
-            margin-bottom: 0.75rem;
-            font-size: 0.95rem;
-        }
+    .hero-content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
 
-        .contact-card a {
-            color: var(--hunter-green);
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
+    .hero-content p {
+      font-size: 1.2rem;
+      font-weight: 300;
+      max-width: 600px;
+    }
 
-        .contact-card a:hover {
-            color: var(--wheat-gold);
-        }
+    @media (max-width: 768px) {
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
 
-        /* FORMS SECTION */
-        .forms-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            margin-bottom: 3rem;
-        }
+      .hero-content p {
+        font-size: 1rem;
+      }
+    }
 
-        .form-box {
-            background: white;
-            padding: 3rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        }
+    /* Contact Info Cards */
+    .contact-info-section {
+      background-color: var(--dsp-cream);
+      padding: 4rem 2rem;
+    }
 
-        .form-box h3 {
-            margin-bottom: 1.5rem;
-            border-bottom: 2px solid var(--wheat-gold);
-            padding-bottom: 1rem;
-        }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
+    .contact-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--hunter-green);
-            font-weight: 600;
-            font-family: 'Arial', sans-serif;
-            font-size: 0.95rem;
-        }
+    .contact-card {
+      background-color: white;
+      padding: 2rem;
+      border-radius: var(--dsp-radius);
+      box-shadow: var(--dsp-shadow);
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-family: 'Arial', sans-serif;
-            font-size: 0.95rem;
-            color: var(--charcoal);
-        }
+    .contact-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    }
 
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--hunter-green);
-            box-shadow: 0 0 0 3px rgba(27, 67, 50, 0.1);
-        }
+    .contact-card-icon {
+      width: 60px;
+      height: 60px;
+      background-color: var(--dsp-cream);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 1.8rem;
+      color: var(--dsp-forest);
+    }
 
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
+    .contact-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--dsp-forest-dark);
+      margin-bottom: 0.5rem;
+    }
 
-        .form-button {
-            padding: 1rem 2.5rem;
-            background-color: var(--hunter-green);
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-family: 'Arial', sans-serif;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-            font-size: 1rem;
-        }
+    .contact-card p {
+      color: var(--dsp-text-light);
+      margin-bottom: 0.5rem;
+    }
 
-        .form-button:hover {
-            background-color: var(--wheat-gold);
-            color: var(--charcoal);
-        }
+    .contact-card .highlight {
+      font-weight: 600;
+      color: var(--dsp-charcoal);
+      font-size: 1.1rem;
+    }
 
-        /* PUPPY APPLICATION */
-        .application-intro {
-            background: linear-gradient(135deg, rgba(27, 67, 50, 0.05) 0%, rgba(212, 168, 67, 0.03) 100%);
-            padding: 2rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-            border-left: 4px solid var(--hunter-green);
-        }
+    @media (max-width: 768px) {
+      .contact-cards {
+        grid-template-columns: 1fr;
+      }
+    }
 
-        .application-intro p {
-            margin-bottom: 0;
-        }
+    /* Form Section */
+    .forms-section {
+      background-color: var(--dsp-warm-white);
+      padding: 4rem 2rem;
+    }
 
-        /* PUPPY APPLICATION FORM */
-        .puppy-form {
-            background: white;
-            padding: 3rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            margin-bottom: 3rem;
-        }
+    .forms-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-        .puppy-form h3 {
-            margin-bottom: 2rem;
-            border-bottom: 2px solid var(--wheat-gold);
-            padding-bottom: 1rem;
-        }
+    .form-card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--dsp-forest-dark);
+      margin-bottom: 0.5rem;
+    }
 
-        .form-section-title {
-            font-size: 1.1rem;
-            color: var(--hunter-green);
-            font-weight: 600;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid #eee;
-            font-family: 'Arial', sans-serif;
-        }
+    .form-card .subtitle {
+      color: var(--dsp-text-light);
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+    }
 
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-        }
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
 
-        .form-grid.full {
-            grid-template-columns: 1fr;
-        }
+    .form-group.two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
 
-        /* MAP SECTION */
-        .map-section {
-            background: linear-gradient(135deg, rgba(27, 67, 50, 0.05) 0%, rgba(212, 168, 67, 0.03) 100%);
-            padding: 3rem;
-            border-radius: 8px;
-            text-align: center;
-            border: 2px solid var(--hunter-green);
-        }
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--dsp-charcoal);
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
 
-        .map-section h3 {
-            margin-bottom: 1.5rem;
-        }
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #e0e0e0;
+      border-radius: var(--dsp-radius);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
 
-        .map-placeholder {
-            width: 100%;
-            height: 400px;
-            background: linear-gradient(135deg, #e8e4d8 0%, #d8d2c4 100%);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #888;
-            font-family: 'Arial', sans-serif;
-            overflow: hidden;
-        }
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="tel"]:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--dsp-forest);
+      box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.1);
+    }
 
-        .map-placeholder img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
 
-        .map-info {
-            margin-top: 2rem;
-        }
+    .btn-primary {
+      background-color: var(--dsp-forest);
+      color: white;
+      padding: 0.85rem 2rem;
+      border: none;
+      border-radius: var(--dsp-radius);
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      font-family: 'Inter', sans-serif;
+      width: 100%;
+    }
 
-        .map-info p {
-            font-size: 0.95rem;
-        }
+    .btn-primary:hover {
+      background-color: var(--dsp-forest-dark);
+      transform: translateY(-2px);
+    }
 
-        /* FOOTER */
-        footer {
-            background-color: var(--charcoal);
-            color: var(--off-white);
-            padding: 4rem 2rem;
-            margin-top: 4rem;
-        }
+    .btn-primary:active {
+      transform: translateY(0);
+    }
 
-        .footer-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
+    .btn-outline {
+      background-color: transparent;
+      color: var(--dsp-forest);
+      padding: 0.85rem 2rem;
+      border: 2px solid var(--dsp-forest);
+      border-radius: var(--dsp-radius);
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Inter', sans-serif;
+      width: 100%;
+    }
 
-        .footer-section h4 {
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            color: var(--wheat-gold);
-            font-family: 'Arial', sans-serif;
-            font-weight: 600;
-        }
+    .btn-outline:hover {
+      background-color: var(--dsp-forest);
+      color: white;
+    }
 
-        .footer-section p, .footer-section a {
-            font-size: 0.95rem;
-            line-height: 1.8;
-            color: var(--off-white);
-            text-decoration: none;
-            display: block;
-            margin-bottom: 0.75rem;
-            font-family: 'Arial', sans-serif;
-        }
+    @media (max-width: 768px) {
+      .forms-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
 
-        .footer-section a:hover {
-            color: var(--wheat-gold);
-        }
+      .form-group.two-col {
+        grid-template-columns: 1fr;
+      }
+    }
 
-        .newsletter-form {
-            display: flex;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
+    /* Success Message */
+    .toast {
+      position: fixed;
+      top: 2rem;
+      right: 2rem;
+      background-color: var(--dsp-forest);
+      color: white;
+      padding: 1.5rem 2rem;
+      border-radius: var(--dsp-radius);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      z-index: 1000;
+      animation: slideIn 0.3s ease, slideOut 0.3s ease 4.7s;
+      max-width: 400px;
+    }
 
-        .newsletter-form input {
-            flex: 1;
-            padding: 0.75rem;
-            border: none;
-            border-radius: 4px;
-            font-family: 'Arial', sans-serif;
-        }
+    @keyframes slideIn {
+      from {
+        transform: translateX(500px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
 
-        .newsletter-form button {
-            padding: 0.75rem 1.5rem;
-            background-color: var(--wheat-gold);
-            border: none;
-            color: var(--charcoal);
-            cursor: pointer;
-            border-radius: 4px;
-            font-family: 'Arial', sans-serif;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-        }
+    @keyframes slideOut {
+      from {
+        transform: translateX(0);
+        opacity: 1;
+      }
+      to {
+        transform: translateX(500px);
+        opacity: 0;
+      }
+    }
 
-        .newsletter-form button:hover {
-            background-color: var(--hunter-green);
-            color: var(--off-white);
-        }
+    @media (max-width: 768px) {
+      .toast {
+        right: 1rem;
+        left: 1rem;
+        max-width: none;
+      }
+    }
 
-        .footer-divider {
-            border-top: 1px solid rgba(212, 168, 67, 0.2);
-            padding-top: 2rem;
-            text-align: center;
-            font-size: 0.9rem;
-            color: #aaa;
-        }
+    /* Puppy Application Section */
+    .application-section {
+      background-color: var(--dsp-cream);
+      padding: 4rem 2rem;
+    }
 
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
+    .application-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: var(--dsp-forest-dark);
+      text-align: center;
+      margin-bottom: 1rem;
+    }
 
-        .social-links a {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background-color: var(--hunter-green);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.3s ease;
-        }
+    .application-intro {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 3rem;
+      color: var(--dsp-text-light);
+      line-height: 1.7;
+    }
 
-        .social-links a:hover {
-            background-color: var(--wheat-gold);
-        }
+    .application-form {
+      background-color: white;
+      padding: 3rem;
+      border-radius: var(--dsp-radius);
+      box-shadow: var(--dsp-shadow);
+      max-width: 900px;
+      margin: 0 auto;
+    }
 
-        /* MOBILE */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
+    .form-section {
+      margin-bottom: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid #e8e8e8;
+    }
 
-            section {
-                padding: 3rem 1.5rem;
-            }
+    .form-section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
 
-            nav {
-                display: none;
-            }
+    .form-section h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--dsp-forest);
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+    }
 
-            .forms-grid {
-                grid-template-columns: 1fr;
-            }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
 
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    .form-row.full {
+      grid-template-columns: 1fr;
+    }
+
+    @media (max-width: 768px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .application-form {
+        padding: 2rem 1.5rem;
+      }
+
+      .application-section h2 {
+        font-size: 1.8rem;
+      }
+    }
+
+    /* Find Us Section */
+    .findus-section {
+      background-color: var(--dsp-warm-white);
+      padding: 4rem 2rem;
+    }
+
+    .findus-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .findus-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      color: var(--dsp-forest-dark);
+      margin-bottom: 1.5rem;
+    }
+
+    .findus-content p {
+      color: var(--dsp-text-light);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-details {
+      background-color: var(--dsp-cream);
+      padding: 2rem;
+      border-radius: var(--dsp-radius);
+      border-left: 4px solid var(--dsp-forest);
+    }
+
+    .contact-details p {
+      margin-bottom: 1rem;
+      color: var(--dsp-charcoal);
+    }
+
+    .contact-details strong {
+      font-weight: 600;
+      color: var(--dsp-forest-dark);
+    }
+
+    .map-placeholder {
+      background-color: white;
+      border: 2px solid var(--dsp-forest-light);
+      border-radius: var(--dsp-radius);
+      padding: 3rem 2rem;
+      text-align: center;
+      box-shadow: var(--dsp-shadow);
+      min-height: 350px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .map-placeholder h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--dsp-forest);
+      margin-bottom: 1rem;
+    }
+
+    .map-placeholder p {
+      color: var(--dsp-text-light);
+    }
+
+    @media (max-width: 768px) {
+      .findus-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--dsp-forest-dark);
+      color: white;
+      padding: 3rem 2rem;
+      margin-top: 4rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .footer-col h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .footer-col a {
+      color: rgba(255,255,255,0.9);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.5rem;
+      transition: color 0.3s ease;
+    }
+
+    .footer-col a:hover {
+      color: var(--dsp-gold);
+    }
+
+    .footer-copyright {
+      text-align: center;
+      color: rgba(255,255,255,0.7);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Fade-in on Scroll */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
 <body>
-    <!-- HEADER -->
-    <header>
-        <div class="header-container">
-            <a href="index.html" class="logo">DAKOTA SKY</a>
-            <nav>
-                <a href="index.html">Home</a>
-                <a href="breeding.html">Breeding</a>
-                <a href="training.html">Training</a>
-                <a href="boarding.html">Boarding</a>
-                <a href="nutrition.html">Nutrition</a>
-                <a href="about.html">About</a>
-                <a href="contact.html">Contact</a>
-            </nav>
-        </div>
-    </header>
-
-    <!-- HERO -->
-    <div class="hero">
-        <div>
-            <h1>Let's Talk Dogs.</h1>
-            <p>Questions about puppies, training, boarding, or nutrition? We're here to help.</p>
-        </div>
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="logo">DAKOTA SKY</div>
+      <nav id="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="breeding.html">Breeding</a>
+        <a href="training.html">Training</a>
+        <a href="boarding.html">Boarding</a>
+        <a href="nutrition.html">Nutrition</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
+  </header>
 
-    <!-- CONTACT INFO -->
-    <section>
-        <h2>Contact Information</h2>
-        <div class="contact-grid">
-            <div class="contact-card">
-                <h3>Call Us</h3>
-                <p><strong>(701) 290-1492</strong></p>
-                <p>Best times: Mornings 8-10am, Evenings 5-7pm (CT)</p>
-            </div>
-            <div class="contact-card">
-                <h3>Email</h3>
-                <p><strong><a href="mailto:dakotasky.nd@gmail.com">dakotasky.nd@gmail.com</a></strong></p>
-                <p>We respond to emails within 24 hours.</p>
-            </div>
-            <div class="contact-card">
-                <h3>Visit Us</h3>
-                <p><strong>10525 Highway 10<br>Dickinson, ND 58601</strong></p>
-                <p>By appointment. Give us a call to schedule a visit.</p>
-            </div>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content fade-in">
+      <h1>Let's Talk Dogs</h1>
+      <p>Questions about puppies, training, boarding, or nutrition? We're here to help.</p>
+    </div>
+  </section>
+
+  <!-- Contact Info Cards -->
+  <section class="contact-info-section">
+    <div class="container">
+      <div class="contact-cards">
+        <div class="contact-card fade-in">
+          <div class="contact-card-icon">📞</div>
+          <h3>Call Us</h3>
+          <p class="highlight">(701) 290-1492</p>
+          <p>Best times: Mornings 8-10am, Evenings 5-7pm (CT)</p>
         </div>
-    </section>
-
-    <!-- QUICK CONTACT & INQUIRY FORMS -->
-    <section>
-        <h2 style="margin-bottom: 1rem;">Get in Touch</h2>
-        <p style="text-align: center; margin-bottom: 3rem;">Use the form below for general inquiries. For puppy applications, see below.</p>
-        <div class="forms-grid">
-            <div class="form-box">
-                <h3>General Inquiry</h3>
-                <form>
-                    <div class="form-group">
-                        <label for="inquiry-name">Your Name</label>
-                        <input type="text" id="inquiry-name" name="inquiry-name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="inquiry-email">Email</label>
-                        <input type="email" id="inquiry-email" name="inquiry-email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="inquiry-phone">Phone</label>
-                        <input type="tel" id="inquiry-phone" name="inquiry-phone">
-                    </div>
-                    <div class="form-group">
-                        <label for="inquiry-subject">Subject</label>
-                        <select id="inquiry-subject" name="inquiry-subject" required>
-                            <option value="">Select a subject</option>
-                            <option value="puppy">Puppy Inquiry</option>
-                            <option value="training">Training Question</option>
-                            <option value="boarding">Boarding Inquiry</option>
-                            <option value="nutrition">Nutrition Question</option>
-                            <option value="general">General Question</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="inquiry-message">Message</label>
-                        <textarea id="inquiry-message" name="inquiry-message" required></textarea>
-                    </div>
-                    <button type="submit" class="form-button">Send Message</button>
-                </form>
-            </div>
-
-            <div class="form-box">
-                <h3>Quick Call Request</h3>
-                <p style="font-size: 0.95rem; margin-bottom: 1.5rem;">Schedule a callback at a time that works for you. We'll call within 24 hours.</p>
-                <form>
-                    <div class="form-group">
-                        <label for="callback-name">Your Name</label>
-                        <input type="text" id="callback-name" name="callback-name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="callback-phone">Phone</label>
-                        <input type="tel" id="callback-phone" name="callback-phone" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="callback-email">Email</label>
-                        <input type="email" id="callback-email" name="callback-email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="callback-topic">What's This About?</label>
-                        <select id="callback-topic" name="callback-topic" required>
-                            <option value="">Select a topic</option>
-                            <option value="puppy">Waiting for a Puppy</option>
-                            <option value="training">Training Program Info</option>
-                            <option value="boarding">Boarding Availability</option>
-                            <option value="nutrition">Inukshuk Nutrition</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="callback-time">Best Time to Call</label>
-                        <select id="callback-time" name="callback-time" required>
-                            <option value="">Select a time</option>
-                            <option value="morning">Morning (8am-12pm)</option>
-                            <option value="afternoon">Afternoon (12pm-5pm)</option>
-                            <option value="evening">Evening (5pm-8pm)</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="form-button">Request Call</button>
-                </form>
-            </div>
+        <div class="contact-card fade-in">
+          <div class="contact-card-icon">✉️</div>
+          <h3>Email</h3>
+          <p class="highlight">dakotasky.nd@gmail.com</p>
+          <p>We respond to emails within 24 hours.</p>
         </div>
-    </section>
-
-    <!-- PUPPY APPLICATION -->
-    <section>
-        <h2>Puppy Application</h2>
-        <img src="images/puppy-hero.jpg" alt="Happy Pudelpointer puppy giving high-five" loading="lazy" style="width: 100%; max-height: 300px; object-fit: cover; border-radius: 8px; margin-bottom: 2rem;" onerror="this.style.display='none'">
-        <div class="application-intro">
-            <p>Interested in a Dakota Sky puppy? Start here. This application helps us understand your situation and match you with the right dog. There's no obligation—just a conversation about whether Dakota Sky is the right fit for your family and hunting goals.</p>
+        <div class="contact-card fade-in">
+          <div class="contact-card-icon">📍</div>
+          <h3>Visit Us</h3>
+          <p class="highlight">10525 Highway 10<br>Dickinson, ND 58601</p>
+          <p>By appointment. Give us a call to schedule a visit.</p>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="puppy-form">
-            <h3>Dakota Sky Puppy Application</h3>
+  <!-- Forms Section -->
+  <section class="forms-section">
+    <div class="forms-container">
+      <!-- Get in Touch Form -->
+      <div class="form-card fade-in">
+        <h2>Get in Touch</h2>
+        <form id="inquiry-form">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
 
-            <form>
-                <!-- PERSONAL INFORMATION -->
-                <div class="form-section-title">Personal Information</div>
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="app-first-name">First Name</label>
-                        <input type="text" id="app-first-name" name="app-first-name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="app-last-name">Last Name</label>
-                        <input type="text" id="app-last-name" name="app-last-name" required>
-                    </div>
-                </div>
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="app-email">Email</label>
-                        <input type="email" id="app-email" name="app-email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="app-phone">Phone</label>
-                        <input type="tel" id="app-phone" name="app-phone" required>
-                    </div>
-                </div>
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="app-address">Street Address</label>
-                        <input type="text" id="app-address" name="app-address" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="app-city">City, State, Zip</label>
-                        <input type="text" id="app-city" name="app-city" required>
-                    </div>
-                </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
 
-                <!-- HUNTING EXPERIENCE -->
-                <div class="form-section-title">Hunting Experience</div>
-                <div class="form-grid full">
-                    <div class="form-group">
-                        <label for="app-hunting-exp">Tell us about your hunting experience. What game do you hunt? How long have you been hunting?</label>
-                        <textarea id="app-hunting-exp" name="app-hunting-exp" required placeholder="Describe your hunting background..."></textarea>
-                    </div>
-                </div>
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="app-pointing-breed">Have you owned a pointing breed before?</label>
-                        <select id="app-pointing-breed" name="app-pointing-breed" required>
-                            <option value="">Select</option>
-                            <option value="yes">Yes</option>
-                            <option value="no">No</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="app-past-dogs">If yes, what breed(s)?</label>
-                        <input type="text" id="app-past-dogs" name="app-past-dogs" placeholder="e.g., German Shorthaired Pointer, English Setter">
-                    </div>
-                </div>
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone">
+          </div>
 
-                <!-- LIVING SITUATION -->
-                <div class="form-section-title">Living Situation</div>
-                <div class="form-grid full">
-                    <div class="form-group">
-                        <label for="app-living">Tell us about your living situation. Do you have a house, yard, other pets, kids?</label>
-                        <textarea id="app-living" name="app-living" required placeholder="Describe your home and family situation..."></textarea>
-                    </div>
-                </div>
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="app-yard">Yard Size</label>
-                        <select id="app-yard" name="app-yard" required>
-                            <option value="">Select</option>
-                            <option value="large">Large fenced yard (1+ acres)</option>
-                            <option value="medium">Medium yard (typical suburban)</option>
-                            <option value="small">Small yard or no yard</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="app-other-pets">Other pets?</label>
-                        <input type="text" id="app-other-pets" name="app-other-pets" placeholder="Dogs, cats, etc.">
-                    </div>
-                </div>
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="app-children">Children in home?</label>
-                        <select id="app-children" name="app-children" required>
-                            <option value="">Select</option>
-                            <option value="none">No</option>
-                            <option value="young">Yes, young (under 8)</option>
-                            <option value="school">Yes, school age (8-13)</option>
-                            <option value="teen">Yes, teenagers</option>
-                            <option value="adults">Yes, adults only</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="app-active">Activity Level</label>
-                        <select id="app-active" name="app-active" required>
-                            <option value="">Select</option>
-                            <option value="very-active">Very active (hiking, training, outdoor activities)</option>
-                            <option value="active">Active (regular exercise, some training)</option>
-                            <option value="moderate">Moderate (daily walks, casual outdoor time)</option>
-                        </select>
-                    </div>
-                </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <select id="subject" name="subject" required>
+              <option value="">Select a subject...</option>
+              <option value="puppy-inquiry">Puppy Inquiry</option>
+              <option value="training-question">Training Question</option>
+              <option value="boarding-inquiry">Boarding Inquiry</option>
+              <option value="nutrition-question">Nutrition Question</option>
+              <option value="general">General Question</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
 
-                <!-- GOALS & EXPECTATIONS -->
-                <div class="form-section-title">Goals & Expectations</div>
-                <div class="form-grid full">
-                    <div class="form-group">
-                        <label for="app-goals">What are your goals for a Pudelpointer? (e.g., hunting companion, family pet, hunt test competitor, etc.)</label>
-                        <textarea id="app-goals" name="app-goals" required placeholder="Describe your goals..."></textarea>
-                    </div>
-                </div>
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="app-training">Are you planning to train the dog yourself or use a professional trainer?</label>
-                        <select id="app-training" name="app-training" required>
-                            <option value="">Select</option>
-                            <option value="self">Self training</option>
-                            <option value="professional">Professional training</option>
-                            <option value="both">Both</option>
-                            <option value="dakota-sky">Dakota Sky training</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="app-timeline">When are you looking to bring a puppy home?</label>
-                        <select id="app-timeline" name="app-timeline" required>
-                            <option value="">Select</option>
-                            <option value="asap">ASAP</option>
-                            <option value="6-months">6 months</option>
-                            <option value="1-year">1 year</option>
-                            <option value="flexible">Flexible / No rush</option>
-                        </select>
-                    </div>
-                </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
 
-                <!-- WAITLIST -->
-                <div class="form-section-title">Other Breeders</div>
-                <div class="form-grid full">
-                    <div class="form-group">
-                        <label for="app-waitlists">Are you on any other breeders' waitlists?</label>
-                        <select id="app-waitlists" name="app-waitlists" required>
-                            <option value="">Select</option>
-                            <option value="no">No</option>
-                            <option value="yes-few">Yes, a few</option>
-                            <option value="yes-several">Yes, several</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-grid full">
-                    <div class="form-group">
-                        <label for="app-referral">How did you hear about Dakota Sky?</label>
-                        <select id="app-referral" name="app-referral" required>
-                            <option value="">Select</option>
-                            <option value="facebook">Facebook</option>
-                            <option value="instagram">Instagram</option>
-                            <option value="website">Website</option>
-                            <option value="referral">Referral from friend/dog owner</option>
-                            <option value="hunt-test">Hunt test or show</option>
-                            <option value="google">Google search</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                </div>
+          <button type="submit" class="btn-primary">Send Message</button>
+        </form>
+      </div>
 
-                <!-- FINAL QUESTION -->
-                <div class="form-section-title">Final Thoughts</div>
-                <div class="form-grid full">
-                    <div class="form-group">
-                        <label for="app-final">Anything else you'd like us to know?</label>
-                        <textarea id="app-final" name="app-final" placeholder="Optional - share anything else relevant to your application..."></textarea>
-                    </div>
-                </div>
+      <!-- Call Request Form -->
+      <div class="form-card fade-in">
+        <h2>Quick Call Request</h2>
+        <p class="subtitle">Schedule a callback at a time that works for you. We'll call within 24 hours.</p>
+        <form id="callback-form">
+          <div class="form-group">
+            <label for="cb-name">Your Name</label>
+            <input type="text" id="cb-name" name="name" required>
+          </div>
 
-                <button type="submit" class="form-button" style="margin-top: 2rem;">Submit Application</button>
-            </form>
-        </div>
-    </section>
+          <div class="form-group">
+            <label for="cb-phone">Phone</label>
+            <input type="tel" id="cb-phone" name="phone" required>
+          </div>
 
-    <!-- MAP & DIRECTIONS -->
-    <section>
-        <div class="map-section">
-            <h3>Find Us</h3>
-            <p>Located just off Highway 10 in Dickinson, North Dakota. On the way to or coming from Theodore Roosevelt National Park.</p>
-            <div class="map-placeholder">Interactive Map Coming Soon</div>
-            <div class="map-info">
-                <p><strong>10525 Highway 10, Dickinson, ND 58601</strong></p>
-                <p>Phone: <strong>(701) 290-1492</strong></p>
-                <p>Email: <strong>dakotasky.nd@gmail.com</strong></p>
-                <p style="margin-top: 1.5rem;">Visit by appointment. Please call ahead to schedule.</p>
+          <div class="form-group">
+            <label for="cb-email">Email</label>
+            <input type="email" id="cb-email" name="email" required>
+          </div>
+
+          <div class="form-group">
+            <label for="cb-topic">What's This About?</label>
+            <select id="cb-topic" name="topic" required>
+              <option value="">Select a topic...</option>
+              <option value="waiting-puppy">Waiting for a Puppy</option>
+              <option value="training-info">Training Program Info</option>
+              <option value="boarding">Boarding Availability</option>
+              <option value="inukshuk-nutrition">Inukshuk Nutrition</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="cb-time">Best Time to Call</label>
+            <select id="cb-time" name="time" required>
+              <option value="">Select a time...</option>
+              <option value="morning">Morning 8am-12pm</option>
+              <option value="afternoon">Afternoon 12pm-5pm</option>
+              <option value="evening">Evening 5pm-8pm</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn-outline">Request Call</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Puppy Application Section -->
+  <section class="application-section">
+    <div class="container">
+      <h2>Puppy Application</h2>
+      <p class="application-intro">
+        Interested in a Dakota Sky puppy? Start here. This application helps us understand your situation and match you with the right dog. There's no obligation—just a conversation about whether Dakota Sky is the right fit for your family and hunting goals.
+      </p>
+
+      <form id="puppy-application" class="application-form">
+        <!-- Personal Information -->
+        <div class="form-section">
+          <h3>Personal Information</h3>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="app-first-name">First Name</label>
+              <input type="text" id="app-first-name" name="first_name" required>
             </div>
-        </div>
-    </section>
+            <div class="form-group">
+              <label for="app-last-name">Last Name</label>
+              <input type="text" id="app-last-name" name="last_name" required>
+            </div>
+          </div>
 
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-section">
-                <h4>Contact Us</h4>
-                <p>10525 Highway 10</p>
-                <p>Dickinson, ND 58601</p>
-                <p>(701) 290-1492</p>
-                <p><a href="mailto:dakotasky.nd@gmail.com">dakotasky.nd@gmail.com</a></p>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="app-email">Email</label>
+              <input type="email" id="app-email" name="email" required>
             </div>
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <a href="breeding.html">Breeding Program</a>
-                <a href="training.html">Professional Training</a>
-                <a href="boarding.html">Boarding & Daycare</a>
-                <a href="nutrition.html">Inukshuk Nutrition</a>
-                <a href="about.html">About Glen & Stacey</a>
+            <div class="form-group">
+              <label for="app-phone">Phone</label>
+              <input type="tel" id="app-phone" name="phone" required>
             </div>
-            <div class="footer-section">
-                <h4>Follow Us</h4>
-                <div class="social-links">
-                    <a href="https://facebook.com/Pudlepointers" title="Facebook">f</a>
-                    <a href="https://instagram.com/dakotaskypudelpointers" title="Instagram">@</a>
-                </div>
-                <p style="margin-top: 1.5rem;">Join our mailing list for updates, training tips, and announcements.</p>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="Your email" required>
-                    <button type="submit">Subscribe</button>
-                </form>
+          </div>
+
+          <div class="form-row full">
+            <div class="form-group">
+              <label for="app-address">Street Address</label>
+              <input type="text" id="app-address" name="address" required>
             </div>
+          </div>
+
+          <div class="form-row full">
+            <div class="form-group">
+              <label for="app-city">City, State, Zip</label>
+              <input type="text" id="app-city" name="city_state_zip" required>
+            </div>
+          </div>
         </div>
-        <div class="footer-divider">
-            <p>&copy; 2026 Dakota Sky Pudelpointers. All rights reserved. Glen & Stacey Koffler, Dickinson, ND.</p>
+
+        <!-- Hunting Experience -->
+        <div class="form-section">
+          <h3>Hunting Experience</h3>
+
+          <div class="form-row full">
+            <div class="form-group">
+              <label for="app-hunt-experience">Tell us about your hunting experience. What game do you hunt? How long have you been hunting?</label>
+              <textarea id="app-hunt-experience" name="hunt_experience" required></textarea>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="app-pointing-breed">Have you owned a pointing breed before?</label>
+              <select id="app-pointing-breed" name="pointing_breed" required>
+                <option value="">Select...</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="app-breed-types">If yes, what breed(s)?</label>
+              <input type="text" id="app-breed-types" name="breed_types">
+            </div>
+          </div>
         </div>
-    </footer>
+
+        <!-- Living Situation -->
+        <div class="form-section">
+          <h3>Living Situation</h3>
+
+          <div class="form-row full">
+            <div class="form-group">
+              <label for="app-living">Tell us about your living situation. Do you have a house, yard, other pets, kids?</label>
+              <textarea id="app-living" name="living_situation" required></textarea>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="app-yard">Yard Size</label>
+              <select id="app-yard" name="yard_size" required>
+                <option value="">Select...</option>
+                <option value="large">Large fenced yard 1+ acres</option>
+                <option value="medium">Medium yard typical suburban</option>
+                <option value="small">Small yard or no yard</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="app-other-pets">Other pets?</label>
+              <input type="text" id="app-other-pets" name="other_pets">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="app-children">Children in home?</label>
+              <select id="app-children" name="children" required>
+                <option value="">Select...</option>
+                <option value="no">No</option>
+                <option value="young">Yes young under 8</option>
+                <option value="school">Yes school age 8-13</option>
+                <option value="teenagers">Yes teenagers</option>
+                <option value="adults">Yes adults only</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="app-activity">Activity Level</label>
+              <select id="app-activity" name="activity_level" required>
+                <option value="">Select...</option>
+                <option value="very-active">Very active</option>
+                <option value="active">Active</option>
+                <option value="moderate">Moderate</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Goals & Expectations -->
+        <div class="form-section">
+          <h3>Goals & Expectations</h3>
+
+          <div class="form-row full">
+            <div class="form-group">
+              <label for="app-goals">What are your goals for a Pudelpointer?</label>
+              <textarea id="app-goals" name="goals" required></textarea>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="app-training">Training plan</label>
+              <select id="app-training" name="training_plan" required>
+                <option value="">Select...</option>
+                <option value="self">Self training</option>
+                <option value="professional">Professional training</option>
+                <option value="both">Both</option>
+                <option value="dakota-sky">Dakota Sky training</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="app-timeline">When looking to bring puppy home?</label>
+              <select id="app-timeline" name="timeline" required>
+                <option value="">Select...</option>
+                <option value="asap">ASAP</option>
+                <option value="6-months">6 months</option>
+                <option value="1-year">1 year</option>
+                <option value="flexible">Flexible/No rush</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Other -->
+        <div class="form-section">
+          <h3>Other</h3>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="app-waitlists">On other breeders' waitlists?</label>
+              <select id="app-waitlists" name="other_waitlists" required>
+                <option value="">Select...</option>
+                <option value="no">No</option>
+                <option value="few">Yes a few</option>
+                <option value="several">Yes several</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="app-heard">How did you hear about Dakota Sky?</label>
+              <select id="app-heard" name="heard_about" required>
+                <option value="">Select...</option>
+                <option value="facebook">Facebook</option>
+                <option value="instagram">Instagram</option>
+                <option value="website">Website</option>
+                <option value="referral">Referral</option>
+                <option value="hunt-test">Hunt test or show</option>
+                <option value="google">Google search</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row full">
+            <div class="form-group">
+              <label for="app-other">Anything else you'd like us to know?</label>
+              <textarea id="app-other" name="additional_info"></textarea>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-primary" style="font-size: 1.05rem; padding: 1rem 2rem;">Submit Application</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Find Us Section -->
+  <section class="findus-section">
+    <div class="findus-container">
+      <div class="findus-content fade-in">
+        <h2>Find Us</h2>
+        <p>Located just off Highway 10 in Dickinson, North Dakota. On the way to or coming from Theodore Roosevelt National Park.</p>
+
+        <div class="contact-details">
+          <p><strong>Address:</strong><br>10525 Highway 10<br>Dickinson, ND 58601</p>
+          <p><strong>Phone:</strong> <a href="tel:+17012901492" style="color: var(--dsp-forest); text-decoration: none;">(701) 290-1492</a></p>
+          <p><strong>Email:</strong> <a href="mailto:dakotasky.nd@gmail.com" style="color: var(--dsp-forest); text-decoration: none;">dakotasky.nd@gmail.com</a></p>
+          <p style="margin-top: 1.5rem; font-size: 0.95rem; color: var(--dsp-text-light);">Visit by appointment. Please call ahead to schedule.</p>
+        </div>
+      </div>
+
+      <div class="map-placeholder fade-in">
+        <h3>Interactive Map Coming Soon</h3>
+        <p>10525 Highway 10, Dickinson, ND 58601</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-col">
+        <h4>Dakota Sky</h4>
+        <p style="margin-bottom: 1rem;">Pudelpointers bred for excellence in hunting and family life.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="breeding.html">Breeding</a>
+        <a href="training.html">Training</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p style="margin-bottom: 0.5rem;">(701) 290-1492</p>
+        <p>dakotasky.nd@gmail.com</p>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <p>&copy; 2026 Dakota Sky Pudelpointers. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Mobile Navigation Toggle
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navMenu.classList.toggle('active');
+    });
+
+    // Close menu when a link is clicked
+    navMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+      });
+    });
+
+    // Show Toast Message
+    function showToast(message) {
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.textContent = message;
+      document.body.appendChild(toast);
+
+      setTimeout(() => {
+        toast.remove();
+      }, 5000);
+    }
+
+    // General Inquiry Form
+    document.getElementById('inquiry-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        subject: document.getElementById('subject').value,
+        message: document.getElementById('message').value
+      };
+      console.log('Inquiry Form Data:', formData);
+      showToast('Thank you! We\'ll be in touch soon.');
+      this.reset();
+    });
+
+    // Callback Request Form
+    document.getElementById('callback-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const formData = {
+        name: document.getElementById('cb-name').value,
+        phone: document.getElementById('cb-phone').value,
+        email: document.getElementById('cb-email').value,
+        topic: document.getElementById('cb-topic').value,
+        time: document.getElementById('cb-time').value
+      };
+      console.log('Callback Form Data:', formData);
+      showToast('Call request received! We\'ll contact you soon.');
+      this.reset();
+    });
+
+    // Puppy Application Form
+    document.getElementById('puppy-application').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Validate required fields
+      const requiredFields = [
+        'app-first-name', 'app-last-name', 'app-email', 'app-phone',
+        'app-address', 'app-city', 'app-hunt-experience', 'app-pointing-breed',
+        'app-living', 'app-yard', 'app-children', 'app-activity',
+        'app-goals', 'app-training', 'app-timeline', 'app-waitlists', 'app-heard'
+      ];
+
+      let allValid = true;
+      requiredFields.forEach(id => {
+        const field = document.getElementById(id);
+        if (!field.value) {
+          allValid = false;
+        }
+      });
+
+      if (!allValid) {
+        showToast('Please fill in all required fields.');
+        return;
+      }
+
+      const formData = {
+        first_name: document.getElementById('app-first-name').value,
+        last_name: document.getElementById('app-last-name').value,
+        email: document.getElementById('app-email').value,
+        phone: document.getElementById('app-phone').value,
+        address: document.getElementById('app-address').value,
+        city_state_zip: document.getElementById('app-city').value,
+        hunt_experience: document.getElementById('app-hunt-experience').value,
+        pointing_breed: document.getElementById('app-pointing-breed').value,
+        breed_types: document.getElementById('app-breed-types').value,
+        living_situation: document.getElementById('app-living').value,
+        yard_size: document.getElementById('app-yard').value,
+        other_pets: document.getElementById('app-other-pets').value,
+        children: document.getElementById('app-children').value,
+        activity_level: document.getElementById('app-activity').value,
+        goals: document.getElementById('app-goals').value,
+        training_plan: document.getElementById('app-training').value,
+        timeline: document.getElementById('app-timeline').value,
+        other_waitlists: document.getElementById('app-waitlists').value,
+        heard_about: document.getElementById('app-heard').value,
+        additional_info: document.getElementById('app-other').value
+      };
+
+      console.log('Puppy Application Data:', formData);
+      showToast('Application submitted! We\'ll review it and be in touch within 24 hours.');
+      this.reset();
+    });
+
+    // Fade-in on Scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
 </body>
 </html>
