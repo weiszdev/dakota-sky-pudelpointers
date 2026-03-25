@@ -4,386 +4,590 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Professional Training - Dakota Sky Pudelpointers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --dsp-forest-dark: #1a3c34;
+            --dsp-forest: #2d6a4f;
+            --dsp-forest-light: #52796f;
+            --dsp-cream: #F4F2ED;
+            --dsp-warm-white: #FAFAF7;
+            --dsp-earth: #8B5E3C;
+            --dsp-gold: #D4A843;
+            --dsp-charcoal: #333333;
+            --dsp-text-light: #6b6b6b;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        :root {
-            --hunter-green: #1B4332;
-            --saddle-brown: #8B5E3C;
-            --wheat-gold: #D4A843;
-            --off-white: #FAF8F5;
-            --charcoal: #2D2D2D;
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Georgia', serif;
+            font-family: 'Inter', sans-serif;
+            color: var(--dsp-charcoal);
             line-height: 1.6;
-            color: var(--charcoal);
-            background-color: var(--off-white);
+            background-color: var(--dsp-warm-white);
         }
 
-        /* HEADER & NAVIGATION */
+        /* HEADER STYLES */
         header {
-            position: sticky;
+            position: fixed;
             top: 0;
+            width: 100%;
+            background-color: var(--dsp-forest-dark);
+            color: white;
             z-index: 1000;
-            background-color: var(--off-white);
-            border-bottom: 1px solid rgba(27, 67, 50, 0.1);
-            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .header-container {
+        .header-content {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 1.5rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--hunter-green);
-            text-decoration: none;
-            letter-spacing: 1px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--charcoal);
-            margin-left: 2rem;
-            font-size: 0.95rem;
-            transition: color 0.3s ease;
-            font-family: 'Arial', sans-serif;
-            font-weight: 500;
-        }
-
-        nav a:hover {
-            color: var(--hunter-green);
-        }
-
-        nav {
-            display: flex;
-            align-items: center;
-        }
-
-        /* HERO */
-        .hero {
-            min-height: 60vh;
-            background: linear-gradient(rgba(27, 67, 50, 0.7), rgba(27, 67, 50, 0.85)), url('images/hero-training.jpg') center/cover no-repeat;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 3px;
             color: white;
-            padding: 4rem 2rem;
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            line-height: 1.2;
-            margin-bottom: 1rem;
+        #nav-menu {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
         }
 
-        .hero p {
-            font-size: 1.2rem;
-            font-family: 'Arial', sans-serif;
-            font-weight: 300;
+        #nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
         }
 
-        /* SECTIONS */
+        #nav-menu a:hover {
+            color: var(--dsp-gold);
+        }
+
+        .hamburger-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+        }
+
+        .hamburger-menu span {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger-menu.active span:nth-child(1) {
+            transform: rotate(45deg) translate(10px, 10px);
+        }
+
+        .hamburger-menu.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-menu.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Mobile Navigation */
+        @media (max-width: 768px) {
+            .hamburger-menu {
+                display: flex;
+            }
+
+            #nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--dsp-forest);
+                flex-direction: column;
+                gap: 1rem;
+                padding: 2rem;
+                text-align: center;
+            }
+
+            #nav-menu.active {
+                display: flex;
+            }
+        }
+
+        /* MAIN CONTENT */
+        main {
+            margin-top: 80px;
+        }
+
         section {
-            padding: 5rem 2rem;
+            padding: 4rem 2rem;
             max-width: 1400px;
             margin: 0 auto;
         }
 
-        section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2.5rem;
-            color: var(--hunter-green);
+        section.cream {
+            background-color: var(--dsp-cream);
         }
 
-        section h3 {
-            font-size: 1.5rem;
+        section.warm-white {
+            background-color: var(--dsp-warm-white);
+        }
+
+        section.dark {
+            background: linear-gradient(135deg, var(--dsp-forest-dark) 0%, var(--dsp-forest) 100%);
+            color: white;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-style: italic;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2.5rem;
             margin-bottom: 1.5rem;
-            color: var(--hunter-green);
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: var(--dsp-forest);
+            margin-bottom: 1rem;
+        }
+
+        h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
         }
 
         p {
             font-size: 1rem;
+            color: var(--dsp-text-light);
+            margin-bottom: 1rem;
             line-height: 1.8;
+        }
+
+        section.dark p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(135deg, var(--dsp-forest-dark) 0%, var(--dsp-forest) 100%);
+            color: white;
+            text-align: center;
+            padding: 120px 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 500px;
+        }
+
+        .hero h1 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 4rem;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 3rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        /* IMAGE PLACEHOLDER */
+        .image-placeholder {
+            width: 100%;
+            height: 400px;
+            border: 3px dashed rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(212, 168, 67, 0.05);
+            color: var(--dsp-text-light);
+            font-size: 1rem;
+            text-align: center;
+            margin: 2rem 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* CARDS */
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .card h3 {
+            color: var(--dsp-forest);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-price {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--dsp-gold);
+            margin-bottom: 1rem;
+        }
+
+        .card-meta {
+            font-size: 0.9rem;
+            color: var(--dsp-text-light);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .card ul {
+            list-style: none;
             margin-bottom: 1.5rem;
         }
 
-        /* PROGRAM CARDS */
-        .programs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .program-card {
-            background: white;
-            border-radius: 8px;
-            padding: 2.5rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            border-top: 4px solid var(--hunter-green);
-            transition: all 0.3s ease;
-        }
-
-        .program-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(27, 67, 50, 0.15);
-        }
-
-        .program-name {
-            font-size: 1.3rem;
-            color: var(--hunter-green);
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .program-price {
-            font-size: 1.2rem;
-            color: var(--wheat-gold);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            font-family: 'Arial', sans-serif;
-        }
-
-        .program-details {
+        .card li {
+            padding: 0.5rem 0;
             font-size: 0.95rem;
-            line-height: 1.8;
-            margin-bottom: 0;
+            color: var(--dsp-text-light);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
         }
 
-        .program-details ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .program-details li {
-            padding-left: 1.5rem;
-            position: relative;
-            margin-bottom: 0.75rem;
-        }
-
-        .program-details li:before {
+        .card li:before {
             content: "✓";
-            position: absolute;
-            left: 0;
-            color: var(--wheat-gold);
-            font-weight: bold;
+            color: var(--dsp-gold);
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 2px;
         }
 
-        /* WHAT'S INCLUDED */
-        .included-section {
-            background: linear-gradient(135deg, rgba(27, 67, 50, 0.05) 0%, rgba(212, 168, 67, 0.03) 100%);
-            padding: 3rem;
-            border-radius: 8px;
-            margin-bottom: 3rem;
+        .card-duration {
+            font-size: 0.9rem;
+            color: var(--dsp-forest);
+            font-weight: 600;
+            padding-top: 1rem;
+            border-top: 1px solid #e0e0e0;
         }
 
-        .included-section h3 {
+        /* GRID LAYOUTS */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
             margin-bottom: 2rem;
         }
 
-        .included-grid {
+        @media (max-width: 768px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* BUTTONS */
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-primary {
+            background-color: var(--dsp-gold);
+            color: var(--dsp-forest-dark);
+        }
+
+        .btn-primary:hover {
+            background-color: #c2922d;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background-color: white;
+            color: var(--dsp-forest-dark);
+        }
+
+        .btn-cta {
+            margin-right: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 600px) {
+            .btn-cta {
+                display: block;
+                width: 100%;
+                margin-bottom: 1rem;
+                text-align: center;
+            }
+        }
+
+        /* CTA SECTION */
+        .cta-content {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             gap: 2rem;
         }
 
-        .included-item h4 {
-            color: var(--hunter-green);
-            margin-bottom: 0.75rem;
-            font-family: 'Arial', sans-serif;
-            font-weight: 600;
+        .cta-content h2 {
+            color: white;
+            font-size: 2.8rem;
         }
 
-        .included-item p {
-            font-size: 0.95rem;
-            margin-bottom: 0;
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* INTRO TEXT */
+        .section-intro {
+            font-size: 1.1rem;
+            color: var(--dsp-text-light);
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            text-align: center;
+            line-height: 1.8;
         }
 
         /* PHILOSOPHY SECTION */
-        .philosophy-box {
-            background: white;
-            padding: 3rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            border-left: 4px solid var(--saddle-brown);
+        .philosophy-content {
+            max-width: 900px;
+            margin: 0 auto;
         }
 
-        .philosophy-box img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-            object-fit: cover;
-        }
-
-        .philosophy-box h3 {
+        .philosophy-content p {
             margin-bottom: 1.5rem;
-        }
-
-        .philosophy-box p {
-            font-size: 1rem;
+            font-size: 1.05rem;
             line-height: 1.9;
         }
 
-        /* CTA */
-        .cta-section {
-            background: linear-gradient(135deg, rgba(139, 94, 60, 0.1) 0%, rgba(212, 168, 67, 0.05) 100%);
-            padding: 3rem;
-            border-radius: 8px;
-            text-align: center;
-            border: 2px solid var(--saddle-brown);
-        }
-
-        .cta-section h3 {
-            margin-bottom: 1.5rem;
-        }
-
-        .cta-btn {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background-color: var(--hunter-green);
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            font-family: 'Arial', sans-serif;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: 2px solid var(--hunter-green);
-            margin-top: 1rem;
-        }
-
-        .cta-btn:hover {
-            background-color: var(--wheat-gold);
-            border-color: var(--wheat-gold);
-            color: var(--charcoal);
+        section.dark .philosophy-content p {
+            color: rgba(255, 255, 255, 0.9);
         }
 
         /* FOOTER */
         footer {
-            background-color: var(--charcoal);
-            color: var(--off-white);
+            background-color: var(--dsp-forest-dark);
+            color: white;
             padding: 4rem 2rem;
-            margin-top: 4rem;
         }
 
-        .footer-container {
+        .footer-content {
             max-width: 1400px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 3rem;
             margin-bottom: 3rem;
         }
 
-        .footer-section h4 {
+        footer h4 {
+            color: white;
+            margin-bottom: 1rem;
             font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            color: var(--wheat-gold);
-            font-family: 'Arial', sans-serif;
-            font-weight: 600;
         }
 
-        .footer-section p, .footer-section a {
+        footer p {
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 0.8rem;
             font-size: 0.95rem;
-            line-height: 1.8;
-            color: var(--off-white);
+        }
+
+        footer a {
+            color: var(--dsp-gold);
             text-decoration: none;
-            display: block;
-            margin-bottom: 0.75rem;
-            font-family: 'Arial', sans-serif;
+            transition: color 0.3s ease;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
         }
 
-        .footer-section a:hover {
-            color: var(--wheat-gold);
-        }
-
-        .newsletter-form {
-            display: flex;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        .newsletter-form input {
-            flex: 1;
-            padding: 0.75rem;
-            border: none;
-            border-radius: 4px;
-            font-family: 'Arial', sans-serif;
-        }
-
-        .newsletter-form button {
-            padding: 0.75rem 1.5rem;
-            background-color: var(--wheat-gold);
-            border: none;
-            color: var(--charcoal);
-            cursor: pointer;
-            border-radius: 4px;
-            font-family: 'Arial', sans-serif;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-        }
-
-        .newsletter-form button:hover {
-            background-color: var(--hunter-green);
-            color: var(--off-white);
-        }
-
-        .footer-divider {
-            border-top: 1px solid rgba(212, 168, 67, 0.2);
-            padding-top: 2rem;
-            text-align: center;
-            font-size: 0.9rem;
-            color: #aaa;
+        footer a:hover {
+            color: #F4F2ED;
         }
 
         .social-links {
             display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
         }
 
-        .social-links a {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background-color: var(--hunter-green);
-            border-radius: 50%;
+        .footer-form {
             display: flex;
-            align-items: center;
-            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-form input {
+            flex: 1;
+            padding: 10px 12px;
+            border: none;
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+        }
+
+        .footer-form button {
+            padding: 10px 20px;
+            background-color: var(--dsp-gold);
+            color: var(--dsp-forest-dark);
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
             transition: background-color 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
         }
 
-        .social-links a:hover {
-            background-color: var(--wheat-gold);
+        .footer-form button:hover {
+            background-color: #c2922d;
         }
 
-        /* MOBILE */
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* FADE-IN ANIMATION */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* RESPONSIVE */
         @media (max-width: 768px) {
-            .hero h1 {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
                 font-size: 2rem;
             }
 
-            section {
-                padding: 3rem 1.5rem;
+            .hero {
+                padding: 80px 2rem;
+                min-height: auto;
             }
 
-            nav {
-                display: none;
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            section {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .image-placeholder {
+                height: 250px;
+            }
+
+            .cta-content h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-content {
+                padding: 1rem 1.5rem;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+                letter-spacing: 2px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            section {
+                padding: 2rem 1rem;
             }
         }
     </style>
@@ -391,9 +595,9 @@
 <body>
     <!-- HEADER -->
     <header>
-        <div class="header-container">
-            <a href="index.html" class="logo">DAKOTA SKY</a>
-            <nav>
+        <div class="header-content">
+            <div class="logo">DAKOTA SKY</div>
+            <nav id="nav-menu">
                 <a href="index.html">Home</a>
                 <a href="breeding.html">Breeding</a>
                 <a href="training.html">Training</a>
@@ -402,27 +606,30 @@
                 <a href="about.html">About</a>
                 <a href="contact.html">Contact</a>
             </nav>
+            <div class="hamburger-menu" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
         </div>
     </header>
 
-    <!-- HERO -->
-    <div class="hero">
-        <div>
-            <h1>From First Birds to Finished Dogs.</h1>
-            <p>Professional training for hunting companions.</p>
-        </div>
-    </div>
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero">
+            <h1 class="fade-in">From First Birds to Finished Dogs.</h1>
+            <p class="subtitle fade-in">Professional training for hunting companions.</p>
+        </section>
 
-    <!-- TRAINING PROGRAMS -->
-    <section>
-        <h2>Training Programs</h2>
-        <p>We offer specialized training programs tailored to your dog's age, experience, and goals. Every program is built on positive reinforcement, field-proven methods, and individual attention.</p>
-        <div class="programs-grid">
-            <div class="program-card">
-                <p class="program-name">Puppy Foundation</p>
-                <p class="program-price">$1,200/month</p>
-                <div class="program-details">
-                    <p><strong>Age: 8-16 weeks</strong></p>
+        <!-- TRAINING PROGRAMS SECTION -->
+        <section class="cream">
+            <h2 class="fade-in">Training Programs</h2>
+            <p class="section-intro fade-in">We offer specialized training programs tailored to your dog's age, experience, and goals. Every program is built on positive reinforcement, field-proven methods, and individual attention.</p>
+
+            <div class="cards-grid">
+                <div class="card fade-in">
+                    <h3>Puppy Foundation</h3>
+                    <div class="card-price">$1,200/month</div>
+                    <div class="card-meta">Age: 8-16 weeks</div>
                     <ul>
                         <li>Socialization foundation</li>
                         <li>Basic obedience</li>
@@ -431,46 +638,43 @@
                         <li>Recall development</li>
                         <li>Steadiness foundations</li>
                     </ul>
-                    <p style="margin-top: 1rem;"><strong>Duration:</strong> 4-6 weeks minimum</p>
+                    <div class="card-duration">Duration: 4-6 weeks minimum</div>
                 </div>
-            </div>
-            <div class="program-card">
-                <p class="program-name">Started Dog Program</p>
-                <p class="program-price">$1,400/month</p>
-                <div class="program-details">
-                    <p><strong>Age: 6-12 months</strong></p>
+
+                <div class="card fade-in">
+                    <h3>Started Dog Program</h3>
+                    <div class="card-price">$1,400/month</div>
+                    <div class="card-meta">Age: 6-12 months</div>
                     <ul>
-                        <li>Bird introduction & pointing</li>
+                        <li>Bird introduction &amp; pointing</li>
                         <li>Backing training</li>
                         <li>Retrieve to hand (land)</li>
                         <li>Water introduction</li>
                         <li>Whistle commands</li>
                         <li>Quartering patterns</li>
                     </ul>
-                    <p style="margin-top: 1rem;"><strong>Duration:</strong> 3-4 months</p>
+                    <div class="card-duration">Duration: 3-4 months</div>
                 </div>
-            </div>
-            <div class="program-card">
-                <p class="program-name">Finished Dog Program</p>
-                <p class="program-price">$1,500/month</p>
-                <div class="program-details">
-                    <p><strong>Age: 12+ months</strong></p>
+
+                <div class="card fade-in">
+                    <h3>Finished Dog Program</h3>
+                    <div class="card-price">$1,500/month</div>
+                    <div class="card-meta">Age: 12+ months</div>
                     <ul>
-                        <li>Steady to wing & shot</li>
+                        <li>Steady to wing &amp; shot</li>
                         <li>Blind retrieves</li>
                         <li>Honor training</li>
                         <li>Hunt test prep (NAVHDA, AKC)</li>
                         <li>Advanced field work</li>
                         <li>Off-season conditioning</li>
                     </ul>
-                    <p style="margin-top: 1rem;"><strong>Duration:</strong> 4-6 months</p>
+                    <div class="card-duration">Duration: 4-6 months</div>
                 </div>
-            </div>
-            <div class="program-card">
-                <p class="program-name">Tune-Up / Refresher</p>
-                <p class="program-price">$1,200/month</p>
-                <div class="program-details">
-                    <p><strong>For any age</strong></p>
+
+                <div class="card fade-in">
+                    <h3>Tune-Up / Refresher</h3>
+                    <div class="card-price">$1,200/month</div>
+                    <div class="card-meta">For any age</div>
                     <ul>
                         <li>Pre-season conditioning</li>
                         <li>Command reinforcement</li>
@@ -479,100 +683,160 @@
                         <li>Behavior correction</li>
                         <li>Confidence building</li>
                     </ul>
-                    <p style="margin-top: 1rem;"><strong>Duration:</strong> 1-2 months</p>
+                    <div class="card-duration">Duration: 1-2 months</div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- WHAT'S INCLUDED -->
-    <section>
-        <div class="included-section">
-            <h3>What's Included in Every Training Program</h3>
-            <div class="included-grid">
-                <div class="included-item">
-                    <h4>Professional Training</h4>
-                    <p>6 days per week, structured sessions led by Glen and Stacey's team of experienced trainers.</p>
+        <!-- WHAT'S INCLUDED SECTION -->
+        <section class="warm-white">
+            <h2 class="fade-in">What's Included in Every Training Program</h2>
+
+            <div class="features-grid">
+                <div class="card fade-in">
+                    <h3>Professional Training</h3>
+                    <p>6 days per week, structured sessions led by Glen and Stacey's team</p>
                 </div>
-                <div class="included-item">
-                    <h4>Daily Exercise</h4>
-                    <p>Multiple training sessions and field work to maintain fitness and enthusiasm.</p>
+
+                <div class="card fade-in">
+                    <h3>Daily Exercise</h3>
+                    <p>Multiple training sessions and field work</p>
                 </div>
-                <div class="included-item">
-                    <h4>Premium Nutrition</h4>
-                    <p>Fed Inukshuk premium performance food throughout their stay.</p>
+
+                <div class="card fade-in">
+                    <h3>Premium Nutrition</h3>
+                    <p>Fed Inukshuk premium performance food</p>
                 </div>
-                <div class="included-item">
-                    <h4>Weekly Updates</h4>
-                    <p>Photos and videos showing your dog's progress, sent directly to you.</p>
+
+                <div class="card fade-in">
+                    <h3>Weekly Updates</h3>
+                    <p>Photos and videos showing progress</p>
                 </div>
-                <div class="included-item">
-                    <h4>Monthly Reports</h4>
-                    <p>Detailed progress notes on training milestones and recommendations for home training.</p>
+
+                <div class="card fade-in">
+                    <h3>Monthly Reports</h3>
+                    <p>Detailed progress notes on training milestones</p>
                 </div>
-                <div class="included-item">
-                    <h4>Veterinary Care</h4>
-                    <p>Coordination with local veterinarians for health checks and any medical needs.</p>
+
+                <div class="card fade-in">
+                    <h3>Veterinary Care</h3>
+                    <p>Coordination with local veterinarians</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- TRAINING PHILOSOPHY -->
-    <section>
-        <div class="philosophy-box">
-            <img src="images/field-point.jpg" alt="Dakota Sky Pudelpointer on point in field training" loading="lazy" onerror="this.style.display='none'">
-            <h3>Our Training Philosophy</h3>
-            <p>We believe every dog learns at their own pace. Our approach combines positive reinforcement with structure—the same methods proven effective for generations of hunting dog trainers across the Northern Plains.</p>
-            <p>We don't believe in shortcuts. A well-trained hunting dog requires patience, consistency, and genuine partnership. Our trainers work to bring out each dog's natural abilities while building confidence and trust.</p>
-            <p>Whether your dog is a prospect for competitive hunt tests or simply a companion for family hunting trips, our training methods prepare them to excel in the field and remain well-mannered at home.</p>
-            <img src="images/puppy-training.jpg" alt="Young Dakota Sky Pudelpointer during training" loading="lazy" style="margin-top: 2rem; margin-bottom: 0;" onerror="this.style.display='none'">
-        </div>
-    </section>
+        <!-- TRAINING PHILOSOPHY SECTION -->
+        <section class="dark">
+            <h2 class="fade-in" style="color: white;">Our Training Philosophy</h2>
+            <div class="philosophy-content fade-in">
+                <p>At Dakota Sky Pudelpointers, we believe that exceptional hunting dogs are developed through a combination of positive reinforcement, patience, and respect for each dog's natural abilities. Our training philosophy centers on understanding the individual temperament and drive of every dog that comes through our program. We don't believe in one-size-fits-all approaches—instead, we tailor our methods to bring out the best in each animal while building confidence and trust.</p>
 
-    <!-- CTA -->
-    <section>
-        <div class="cta-section">
-            <h3>Ready to Train Your Hunting Companion?</h3>
-            <p>Schedule a training consultation with Glen and Stacey to discuss your dog's goals and find the right program.</p>
-            <a href="contact.html" class="cta-btn">Schedule a Consultation</a>
-        </div>
-    </section>
+                <p>Positive reinforcement is at the heart of everything we do. We use proven field methods that reward desired behaviors, creating a dog that is eager to work and responsive to commands. Whether we're introducing a young puppy to birds for the first time or polishing a nearly-finished hunting companion, we emphasize consistency, clarity, and patience. Our team takes time to understand what motivates each dog, creating training sessions that are both effective and enjoyable.</p>
+
+                <p>We're committed to developing well-rounded hunting companions that not only excel in the field but also integrate seamlessly into family life. Every dog graduates from our program with foundational skills, confidence, and the tools needed to hunt safely and successfully. We view ourselves as partners in your dog's development, providing the guidance and expertise needed to transform potential into excellence.</p>
+            </div>
+        </section>
+
+        <!-- CTA SECTION -->
+        <section class="dark">
+            <div class="cta-content">
+                <h2>Ready to Train Your Hunting Companion?</h2>
+                <div class="cta-buttons">
+                    <a href="training-consultation.html" class="btn btn-primary btn-cta">Schedule a Consultation</a>
+                    <a href="contact.html" class="btn btn-secondary btn-cta">Contact Us</a>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <!-- FOOTER -->
     <footer>
-        <div class="footer-container">
-            <div class="footer-section">
-                <h4>Contact Us</h4>
-                <p>10525 Highway 10</p>
-                <p>Dickinson, ND 58601</p>
-                <p>(701) 290-1492</p>
-                <p><a href="mailto:dakotasky.nd@gmail.com">dakotasky.nd@gmail.com</a></p>
+        <div class="footer-content">
+            <div>
+                <h4>Contact</h4>
+                <p>10525 Highway 10<br>Dickinson, ND 58601</p>
+                <p>Phone: <a href="tel:+17012901492">(701) 290-1492</a></p>
+                <p>Email: <a href="mailto:dakotasky.nd@gmail.com">dakotasky.nd@gmail.com</a></p>
             </div>
-            <div class="footer-section">
+            <div>
                 <h4>Quick Links</h4>
-                <a href="breeding.html">Breeding Program</a>
-                <a href="training.html">Professional Training</a>
-                <a href="boarding.html">Boarding & Daycare</a>
-                <a href="nutrition.html">Inukshuk Nutrition</a>
-                <a href="about.html">About Glen & Stacey</a>
+                <a href="breeding.html">Breeding Program</a><br>
+                <a href="training.html">Professional Training</a><br>
+                <a href="boarding.html">Boarding &amp; Daycare</a><br>
+                <a href="nutrition.html">Inukshuk Nutrition</a><br>
+                <a href="about.html">About Glen &amp; Stacey</a>
             </div>
-            <div class="footer-section">
+            <div>
                 <h4>Follow Us</h4>
                 <div class="social-links">
-                    <a href="https://facebook.com/Pudlepointers" title="Facebook">f</a>
-                    <a href="https://instagram.com/dakotaskypudelpointers" title="Instagram">@</a>
+                    <a href="#">Facebook</a>
+                    <a href="#">Instagram</a>
+                    <a href="#">YouTube</a>
                 </div>
-                <p style="margin-top: 1.5rem;">Join our mailing list for updates, training tips, and announcements.</p>
-                <form class="newsletter-form">
+                <h4>Stay Updated</h4>
+                <form class="footer-form">
                     <input type="email" placeholder="Your email" required>
-                    <button type="submit">Subscribe</button>
+                    <button type="submit">Join</button>
                 </form>
             </div>
         </div>
-        <div class="footer-divider">
-            <p>&copy; 2026 Dakota Sky Pudelpointers. All rights reserved. Glen & Stacey Koffler, Dickinson, ND.</p>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Dakota Sky Pudelpointers. All rights reserved. | Dickinson, North Dakota</p>
         </div>
     </footer>
+
+    <script>
+        // HAMBURGER MENU FUNCTIONALITY
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked
+        const navLinks = navMenu.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // FADE-IN SCROLL ANIMATION
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        const fadeInElements = document.querySelectorAll('.fade-in');
+        fadeInElements.forEach(element => {
+            observer.observe(element);
+        });
+
+        // FOOTER FORM SUBMISSION
+        const footerForm = document.querySelector('.footer-form');
+        if (footerForm) {
+            footerForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const input = footerForm.querySelector('input[type="email"]');
+                if (input.value) {
+                    alert('Thank you for subscribing! Check your email for updates.');
+                    input.value = '';
+                }
+            });
+        }
+    </script>
 </body>
 </html>

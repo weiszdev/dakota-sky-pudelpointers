@@ -1,213 +1,917 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dakota Sky — Image Prep Tool</title>
-<style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f2b1d; color: #FAF8F5; min-height: 100vh; }
-.container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
-h1 { font-family: Georgia, serif; font-size: 2rem; color: #D4A843; margin-bottom: 0.5rem; }
-.subtitle { color: #a0a0a0; margin-bottom: 2rem; }
-.instructions { background: #1a3d2a; border: 1px solid #2d5a3d; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; }
-.instructions h2 { color: #D4A843; font-size: 1.1rem; margin-bottom: 0.75rem; }
-.instructions ol { padding-left: 1.5rem; line-height: 1.8; }
-.instructions li { margin-bottom: 0.25rem; }
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
-.slot { background: #1a3d2a; border: 2px dashed #2d5a3d; border-radius: 12px; padding: 1rem; text-align: center; transition: all 0.3s; min-height: 240px; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; cursor: pointer; }
-.slot:hover { border-color: #D4A843; background: #1f4430; }
-.slot.filled { border-style: solid; border-color: #4ade80; }
-.slot .label { font-weight: 700; color: #D4A843; font-size: 0.95rem; margin-bottom: 0.25rem; }
-.slot .description { color: #a0a0a0; font-size: 0.8rem; margin-bottom: 0.75rem; line-height: 1.4; }
-.slot .dimensions { color: #666; font-size: 0.7rem; }
-.slot img { max-width: 100%; max-height: 160px; border-radius: 8px; object-fit: cover; margin-bottom: 0.5rem; }
-.slot .check { position: absolute; top: 8px; right: 8px; background: #4ade80; color: #0f2b1d; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.1rem; }
-.slot input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
-.drop-hint { font-size: 2rem; color: #2d5a3d; margin-bottom: 0.5rem; }
-.progress { background: #1a3d2a; border: 1px solid #2d5a3d; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; display: flex; align-items: center; gap: 1.5rem; }
-.progress-bar { flex: 1; height: 12px; background: #0f2b1d; border-radius: 6px; overflow: hidden; }
-.progress-fill { height: 100%; background: linear-gradient(90deg, #D4A843, #4ade80); border-radius: 6px; transition: width 0.5s; width: 0%; }
-.progress-text { color: #D4A843; font-weight: 700; font-size: 1.1rem; white-space: nowrap; }
-.download-btn { display: none; background: #D4A843; color: #0f2b1d; border: none; padding: 1rem 2.5rem; font-size: 1.1rem; font-weight: 700; border-radius: 8px; cursor: pointer; margin: 2rem auto; text-align: center; }
-.download-btn:hover { background: #c49a3a; }
-.download-btn.show { display: block; }
-.section-header { color: #D4A843; font-family: Georgia, serif; font-size: 1.3rem; margin: 2rem 0 0.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid #2d5a3d; }
-.tag { display: inline-block; font-size: 0.65rem; padding: 2px 8px; border-radius: 4px; margin-bottom: 0.5rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
-.tag.required { background: #7f1d1d; color: #fca5a5; }
-.tag.optional { background: #1e3a5f; color: #93c5fd; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dakota Sky — Image Prep Tool</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></link>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --dsp-forest-dark: #1a3c34;
+            --dsp-forest: #2d6a4f;
+            --dsp-forest-light: #52796f;
+            --dsp-cream: #F4F2ED;
+            --dsp-warm-white: #FAFAF7;
+            --dsp-earth: #8B5E3C;
+            --dsp-gold: #D4A843;
+            --dsp-charcoal: #333333;
+            --dsp-text-light: #6b6b6b;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dsp-cream);
+            color: var(--dsp-charcoal);
+            line-height: 1.6;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background-color: var(--dsp-forest-dark);
+            color: var(--dsp-warm-white);
+            padding: 1.5rem 2rem;
+            border-bottom: 3px solid var(--dsp-gold);
+        }
+
+        .top-bar h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 2rem;
+        }
+
+        /* Instructions Section */
+        .instructions {
+            background-color: var(--dsp-warm-white);
+            border-left: 4px solid var(--dsp-gold);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 4px;
+        }
+
+        .instructions p {
+            font-size: 1.05rem;
+            color: var(--dsp-charcoal);
+        }
+
+        /* How To Use Collapsible */
+        .how-to-use {
+            margin-bottom: 2rem;
+        }
+
+        .collapsible-header {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            background-color: var(--dsp-warm-white);
+            padding: 1rem 1.5rem;
+            border-radius: 4px;
+            border: 1px solid var(--dsp-forest-light);
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .collapsible-header:hover {
+            background-color: #f0ede8;
+            border-color: var(--dsp-forest);
+        }
+
+        .collapsible-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--dsp-forest-dark);
+            margin: 0;
+            flex: 1;
+        }
+
+        .toggle-icon {
+            font-size: 1.5rem;
+            color: var(--dsp-forest);
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-icon.open {
+            transform: rotate(180deg);
+        }
+
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background-color: var(--dsp-warm-white);
+            border-left: 1px solid var(--dsp-forest-light);
+            border-right: 1px solid var(--dsp-forest-light);
+            border-bottom: 1px solid var(--dsp-forest-light);
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+
+        .collapsible-content.open {
+            max-height: 500px;
+        }
+
+        .collapsible-content ol {
+            padding: 1.5rem 1.5rem 1.5rem 2.5rem;
+            color: var(--dsp-text-light);
+        }
+
+        .collapsible-content li {
+            margin-bottom: 0.8rem;
+            line-height: 1.7;
+        }
+
+        /* Progress Section */
+        .progress-section {
+            margin-bottom: 2rem;
+            background-color: var(--dsp-warm-white);
+            padding: 1.5rem;
+            border-radius: 4px;
+        }
+
+        .progress-label {
+            font-weight: 600;
+            color: var(--dsp-forest-dark);
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+        }
+
+        .progress-bar {
+            height: 24px;
+            background-color: #e8e8e8;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #d0d0d0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--dsp-gold), #f0c964);
+            width: 0%;
+            transition: width 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dsp-charcoal);
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* Image Slots Grid */
+        .slots-section {
+            margin-bottom: 2rem;
+        }
+
+        .slots-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--dsp-forest-dark);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--dsp-gold);
+        }
+
+        .slots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .slot {
+            position: relative;
+            background-color: var(--dsp-warm-white);
+            border: 2px dashed #2d5a3d;
+            border-radius: 8px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .slot:hover {
+            border-color: var(--dsp-forest);
+            background-color: #f9f7f2;
+        }
+
+        .slot.filled {
+            border: 2px solid var(--dsp-forest);
+            background-color: var(--dsp-warm-white);
+        }
+
+        .slot-empty {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .slot-icon {
+            font-size: 2.5rem;
+            color: var(--dsp-forest);
+        }
+
+        .slot-label {
+            font-weight: 600;
+            color: var(--dsp-forest-dark);
+            font-size: 1rem;
+        }
+
+        .slot-description {
+            font-size: 0.85rem;
+            color: var(--dsp-text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .slot-tag {
+            display: inline-block;
+            padding: 0.3rem 0.7rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        .tag-required {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .tag-optional {
+            background-color: #e8f4f8;
+            color: #0c5460;
+        }
+
+        .slot-tip {
+            font-size: 0.8rem;
+            color: var(--dsp-earth);
+            font-style: italic;
+            margin-top: 0.5rem;
+        }
+
+        /* Filled Slot Content */
+        .slot-preview {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .preview-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 0.8rem;
+        }
+
+        .preview-info {
+            font-size: 0.85rem;
+            color: var(--dsp-text-light);
+        }
+
+        .preview-filename {
+            font-weight: 600;
+            color: var(--dsp-forest-dark);
+            word-break: break-word;
+            margin-bottom: 0.5rem;
+        }
+
+        .preview-dimensions {
+            color: var(--dsp-text-light);
+            font-size: 0.8rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .preview-size {
+            color: var(--dsp-text-light);
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .checkmark {
+            color: var(--dsp-forest);
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-right: 0.3rem;
+        }
+
+        .slot-drag-over {
+            background-color: #e8f5e9;
+            border-color: var(--dsp-forest);
+        }
+
+        /* Hidden File Input */
+        input[type="file"] {
+            display: none;
+        }
+
+        /* Download Section */
+        .download-section {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .download-button {
+            background: linear-gradient(135deg, var(--dsp-gold), #f0c964);
+            color: var(--dsp-charcoal);
+            border: none;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .download-button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(212, 168, 67, 0.3);
+        }
+
+        .download-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .download-info {
+            color: var(--dsp-text-light);
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .top-bar h1 {
+                font-size: 1.5rem;
+            }
+
+            .slots-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .top-bar {
+                padding: 1rem;
+            }
+        }
+
+        /* Loading/Processing State */
+        .processing {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid var(--dsp-gold);
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+            margin-right: 0.5rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .status-message {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+
+        .status-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .status-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
 </head>
 <body>
-<div class="container">
-    <h1>Dakota Sky Pudelpointers — Image Prep Tool</h1>
-    <p class="subtitle">Click each slot (or drag & drop) to add photos. They'll be renamed automatically for the website.</p>
-
-    <div class="instructions">
-        <h2>How to Use This Tool</h2>
-        <ol>
-            <li><strong>Open your Facebook page</strong> in another tab: <a href="https://www.facebook.com/Pudlepointers/photos" target="_blank" style="color:#D4A843;">Dakota Sky Photos</a></li>
-            <li><strong>Right-click a photo → "Save Image As"</strong> to your Desktop (any name is fine)</li>
-            <li><strong>Click the matching slot below</strong> and select that saved image</li>
-            <li>Repeat for all 14 required photos (bonus ones are optional)</li>
-            <li><strong>Click "Download All Images"</strong> at the bottom — you'll get a ZIP with every file correctly named</li>
-            <li><strong>Unzip into the <code>images/</code> folder</strong> next to your HTML files. Done!</li>
-        </ol>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <h1>Dakota Sky Pudelpointers — Image Prep Tool</h1>
     </div>
 
-    <div class="progress">
-        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-        <div class="progress-text" id="progressText">0 / 14 required</div>
+    <div class="container">
+        <!-- Instructions -->
+        <div class="instructions">
+            <p>Click each slot (or drag & drop) to add photos. They'll be renamed automatically for the website.</p>
+        </div>
+
+        <!-- How To Use Collapsible -->
+        <div class="how-to-use">
+            <div class="collapsible-header" onclick="toggleCollapsible(event)">
+                <h3>How to Use</h3>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="collapsible-content">
+                <ol>
+                    <li>Open your Facebook page in another tab</li>
+                    <li>Right-click a photo → "Save Image As" to Desktop</li>
+                    <li>Click the matching slot below and select that saved image</li>
+                    <li>Repeat for all 14 required photos (bonus ones optional)</li>
+                    <li>Click "Download All Images" at bottom — get a ZIP with correctly named files</li>
+                    <li>Unzip into images/ folder next to HTML files. Done!</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-section">
+            <div class="progress-label">Progress: <span id="progress-count">0</span> / 14 required</div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill" style="width: 0%;">
+                    <span id="progress-percent"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hero/Cover Photos -->
+        <div class="slots-section">
+            <h2>Hero / Cover Photos</h2>
+            <div class="slots-grid">
+                <div class="slot" data-slot="hero-main" data-required="true">
+                    <div class="slot-empty">
+                        <div class="slot-icon">+</div>
+                        <div class="slot-label">Homepage Hero</div>
+                        <div class="slot-description">Two puppies by the fireplace</div>
+                        <span class="slot-tag tag-required">Required</span>
+                        <div class="slot-tip">Use your Facebook cover photo</div>
+                    </div>
+                </div>
+
+                <div class="slot" data-slot="hero-breeding" data-required="true">
+                    <div class="slot-empty">
+                        <div class="slot-icon">+</div>
+                        <div class="slot-label">Breeding Page Hero</div>
+                        <div class="slot-description">A dam with her litter</div>
+                        <span class="slot-tag tag-required">Required</span>
+                        <div class="slot-tip">Best litter photo</div>
+                    </div>
+                </div>
+
+                <div class="slot" data-slot="hero-training" data-required="true">
+                    <div class="slot-empty">
+                        <div class="slot-icon">+</div>
+                        <div class="slot-label">Training Page Hero</div>
+                        <div class="slot-description">Dog on point in field</div>
+                        <span class="slot-tag tag-required">Required</span>
+                        <div class="slot-tip">Ivy in cattails photo (396 likes!)</div>
+                    </div>
+                </div>
+
+                <div class="slot" data-slot="hero-about" data-required="true">
+                    <div class="slot-empty">
+                        <div class="slot-icon">+</div>
+                        <div class="slot-label">About Page Hero</div>
+                        <div class="slot-description">Glen and Stacey with dogs</div>
+                        <span class="slot-tag tag-required">Required</span>
+                        <div class="slot-tip">Candid photo</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dog Roster -->
+        <div class="slots-section">
+            <h2>Dog Roster</h2>
+            <div class="slots-grid">
+                <div class="slot" data-slot="dog-1" data-required="true">
+                    <div class="slot-empty">
+                        <div class="slot-icon">+</div>
+                        <div class="slot-label">Breeding Dog #1</div>
+                        <div class="slot-description">Top sire</div>
+                        <span class="slot-tag tag-required">Required</span>
+                        <div class="slot-tip">Your #1 male</div>
+                    </div>
+                </div>
+
+                <div class="slot" data-slot="dog-2" data-required="true">
+                    <div class="slot-empty">
+                        <div class="slot-icon">+</div>
+                        <div class="slot-label">Breeding Dog #2</div>
+                        <div class="slot-description">Top dam</div>
+                        <span class="slot-tag tag-required">Required</span>
+                        <div class="slot-tip">Your #1 female</div>
+                    </div>
+                </div>
+
+                <div class="slot" data-slot="dog-3" data-required="true">
+                    <div class="slot-empty">
+                        <div class="slot-icon">+</div>
+                        <div class="slot-label">Breeding Dog #3</div>
+                        <div class="slot-description">Another breeding dog</div>
+                        <span class="slot-tag tag-required">Required</span>
+                    </div>
+                </div>
+
+                <div class="slot" data-slot="dog-4" data-required="true">
+                    <div class="slot-empty">
+                        <div class="slot-icon">+</div>
+                        <div class="slot-label">Breeding Dog #4</div>
+                        <div class="slot-description">Another breeding dog</div>
+                        <span class="slot-tag tag-required">Required</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Puppy Photos -->
+        <div class="slots-section">
+            <h2>Puppy Photos</h2>
+            <div class="slots-grid">
+                <div class="slot" data-slot="puppy-hero" data-required="true">
+                    <div class="slot-empty">
+                        <div class="slot-icon">+</div>
+                        <div class="slot-label">Puppy Hero Shot</div>
+                        <div class="slot-description">The high five puppy</div>
+                        <span class="slot-tag tag-required">Required</span>
+                        <div class="slot-tip">THE money shot</div>
+                    </div>
+                </div>
+
+                <div class="slot" data-slot="puppy-litter" data-required="true">
+                    <div class="slot-empty">
+                        <div class="slot-icon">+</div>
+                        <div class="slot-label">Newborn Litter</div>
+                        <div class="slot-description">Newborn litter photo</div>
+                        <span class="slot-tag tag-required">Required</span>
+                    </div>
+                </div>
+
+                <div class="slot" data-slot="puppy-training" data-required="true">
+                    <div class="slot-empty">
+                        <div class="slot-icon">+</div>
+                        <div class="slot-label">Puppy in Training</div>
+                        <div class="slot-description">Young dog carrying bumper</div>
+                        <span class="slot-tag tag-required">Required</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Field & Lifestyle -->
+        <div class="slots-section">
+            <h2>Field & Lifestyle</h2>
+            <div class="slots-grid">
+                <div class="slot" data-slot="field-point" data-required="true">
+                    <div class="slot-empty">
+                        <div class="slot-icon">+</div>
+                        <div class="slot-label">Dog on Point</div>
+                        <div class="slot-description">Dog on point in tall grass</div>
+                        <span class="slot-tag tag-required">Required</span>
+                    </div>
+                </div>
+
+                <div class="slot" data-slot="field-retrieve" data-required="true">
+                    <div class="slot-empty">
+                        <div class="slot-icon">+</div>
+                        <div class="slot-label">Dog Retrieving</div>
+                        <div class="slot-description">Dog retrieving a bird or swimming</div>
+                        <span class="slot-tag tag-required">Required</span>
+                    </div>
+                </div>
+
+                <div class="slot" data-slot="kennel-facility" data-required="true">
+                    <div class="slot-empty">
+                        <div class="slot-icon">+</div>
+                        <div class="slot-label">Kennel / Property</div>
+                        <div class="slot-description">Your kennel facility</div>
+                        <span class="slot-tag tag-required">Required</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bonus Photos -->
+        <div class="slots-section">
+            <h2>Bonus Photos <span style="font-weight: 400; color: var(--dsp-text-light);">(Optional)</span></h2>
+            <div class="slots-grid">
+                <div class="slot" data-slot="glen-portrait" data-required="false">
+                    <div class="slot-empty">
+                        <div class="slot-icon">+</div>
+                        <div class="slot-label">Glen Portrait</div>
+                        <span class="slot-tag tag-optional">Optional</span>
+                    </div>
+                </div>
+
+                <div class="slot" data-slot="stacey-portrait" data-required="false">
+                    <div class="slot-empty">
+                        <div class="slot-icon">+</div>
+                        <div class="slot-label">Stacey Portrait</div>
+                        <span class="slot-tag tag-optional">Optional</span>
+                    </div>
+                </div>
+
+                <div class="slot" data-slot="hunt-day" data-required="false">
+                    <div class="slot-empty">
+                        <div class="slot-icon">+</div>
+                        <div class="slot-label">Hunt Day</div>
+                        <div class="slot-description">Group photo</div>
+                        <span class="slot-tag tag-optional">Optional</span>
+                    </div>
+                </div>
+
+                <div class="slot" data-slot="inukshuk-bag" data-required="false">
+                    <div class="slot-empty">
+                        <div class="slot-icon">+</div>
+                        <div class="slot-label">Inukshuk Food</div>
+                        <span class="slot-tag tag-optional">Optional</span>
+                    </div>
+                </div>
+
+                <div class="slot" data-slot="navhda-test" data-required="false">
+                    <div class="slot-empty">
+                        <div class="slot-icon">+</div>
+                        <div class="slot-label">NAVHDA / Awards</div>
+                        <span class="slot-tag tag-optional">Optional</span>
+                    </div>
+                </div>
+
+                <div class="slot" data-slot="testimonial-1" data-required="false">
+                    <div class="slot-empty">
+                        <div class="slot-icon">+</div>
+                        <div class="slot-label">Happy Client #1</div>
+                        <span class="slot-tag tag-optional">Optional</span>
+                    </div>
+                </div>
+
+                <div class="slot" data-slot="testimonial-2" data-required="false">
+                    <div class="slot-empty">
+                        <div class="slot-icon">+</div>
+                        <div class="slot-label">Happy Client #2</div>
+                        <span class="slot-tag tag-optional">Optional</span>
+                    </div>
+                </div>
+
+                <div class="slot" data-slot="testimonial-3" data-required="false">
+                    <div class="slot-empty">
+                        <div class="slot-icon">+</div>
+                        <div class="slot-label">Happy Client #3</div>
+                        <span class="slot-tag tag-optional">Optional</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Download Section -->
+        <div class="download-section">
+            <button class="download-button" id="download-button" disabled onclick="downloadAllImages()">
+                Download All Images
+            </button>
+            <div class="download-info" id="download-info" style="display: none;">
+                Upload at least one image to enable download
+            </div>
+            <div id="status-message"></div>
+        </div>
     </div>
 
-    <h3 class="section-header">Hero / Cover Photos</h3>
-    <div class="grid" id="heroGrid"></div>
+    <script>
+        // Data structure to store uploaded images
+        const uploadedImages = {};
 
-    <h3 class="section-header">Dog Roster</h3>
-    <div class="grid" id="dogGrid"></div>
-
-    <h3 class="section-header">Puppy Photos</h3>
-    <div class="grid" id="puppyGrid"></div>
-
-    <h3 class="section-header">Field & Lifestyle</h3>
-    <div class="grid" id="fieldGrid"></div>
-
-    <h3 class="section-header">Bonus Photos (Optional)</h3>
-    <div class="grid" id="bonusGrid"></div>
-
-    <button class="download-btn" id="downloadBtn" onclick="downloadAll()">Download All Images as ZIP</button>
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
-<script>
-const imageSlots = [
-    // Hero
-    { id: 'hero-main', filename: 'hero-main.jpg', label: 'Homepage Hero', description: 'Two puppies by the fireplace (your current cover photo)', required: true, group: 'heroGrid', suggestion: 'Use your Facebook cover photo' },
-    { id: 'hero-breeding', filename: 'hero-breeding.jpg', label: 'Breeding Page Hero', description: 'A dam with her litter, or your best breeding dog in the field', required: true, group: 'heroGrid', suggestion: 'Best litter photo or dam portrait' },
-    { id: 'hero-training', filename: 'hero-training.jpg', label: 'Training Page Hero', description: 'Dog on point in the field or retrieving a bird', required: true, group: 'heroGrid', suggestion: 'The Ivy in cattails photo (396 likes!)' },
-    { id: 'hero-about', filename: 'hero-about.jpg', label: 'About Page Hero', description: 'Glen and Stacey together with dogs — warm, personal', required: true, group: 'heroGrid', suggestion: 'A candid photo of you both with dogs' },
-
-    // Dogs
-    { id: 'dog-1', filename: 'dog-1.jpg', label: 'Breeding Dog #1', description: 'Top sire — best field or conformation shot', required: true, group: 'dogGrid', suggestion: 'Your #1 male' },
-    { id: 'dog-2', filename: 'dog-2.jpg', label: 'Breeding Dog #2', description: 'Top dam — best field or conformation shot', required: true, group: 'dogGrid', suggestion: 'Your #1 female' },
-    { id: 'dog-3', filename: 'dog-3.jpg', label: 'Breeding Dog #3', description: 'Another breeding dog — field or portrait', required: true, group: 'dogGrid', suggestion: 'Next best dog' },
-    { id: 'dog-4', filename: 'dog-4.jpg', label: 'Breeding Dog #4', description: 'Another breeding dog — field or portrait', required: true, group: 'dogGrid', suggestion: 'Another standout' },
-
-    // Puppies
-    { id: 'puppy-hero', filename: 'puppy-hero.jpg', label: 'Puppy Hero Shot', description: 'The "high five" puppy — Stevie/Dakota Sky Ridge (243 likes!)', required: true, group: 'puppyGrid', suggestion: 'THE money shot — the high-five pup' },
-    { id: 'puppy-litter', filename: 'puppy-litter.jpg', label: 'Newborn Litter', description: 'Newborn litter photo — the red-toned litter shot', required: true, group: 'puppyGrid', suggestion: 'Whole litter together' },
-    { id: 'puppy-training', filename: 'puppy-training.jpg', label: 'Puppy in Training', description: 'Young dog carrying bumper or pointing', required: true, group: 'puppyGrid', suggestion: 'Dog with orange bumper' },
-
-    // Field
-    { id: 'field-point', filename: 'field-point.jpg', label: 'Dog on Point', description: 'Dog on point in tall grass or cattails', required: true, group: 'fieldGrid', suggestion: 'Ivy in cattails = your brand' },
-    { id: 'field-retrieve', filename: 'field-retrieve.jpg', label: 'Dog Retrieving', description: 'Dog retrieving a bird or swimming', required: true, group: 'fieldGrid', suggestion: 'Best retrieve or water photo' },
-    { id: 'kennel-facility', filename: 'kennel-facility.jpg', label: 'Kennel / Property', description: 'Your kennel facility, runs, or beautiful property', required: true, group: 'fieldGrid', suggestion: 'Show off the land' },
-
-    // Bonus
-    { id: 'glen-portrait', filename: 'glen-portrait.jpg', label: 'Glen Portrait', description: 'Headshot or candid with a dog', required: false, group: 'bonusGrid', suggestion: '' },
-    { id: 'stacey-portrait', filename: 'stacey-portrait.jpg', label: 'Stacey Portrait', description: 'Headshot or candid with a dog', required: false, group: 'bonusGrid', suggestion: '' },
-    { id: 'hunt-day', filename: 'hunt-day.jpg', label: 'Hunt Day', description: 'Group photo: people + dogs + birds', required: false, group: 'bonusGrid', suggestion: '' },
-    { id: 'inukshuk-bag', filename: 'inukshuk-bag.jpg', label: 'Inukshuk Food', description: 'Photo of Inukshuk dog food bag', required: false, group: 'bonusGrid', suggestion: '' },
-    { id: 'navhda-test', filename: 'navhda-test.jpg', label: 'NAVHDA / Awards', description: 'Dog at test or with prize ribbons', required: false, group: 'bonusGrid', suggestion: '' },
-    { id: 'testimonial-1', filename: 'testimonial-1.jpg', label: 'Happy Client #1', description: 'Client with their Dakota Sky dog', required: false, group: 'bonusGrid', suggestion: '' },
-    { id: 'testimonial-2', filename: 'testimonial-2.jpg', label: 'Happy Client #2', description: 'Another client photo', required: false, group: 'bonusGrid', suggestion: '' },
-    { id: 'testimonial-3', filename: 'testimonial-3.jpg', label: 'Happy Client #3', description: 'Another client photo', required: false, group: 'bonusGrid', suggestion: '' },
-];
-
-const imageData = {};
-
-function createSlot(slot) {
-    const div = document.createElement('div');
-    div.className = 'slot';
-    div.id = 'slot-' + slot.id;
-    div.innerHTML = `
-        <span class="tag ${slot.required ? 'required' : 'optional'}">${slot.required ? 'Required' : 'Optional'}</span>
-        <div class="drop-hint">+</div>
-        <div class="label">${slot.label}</div>
-        <div class="description">${slot.description}</div>
-        ${slot.suggestion ? '<div class="dimensions">Tip: ' + slot.suggestion + '</div>' : ''}
-        <input type="file" accept="image/*" onchange="handleFile(event, '${slot.id}')">
-    `;
-
-    div.addEventListener('dragover', (e) => { e.preventDefault(); div.style.borderColor = '#D4A843'; });
-    div.addEventListener('dragleave', () => { div.style.borderColor = imageData[slot.id] ? '#4ade80' : '#2d5a3d'; });
-    div.addEventListener('drop', (e) => {
-        e.preventDefault();
-        if (e.dataTransfer.files.length) {
-            processFile(e.dataTransfer.files[0], slot.id);
-        }
-    });
-
-    document.getElementById(slot.group).appendChild(div);
-}
-
-function handleFile(event, slotId) {
-    if (event.target.files.length) {
-        processFile(event.target.files[0], slotId);
-    }
-}
-
-function processFile(file, slotId) {
-    const slot = imageSlots.find(s => s.id === slotId);
-    const reader = new FileReader();
-    reader.onload = function(e) {
-        // Resize to max 1920px wide for web optimization
-        const img = new Image();
-        img.onload = function() {
-            const canvas = document.createElement('canvas');
-            const maxW = 1920;
-            let w = img.width, h = img.height;
-            if (w > maxW) { h = h * (maxW / w); w = maxW; }
-            canvas.width = w;
-            canvas.height = h;
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(img, 0, 0, w, h);
-
-            canvas.toBlob(function(blob) {
-                imageData[slotId] = { blob, filename: slot.filename };
-
-                const slotEl = document.getElementById('slot-' + slotId);
-                slotEl.classList.add('filled');
-                slotEl.innerHTML = `
-                    <div class="check">✓</div>
-                    <img src="${URL.createObjectURL(blob)}">
-                    <div class="label">${slot.label}</div>
-                    <div class="dimensions">${Math.round(w)}×${Math.round(h)} · ${Math.round(blob.size/1024)} KB → ${slot.filename}</div>
-                    <input type="file" accept="image/*" onchange="handleFile(event, '${slotId}')">
-                `;
-                updateProgress();
-            }, 'image/jpeg', 0.9);
+        // Slot configuration with required count
+        const slotConfig = {
+            'hero-main': { filename: 'hero-main.jpg', required: true },
+            'hero-breeding': { filename: 'hero-breeding.jpg', required: true },
+            'hero-training': { filename: 'hero-training.jpg', required: true },
+            'hero-about': { filename: 'hero-about.jpg', required: true },
+            'dog-1': { filename: 'dog-1.jpg', required: true },
+            'dog-2': { filename: 'dog-2.jpg', required: true },
+            'dog-3': { filename: 'dog-3.jpg', required: true },
+            'dog-4': { filename: 'dog-4.jpg', required: true },
+            'puppy-hero': { filename: 'puppy-hero.jpg', required: true },
+            'puppy-litter': { filename: 'puppy-litter.jpg', required: true },
+            'puppy-training': { filename: 'puppy-training.jpg', required: true },
+            'field-point': { filename: 'field-point.jpg', required: true },
+            'field-retrieve': { filename: 'field-retrieve.jpg', required: true },
+            'kennel-facility': { filename: 'kennel-facility.jpg', required: true },
+            'glen-portrait': { filename: 'glen-portrait.jpg', required: false },
+            'stacey-portrait': { filename: 'stacey-portrait.jpg', required: false },
+            'hunt-day': { filename: 'hunt-day.jpg', required: false },
+            'inukshuk-bag': { filename: 'inukshuk-bag.jpg', required: false },
+            'navhda-test': { filename: 'navhda-test.jpg', required: false },
+            'testimonial-1': { filename: 'testimonial-1.jpg', required: false },
+            'testimonial-2': { filename: 'testimonial-2.jpg', required: false },
+            'testimonial-3': { filename: 'testimonial-3.jpg', required: false }
         };
-        img.src = e.target.result;
-    };
-    reader.readAsDataURL(file);
-}
 
-function updateProgress() {
-    const required = imageSlots.filter(s => s.required);
-    const filled = required.filter(s => imageData[s.id]);
-    const pct = Math.round((filled.length / required.length) * 100);
-    document.getElementById('progressFill').style.width = pct + '%';
-    document.getElementById('progressText').textContent = filled.length + ' / ' + required.length + ' required';
-    document.getElementById('downloadBtn').className = 'download-btn' + (filled.length > 0 ? ' show' : '');
-}
+        // Initialize slots with event listeners
+        function initSlots() {
+            document.querySelectorAll('.slot').forEach(slot => {
+                const slotName = slot.dataset.slot;
+                const fileInput = document.createElement('input');
+                fileInput.type = 'file';
+                fileInput.accept = 'image/*';
+                fileInput.dataset.slot = slotName;
+                slot.appendChild(fileInput);
 
-async function downloadAll() {
-    const zip = new JSZip();
-    const imgFolder = zip.folder('images');
+                // Click to open file dialog
+                slot.addEventListener('click', (e) => {
+                    if (e.target !== fileInput) {
+                        fileInput.click();
+                    }
+                });
 
-    for (const [id, data] of Object.entries(imageData)) {
-        imgFolder.file(data.filename, data.blob);
-    }
+                // File input change
+                fileInput.addEventListener('change', handleFileSelect);
 
-    const content = await zip.generateAsync({ type: 'blob' });
-    saveAs(content, 'dakota-sky-images.zip');
-}
+                // Drag and drop
+                slot.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    slot.classList.add('slot-drag-over');
+                });
 
-// Build all slots
-imageSlots.forEach(createSlot);
-updateProgress();
-</script>
+                slot.addEventListener('dragleave', () => {
+                    slot.classList.remove('slot-drag-over');
+                });
+
+                slot.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    slot.classList.remove('slot-drag-over');
+                    if (e.dataTransfer.files.length > 0) {
+                        const file = e.dataTransfer.files[0];
+                        processImage(file, slotName);
+                    }
+                });
+            });
+        }
+
+        // Handle file selection
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const slotName = event.target.dataset.slot;
+                processImage(file, slotName);
+            }
+        }
+
+        // Process and resize image
+        function processImage(file, slotName) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    // Resize using canvas
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+
+                    let width = img.width;
+                    let height = img.height;
+                    const maxWidth = 1920;
+
+                    if (width > maxWidth) {
+                        height = (height * maxWidth) / width;
+                        width = maxWidth;
+                    }
+
+                    canvas.width = width;
+                    canvas.height = height;
+                    ctx.drawImage(img, 0, 0, width, height);
+
+                    // Convert to JPEG at 0.9 quality
+                    canvas.toBlob(function(blob) {
+                        const resizedFile = new File([blob], `${slotName}.jpg`, { type: 'image/jpeg' });
+                        displayImagePreview(slotName, resizedFile, width, height);
+                        uploadedImages[slotName] = resizedFile;
+                        updateProgress();
+                        updateDownloadButton();
+                    }, 'image/jpeg', 0.9);
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Display preview in slot
+        function displayImagePreview(slotName, file, width, height) {
+            const slot = document.querySelector(`.slot[data-slot="${slotName}"]`);
+            const fileSize = (file.size / 1024).toFixed(1); // KB
+
+            slot.classList.add('filled');
+            slot.innerHTML = `
+                <div class="slot-preview">
+                    <img src="${URL.createObjectURL(file)}" class="preview-image" alt="Preview">
+                    <div class="preview-info">
+                        <div class="preview-filename">
+                            <span class="checkmark">✓</span>${slotConfig[slotName].filename}
+                        </div>
+                        <div class="preview-dimensions">${width}×${height}px</div>
+                        <div class="preview-size">${fileSize}KB</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Update progress bar
+        function updateProgress() {
+            const requiredSlots = Object.keys(slotConfig).filter(k => slotConfig[k].required);
+            const filledRequired = requiredSlots.filter(k => uploadedImages[k]).length;
+            const totalRequired = requiredSlots.length;
+
+            document.getElementById('progress-count').textContent = filledRequired;
+            const percentage = (filledRequired / totalRequired) * 100;
+            document.getElementById('progress-fill').style.width = percentage + '%';
+
+            if (percentage > 0) {
+                document.getElementById('progress-percent').textContent = Math.round(percentage) + '%';
+            } else {
+                document.getElementById('progress-percent').textContent = '';
+            }
+        }
+
+        // Update download button state
+        function updateDownloadButton() {
+            const hasImages = Object.keys(uploadedImages).length > 0;
+            const button = document.getElementById('download-button');
+            button.disabled = !hasImages;
+            document.getElementById('download-info').style.display = hasImages ? 'none' : 'block';
+        }
+
+        // Toggle collapsible section
+        function toggleCollapsible(event) {
+            const header = event.currentTarget;
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('.toggle-icon');
+
+            content.classList.toggle('open');
+            icon.classList.toggle('open');
+        }
+
+        // Download all images as ZIP
+        async function downloadAllImages() {
+            const button = document.getElementById('download-button');
+            const statusDiv = document.getElementById('status-message');
+
+            if (Object.keys(uploadedImages).length === 0) {
+                statusDiv.innerHTML = '<div class="status-message status-error">No images to download</div>';
+                return;
+            }
+
+            button.disabled = true;
+            statusDiv.innerHTML = '<div class="status-message" style="background-color: #e3f2fd; color: #1976d2; border: 1px solid #bbdefb;"><span class="loading-spinner"></span>Creating ZIP file...</div>';
+
+            try {
+                const zip = new JSZip();
+                const imagesFolder = zip.folder('images');
+
+                // Add each uploaded image to the ZIP
+                for (const [slotName, file] of Object.entries(uploadedImages)) {
+                    const filename = slotConfig[slotName].filename;
+                    const arrayBuffer = await file.arrayBuffer();
+                    imagesFolder.file(filename, arrayBuffer);
+                }
+
+                // Generate and download ZIP
+                const blob = await zip.generateAsync({ type: 'blob' });
+                saveAs(blob, 'dakota-sky-images.zip');
+
+                statusDiv.innerHTML = '<div class="status-message status-success">✓ ZIP file downloaded successfully! Unzip into your images/ folder.</div>';
+                button.disabled = false;
+            } catch (error) {
+                statusDiv.innerHTML = '<div class="status-message status-error">Error creating ZIP file: ' + error.message + '</div>';
+                button.disabled = false;
+            }
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', initSlots);
+    </script>
 </body>
 </html>

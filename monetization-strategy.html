@@ -3,795 +3,919 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dakota Sky Revenue Strategy | INTERNAL DOCUMENT</title>
+    <title>Dakota Sky Pudelpointers — Monetization Strategy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
     <style>
+        :root {
+            --dsp-forest-dark: #1a3c34;
+            --dsp-forest: #2d6a4f;
+            --dsp-forest-light: #52796f;
+            --dsp-cream: #F4F2ED;
+            --dsp-warm-white: #FAFAF7;
+            --dsp-earth: #8B5E3C;
+            --dsp-gold: #D4A843;
+            --dsp-charcoal: #333333;
+            --dsp-text-light: #6b6b6b;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background-color: #FAF8F5;
-            color: #2D2D2D;
+            font-family: 'Inter', sans-serif;
+            color: var(--dsp-charcoal);
             line-height: 1.6;
         }
 
-        h1, h2, h3, h4 {
-            font-family: Georgia, serif;
-            color: #1B4332;
+        /* PASSWORD GATE */
+        #passwordGate {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--dsp-forest-dark) 0%, var(--dsp-forest) 100%);
+            z-index: 9999;
+            font-family: 'Playfair Display', serif;
         }
 
-        h1 { font-size: 2.8rem; line-height: 1.2; }
-        h2 { font-size: 2rem; margin: 2.5rem 0 1.5rem; }
-        h3 { font-size: 1.3rem; margin: 1.5rem 0 0.75rem; }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .internal-banner {
-            background: #8B5E3C;
-            color: #FAF8F5;
-            padding: 1.5rem;
+        .password-gate-container {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
             text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .lock-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .password-gate-container h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dsp-forest-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .password-gate-container p {
+            font-size: 0.95rem;
+            color: var(--dsp-text-light);
+            margin-bottom: 2rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .password-input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .password-input-group input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            border: 2px solid var(--dsp-forest-light);
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.3s;
+        }
+
+        .password-input-group input:focus {
+            outline: none;
+            border-color: var(--dsp-gold);
+            box-shadow: 0 0 0 3px rgba(212, 168, 67, 0.1);
+        }
+
+        .access-button {
+            width: 100%;
+            padding: 0.875rem 1.5rem;
+            background-color: var(--dsp-forest);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
             font-weight: 600;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #1B4332 0%, #0F2818 100%);
-            color: #FAF8F5;
-            padding: 5rem 2rem;
-            text-align: center;
-        }
-
-        .hero h1 {
-            color: #D4A843;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s;
             margin-bottom: 1rem;
         }
 
-        /* Content Sections */
-        .section {
-            padding: 3rem 2rem;
+        .access-button:hover {
+            background-color: var(--dsp-forest-dark);
         }
 
-        .section:nth-child(even) {
-            background: white;
+        .access-button:active {
+            transform: scale(0.98);
         }
 
-        .section h2 {
-            margin-top: 0;
+        .error-message {
+            color: #d32f2f;
+            font-size: 0.9rem;
+            display: none;
+            margin-top: 1rem;
+            animation: shake 0.3s;
         }
 
-        /* Tables */
+        .error-message.show {
+            display: block;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        /* PROTECTED CONTENT */
+        #protectedContent {
+            display: none;
+        }
+
+        .warning-banner {
+            background-color: #d32f2f;
+            color: white;
+            padding: 1.25rem;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.95rem;
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        .content-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        section {
+            margin-bottom: 3rem;
+        }
+
+        section.cream {
+            background-color: var(--dsp-cream);
+            padding: 2.5rem;
+            border-radius: 12px;
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        section.warm-white {
+            background-color: var(--dsp-warm-white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dsp-forest-dark);
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--dsp-text-light);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dsp-forest);
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid var(--dsp-gold);
+            padding-bottom: 0.75rem;
+        }
+
+        h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--dsp-earth);
+            margin-top: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        ol, ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.75rem;
+            color: var(--dsp-charcoal);
+            line-height: 1.7;
+        }
+
+        .revenue-item {
+            margin-bottom: 1.25rem;
+            padding: 1rem;
+            background-color: white;
+            border-left: 4px solid var(--dsp-gold);
+            border-radius: 4px;
+        }
+
+        .revenue-item strong {
+            color: var(--dsp-forest-dark);
+        }
+
+        /* TABLES */
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 2rem 0;
-            box-shadow: 0 2px 10px rgba(27, 67, 50, 0.1);
-            background: white;
+            margin: 1.5rem 0;
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         }
 
         th {
-            background-color: #1B4332;
-            color: #FAF8F5;
+            background-color: var(--dsp-forest);
+            color: white;
             padding: 1rem;
             text-align: left;
-            font-family: Georgia, serif;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
         }
 
         td {
-            padding: 1rem;
-            border-bottom: 1px solid #ddd;
+            padding: 0.875rem 1rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:nth-child(even) {
+            background-color: #fafafa;
         }
 
         tr:hover {
-            background-color: #FAF8F5;
+            background-color: #f5f5f5;
         }
 
-        td:first-child {
+        .total-row {
+            background-color: var(--dsp-cream) !important;
             font-weight: 600;
-            color: #1B4332;
+            color: var(--dsp-forest-dark);
         }
 
-        /* Stream Cards */
-        .stream-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+        /* FUNNEL DIAGRAM */
+        .funnel-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
             margin: 2rem 0;
         }
 
-        .stream-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(27, 67, 50, 0.1);
-            border-left: 5px solid #D4A843;
-        }
-
-        .stream-number {
-            display: inline-block;
-            background-color: #D4A843;
-            color: #1B4332;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            line-height: 40px;
+        .funnel-stage {
             text-align: center;
-            font-weight: bold;
-            margin-bottom: 0.75rem;
-        }
-
-        .stream-card h3 {
-            margin-top: 0;
-            color: #1B4332;
-        }
-
-        .stream-card p {
-            color: #2D2D2D;
-            line-height: 1.8;
-        }
-
-        .stream-value {
-            background: #FAF8F5;
-            padding: 1.5rem;
+            color: white;
+            font-weight: 600;
             border-radius: 6px;
-            margin-top: 1rem;
-            border-left: 3px solid #8B5E3C;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.8s ease-in;
         }
 
-        .stream-value strong {
-            color: #1B4332;
+        .funnel-stage:nth-child(1) {
+            width: 100%;
+            padding: 1.25rem;
+            background-color: var(--dsp-forest-dark);
+            font-size: 1.1rem;
         }
 
-        /* Code Block */
-        .code-block {
-            background: #2D2D2D;
-            color: #E8E5DC;
-            padding: 2rem;
-            border-radius: 6px;
-            overflow-x: auto;
-            font-family: 'Courier New', monospace;
+        .funnel-stage:nth-child(2) {
+            width: 85%;
+            padding: 1.1rem;
+            background-color: var(--dsp-forest);
+            font-size: 1rem;
+        }
+
+        .funnel-stage:nth-child(3) {
+            width: 70%;
+            padding: 0.95rem;
+            background-color: var(--dsp-forest-light);
+            font-size: 0.95rem;
+        }
+
+        .funnel-stage:nth-child(4) {
+            width: 55%;
+            padding: 0.85rem;
+            background-color: var(--dsp-earth);
             font-size: 0.9rem;
-            line-height: 1.6;
-            margin: 2rem 0;
         }
 
-        /* Lists */
-        .pros-cons {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
+        .funnel-stage:nth-child(5) {
+            width: 40%;
+            padding: 0.75rem;
+            background-color: var(--dsp-gold);
+            color: var(--dsp-charcoal);
+            font-size: 0.9rem;
         }
 
-        .pro-list, .con-list {
-            padding: 2rem;
+        .conversion-text {
+            font-size: 0.85rem;
+            color: var(--dsp-text-light);
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        /* BULLET POINTS */
+        .bullet-section ul {
+            list-style-type: none;
+        }
+
+        .bullet-section li {
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .bullet-section li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--dsp-gold);
+            font-weight: bold;
+        }
+
+        .insight-text {
+            background-color: white;
+            padding: 1.5rem;
+            border-left: 4px solid var(--dsp-forest);
             border-radius: 6px;
+            margin: 1.5rem 0;
+            color: var(--dsp-forest-dark);
+            font-weight: 500;
         }
 
-        .pro-list {
-            background: #f0f8f0;
-            border-left: 5px solid #1B4332;
-        }
-
-        .con-list {
-            background: #f8f0f0;
-            border-left: 5px solid #8B5E3C;
-        }
-
-        .pro-list h3, .con-list h3 {
-            margin-top: 0;
-        }
-
-        .pro-list li, .con-list li {
-            margin-bottom: 0.75rem;
-            line-height: 1.6;
-        }
-
-        /* Callout Boxes */
-        .callout {
-            background: #FAF8F5;
-            border-left: 5px solid #8B5E3C;
-            padding: 2rem;
-            border-radius: 6px;
-            margin: 2rem 0;
-        }
-
-        .callout strong {
-            color: #1B4332;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #2D2D2D;
-            color: #FAF8F5;
-            padding: 2rem;
+        /* FOOTER */
+        .internal-footer {
+            background-color: var(--dsp-forest-dark);
+            color: white;
             text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+            margin-top: 3rem;
         }
 
-        /* Responsive */
+        /* ANIMATIONS */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* RESPONSIVE */
         @media (max-width: 768px) {
-            h1 { font-size: 1.8rem; }
-            h2 { font-size: 1.4rem; }
-            table { font-size: 0.9rem; }
-            td, th { padding: 0.75rem; }
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            h2 {
+                font-size: 1.4rem;
+            }
+
+            .content-wrapper {
+                padding: 1rem;
+            }
+
+            section.cream, section.warm-white {
+                padding: 1.5rem;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 0.6rem 0.5rem;
+            }
+
+            .password-gate-container {
+                padding: 2rem;
+            }
         }
     </style>
 </head>
 <body>
+
     <!-- PASSWORD GATE -->
-    <div id="passwordGate" style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#1B4332 0%,#0F2818 100%);font-family:Georgia,serif;">
-        <div style="background:#FAF8F5;padding:3rem;border-radius:12px;max-width:420px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.3);">
-            <div style="font-size:2.5rem;margin-bottom:1rem;">🔒</div>
-            <h2 style="color:#1B4332;font-size:1.5rem;margin-bottom:0.5rem;">Authorized Access Only</h2>
-            <p style="color:#666;font-family:Arial,sans-serif;font-size:0.95rem;margin-bottom:1.5rem;">This document is restricted to Dakota Sky Pudelpointers ownership.</p>
-            <input type="password" id="pwInput" placeholder="Enter access code" style="width:100%;padding:0.85rem 1rem;border:2px solid #ddd;border-radius:6px;font-size:1rem;font-family:Arial,sans-serif;margin-bottom:1rem;text-align:center;" onkeydown="if(event.key==='Enter')checkPW()">
-            <button onclick="checkPW()" style="width:100%;padding:0.85rem;background:#D4A843;color:#2D2D2D;border:none;border-radius:6px;font-size:1rem;font-family:Arial,sans-serif;font-weight:600;cursor:pointer;transition:background 0.3s;">Access Document</button>
-            <p id="pwError" style="color:#e74c3c;margin-top:0.75rem;font-family:Arial,sans-serif;font-size:0.9rem;display:none;">Invalid access code. Please try again.</p>
+    <div id="passwordGate">
+        <div class="password-gate-container">
+            <span class="lock-icon">🔒</span>
+            <h1>Authorized Access Only</h1>
+            <p>This document is restricted to Dakota Sky Pudelpointers ownership.</p>
+            <div class="password-input-group">
+                <input
+                    type="password"
+                    id="passwordInput"
+                    placeholder="Enter access code"
+                    autocomplete="off"
+                >
+            </div>
+            <button class="access-button" onclick="checkPW()">Access Document</button>
+            <div class="error-message" id="errorMessage">Invalid access code. Please try again.</div>
         </div>
     </div>
-    <div id="protectedContent" style="display:none;">
 
-    <div class="internal-banner">
-        ⚠️ INTERNAL DOCUMENT FOR GLEN & STACEY KOFFLER — NOT FOR PUBLIC DISTRIBUTION
+    <!-- PROTECTED CONTENT -->
+    <div id="protectedContent">
+        <div class="warning-banner">
+            ⚠ INTERNAL DOCUMENT FOR GLEN & STACEY KOFFLER — NOT FOR PUBLIC DISTRIBUTION
+        </div>
+
+        <div class="content-wrapper">
+            <section>
+                <h1>Dakota Sky Pudelpointers — Revenue Strategy</h1>
+                <p class="subtitle">Business Growth Plan 2026–2028</p>
+            </section>
+
+            <!-- CURRENT REVENUE STREAMS -->
+            <section class="cream">
+                <h2>Current Revenue Streams (2025 Baseline)</h2>
+                <ol>
+                    <li class="revenue-item">
+                        <strong>Puppy Sales:</strong> $2,800/puppy, ~$45,000–$67,000/year
+                    </li>
+                    <li class="revenue-item">
+                        <strong>Training Programs:</strong> $1,200–$1,500/month, ~$30,000–$50,000/year
+                    </li>
+                    <li class="revenue-item">
+                        <strong>Boarding:</strong> $45–$55/day, ~$15,000–$25,000/year
+                    </li>
+                    <li class="revenue-item">
+                        <strong>Inukshuk Food Sales:</strong> ~$5,000–$10,000/year
+                    </li>
+                </ol>
+                <div class="insight-text">
+                    <strong>2025 Total Revenue Range: $95,000–$152,000</strong>
+                </div>
+            </section>
+
+            <!-- NEW REVENUE OPPORTUNITIES -->
+            <section class="warm-white">
+                <h2>New Revenue Opportunities (2026+)</h2>
+                <ol start="5">
+                    <li class="revenue-item">
+                        <strong>Puppy Package Bundles:</strong> Increase average from $2,800 to $5,400–$9,800, additional ~$36,400/year at midpoint
+                    </li>
+                    <li class="revenue-item">
+                        <strong>Food Subscription Service:</strong> 15 subscribers × $75/month = $13,500/year
+                    </li>
+                    <li class="revenue-item">
+                        <strong>Digital Training Course:</strong> $297–$497/enrollment
+                        <ul style="margin-top: 0.5rem;">
+                            <li><em>Conservative:</em> 100 × $347 = $34,700</li>
+                            <li><em>Moderate:</em> 250 × $397 = $99,250</li>
+                            <li><em>Aggressive:</em> 400 × $397 = $158,800</li>
+                        </ul>
+                    </li>
+                    <li class="revenue-item">
+                        <strong>Book (Hunting/Training Guide):</strong> $19.99 retail, ~500 copies = $5,000
+                    </li>
+                    <li class="revenue-item">
+                        <strong>Consulting:</strong> $200–$300/session, 12 sessions/year = $3,000
+                    </li>
+                    <li class="revenue-item">
+                        <strong>Branded Merchandise:</strong> $5,000–$12,000/year
+                    </li>
+                    <li class="revenue-item">
+                        <strong>Annual Hunt Day:</strong> $200–$350/person × 20–25 people = $6,000
+                    </li>
+                    <li class="revenue-item">
+                        <strong>Stud Fees:</strong> $1,500–$2,500/breeding, 2–3 breedings = $4,000–$6,000/year
+                    </li>
+                    <li class="revenue-item">
+                        <strong>Referral Program:</strong> $200 credit per referred puppy sale (leverages existing network)
+                    </li>
+                    <li class="revenue-item">
+                        <strong>Affiliate Partnerships:</strong> 5–10% commission on Inukshuk & dog product sales = $3,000–$8,000/year
+                    </li>
+                </ol>
+                <div class="insight-text">
+                    <strong>Projected New Revenue (2026):</strong><br>
+                    Conservative: $86,000 | Moderate: $154,000 | Aggressive: $224,000
+                </div>
+            </section>
+
+            <!-- 3-YEAR PROJECTIONS TABLE -->
+            <section class="cream">
+                <h2>3-Year Revenue Projections</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Revenue Stream</th>
+                            <th>2025</th>
+                            <th>2026</th>
+                            <th>2027</th>
+                            <th>2028</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Puppy Sales</strong></td>
+                            <td>$56,000</td>
+                            <td>$75,000</td>
+                            <td>$95,000</td>
+                            <td>$110,000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Training Programs</strong></td>
+                            <td>$40,000</td>
+                            <td>$48,000</td>
+                            <td>$58,000</td>
+                            <td>$68,000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Boarding</strong></td>
+                            <td>$20,000</td>
+                            <td>$24,000</td>
+                            <td>$28,000</td>
+                            <td>$32,000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Inukshuk Food Sales</strong></td>
+                            <td>$7,500</td>
+                            <td>$9,000</td>
+                            <td>$11,000</td>
+                            <td>$13,000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Puppy Package Bundles</strong></td>
+                            <td>$0</td>
+                            <td>$18,000</td>
+                            <td>$32,000</td>
+                            <td>$45,000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Food Subscription Service</strong></td>
+                            <td>$0</td>
+                            <td>$13,500</td>
+                            <td>$20,250</td>
+                            <td>$27,000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Digital Training Course</strong></td>
+                            <td>$0</td>
+                            <td>$34,700</td>
+                            <td>$78,600</td>
+                            <td>$118,500</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Book Sales</strong></td>
+                            <td>$0</td>
+                            <td>$2,000</td>
+                            <td>$4,500</td>
+                            <td>$6,000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Consulting</strong></td>
+                            <td>$0</td>
+                            <td>$3,000</td>
+                            <td>$5,000</td>
+                            <td>$5,500</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Branded Merchandise</strong></td>
+                            <td>$0</td>
+                            <td>$8,500</td>
+                            <td>$12,000</td>
+                            <td>$15,000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Annual Hunt Day</strong></td>
+                            <td>$0</td>
+                            <td>$5,500</td>
+                            <td>$6,500</td>
+                            <td>$8,000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Stud Fees</strong></td>
+                            <td>$0</td>
+                            <td>$5,000</td>
+                            <td>$6,500</td>
+                            <td>$7,500</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Affiliate Partnerships</strong></td>
+                            <td>$0</td>
+                            <td>$5,300</td>
+                            <td>$8,100</td>
+                            <td>$10,800</td>
+                        </tr>
+                        <tr class="total-row">
+                            <td><strong>TOTAL</strong></td>
+                            <td><strong>$116,000</strong></td>
+                            <td><strong>$184,800</strong></td>
+                            <td><strong>$320,350</strong></td>
+                            <td><strong>$437,100</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="insight-text">
+                    <strong>Key Insight:</strong> By 2028, projected revenue could reach $437,100—approximately 3.7x the 2025 baseline of $116,000. This growth is driven by diversification, digital offerings, and premium service bundles rather than scaling puppy sales alone.
+                </div>
+            </section>
+
+            <!-- SALES FUNNEL -->
+            <section class="warm-white">
+                <h2>Sales Funnel Architecture</h2>
+                <p style="margin-bottom: 1.5rem; color: var(--dsp-text-light); text-align: center;">
+                    Customer journey from first touchpoint to lifetime retention
+                </p>
+                <div class="funnel-container">
+                    <div class="funnel-stage">
+                        AWARENESS
+                        <div class="conversion-text">Website, social media, referrals</div>
+                    </div>
+                    <div class="funnel-stage">
+                        LEADS
+                        <div class="conversion-text">Email capture, consultations</div>
+                    </div>
+                    <div class="funnel-stage">
+                        CUSTOMERS
+                        <div class="conversion-text">First purchase (puppy, boarding, training)</div>
+                    </div>
+                    <div class="funnel-stage">
+                        UPSELL
+                        <div class="conversion-text">Bundles, courses, merchandise, food subscription</div>
+                    </div>
+                    <div class="funnel-stage">
+                        RETENTION
+                        <div class="conversion-text">Breeding referrals, repeat training, community loyalty</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- COMPETITIVE ADVANTAGE -->
+            <section class="cream">
+                <h2>Competitive Advantage</h2>
+                <div class="bullet-section">
+                    <ul>
+                        <li><strong>Reputation & Pedigree:</strong> Decades of breeding excellence; award-winning bloodlines; regional recognition as the premier Pudelpointer source in the Upper Midwest.</li>
+                        <li><strong>Strategic Location:</strong> Rural setting ideal for boarding & training; accessible to hunting community; property supports diverse service offerings.</li>
+                        <li><strong>Inukshuk Dealership Monopoly:</strong> Exclusive food sales create recurring revenue and customer lock-in; bundling increases average order value.</li>
+                        <li><strong>Bundled Offerings:</strong> Integrate puppies + training + food into premium packages; competitors rarely offer full ecosystem.</li>
+                        <li><strong>Digital Course Gap:</strong> No major competitor offers online Pudelpointer hunting/training content; first-mover advantage in knowledge-based revenue.</li>
+                        <li><strong>Multi-Channel Revenue Model:</strong> Reduce dependence on seasonal puppy sales; stabilize income through subscriptions & recurring services.</li>
+                        <li><strong>Personal Brand:</strong> Glen & Stacey's expertise and community presence are assets; leverage for consulting, content, and partnerships.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- CHALLENGES TO ADDRESS -->
+            <section class="warm-white">
+                <h2>Challenges to Address</h2>
+                <div class="bullet-section">
+                    <ul>
+                        <li><strong>Marketing & Visibility:</strong> Limited budget for paid advertising; reliance on organic & word-of-mouth. Need strategic content & SEO investment to drive course and booking funnel.</li>
+                        <li><strong>Scale Ceiling:</strong> Physical capacity limits (boarding, training slots, breeding). Mitigate via digital products & partnerships rather than trying to scale services.</li>
+                        <li><strong>Geographic Limitations:</strong> Regional market for in-person services. Digital course + shipping (food, merchandise, books) extends reach nationally.</li>
+                        <li><strong>Course Production Complexity:</strong> Time-intensive to create & market digital training course; requires scripting, video, editing, hosting. Consider outsourcing or phased rollout.</li>
+                        <li><strong>Hiring & Staffing:</strong> Specialized skills needed (training, veterinary support, digital content). Difficult to find Pudelpointer experts; may require training investment or contractor relationships.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 2026 ACTION PLAN -->
+            <section class="cream">
+                <h2>2026 Action Plan</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Priority</th>
+                            <th>Action</th>
+                            <th>Timeline</th>
+                            <th>Expected Impact</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>URGENT</strong></td>
+                            <td>Launch food subscription service (15 initial subscribers)</td>
+                            <td>Q1 2026</td>
+                            <td>$13,500/year recurring revenue</td>
+                        </tr>
+                        <tr>
+                            <td><strong>URGENT</strong></td>
+                            <td>Develop & launch digital training course (MVP)</td>
+                            <td>Q2–Q3 2026</td>
+                            <td>$34,700–$99,250 by EOY</td>
+                        </tr>
+                        <tr>
+                            <td><strong>HIGH</strong></td>
+                            <td>Create puppy package bundles (training + food discounts)</td>
+                            <td>Q1 2026</td>
+                            <td>+$36,400/year from upsell</td>
+                        </tr>
+                        <tr>
+                            <td><strong>HIGH</strong></td>
+                            <td>Develop affiliate partnership with local hunting supply stores</td>
+                            <td>Q2 2026</td>
+                            <td>$3,000–$8,000/year</td>
+                        </tr>
+                        <tr>
+                            <td><strong>MEDIUM</strong></td>
+                            <td>Design & produce branded merchandise (hats, apparel, dog toys)</td>
+                            <td>Q2 2026</td>
+                            <td>$8,500/year</td>
+                        </tr>
+                        <tr>
+                            <td><strong>MEDIUM</strong></td>
+                            <td>Plan & execute first annual hunt day event</td>
+                            <td>Fall 2026</td>
+                            <td>$5,500 + brand loyalty</td>
+                        </tr>
+                        <tr>
+                            <td><strong>MEDIUM</strong></td>
+                            <td>Begin book outline & content (Hunting Guide for Pudelpointers)</td>
+                            <td>Q3–Q4 2026</td>
+                            <td>Publication 2027; $2,000–$5,000/year</td>
+                        </tr>
+                        <tr>
+                            <td><strong>LOW</strong></td>
+                            <td>Formalize stud fee program & referral incentives</td>
+                            <td>Q1–Q2 2026</td>
+                            <td>$4,000–$6,000 + customer engagement</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- SUCCESS METRICS -->
+            <section class="warm-white">
+                <h2>Success Metrics to Track</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>2025 Baseline</th>
+                            <th>2026 Target</th>
+                            <th>2027 Target</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Total Annual Revenue</strong></td>
+                            <td>$116,000</td>
+                            <td>$184,800</td>
+                            <td>$320,350</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Digital Course Enrollment</strong></td>
+                            <td>0</td>
+                            <td>100</td>
+                            <td>250</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Food Subscription Subscribers</strong></td>
+                            <td>0</td>
+                            <td>15</td>
+                            <td>30</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Puppy Sales (units)</strong></td>
+                            <td>20</td>
+                            <td>25</td>
+                            <td>30</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Avg. Puppy Sale Value</strong></td>
+                            <td>$2,800</td>
+                            <td>$3,500 (with bundles)</td>
+                            <td>$4,200 (with bundles)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Training Program Revenue</strong></td>
+                            <td>$40,000</td>
+                            <td>$48,000</td>
+                            <td>$58,000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Recurring Revenue %</strong></td>
+                            <td>30%</td>
+                            <td>45%</td>
+                            <td>55%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Customer Lifetime Value (Puppy Buyers)</strong></td>
+                            <td>$4,200</td>
+                            <td>$6,500</td>
+                            <td>$8,500</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Website Visitors (annual)</strong></td>
+                            <td>8,000</td>
+                            <td>15,000</td>
+                            <td>25,000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Email List Size</strong></td>
+                            <td>250</td>
+                            <td>500</td>
+                            <td>1,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+        </div>
+
+        <div class="internal-footer">
+            © 2026 Dakota Sky Pudelpointers. INTERNAL DOCUMENT. Questions or feedback? Discuss with Glen & Stacey during strategic planning meetings.
+        </div>
     </div>
 
-    <!-- Hero -->
-    <section class="hero">
-        <div class="container">
-            <h1>Dakota Sky Pudelpointers — Revenue Strategy</h1>
-            <p style="font-size: 1.1rem; color: #FAF8F5;">Business Growth Plan 2026–2028</p>
-        </div>
-    </section>
-
-    <!-- Current Revenue Streams -->
-    <section class="section">
-        <div class="container">
-            <h2>Current Revenue Streams (2025 Baseline)</h2>
-
-            <div class="stream-grid">
-                <div class="stream-card">
-                    <div class="stream-number">1</div>
-                    <h3>Puppy Sales</h3>
-                    <p>Direct puppy sales at current pricing: $2,800 per puppy.</p>
-                    <div class="stream-value">
-                        <strong>Annual estimate:</strong> $2,800 × [2-3 litters/year] × [6-8 pups/litter]<br>
-                        <strong>2025 total: ~$45,000–$67,000</strong>
-                    </div>
-                </div>
-
-                <div class="stream-card">
-                    <div class="stream-number">2</div>
-                    <h3>Training Programs</h3>
-                    <p>Board & train clients: $1,200–$1,500/month per dog.</p>
-                    <div class="stream-value">
-                        <strong>Annual estimate:</strong> [Dogs in training] × [Months] × [Average fee]<br>
-                        <strong>2025 total: ~$30,000–$50,000</strong>
-                    </div>
-                </div>
-
-                <div class="stream-card">
-                    <div class="stream-number">3</div>
-                    <h3>Boarding</h3>
-                    <p>Boarding clients: $45–$55/day × available capacity.</p>
-                    <div class="stream-value">
-                        <strong>Annual estimate:</strong> [Days booked] × [Average rate]<br>
-                        <strong>2025 total: ~$15,000–$25,000</strong>
-                    </div>
-                </div>
-
-                <div class="stream-card">
-                    <div class="stream-number">4</div>
-                    <h3>Inukshuk Food Sales</h3>
-                    <p>Retail markup on food sold to training clients and locals.</p>
-                    <div class="stream-value">
-                        <strong>Annual estimate:</strong> Limited retail sales<br>
-                        <strong>2025 total: ~$5,000–$10,000</strong>
-                    </div>
-                </div>
-            </div>
-
-            <div class="callout">
-                <strong>2025 Estimated Total Revenue: $95,000–$152,000</strong><br>
-                This includes puppy sales, training, boarding, and food sales — but it's underutilizing your expertise and audience.
-            </div>
-        </div>
-    </section>
-
-    <!-- New Revenue Opportunities -->
-    <section class="section">
-        <div class="container">
-            <h2>New Revenue Opportunities (2026+)</h2>
-
-            <div class="stream-grid">
-                <div class="stream-card">
-                    <div class="stream-number">5</div>
-                    <h3>Puppy Package Bundles</h3>
-                    <p><strong>Packaged training + nutrition with puppies.</strong> Increase average transaction value from $2,800 to $5,400–$9,800.</p>
-                    <div class="stream-value">
-                        <strong>Conservative scenario:</strong> 50% of buyers choose Hunter's Start ($5,400)<br>
-                        <strong>Revenue per puppy: +$2,600</strong><br>
-                        <strong>Annual increase (2 litters × 7 pups): +$36,400</strong>
-                    </div>
-                </div>
-
-                <div class="stream-card">
-                    <div class="stream-number">6</div>
-                    <h3>Food Subscription Service</h3>
-                    <p><strong>Recurring monthly revenue.</strong> 10–20 food subscribers at $59–$89/month (recurring).</p>
-                    <div class="stream-value">
-                        <strong>Year 1 target: 15 subscribers</strong><br>
-                        <strong>Average price: $75/month</strong><br>
-                        <strong>Year 1 recurring: $13,500</strong>
-                    </div>
-                </div>
-
-                <div class="stream-card">
-                    <div class="stream-number">7</div>
-                    <h3>Digital Training Course</h3>
-                    <p><strong>One-time build, infinite sales.</strong> $297–$497 per enrollment. 100–500 enrollments by end of 2027.</p>
-                    <div class="stream-value">
-                        <strong>Conservative: 100 enrollments × $347 = $34,700</strong><br>
-                        <strong>Moderate: 250 enrollments × $397 = $99,250</strong><br>
-                        <strong>Aggressive: 400 enrollments × $397 = $158,800</strong>
-                    </div>
-                </div>
-
-                <div class="stream-card">
-                    <div class="stream-number">8</div>
-                    <h3>Book (Hunting/Training Guide)</h3>
-                    <p><strong>Authority builder + lead magnet.</strong> $19.99 retail, sold on site and via affiliates.</p>
-                    <div class="stream-value">
-                        <strong>Year 1 estimate: 500 copies × $10 margin = $5,000</strong><br>
-                        <strong>Plus lead generation value</strong>
-                    </div>
-                </div>
-
-                <div class="stream-card">
-                    <div class="stream-number">9</div>
-                    <h3>Consulting (Breeders/Trainers)</h3>
-                    <p><strong>Expert consultation for other breeders.</strong> $200–$300 per session, 1–2 per month.</p>
-                    <div class="stream-value">
-                        <strong>Year 1 estimate: 12 sessions × $250 = $3,000</strong><br>
-                        <strong>Scales with word-of-mouth</strong>
-                    </div>
-                </div>
-
-                <div class="stream-card">
-                    <div class="stream-number">10</div>
-                    <h3>Branded Merchandise</h3>
-                    <p><strong>Hats, t-shirts, training gear.</strong> 15–30% margins via print-on-demand or bulk orders.</p>
-                    <div class="stream-value">
-                        <strong>Year 1 estimate: $5,000–$12,000</strong><br>
-                        <strong>Branding + revenue</strong>
-                    </div>
-                </div>
-
-                <div class="stream-card">
-                    <div class="stream-number">11</div>
-                    <h3>Annual Hunt Day (Paid Event)</h3>
-                    <p><strong>Premium experience event.</strong> $200–$350/person, max 20–25 people, 1–2x per year.</p>
-                    <div class="stream-value">
-                        <strong>Year 1 estimate: 20 people × $300 = $6,000</strong><br>
-                        <strong>Relationship-building + revenue</strong>
-                    </div>
-                </div>
-
-                <div class="stream-card">
-                    <div class="stream-number">12</div>
-                    <h3>Stud Fees (Top Males)</h3>
-                    <p><strong>Breeding rights for proven dogs.</strong> $1,500–$2,500 per breeding.</p>
-                    <div class="stream-value">
-                        <strong>Year 1 estimate: 2–3 breedings × $2,000 = $4,000–$6,000</strong>
-                    </div>
-                </div>
-
-                <div class="stream-card">
-                    <div class="stream-number">13</div>
-                    <h3>Referral Program</h3>
-                    <p><strong>Credit for referring future puppy buyers.</strong> $200 credit per referred puppy sale.</p>
-                    <div class="stream-value">
-                        <strong>Incentivizes word-of-mouth</strong><br>
-                        <strong>Cost of acquisition vs. revenue</strong>
-                    </div>
-                </div>
-
-                <div class="stream-card">
-                    <div class="stream-number">14</div>
-                    <h3>Affiliate Partnerships</h3>
-                    <p><strong>Commission on hunting gear brands.</strong> SportDOG, Garmin, Filson, gun manufacturers.</p>
-                    <div class="stream-value">
-                        <strong>Year 1 estimate: 5–10% commission on referred sales</strong><br>
-                        <strong>Year 1 total: $3,000–$8,000</strong>
-                    </div>
-                </div>
-            </div>
-
-            <div class="callout">
-                <strong>Projected New Revenue (Streams 5–14):</strong><br>
-                Conservative Year 1 total: <strong>$86,000</strong><br>
-                Moderate Year 1 total: <strong>$154,000</strong><br>
-                Aggressive Year 1 total: <strong>$224,000</strong>
-            </div>
-        </div>
-    </section>
-
-    <!-- Revenue Projections Table -->
-    <section class="section">
-        <div class="container">
-            <h2>3-Year Revenue Projections</h2>
-
-            <p style="margin-bottom: 2rem; color: #2D2D2D;">
-                Conservative scenario assumes 50% adoption of new offerings. Moderate assumes 70%. Aggressive assumes 85%+.
-            </p>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>Revenue Stream</th>
-                        <th>2025 (Baseline)</th>
-                        <th>2026 (Conservative)</th>
-                        <th>2027 (Moderate)</th>
-                        <th>2028 (Aggressive)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Puppy Sales (Base)</td>
-                        <td>$56,000</td>
-                        <td>$56,000</td>
-                        <td>$56,000</td>
-                        <td>$56,000</td>
-                    </tr>
-                    <tr>
-                        <td>Puppy Package Upgrades</td>
-                        <td>$0</td>
-                        <td>$18,200</td>
-                        <td>$36,400</td>
-                        <td>$45,500</td>
-                    </tr>
-                    <tr>
-                        <td>Training Programs</td>
-                        <td>$40,000</td>
-                        <td>$42,000</td>
-                        <td>$45,000</td>
-                        <td>$50,000</td>
-                    </tr>
-                    <tr>
-                        <td>Boarding</td>
-                        <td>$20,000</td>
-                        <td>$22,000</td>
-                        <td>$25,000</td>
-                        <td>$28,000</td>
-                    </tr>
-                    <tr>
-                        <td>Food Subscription (New)</td>
-                        <td>$0</td>
-                        <td>$6,750</td>
-                        <td>$16,200</td>
-                        <td>$28,800</td>
-                    </tr>
-                    <tr>
-                        <td>Digital Course (New)</td>
-                        <td>$0</td>
-                        <td>$17,350</td>
-                        <td>$99,250</td>
-                        <td>$158,800</td>
-                    </tr>
-                    <tr>
-                        <td>Book Sales</td>
-                        <td>$0</td>
-                        <td>$2,500</td>
-                        <td>$7,500</td>
-                        <td>$12,000</td>
-                    </tr>
-                    <tr>
-                        <td>Consulting</td>
-                        <td>$0</td>
-                        <td>$3,000</td>
-                        <td>$6,000</td>
-                        <td>$9,000</td>
-                    </tr>
-                    <tr>
-                        <td>Merchandise</td>
-                        <td>$0</td>
-                        <td>$4,000</td>
-                        <td>$8,000</td>
-                        <td>$15,000</td>
-                    </tr>
-                    <tr>
-                        <td>Hunt Day Events</td>
-                        <td>$0</td>
-                        <td>$3,000</td>
-                        <td>$6,000</td>
-                        <td>$10,000</td>
-                    </tr>
-                    <tr>
-                        <td>Stud Fees</td>
-                        <td>$0</td>
-                        <td>$5,000</td>
-                        <td>$8,000</td>
-                        <td>$12,000</td>
-                    </tr>
-                    <tr>
-                        <td>Affiliate Commissions</td>
-                        <td>$0</td>
-                        <td>$4,000</td>
-                        <td>$7,000</td>
-                        <td>$12,000</td>
-                    </tr>
-                    <tr style="background-color: #FAF8F5; font-weight: bold;">
-                        <td>TOTAL</td>
-                        <td>$116,000</td>
-                        <td>$184,800</td>
-                        <td>$320,350</td>
-                        <td>$437,100</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <div class="callout" style="margin-top: 2rem;">
-                <strong>Key Insight:</strong> By 2028, total revenue potential is 3.7x baseline, driven primarily by digital course scaling and puppy package adoption. This assumes moderate execution and marketing effort.
-            </div>
-        </div>
-    </section>
-
-    <!-- Funnel Map -->
-    <section class="section">
-        <div class="container">
-            <h2>Sales Funnel Architecture</h2>
-
-            <div class="code-block">
-AWARENESS → LEADS → CUSTOMERS → UPSELL → RETENTION
-
-Facebook/Instagram/YouTube
-    ↓
-Free Lead Magnet: "First 30 Days Guide"
-    ↓ [Email Capture]
-Nurture Sequence (5 emails)
-    ↓
-CONVERSION PATHS:
-  ├→ Puppy Application Form
-  │   ├→ Foundation Package ($2,800)
-  │   ├→ Upgrade: Hunter's Start ($5,400)
-  │   └→ Upgrade: Complete Companion ($9,800)
-  │       └→ Post-Purchase: Food Subscription
-  │       └→ Post-Purchase: Future Training
-  │       └→ Post-Purchase: Boarding (hunting season)
-  │
-  ├→ Training Consultation Booking
-  │   ├→ Board & Train ($1,200–1,500/month)
-  │   └→ Post-Training: Food Subscription
-  │       └→ Post-Training: Future Puppy
-  │       └→ Post-Training: Referral Program
-  │
-  ├→ Food Subscription (Direct)
-  │   └→ Multi-Dog Discount
-  │   └→ Referral for other subscribers
-  │
-  └→ Digital Course Waitlist (2026)
-      └→ Founding Member Launch
-      └→ Post-Course: Consulting
-      └→ Post-Course: Puppy Application
-
-RETENTION & LOYALTY:
-  ├→ Quarterly check-ins (Hunter's Start package)
-  ├→ Private Facebook Group (all puppy buyers)
-  ├→ Email nurture sequences
-  ├→ Annual Hunt Day event (VIP)
-  └→ Referral program incentives
-            </div>
-        </div>
-    </section>
-
-    <!-- Competitive Advantage -->
-    <section class="section">
-        <div class="container">
-            <h2>Competitive Advantage</h2>
-
-            <div class="pros-cons">
-                <div class="pro-list">
-                    <h3>What Makes Dakota Sky Unique</h3>
-                    <ul>
-                        <li><strong>Reputation & Personal Touch:</strong> Glen and Stacey's 20+ years of hands-on experience and local credibility</li>
-                        <li><strong>Location:</strong> Heart of hunting country (North Dakota/Upper Midwest)</li>
-                        <li><strong>Inukshuk Dealership:</strong> Only local dealer in region — unique partnership opportunity</li>
-                        <li><strong>Bundled Offerings:</strong> Nobody else packages training + nutrition + consulting with puppies</li>
-                        <li><strong>Digital Course Gap:</strong> No Pudelpointer-specific online training exists — first-mover advantage</li>
-                        <li><strong>Multi-Channel Revenue:</strong> Diversified beyond just puppies and training</li>
-                    </ul>
-                </div>
-
-                <div class="con-list">
-                    <h3>Challenges to Address</h3>
-                    <ul>
-                        <li><strong>Marketing:</strong> Small team, limited marketing budget. Need leveraging through content + word-of-mouth</li>
-                        <li><strong>Scale Ceiling:</strong> Training and boarding limited by physical capacity. Solve with digital courses</li>
-                        <li><strong>Geographic:</strong> Rural North Dakota limits walk-in traffic. Solve with email, social, online sales</li>
-                        <li><strong>Course Production:</strong> Building digital course requires time investment upfront</li>
-                        <li><strong>Hiring:</strong> If growth outpaces capacity, will need to hire trainers or administrators</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Action Plan -->
-    <section class="section">
-        <div class="container">
-            <h2>2026 Action Plan (Priority Order)</h2>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>Priority</th>
-                        <th>Action</th>
-                        <th>Timeline</th>
-                        <th>Expected Impact</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1. URGENT</td>
-                        <td>Launch puppy package pages + lead magnet (First 30 Days Guide)</td>
-                        <td>January–February 2026</td>
-                        <td>Increase puppy average transaction +$2,600 per puppy (5–10 per year = +$13,000–$26,000)</td>
-                    </tr>
-                    <tr>
-                        <td>2. URGENT</td>
-                        <td>Setup food subscription service (Inukshuk partnerships + order handling)</td>
-                        <td>February–March 2026</td>
-                        <td>Recurring revenue $6,750–$15,000 Year 1 (20–30 subscribers)</td>
-                    </tr>
-                    <tr>
-                        <td>3. HIGH</td>
-                        <td>Launch training consultation funnel (contact form + email nurture)</td>
-                        <td>February 2026</td>
-                        <td>Capture training leads, qualify consulting clients (+$3,000 Year 1)</td>
-                    </tr>
-                    <tr>
-                        <td>4. HIGH</td>
-                        <td>Build digital course curriculum (outline, film, edit videos)</td>
-                        <td>March–August 2026</td>
-                        <td>Foundation for $34,700–$158,800 Year 2 revenue</td>
-                    </tr>
-                    <tr>
-                        <td>5. MEDIUM</td>
-                        <td>Publish "Gun Dog Training" book (or workbook edition)</td>
-                        <td>April–September 2026</td>
-                        <td>Authority builder + lead magnet + $5,000–$12,000 Year 1 revenue</td>
-                    </tr>
-                    <tr>
-                        <td>6. MEDIUM</td>
-                        <td>Design and launch branded merchandise (Printful or local supplier)</td>
-                        <td>May–June 2026</td>
-                        <td>Branding + $4,000–$12,000 Year 1 revenue</td>
-                    </tr>
-                    <tr>
-                        <td>7. LOW</td>
-                        <td>Develop affiliate partnerships (SportDOG, Garmin, Filson, etc.)</td>
-                        <td>Ongoing</td>
-                        <td>$3,000–$12,000 Year 1 commission revenue</td>
-                    </tr>
-                    <tr>
-                        <td>8. LOW</td>
-                        <td>Plan first paid hunt day event (Fall 2026)</td>
-                        <td>June–September 2026</td>
-                        <td>$3,000–$10,000 per event, relationship building</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <div class="callout" style="margin-top: 2rem;">
-                <strong>Estimated 2026 Revenue Impact (Conservative):</strong><br>
-                Puppy packages: +$18,200<br>
-                Food subscription: +$6,750<br>
-                Course (partial): +$17,350<br>
-                Consulting: +$3,000<br>
-                Book: +$2,500<br>
-                Merchandise: +$4,000<br>
-                Hunt day: +$3,000<br>
-                Affiliates: +$4,000<br>
-                <strong>Total 2026 Incremental: +$58,800</strong><br>
-                <strong>Projected 2026 Total Revenue: ~$174,800 (vs. $116,000 baseline)</strong>
-            </div>
-        </div>
-    </section>
-
-    <!-- Success Metrics -->
-    <section class="section">
-        <div class="container">
-            <h2>Success Metrics to Track</h2>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>Metric</th>
-                        <th>2025 Baseline</th>
-                        <th>2026 Target</th>
-                        <th>2027 Target</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Total Annual Revenue</td>
-                        <td>$116,000</td>
-                        <td>$184,800</td>
-                        <td>$320,350</td>
-                    </tr>
-                    <tr>
-                        <td>Average Puppy Sale Value</td>
-                        <td>$2,800</td>
-                        <td>$4,200</td>
-                        <td>$5,600</td>
-                    </tr>
-                    <tr>
-                        <td>Food Subscription Subscribers</td>
-                        <td>0</td>
-                        <td>15–20</td>
-                        <td>40–60</td>
-                    </tr>
-                    <tr>
-                        <td>Email List Size</td>
-                        <td>50–100</td>
-                        <td>500–800</td>
-                        <td>1,500–2,000</td>
-                    </tr>
-                    <tr>
-                        <td>Digital Course Enrollments</td>
-                        <td>0</td>
-                        <td>50</td>
-                        <td>250+</td>
-                    </tr>
-                    <tr>
-                        <td>Dogs in Training (Average)</td>
-                        <td>3–4</td>
-                        <td>4–5</td>
-                        <td>5–6</td>
-                    </tr>
-                    <tr>
-                        <td>Customer Retention Rate</td>
-                        <td>60%</td>
-                        <td>70%</td>
-                        <td>80%</td>
-                    </tr>
-                    <tr>
-                        <td>Referral Rate (New Customers)</td>
-                        <td>40%</td>
-                        <td>50%</td>
-                        <td>60%</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Dakota Sky Pudelpointers. INTERNAL DOCUMENT.</p>
-            <p style="margin-top: 1rem; font-size: 0.9rem;">Questions or feedback? Discuss with Glen & Stacey during strategic planning meetings.</p>
-        </div>
-    </footer>
-    </div><!-- end protectedContent -->
     <script>
+        // Password protection
         function checkPW() {
-            if (document.getElementById('pwInput').value === 'GSK167') {
-                document.getElementById('passwordGate').style.display = 'none';
-                document.getElementById('protectedContent').style.display = 'block';
+            const input = document.getElementById('passwordInput');
+            const errorMsg = document.getElementById('errorMessage');
+            const gate = document.getElementById('passwordGate');
+            const content = document.getElementById('protectedContent');
+
+            if (input.value === 'GSK167') {
+                gate.style.display = 'none';
+                content.style.display = 'block';
             } else {
-                document.getElementById('pwError').style.display = 'block';
-                document.getElementById('pwInput').value = '';
-                document.getElementById('pwInput').focus();
+                errorMsg.classList.add('show');
+                input.value = '';
+                input.focus();
+                setTimeout(() => {
+                    errorMsg.classList.remove('show');
+                }, 3000);
             }
         }
-        document.getElementById('pwInput').focus();
+
+        // Allow Enter key to submit
+        document.addEventListener('DOMContentLoaded', function() {
+            const passwordInput = document.getElementById('passwordInput');
+            passwordInput.focus();
+            passwordInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    checkPW();
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeIn 0.8s ease-in forwards';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe sections after content is shown
+        function setupObserver() {
+            document.querySelectorAll('section').forEach(section => {
+                observer.observe(section);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', setupObserver);
     </script>
+
 </body>
 </html>

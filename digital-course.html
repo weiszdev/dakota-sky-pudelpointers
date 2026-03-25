@@ -4,7 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dakota Sky Training System | Coming 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --dsp-forest-dark: #1a3c34;
+            --dsp-forest: #2d6a4f;
+            --dsp-forest-light: #52796f;
+            --dsp-cream: #F4F2ED;
+            --dsp-warm-white: #FAFAF7;
+            --dsp-earth: #8B5E3C;
+            --dsp-gold: #D4A843;
+            --dsp-charcoal: #333333;
+            --dsp-text-light: #6b6b6b;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,643 +27,840 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background-color: #FAF8F5;
-            color: #2D2D2D;
+            font-family: 'Inter', sans-serif;
+            color: var(--dsp-charcoal);
             line-height: 1.6;
         }
 
-        h1, h2, h3, h4 {
-            font-family: Georgia, serif;
-            color: #1B4332;
+        /* HEADER */
+        header {
+            background-color: var(--dsp-forest-dark);
+            color: white;
+            padding: 1.25rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
-        h1 { font-size: 3rem; line-height: 1.2; }
-        h2 { font-size: 2.2rem; margin: 3rem 0 1.5rem; }
-        h3 { font-size: 1.5rem; margin: 1.5rem 0 0.75rem; }
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.75rem;
+            letter-spacing: 3px;
+            color: white;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--dsp-gold);
+        }
+
+        .hamburger-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+        }
+
+        .hamburger-menu span {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger-menu.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger-menu.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-menu.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* MOBILE MENU */
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background-color: var(--dsp-forest);
+                padding: 1rem 2rem;
+                gap: 0.5rem;
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            .hamburger-menu {
+                display: flex;
+            }
+        }
+
+        /* SECTIONS */
+        .cream {
+            background-color: var(--dsp-cream);
+        }
+
+        .warm-white {
+            background-color: var(--dsp-warm-white);
+        }
+
+        .dark {
+            background-color: var(--dsp-forest-dark);
+            color: white;
+        }
+
+        section {
+            padding: 4rem 2rem;
+        }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
         }
 
-        .btn {
-            display: inline-block;
-            padding: 0.9rem 1.8rem;
-            background-color: #1B4332;
-            color: #FAF8F5;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: 600;
-            transition: background-color 0.3s;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
-        .btn:hover {
-            background-color: #0F2818;
-        }
-
-        .btn-secondary {
-            background-color: #8B5E3C;
-        }
-
-        .btn-secondary:hover {
-            background-color: #6B4428;
-        }
-
-        /* Hero Section */
+        /* HERO */
         .hero {
-            background: linear-gradient(135deg, #1B4332 0%, #0F2818 100%);
-            color: #FAF8F5;
-            padding: 5rem 2rem;
             text-align: center;
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background-color: var(--dsp-gold);
+            color: var(--dsp-charcoal);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
         }
 
         .hero h1 {
-            color: #D4A843;
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
             margin-bottom: 1rem;
+            color: var(--dsp-forest-dark);
+            line-height: 1.2;
         }
 
-        .hero .subheading {
-            font-size: 1.3rem;
-            color: #FAF8F5;
-            max-width: 700px;
-            margin: 0 auto;
-            font-weight: 300;
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--dsp-text-light);
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .coming-badge {
-            display: inline-block;
-            background-color: #D4A843;
-            color: #1B4332;
-            padding: 0.5rem 1.2rem;
-            border-radius: 20px;
-            font-weight: 600;
-            margin-top: 1.5rem;
-            font-size: 0.95rem;
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.25rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
         }
 
-        /* What's Coming */
-        .whats-coming {
-            padding: 4rem 2rem;
+        /* HEADINGS */
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dsp-forest-dark);
         }
 
-        .coming-grid {
+        h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--dsp-forest-dark);
+        }
+
+        .dark h2,
+        .dark h3 {
+            color: white;
+        }
+
+        /* CARDS */
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
-            margin: 2rem 0;
+            margin-top: 3rem;
         }
 
-        .coming-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(27, 67, 50, 0.1);
-            border-top: 4px solid #8B5E3C;
-        }
-
-        .coming-card h3 {
-            color: #1B4332;
+        .card h3 {
+            color: var(--dsp-forest);
             margin-bottom: 1rem;
         }
 
-        .coming-card p {
-            color: #2D2D2D;
-            line-height: 1.8;
-        }
-
-        .modules-list {
-            list-style: none;
-            margin: 2rem 0;
-        }
-
-        .modules-list li {
-            padding: 0.75rem 0;
-            border-bottom: 1px solid #f0f0f0;
-            color: #2D2D2D;
-            display: flex;
-            align-items: center;
-        }
-
-        .modules-list li:last-child {
-            border-bottom: none;
-        }
-
-        .modules-list li:before {
-            content: "→ ";
-            color: #D4A843;
-            font-weight: bold;
-            margin-right: 0.75rem;
-        }
-
-        /* Notification Section */
-        .notify-section {
-            padding: 4rem 2rem;
-            background: white;
-        }
-
-        .notify-container {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .notify-box {
-            background: linear-gradient(135deg, #1B4332 0%, #0F2818 100%);
-            color: #FAF8F5;
-            padding: 3rem;
-            border-radius: 8px;
-            text-align: center;
-        }
-
-        .notify-box h2 {
-            color: #D4A843;
-            margin-bottom: 1rem;
-        }
-
-        .notify-box p {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            color: #FAF8F5;
-        }
-
-        .notify-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .notify-form input {
-            padding: 1rem;
-            border: none;
-            border-radius: 4px;
-            font-size: 1rem;
-        }
-
-        .notify-form input[type="email"] {
-            color: #2D2D2D;
-        }
-
-        .notify-form button {
-            background-color: #D4A843;
-            color: #1B4332;
-            padding: 1rem;
-            border: none;
-            border-radius: 4px;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: background-color 0.3s;
-        }
-
-        .notify-form button:hover {
-            background-color: #C4974D;
-        }
-
-        .discount-note {
-            margin-top: 1.5rem;
-            font-size: 0.9rem;
-            color: #E8E5DC;
-            font-style: italic;
-        }
-
-        /* In the Meantime */
-        .meantime-section {
-            padding: 4rem 2rem;
-        }
-
-        .meantime-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .meantime-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(27, 67, 50, 0.1);
-            border-left: 4px solid #D4A843;
-            text-align: center;
-        }
-
-        .meantime-card h3 {
-            color: #1B4332;
-            margin-bottom: 1rem;
-        }
-
-        .meantime-card p {
-            color: #2D2D2D;
-            margin-bottom: 1.5rem;
-        }
-
-        .meantime-card .btn {
-            width: 100%;
-            display: block;
-            text-align: center;
-        }
-
-        /* Why This Matters */
-        .why-section {
-            padding: 4rem 2rem;
-            background: white;
-        }
-
-        .why-content {
-            max-width: 900px;
-            margin: 2rem auto;
-            background: #FAF8F5;
-            padding: 3rem;
-            border-radius: 8px;
-            border-left: 5px solid #8B5E3C;
-        }
-
-        .why-content p {
-            color: #2D2D2D;
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-            font-size: 1.05rem;
-        }
-
-        .why-content strong {
-            color: #1B4332;
-        }
-
-        /* FAQ */
-        .faq-section {
-            padding: 4rem 2rem;
-        }
-
-        .faq-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .faq-item {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(27, 67, 50, 0.1);
-        }
-
-        .faq-question {
-            color: #1B4332;
-            font-weight: 600;
-            font-family: Georgia, serif;
-            margin-bottom: 0.75rem;
-        }
-
-        .faq-answer {
-            color: #2D2D2D;
+        .card p {
+            color: var(--dsp-text-light);
             line-height: 1.7;
         }
 
-        /* Timeline */
-        .timeline-section {
-            padding: 4rem 2rem;
-            background: white;
+        /* BUTTONS */
+        .btn {
+            background-color: var(--dsp-gold);
+            color: var(--dsp-charcoal);
+            padding: 14px 32px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
         }
 
+        .btn:hover {
+            background-color: #c29730;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: var(--dsp-forest);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--dsp-forest-dark);
+        }
+
+        /* FORM */
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dsp-charcoal);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--dsp-gold);
+            box-shadow: 0 0 0 3px rgba(212, 168, 67, 0.1);
+        }
+
+        .waitlist-form {
+            max-width: 500px;
+            margin: 2rem auto 0;
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-note {
+            font-size: 0.9rem;
+            color: var(--dsp-text-light);
+            margin-top: 1.5rem;
+            font-style: italic;
+        }
+
+        /* TIMELINE */
         .timeline {
-            max-width: 800px;
-            margin: 2rem auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
         }
 
         .timeline-item {
-            display: flex;
-            margin-bottom: 2rem;
-            position: relative;
-            padding-left: 4rem;
+            text-align: center;
         }
 
-        .timeline-marker {
-            position: absolute;
-            left: 0;
-            width: 30px;
-            height: 30px;
-            background-color: #D4A843;
+        .timeline-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: var(--dsp-gold);
+            color: var(--dsp-charcoal);
             border-radius: 50%;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-item h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item p {
+            color: var(--dsp-text-light);
+        }
+
+        /* ACCORDION */
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 1.5rem;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .faq-question {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            user-select: none;
+            padding: 1rem 0;
+        }
+
+        .faq-question h3 {
+            margin-bottom: 0;
+            flex: 1;
+            text-align: left;
+        }
+
+        .faq-toggle {
+            width: 24px;
+            height: 24px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #1B4332;
-            font-weight: bold;
+            color: var(--dsp-gold);
+            font-size: 1.5rem;
             flex-shrink: 0;
+            margin-left: 1rem;
+            transition: transform 0.3s ease;
         }
 
-        .timeline-marker::after {
-            content: '';
-            position: absolute;
-            width: 2px;
-            height: 100px;
-            background-color: #D4A843;
-            top: 30px;
-            left: 14px;
+        .faq-toggle.active {
+            transform: rotate(45deg);
         }
 
-        .timeline-item:last-child .timeline-marker::after {
-            display: none;
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            color: var(--dsp-text-light);
+            line-height: 1.7;
+            padding: 0;
         }
 
-        .timeline-content {
-            color: #2D2D2D;
+        .faq-answer.active {
+            max-height: 500px;
+            padding: 0 0 1rem 0;
         }
 
-        .timeline-date {
-            color: #8B5E3C;
-            font-weight: 600;
-            margin-bottom: 0.25rem;
+        /* FOOTER */
+        footer {
+            background-color: var(--dsp-forest-dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
         }
 
-        .timeline-text {
-            line-height: 1.6;
+        /* TEXT SECTION */
+        .text-section {
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
         }
 
-        /* CTA Banner */
-        .cta-banner {
-            padding: 3rem 2rem;
-            background: linear-gradient(135deg, #1B4332 0%, #0F2818 100%);
-            color: #FAF8F5;
+        .text-section p {
+            margin-bottom: 1.5rem;
+            color: var(--dsp-text-light);
+        }
+
+        .dark .text-section p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* CTA SECTION */
+        .cta-section {
             text-align: center;
         }
 
-        .cta-banner h2 {
-            color: #D4A843;
+        .cta-section h2 {
+            margin-bottom: 2rem;
         }
 
-        .cta-banner p {
-            font-size: 1.1rem;
-            margin: 1rem 0 2rem;
+        /* FADE IN */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
 
-        /* Footer */
-        footer {
-            background-color: #2D2D2D;
-            color: #FAF8F5;
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* LINKS SECTION */
+        .links-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .links-card {
+            background-color: white;
+            border-radius: 12px;
             padding: 2rem;
             text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
         }
 
-        /* Responsive */
+        .links-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .links-card h3 {
+            color: var(--dsp-forest);
+            margin-bottom: 1.5rem;
+        }
+
+        .links-card p {
+            color: var(--dsp-text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        /* MODULES LIST */
+        .modules-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .module-item {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--dsp-gold);
+            color: var(--dsp-charcoal);
+            font-weight: 500;
+        }
+
         @media (max-width: 768px) {
-            h1 { font-size: 2rem; }
-            h2 { font-size: 1.5rem; }
-            .hero h1 { font-size: 2.2rem; }
-            .notify-form { flex-direction: column; }
+            section {
+                padding: 2.5rem 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.75rem;
+            }
+
+            h3 {
+                font-size: 1.25rem;
+            }
+
+            .timeline {
+                grid-template-columns: 1fr;
+            }
+
+            .modules-list {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Hero -->
-    <section class="hero">
+    <!-- HEADER -->
+    <header>
+        <div class="header-content">
+            <div class="logo">DAKOTA SKY</div>
+            <nav id="nav-menu">
+                <a href="index.html">Home</a>
+                <a href="breeding.html">Breeding</a>
+                <a href="training.html">Training</a>
+                <a href="boarding.html">Boarding</a>
+                <a href="nutrition.html">Nutrition</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <div class="hamburger-menu" id="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero warm-white fade-in">
         <div class="container">
+            <div class="hero-badge">Coming 2026</div>
             <h1>Learn to Train Your Gun Dog — From Home.</h1>
-            <p class="subheading">Glen and Stacey's complete training system, available online.</p>
-            <div class="coming-badge">Coming 2026</div>
+            <p>Glen and Stacey's complete training system, available online.</p>
         </div>
     </section>
 
-    <!-- What's Coming -->
-    <section class="whats-coming">
+    <!-- WHAT'S COMING -->
+    <section class="cream fade-in">
         <div class="container">
             <h2>What's Coming</h2>
-
-            <div class="coming-grid">
-                <div class="coming-card">
+            <div class="cards-grid">
+                <div class="card fade-in">
                     <h3>Video-Based Curriculum</h3>
-                    <p>Step-by-step training videos from Glen and Stacey, covering every stage from puppy foundation through finished gun dog.</p>
+                    <p>Step-by-step training videos that guide you through every phase of development, from puppies to advanced field dogs.</p>
                 </div>
-
-                <div class="coming-card">
+                <div class="card fade-in">
                     <h3>Real Methods, Proven Results</h3>
-                    <p>The same training philosophy and techniques we use at Dakota Sky — adapted for home trainers who want professional results without hiring a professional.</p>
+                    <p>The same philosophy we've used successfully for over 20 years, adapted specifically for home trainers.</p>
                 </div>
-
-                <div class="coming-card">
+                <div class="card fade-in">
                     <h3>Complete Modules</h3>
-                    <p>Comprehensive training from foundation through specialized field work, all in one place.</p>
+                    <p>Comprehensive training coverage from foundation skills through advanced field work and hunting preparation.</p>
                 </div>
-
-                <div class="coming-card">
+                <div class="card fade-in">
                     <h3>Accessible Everywhere</h3>
-                    <p>Learn on any device — phone, tablet, computer. Stream videos, reference guides, and training schedules whenever you need them.</p>
+                    <p>Learn on any device. Stream videos and guides whenever you need them, at your own pace.</p>
                 </div>
             </div>
-
-            <h2 style="margin-top: 3rem;">Training Modules (Coming Soon)</h2>
-            <p style="color: #2D2D2D; font-size: 1.05rem; margin-bottom: 2rem;">The course will include these core modules, plus bonus content:</p>
-
-            <ul class="modules-list">
-                <li>Puppy Foundation (Age 4-12 weeks)</li>
-                <li>House Training & Crate Work</li>
-                <li>Recall & Name Response</li>
-                <li>Introduction to Birds & Scenting</li>
-                <li>Building Drive & Motivation</li>
-                <li>Pointing & Staunchness</li>
-                <li>Retrieving (Land & Water)</li>
-                <li>Steadiness to Flush & Shot</li>
-                <li>Water Work & Swimming</li>
-                <li>Hunt Preparation & Field Manners</li>
-                <li>NAVHDA Natural Ability Prep</li>
-                <li>Advanced Hunting Skills</li>
-            </ul>
         </div>
     </section>
 
-    <!-- Notification Section -->
-    <section class="notify-section">
+    <!-- TRAINING MODULES -->
+    <section class="warm-white fade-in">
         <div class="container">
-            <div class="notify-container">
-                <div class="notify-box">
-                    <h2>Be the First to Know</h2>
-                    <p>Join our waitlist to get exclusive early access, founding member pricing, and updates about the launch.</p>
-
-                    <form class="notify-form" id="notifyForm">
-                        <input type="text" id="notifyName" placeholder="Your Name" required>
-                        <input type="email" id="notifyEmail" placeholder="Your Email" required>
-                        <button type="submit">Notify Me</button>
-                    </form>
-
-                    <div class="discount-note">
-                        Early subscribers will receive founding member pricing — a special discount locked in for life.
-                    </div>
-                </div>
+            <h2>Training Modules (Coming Soon)</h2>
+            <p style="color: var(--dsp-text-light); margin-top: 1rem;">Our comprehensive curriculum covers every aspect of gun dog training:</p>
+            <div class="modules-list">
+                <div class="module-item fade-in">Puppy Foundation (4-12 weeks)</div>
+                <div class="module-item fade-in">House Training & Crate Work</div>
+                <div class="module-item fade-in">Recall & Name Response</div>
+                <div class="module-item fade-in">Introduction to Birds & Scenting</div>
+                <div class="module-item fade-in">Building Drive & Motivation</div>
+                <div class="module-item fade-in">Pointing & Staunchness</div>
+                <div class="module-item fade-in">Retrieving (Land & Water)</div>
+                <div class="module-item fade-in">Steadiness to Flush & Shot</div>
+                <div class="module-item fade-in">Water Work & Swimming</div>
+                <div class="module-item fade-in">Hunt Preparation & Field Manners</div>
+                <div class="module-item fade-in">NAVHDA Natural Ability Prep</div>
+                <div class="module-item fade-in">Advanced Hunting Skills</div>
             </div>
         </div>
     </section>
 
-    <!-- Why This Matters -->
-    <section class="why-section">
+    <!-- WAITLIST -->
+    <section class="cream fade-in">
+        <div class="container">
+            <h2>Be the First to Know</h2>
+            <p style="text-align: center; color: var(--dsp-text-light); margin-top: 1rem;">Get exclusive early access and founding member pricing.</p>
+            <form class="waitlist-form fade-in" id="waitlist-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Notify Me</button>
+                <p class="form-note">Early subscribers will receive founding member pricing — a special discount locked in for life.</p>
+            </form>
+        </div>
+    </section>
+
+    <!-- WHY WE'RE BUILDING THIS -->
+    <section class="warm-white fade-in">
         <div class="container">
             <h2>Why We're Building This</h2>
-
-            <div class="why-content">
-                <p>
-                    <strong>Good gun dog training is expensive.</strong> A professional trainer runs $1,200–$1,500 per month. That's why most owners never get the professional training their dog needs.
-                </p>
-
-                <p>
-                    <strong>But there's another way.</strong> Hundreds of hunters successfully train their own dogs every year. They just need the right guidance — and that's what this course is.
-                </p>
-
-                <p>
-                    <strong>The Dakota Sky Training System brings Glen and Stacey's 20+ years of experience directly to you.</strong> You'll get the same methods we use with our training dogs, adapted for home trainers who want professional results.
-                </p>
-
-                <p>
-                    This isn't a "learn dog training basics" course. It's a complete, systematic approach to taking your puppy from day one through finished gun dog — with video, detailed guides, and real-world troubleshooting.
-                </p>
-
-                <p>
-                    <strong>Coming 2026.</strong> Launching with founding member access and lifetime pricing for early subscribers.
-                </p>
+            <div class="text-section fade-in">
+                <p>Professional gun dog training doesn't come cheap. Sending your dog to a professional trainer typically costs $1,200 to $1,500 per month, and many owners don't have access to trainers who specialize in Pudelpointers or their specific hunting style.</p>
+                <p>We've spent over 20 years refining our training methods and working with hundreds of dogs. We know there's a better way — one that puts the training directly in your hands, with guidance from us every step of the way.</p>
+                <p>This isn't a basic "tricks and obedience" course. It's a complete, systematic approach to developing a finished hunting dog. Every module is built on principles we've tested thousands of times in the field.</p>
             </div>
         </div>
     </section>
 
-    <!-- Timeline -->
-    <section class="timeline-section">
+    <!-- LAUNCH TIMELINE -->
+    <section class="cream fade-in">
         <div class="container">
             <h2>Launch Timeline</h2>
-
             <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-marker">1</div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">Spring 2026</div>
-                        <div class="timeline-text">Course development and video production complete. Beta testing with select subscribers.</div>
-                    </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-number">1</div>
+                    <h3>Spring 2026</h3>
+                    <p>Course development and beta testing with select trainers</p>
                 </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-marker">2</div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">Early Summer 2026</div>
-                        <div class="timeline-text">Founding member access opens. Early subscribers get lifetime pricing locked in.</div>
-                    </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-number">2</div>
+                    <h3>Early Summer 2026</h3>
+                    <p>Founding member access begins with lifetime pricing locked in</p>
                 </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-marker">3</div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">Summer 2026</div>
-                        <div class="timeline-text">Course goes live to public. Regular pricing available for new members.</div>
-                    </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-number">3</div>
+                    <h3>Summer 2026</h3>
+                    <p>Public launch and general availability</p>
                 </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-marker">4</div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">Ongoing</div>
-                        <div class="timeline-text">New modules, bonus content, and Q&A sessions added based on subscriber feedback.</div>
-                    </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-number">4</div>
+                    <h3>Ongoing</h3>
+                    <p>New modules, Q&A sessions, and community support</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- In the Meantime -->
-    <section class="meantime-section">
+    <!-- IN THE MEANTIME -->
+    <section class="warm-white fade-in">
         <div class="container">
             <h2>In the Meantime...</h2>
-            <p style="text-align: center; color: #2D2D2D; font-size: 1.05rem; max-width: 800px; margin: 0 auto 2rem;">
-                Don't wait. Get started with professional training or resources now.
-            </p>
-
-            <div class="meantime-grid">
-                <div class="meantime-card">
+            <p style="text-align: center; color: var(--dsp-text-light); margin-top: 1rem;">Explore our other services while you wait for the course launch.</p>
+            <div class="links-cards">
+                <div class="links-card fade-in">
                     <h3>Board & Train</h3>
-                    <p>Send your dog to Dakota Sky for hands-on professional training. The best foundation for any gun dog.</p>
-                    <a href="training-consultation.html" class="btn">Book a Consultation</a>
+                    <p>Send your dog to our facility for professional hands-on training by Glen and Stacey.</p>
+                    <a href="training-consultation.html" class="btn btn-secondary">Learn More</a>
                 </div>
-
-                <div class="meantime-card">
+                <div class="links-card fade-in">
                     <h3>Puppy Package</h3>
-                    <p>Get a Dakota Sky puppy with training and nutrition bundled in. Start your dog the right way from day one.</p>
-                    <a href="puppy-package.html" class="btn">Explore Packages</a>
+                    <p>Start your puppy off right with early socialization and foundation training.</p>
+                    <a href="puppy-package.html" class="btn btn-secondary">Learn More</a>
                 </div>
-
-                <div class="meantime-card">
+                <div class="links-card fade-in">
                     <h3>Free Guide</h3>
-                    <p>Download our Pudelpointer First 30 Days guide — a complete checklist for new puppy owners.</p>
-                    <a href="lead-magnet.html" class="btn btn-secondary">Get Free Guide</a>
+                    <p>Download our beginner's guide to gun dog training and get started today.</p>
+                    <a href="lead-magnet.html" class="btn btn-secondary">Get Guide</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- FAQ -->
-    <section class="faq-section">
+    <section class="cream fade-in">
         <div class="container">
             <h2>Frequently Asked Questions</h2>
-
-            <div class="faq-grid">
-                <div class="faq-item">
-                    <div class="faq-question">Will the course be available everywhere?</div>
-                    <div class="faq-answer">Yes. The course will be available on a platform you can access from any device — smartphone, tablet, laptop, desktop. Stream or download videos.</div>
+            <div style="max-width: 800px; margin: 3rem auto 0;">
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <h3>Will the course be available everywhere?</h3>
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes. The course will be accessible on any device — desktop, tablet, or smartphone. You can stream videos and access guides whenever and wherever you need them.</p>
+                    </div>
                 </div>
 
-                <div class="faq-item">
-                    <div class="faq-question">Can I get a refund if it's not right for me?</div>
-                    <div class="faq-answer">Founding members who opt in early will have a 30-day satisfaction guarantee. If the course doesn't work for you, we'll refund you in full.</div>
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <h3>Can I get a refund?</h3>
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes. Founding members receive a 30-day satisfaction guarantee. If the course doesn't meet your expectations, we'll provide a full refund within the first 30 days of access.</p>
+                    </div>
                 </div>
 
-                <div class="faq-item">
-                    <div class="faq-question">Is this just for Pudelpointers?</div>
-                    <div class="faq-answer">The course is specifically designed for Pudelpointers, but the principles apply to any hunting dog breed. Glen trains many breeds — Labradors, Brittanys, Pointers, and more.</div>
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <h3>Is this just for Pudelpointers?</h3>
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>The course is designed specifically for Pudelpointers, but the principles and methods apply to all hunting dogs. Pointer and setter owners will find it highly valuable.</p>
+                    </div>
                 </div>
 
-                <div class="faq-item">
-                    <div class="faq-question">What if I already have a dog? Can I still use the course?</div>
-                    <div class="faq-answer">Absolutely. Modules will cover training dogs at different ages and experience levels — from 8-week puppies through adult dogs with bad habits.</div>
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <h3>What if I already have a dog?</h3>
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>The curriculum covers all ages, from puppies through adult dogs. Whether you're starting with an 8-week-old puppy or a 3-year-old dog, you'll find modules and techniques tailored to your situation.</p>
+                    </div>
                 </div>
 
-                <div class="faq-item">
-                    <div class="faq-question">Will there be live support or Q&A?</div>
-                    <div class="faq-answer">Yes. Founding members will get access to monthly Q&A sessions with Glen and Stacey. Later we'll add community forums and email support.</div>
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <h3>Will there be live support?</h3>
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely. Founding members get access to monthly Q&A sessions with Glen and Stacey, a community forum for peer support, and email support for specific questions about your training.</p>
+                    </div>
                 </div>
 
-                <div class="faq-item">
-                    <div class="faq-question">What's the founding member discount?</div>
-                    <div class="faq-answer">We'll announce exact pricing closer to launch. But early subscribers will lock in a special lifetime rate — a permanent discount you keep forever.</div>
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <h3>What's the founding member discount?</h3>
+                        <div class="faq-toggle">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We'll announce the exact discount closer to launch, but founding members will lock in a lifetime rate — meaning you'll never pay more, even if the course price increases in the future.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Banner -->
-    <section class="cta-banner">
-        <div class="container">
+    <!-- FINAL CTA -->
+    <section class="dark fade-in">
+        <div class="container" style="text-align: center;">
             <h2>Ready to Train Like a Pro?</h2>
-            <p>Join the waitlist for founding member access and lifetime pricing.</p>
-            <button class="btn" onclick="document.getElementById('notifyForm').scrollIntoView({behavior: 'smooth'})">Get on the Waitlist</button>
+            <p style="margin-top: 1rem; font-size: 1.1rem;">Join the waitlist and be first to access our complete training system.</p>
+            <a href="#waitlist-form" class="btn" style="margin-top: 2rem;">Get on the Waitlist</a>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- FOOTER -->
     <footer>
-        <div class="container">
-            <p>&copy; 2026 Dakota Sky Pudelpointers. Dickinson, North Dakota. All rights reserved.</p>
-        </div>
+        <p>&copy; 2026 Dakota Sky Pudelpointers. Dickinson, North Dakota. All rights reserved.</p>
     </footer>
 
     <script>
-        document.getElementById('notifyForm').addEventListener('submit', function(e) {
+        // HAMBURGER MENU
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when nav link is clicked
+        const navLinks = navMenu.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // FADE IN ON SCROLL
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(element => {
+            observer.observe(element);
+        });
+
+        // FAQ ACCORDION
+        const faqQuestions = document.querySelectorAll('.faq-question');
+
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const toggle = question.querySelector('.faq-toggle');
+
+                // Close all other open FAQs
+                faqQuestions.forEach(otherQuestion => {
+                    if (otherQuestion !== question) {
+                        const otherAnswer = otherQuestion.nextElementSibling;
+                        const otherToggle = otherQuestion.querySelector('.faq-toggle');
+                        otherAnswer.classList.remove('active');
+                        otherToggle.classList.remove('active');
+                    }
+                });
+
+                // Toggle current FAQ
+                answer.classList.toggle('active');
+                toggle.classList.toggle('active');
+            });
+        });
+
+        // WAITLIST FORM
+        const waitlistForm = document.getElementById('waitlist-form');
+
+        waitlistForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            const name = document.getElementById('notifyName').value;
-            const email = document.getElementById('notifyEmail').value;
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
 
-            console.log('Waitlist signup:', { name, email });
+            // Show thank you message
+            alert(`Thank you, ${name}! We've added ${email} to our founding member waitlist. You'll hear from us soon with exclusive early access details.`);
 
-            alert(`Thanks ${name}! We've added you to the waitlist. Check your email for updates about the course launch.`);
-            this.reset();
+            // Reset form
+            waitlistForm.reset();
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
         });
     </script>
 </body>
