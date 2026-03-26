@@ -694,7 +694,7 @@
 
     <!-- NAVIGATION -->
     <nav id="navbar">
-        <a href="/">
+        <a href="index-v2.html">
             <img src="https://res.cloudinary.com/dyq7rnjjw/image/upload/h_120,q_auto/v1774544524/Dakota_SKY_for_CLEAR_no_color_etv2yz.png" alt="Dakota Sky Pudelpointers" class="nav-logo">
         </a>
         <div class="hamburger" id="hamburger">
@@ -717,7 +717,7 @@
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <span class="hero-tag">Premium Care & Comfort</span>
-            <h1>Your Dog's Home<br><em>Away From Home.</em></h1>
+            <h1 data-cms="boarding-headline">Your Dog's Home<br><em>Away From Home.</em></h1>
             <p class="hero-sub">Climate-controlled care, expert staff, and premium nutrition — your dog deserves the same standard we hold for our own.</p>
             <div class="hero-cta">
                 <a href="#booking" class="btn btn-gold">Reserve a Spot</a>
@@ -741,19 +741,19 @@
                 <div class="pillar-icon">🏠</div>
                 <h3>Standard Boarding</h3>
                 <p>Climate-controlled comfort, Inukshuk premium nutrition, twice-daily exercise, continuous monitoring, and optional medication administration.</p>
-                <div class="price">$45 / day</div>
+                <div class="price" data-cms="boarding-price-standard">$45 / day</div>
             </div>
             <div class="pillar-card reveal">
                 <div class="pillar-icon">🎯</div>
                 <h3>Training Board</h3>
                 <p>Everything in Standard, plus 15-minute daily training sessions. Your dog maintains commands, builds confidence, and we provide weekly progress updates.</p>
-                <div class="price">$55 / day</div>
+                <div class="price" data-cms="boarding-price-training">$55 / day</div>
             </div>
             <div class="pillar-card reveal">
                 <div class="pillar-icon">🌾</div>
                 <h3>Hunting Season Board</h3>
                 <p>Extended stay rates available. Exercise in upland cover, field conditioning, and weekly refresher training to keep your dog sharp during season.</p>
-                <div class="price">$50 / day</div>
+                <div class="price" data-cms="boarding-price-hunting">$50 / day</div>
             </div>
         </div>
     </section>
@@ -959,5 +959,8 @@
             });
         }
     </script>
+
+    <script src="dsp-edit-mode.js"></script>
+    <script src="dsp-cms.js"></script>
 </body>
 </html>

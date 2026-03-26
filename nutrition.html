@@ -702,7 +702,7 @@
 
     <!-- NAVIGATION -->
     <nav id="navbar">
-        <a href="/">
+        <a href="index-v2.html">
             <img src="https://res.cloudinary.com/dyq7rnjjw/image/upload/h_120,q_auto/v1774544524/Dakota_SKY_for_CLEAR_no_color_etv2yz.png" alt="Dakota Sky Pudelpointers" class="nav-logo">
         </a>
         <div class="hamburger" id="hamburger">
@@ -725,7 +725,7 @@
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <span class="hero-tag">Premium Performance Nutrition</span>
-            <h1>Fuel Your Dog<br><em>Like a Champion.</em></h1>
+            <h1 data-cms="nutrition-headline">Fuel Your Dog<br><em>Like a Champion.</em></h1>
             <p class="hero-sub">Inukshuk Premium Canadian Performance Nutrition — trusted by elite hunting teams and backed by Dakota Sky's commitment to excellence.</p>
             <div class="hero-cta">
                 <a href="#pricing" class="btn btn-gold">Shop Now</a>
@@ -795,19 +795,19 @@
         <div class="pricing-grid">
             <div class="pricing-card reveal">
                 <h3>Single Bag</h3>
-                <div class="price">$64.99</div>
+                <div class="price" data-cms="nutrition-price-single">$64.99</div>
                 <div class="subtext">One 44 lb bag</div>
                 <button class="btn btn-gold" onclick="alert('Order functionality — contact us at (701) 290-1492 or dakotasky.nd@gmail.com')">Add to Order</button>
             </div>
             <div class="pricing-card reveal">
                 <h3>Case of 2</h3>
-                <div class="price">$127.99</div>
+                <div class="price" data-cms="nutrition-price-case-2">$127.99</div>
                 <div class="subtext">Two 44 lb bags</div>
                 <button class="btn btn-gold" onclick="alert('Order functionality — contact us at (701) 290-1492 or dakotasky.nd@gmail.com')">Add to Order</button>
             </div>
             <div class="pricing-card reveal">
                 <h3>Case of 4</h3>
-                <div class="price">$251.99</div>
+                <div class="price" data-cms="nutrition-price-case-4">$251.99</div>
                 <div class="subtext">Four 44 lb bags</div>
                 <button class="btn btn-gold" onclick="alert('Order functionality — contact us at (701) 290-1492 or dakotasky.nd@gmail.com')">Add to Order</button>
             </div>
@@ -936,5 +936,8 @@
             revealObserver.observe(el);
         });
     </script>
+
+    <script src="dsp-edit-mode.js"></script>
+    <script src="dsp-cms.js"></script>
 </body>
 </html>

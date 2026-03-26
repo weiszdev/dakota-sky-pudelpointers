@@ -757,7 +757,7 @@
 
     <!-- NAVIGATION -->
     <nav id="navbar">
-        <a href="/">
+        <a href="index-v2.html">
             <img src="https://res.cloudinary.com/dyq7rnjjw/image/upload/h_120,q_auto/v1774544524/Dakota_SKY_for_CLEAR_no_color_etv2yz.png" alt="Dakota Sky Pudelpointers" class="nav-logo">
         </a>
         <div class="hamburger" id="hamburger">
@@ -807,12 +807,12 @@
     <section class="pillars" id="programs">
         <div class="pillars-header reveal">
             <span class="tag">Training Programs</span>
-            <h2>Choose Your Path</h2>
+            <h2 data-cms="training-headline">Choose Your Path</h2>
         </div>
         <div class="pillars-grid">
             <div class="pillar-card reveal">
                 <h3>Puppy Foundation</h3>
-                <div class="program-price">$1,200/mo</div>
+                <div class="program-price" data-cms="training-price-puppy">$1,200/mo</div>
                 <div class="program-duration">8–16 weeks | 4–6 weeks minimum</div>
                 <ul class="program-features">
                     <li>Early socialization & handling</li>
@@ -824,7 +824,7 @@
             </div>
             <div class="pillar-card reveal">
                 <h3>Started Dog</h3>
-                <div class="program-price">$1,400/mo</div>
+                <div class="program-price" data-cms="training-price-gun">$1,400/mo</div>
                 <div class="program-duration">6–12 months | 3–4 months minimum</div>
                 <ul class="program-features">
                     <li>Point development</li>
@@ -836,7 +836,7 @@
             </div>
             <div class="pillar-card reveal">
                 <h3>Finished Dog</h3>
-                <div class="program-price">$1,500/mo</div>
+                <div class="program-price" data-cms="training-price-advanced">$1,500/mo</div>
                 <div class="program-duration">12+ months | 4–6 months minimum</div>
                 <ul class="program-features">
                     <li>Whoa & steadiness</li>
@@ -848,7 +848,7 @@
             </div>
             <div class="pillar-card reveal">
                 <h3>Tune-Up</h3>
-                <div class="program-price">$1,200/mo</div>
+                <div class="program-price" data-cms="training-price-pro">$1,200/mo</div>
                 <div class="program-duration">Any age | 1–2 months</div>
                 <ul class="program-features">
                     <li>Refresher training</li>
@@ -1018,5 +1018,7 @@
         });
     </script>
 
+    <script src="dsp-edit-mode.js"></script>
+    <script src="dsp-cms.js"></script>
 </body>
 </html>

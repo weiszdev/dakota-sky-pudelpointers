@@ -591,9 +591,9 @@
 <body>
     <!-- Navigation -->
     <nav id="navbar">
-        <div class="logo">
+        <a href="index-v2.html" class="logo">
             <img src="https://res.cloudinary.com/dyq7rnjjw/image/upload/h_120,q_auto/v1774544524/Dakota_SKY_for_CLEAR_no_color_etv2yz.png" alt="Dakota Sky Pudelpointers">
-        </div>
+        </a>
         <ul class="nav-links" id="navLinks">
             <li><a href="#breeding">Breeding</a></li>
             <li><a href="#training">Training</a></li>
@@ -632,7 +632,7 @@
                 </div>
                 <div class="pricing-row">
                     <span class="pricing-label">Subscribe:</span>
-                    <span class="pricing-value subscribe">$79/bag</span>
+                    <span class="pricing-value subscribe" data-cms="sub-price-single">$79/bag</span>
                 </div>
                 <div class="pricing-row">
                     <span class="pricing-label">Annual Savings:</span>
@@ -650,7 +650,7 @@
                 </div>
                 <div class="pricing-row">
                     <span class="pricing-label">Subscribe:</span>
-                    <span class="pricing-value subscribe">$69/bag</span>
+                    <span class="pricing-value subscribe" data-cms="sub-price-multi">$69/bag</span>
                 </div>
                 <div class="pricing-row">
                     <span class="pricing-label">Annual Savings:</span>
@@ -668,7 +668,7 @@
                 </div>
                 <div class="pricing-row">
                     <span class="pricing-label">Subscribe:</span>
-                    <span class="pricing-value subscribe">$59/bag</span>
+                    <span class="pricing-value subscribe" data-cms="sub-price-kennel">$59/bag</span>
                 </div>
                 <div class="pricing-row">
                     <span class="pricing-label">Annual Savings:</span>
@@ -839,5 +839,8 @@
             });
         });
     </script>
+
+    <script src="dsp-edit-mode.js"></script>
+    <script src="dsp-cms.js"></script>
 </body>
 </html>
