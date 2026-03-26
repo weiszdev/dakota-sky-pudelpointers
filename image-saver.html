@@ -2,6 +2,18 @@
 <html>
 <head><title>DSP Image Saver</title></head>
 <body style="font-family:sans-serif;padding:2rem;background:#1B4332;color:#FAF8F5;">
+<header style="background-color:#1a3c34;padding:1rem 0;position:sticky;top:0;z-index:1000;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+    <div style="max-width:1280px;margin:0 auto;padding:0 2rem;display:flex;justify-content:space-between;align-items:center;">
+      <a href="index.html"><img src="logo-clear.png" alt="Dakota Sky Pudelpointers" style="height:55px;width:auto;"></a>
+      <nav style="display:flex;gap:2rem;">
+        <a href="index.html" style="color:white;text-decoration:none;font-size:0.95rem;">Home</a>
+        <a href="breeding.html" style="color:white;text-decoration:none;font-size:0.95rem;">Breeding</a>
+        <a href="training.html" style="color:white;text-decoration:none;font-size:0.95rem;">Training</a>
+        <a href="boarding.html" style="color:white;text-decoration:none;font-size:0.95rem;">Boarding</a>
+        <a href="contact.html" style="color:white;text-decoration:none;font-size:0.95rem;">Contact</a>
+      </nav>
+    </div>
+  </header>
 <h1>Dakota Sky Image Saver</h1>
 <p>Upload images here. They'll be available for download with the correct filenames.</p>
 <div id="uploads" style="display:flex;flex-wrap:wrap;gap:1rem;margin-top:1rem;"></div>
@@ -21,5 +33,9 @@ document.getElementById('fileInput').addEventListener('change', function(e) {
   }
 });
 </script>
+<footer style="background-color:#1a3c34;color:white;padding:2rem;text-align:center;margin-top:3rem;">
+    <a href="index.html"><img src="logo-clear.png" alt="Dakota Sky Pudelpointers" style="height:40px;width:auto;margin-bottom:1rem;"></a>
+    <p style="color:rgba(255,255,255,0.7);font-size:0.9rem;">&copy; 2026 Dakota Sky Pudelpointers. All rights reserved. | Dickinson, North Dakota</p>
+  </footer>
 </body>
 </html>
