@@ -1004,5 +1004,90 @@
         });
     </script>
 
+<script>
+(function(){
+  var SKEY='dsp-members-edits';
+  var editing=false;
+  function sGet(){try{var s=localStorage.getItem(SKEY);return s?JSON.parse(s):null}catch(e){return null}}
+  function sSet(d){try{localStorage.setItem(SKEY,JSON.stringify(d))}catch(e){}}
+  function sDel(){try{localStorage.removeItem(SKEY)}catch(e){}}
+
+  function init(){
+    var st=document.createElement('style');
+    st.textContent='#edit-bar{position:fixed;bottom:20px;right:20px;z-index:10000;display:flex;gap:8px;font-family:system-ui,sans-serif}'+'#edit-bar button{padding:10px 18px;border:2px solid #c8a951;border-radius:6px;cursor:pointer;font-size:14px;font-weight:600;color:white;transition:all .2s}'+'#edit-bar .toggle{background:#1a3c34}#edit-bar .toggle.on{background:#0f7938}'+'#edit-bar .save{background:#2d5a4f;display:none}#edit-bar .reset{background:#5a3a3a;display:none}'+'#edit-bar button:hover{box-shadow:0 0 12px rgba(200,169,81,0.5)}'+'body.edit-active [contenteditable=true]{border:2px dashed #c8a951!important;border-radius:4px;padding:2px 4px;background:rgba(200,169,81,0.06);min-height:1em}'+'div.save-flash{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);padding:16px 32px;background:#1a3c34;color:#c8a951;border:2px solid #c8a951;border-radius:8px;font:600 18px system-ui;z-index:10001;opacity:0;animation:sflash 1.5s}'+'@keyframes sflash{10%{opacity:1}80%{opacity:1}100%{opacity:0}}';
+    document.head.appendChild(st);
+
+    // Tag all editable elements
+    var idx=0;
+    var header=document.querySelector('header');
+    var footer=document.querySelector('footer');
+    document.querySelectorAll('h1,h2,h3,h4,p,li,td,th,span,button,a').forEach(function(el){
+      if(header&&header.contains(el))return;
+      if(footer&&footer.contains(el))return;
+      if(el.closest&&el.closest('#edit-bar'))return;
+      if(el.tagName==='A'&&el.closest('nav'))return;
+      if(el.textContent.trim().length<2)return;
+      if(el.querySelector('h1,h2,h3,h4,p,li,td,span'))return;
+      el.setAttribute('data-edit-key','m-'+idx);
+      idx++;
+    });
+
+    // Restore saved
+    var saved=sGet();
+    if(saved){
+      for(var key in saved){
+        var el=document.querySelector('[data-edit-key="'+key+'"]');
+        if(el)el.innerHTML=saved[key];
+      }
+    }
+
+    var bar=document.createElement('div');bar.id='edit-bar';
+    var tog=document.createElement('button');tog.className='toggle';tog.textContent='Edit Mode';
+    var sav=document.createElement('button');sav.className='save';sav.textContent='Save Changes';
+    var res=document.createElement('button');res.className='reset';res.textContent='Reset to Default';
+    bar.appendChild(tog);bar.appendChild(sav);bar.appendChild(res);
+    document.body.appendChild(bar);
+
+    function getEditables(){
+      var els=[];
+      document.querySelectorAll('[data-edit-key]').forEach(function(el){els.push(el)});
+      return els;
+    }
+
+    tog.addEventListener('click',function(){
+      editing=!editing;
+      var els=getEditables();
+      if(editing){
+        tog.classList.add('on');tog.textContent='Editing...';
+        sav.style.display='block';res.style.display='block';
+        document.body.classList.add('edit-active');
+        els.forEach(function(el){el.contentEditable='true'});
+      } else {
+        tog.classList.remove('on');tog.textContent='Edit Mode';
+        sav.style.display='none';res.style.display='none';
+        document.body.classList.remove('edit-active');
+        els.forEach(function(el){el.contentEditable='false'});
+      }
+    });
+
+    sav.addEventListener('click',function(){
+      var data={};
+      document.querySelectorAll('[data-edit-key]').forEach(function(el){
+        data[el.getAttribute('data-edit-key')]=el.innerHTML;
+      });
+      sSet(data);
+      var f=document.createElement('div');f.className='save-flash';f.textContent='\u2713 Changes Saved';
+      document.body.appendChild(f);setTimeout(function(){f.remove()},1600);
+    });
+
+    res.addEventListener('click',function(){
+      if(confirm('Reset all edits to original values?')){sDel();location.reload()}
+    });
+  }
+
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init)}
+  else{init()}
+})();
+</script>
 </body>
 </html>
