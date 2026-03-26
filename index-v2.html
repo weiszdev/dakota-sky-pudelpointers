@@ -65,10 +65,10 @@
             box-shadow: 0 2px 30px rgba(0,0,0,0.15);
         }
         .nav-logo {
-            height: 50px;
+            height: 65px;
             transition: height 0.4s ease;
         }
-        nav.scrolled .nav-logo { height: 38px; }
+        nav.scrolled .nav-logo { height: 48px; }
         .nav-links {
             display: flex;
             gap: 32px;
@@ -145,7 +145,7 @@
         .hero-bg {
             position: absolute;
             inset: -20%;
-            background-image: url('https://images.unsplash.com/photo-1537151625747-768eb6cf92b2?w=1920&q=80');
+            background-image: url('https://images.unsplash.com/photo-1682018062686-cc2b8642a0bb?w=1920&q=80');
             background-size: cover;
             background-position: center 30%;
             will-change: transform;
@@ -167,6 +167,20 @@
             text-align: center;
             padding: 0 24px;
             max-width: 900px;
+        }
+        .hero-badge {
+            width: 220px;
+            height: auto;
+            margin-bottom: 28px;
+            opacity: 0;
+            animation: fadeUp 1s 0.2s forwards;
+            filter: drop-shadow(0 4px 20px rgba(0,0,0,0.3));
+        }
+        @media (min-width: 768px) {
+            .hero-badge { width: 280px; }
+        }
+        @media (min-width: 1200px) {
+            .hero-badge { width: 320px; }
         }
         .hero-tag {
             display: inline-block;
@@ -583,7 +597,7 @@
         .contact-strip .bg {
             position: absolute;
             inset: -15%;
-            background: url('https://images.unsplash.com/photo-1510041586085-3f06a23f0004?w=1920&q=80') center/cover;
+            background: url('https://images.unsplash.com/photo-1758876569555-4acb267ffde1?w=1920&q=80') center/cover;
             will-change: transform;
         }
         .contact-strip .overlay {
@@ -759,6 +773,7 @@
         <div class="hero-bg" data-parallax="0.3"></div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
+            <img src="logo-badge.png" alt="Dakota Sky Pudelpointers Badge" class="hero-badge">
             <span class="hero-tag">Dickinson, North Dakota</span>
             <h1>Bred for the Field.<br><em>Built for the Home.</em></h1>
             <p class="hero-sub">Dakota Sky Pudelpointers — Premier versatile gun dogs for hunters who demand excellence and families who deserve the best.</p>
@@ -784,7 +799,7 @@
 
     <!-- IMAGE SECTION — Hunting scene -->
     <section class="image-section align-left">
-        <div class="bg" data-parallax="0.2" style="background-image: url('https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=1920&q=80');"></div>
+        <div class="bg" data-parallax="0.2" style="background-image: url('https://images.unsplash.com/photo-1758876569618-6c9fef8e0303?w=1920&q=80');"></div>
         <div class="overlay" style="background: linear-gradient(90deg, rgba(45,45,45,0.8) 0%, rgba(45,45,45,0.3) 60%, transparent 100%);"></div>
         <div class="content reveal-left">
             <span class="tag">The Breed</span>
@@ -827,7 +842,7 @@
     <!-- SPLIT — Breeding -->
     <section class="split">
         <div class="split-image">
-            <div class="bg-inner" data-parallax="0.15" style="background-image: url('https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=1200&q=80');"></div>
+            <div class="bg-inner" data-parallax="0.15" style="background-image: url('https://images.unsplash.com/photo-1758876569500-ca84e024b1cb?w=1200&q=80');"></div>
         </div>
         <div class="split-text reveal-right">
             <span class="tag">Our Program</span>
@@ -846,13 +861,13 @@
             <a href="training.html" class="cta-link">Training Programs &rarr;</a>
         </div>
         <div class="split-image">
-            <div class="bg-inner" data-parallax="0.15" style="background-image: url('https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?w=1200&q=80');"></div>
+            <div class="bg-inner" data-parallax="0.15" style="background-image: url('https://images.unsplash.com/photo-1682018062565-7a4d85198bca?w=1200&q=80');"></div>
         </div>
     </section>
 
     <!-- IMAGE SECTION — Landscape / boarding -->
     <section class="image-section align-center">
-        <div class="bg" data-parallax="0.25" style="background-image: url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1920&q=80');"></div>
+        <div class="bg" data-parallax="0.25" style="background-image: url('https://images.unsplash.com/photo-1635787508111-fedeb757fc32?w=1920&q=80');"></div>
         <div class="overlay" style="background: rgba(27,67,50,0.6);"></div>
         <div class="content reveal">
             <span class="tag">Home Away From Home</span>
