@@ -1015,21 +1015,7 @@
     });
   }
 
-  var observer=new MutationObserver(function(){
-    var pc=document.getElementById('protectedContent');
-    if(pc&&pc.style.display!=='none'){observer.disconnect();init()}
-  });
-  if(document.readyState==='loading'){
-    document.addEventListener('DOMContentLoaded',function(){
-      var pc=document.getElementById('protectedContent');
-      if(pc&&pc.style.display!=='none'){init()}
-      else{observer.observe(document.body,{attributes:true,subtree:true,attributeFilter:['style']})}
-    });
-  } else {
-    var pc=document.getElementById('protectedContent');
-    if(pc&&pc.style.display!=='none'){init()}
-    else{observer.observe(document.body,{attributes:true,subtree:true,attributeFilter:['style']})}
-  }
+  var _poll=setInterval(function(){var pc=document.getElementById('protectedContent');if(pc&&pc.style.display!=='none'&&pc.offsetHeight>0){clearInterval(_poll);init();}},300);
 })();
 </script>
 </body>
