@@ -933,5 +933,104 @@
     <a href="index.html"><img src="Dakota%20SKY%20for%20CLEAR%20no%20color.png" alt="Dakota Sky Pudelpointers" style="height:50px;width:auto;margin-bottom:1rem;"></a>
     <p style="color:rgba(255,255,255,0.7);font-size:0.9rem;">&copy; 2026 Dakota Sky Pudelpointers. All rights reserved. | Dickinson, North Dakota</p>
   </footer>
+<script>
+(function(){
+  var SKEY='dsp-monetization-edits';
+  var editing=false;
+  function sGet(){try{var s=localStorage.getItem(SKEY);return s?JSON.parse(s):null}catch(e){return null}}
+  function sSet(d){try{localStorage.setItem(SKEY,JSON.stringify(d))}catch(e){}}
+  function sDel(){try{localStorage.removeItem(SKEY)}catch(e){}}
+
+  function init(){
+    var pc=document.getElementById('protectedContent');
+    if(!pc)return;
+    var saved=sGet();
+    if(saved && saved.html){pc.innerHTML=saved.html}
+
+    var st=document.createElement('style');
+    st.textContent='#edit-bar{position:fixed;bottom:20px;right:20px;z-index:10000;display:flex;gap:8px;font-family:system-ui,sans-serif}'+'#edit-bar button{padding:10px 18px;border:2px solid #c8a951;border-radius:6px;cursor:pointer;font-size:14px;font-weight:600;color:white;transition:all .2s}'+'#edit-bar .toggle{background:#1a3c34}#edit-bar .toggle.on{background:#0f7938}'+'#edit-bar .save{background:#2d5a4f;display:none}#edit-bar .reset{background:#5a3a3a;display:none}'+'#edit-bar button:hover{box-shadow:0 0 12px rgba(200,169,81,0.5)}'+'body.edit-active [contenteditable=true]{border:2px dashed #c8a951!important;border-radius:4px;padding:2px 4px;background:rgba(200,169,81,0.06);min-height:1em}'+'div.save-flash{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);padding:16px 32px;background:#1a3c34;color:#c8a951;border:2px solid #c8a951;border-radius:8px;font:600 18px system-ui;z-index:10001;opacity:0;animation:sflash 1.5s}'+'@keyframes sflash{10%{opacity:1}80%{opacity:1}100%{opacity:0}}';
+    document.head.appendChild(st);
+
+    var bar=document.createElement('div');bar.id='edit-bar';
+    var tog=document.createElement('button');tog.className='toggle';tog.textContent='Edit Mode';
+    var sav=document.createElement('button');sav.className='save';sav.textContent='Save Changes';
+    var res=document.createElement('button');res.className='reset';res.textContent='Reset to Default';
+    bar.appendChild(tog);bar.appendChild(sav);bar.appendChild(res);
+    document.body.appendChild(bar);
+
+    function getEditables(){
+      var els=[];
+      pc.querySelectorAll('li.revenue-item, td, blockquote, li:not(.revenue-item), h2, p, h1').forEach(function(el){
+        if(el.tagName==='TD'&&el.parentElement.rowIndex===0)return;
+        els.push(el);
+      });
+      return els;
+    }
+
+    function recalcTotals(){
+      pc.querySelectorAll('table').forEach(function(table){
+        var rows=table.querySelectorAll('tr');
+        var totalRow=null;
+        rows.forEach(function(r){if(r.cells[0]&&r.cells[0].textContent.trim().toUpperCase()==='TOTAL')totalRow=r});
+        if(!totalRow)return;
+        for(var c=1;c<totalRow.cells.length;c++){
+          var sum=0;
+          rows.forEach(function(r){
+            if(r===totalRow||r===rows[0])return;
+            var cell=r.cells[c];
+            if(cell){var v=parseFloat(cell.textContent.replace(/[^0-9.-]/g,''));if(!isNaN(v))sum+=v}
+          });
+          totalRow.cells[c].textContent='
+</html>+sum.toLocaleString();
+        }
+      });
+    }
+
+    tog.addEventListener('click',function(){
+      editing=!editing;
+      var els=getEditables();
+      if(editing){
+        tog.classList.add('on');tog.textContent='Editing...';
+        sav.style.display='block';res.style.display='block';
+        document.body.classList.add('edit-active');
+        els.forEach(function(el){el.contentEditable='true'});
+        pc.querySelectorAll('td').forEach(function(td){td.addEventListener('blur',recalcTotals)});
+      } else {
+        tog.classList.remove('on');tog.textContent='Edit Mode';
+        sav.style.display='none';res.style.display='none';
+        document.body.classList.remove('edit-active');
+        els.forEach(function(el){el.contentEditable='false'});
+      }
+    });
+
+    sav.addEventListener('click',function(){
+      recalcTotals();
+      sSet({html:pc.innerHTML});
+      var f=document.createElement('div');f.className='save-flash';f.textContent='\u2713 Changes Saved';
+      document.body.appendChild(f);setTimeout(function(){f.remove()},1600);
+    });
+
+    res.addEventListener('click',function(){
+      if(confirm('Reset all edits to original values?')){sDel();location.reload()}
+    });
+  }
+
+  var observer=new MutationObserver(function(){
+    var pc=document.getElementById('protectedContent');
+    if(pc&&pc.style.display!=='none'){observer.disconnect();init()}
+  });
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',function(){
+      var pc=document.getElementById('protectedContent');
+      if(pc&&pc.style.display!=='none'){init()}
+      else{observer.observe(document.body,{attributes:true,subtree:true,attributeFilter:['style']})}
+    });
+  } else {
+    var pc=document.getElementById('protectedContent');
+    if(pc&&pc.style.display!=='none'){init()}
+    else{observer.observe(document.body,{attributes:true,subtree:true,attributeFilter:['style']})}
+  }
+})();
+</script>
 </body>
 </html>
