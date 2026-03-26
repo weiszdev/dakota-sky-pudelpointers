@@ -3,841 +3,1020 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Training - Dakota Sky Pudelpointers</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>Professional Training — Dakota Sky Pudelpointers</title>
+    <meta name="description" content="Professional gun dog training programs. From puppy foundations to finished hunting dogs. Custom training for Pudelpointers.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --dsp-forest-dark: #1a3c34;
-            --dsp-forest: #2d6a4f;
-            --dsp-forest-light: #52796f;
-            --dsp-cream: #F4F2ED;
-            --dsp-warm-white: #FAFAF7;
-            --dsp-earth: #8B5E3C;
-            --dsp-gold: #D4A843;
-            --dsp-charcoal: #333333;
-            --dsp-text-light: #6b6b6b;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
         body {
-            font-family: 'Inter', sans-serif;
-            color: var(--dsp-charcoal);
-            line-height: 1.6;
-            background-color: var(--dsp-warm-white);
+            font-family: 'Nunito Sans', sans-serif;
+            color: #2D2D2D;
+            background: #FAF8F5;
+            overflow-x: hidden;
         }
 
-        /* HEADER STYLES */
-        header {
+        /* ===== COLOR PALETTE ===== */
+        :root {
+            --brown-deep: #5C3D2E;
+            --brown-warm: #8B5E3C;
+            --brown-light: #C4956A;
+            --brown-tan: #D4B896;
+            --cream: #FAF8F5;
+            --cream-dark: #F0EBE3;
+            --green-spring: #4A7C59;
+            --green-dark: #2D5A3D;
+            --green-forest: #1B4332;
+            --gold: #C8A84E;
+            --gold-light: #E8D48B;
+            --gold-accent: #D4A843;
+            --charcoal: #2D2D2D;
+            --white-soft: rgba(255,255,255,0.95);
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        h1, h2, h3, h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            line-height: 1.15;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
             position: fixed;
             top: 0;
-            width: 100%;
-            background-color: var(--dsp-forest-dark);
-            color: white;
+            left: 0;
+            right: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .header-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 1.5rem 2rem;
+            padding: 18px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: all 0.5s ease;
+            background: transparent;
         }
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            font-weight: 700;
-            letter-spacing: 3px;
-            color: white;
+        nav.scrolled {
+            background: rgba(27, 67, 50, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 12px 40px;
+            box-shadow: 0 2px 30px rgba(0,0,0,0.15);
         }
-
-        #nav-menu {
+        .nav-logo {
+            height: 65px;
+            transition: height 0.4s ease;
+        }
+        nav.scrolled .nav-logo { height: 48px; }
+        .nav-links {
             display: flex;
-            gap: 2.5rem;
+            gap: 32px;
             list-style: none;
         }
-
-        #nav-menu a {
+        .nav-links a {
             color: white;
             text-decoration: none;
             font-size: 0.85rem;
-            font-weight: 500;
-            letter-spacing: 1px;
+            font-weight: 600;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            transition: color 0.3s ease;
+            position: relative;
+            padding-bottom: 4px;
         }
-
-        #nav-menu a:hover {
-            color: var(--dsp-gold);
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
         }
+        .nav-links a:hover::after { width: 100%; }
 
-        .hamburger-menu {
+        /* Hamburger */
+        .hamburger {
             display: none;
             flex-direction: column;
+            gap: 5px;
             cursor: pointer;
-            gap: 6px;
+            z-index: 1001;
         }
-
-        .hamburger-menu span {
-            width: 25px;
-            height: 3px;
-            background-color: white;
-            border-radius: 2px;
+        .hamburger span {
+            width: 28px;
+            height: 2px;
+            background: white;
             transition: all 0.3s ease;
         }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
-        .hamburger-menu.active span:nth-child(1) {
-            transform: rotate(45deg) translate(10px, 10px);
-        }
-
-        .hamburger-menu.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger-menu.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
-        }
-
-        /* Mobile Navigation */
         @media (max-width: 768px) {
-            .hamburger-menu {
-                display: flex;
-            }
-
-            #nav-menu {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background-color: var(--dsp-forest);
+            .hamburger { display: flex; }
+            .nav-links {
+                position: fixed;
+                top: 0; left: 0; right: 0; bottom: 0;
+                background: rgba(27, 67, 50, 0.97);
                 flex-direction: column;
-                gap: 1rem;
-                padding: 2rem;
-                text-align: center;
+                justify-content: center;
+                align-items: center;
+                gap: 28px;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.4s ease;
             }
-
-            #nav-menu.active {
-                display: flex;
-            }
+            .nav-links.active { opacity: 1; pointer-events: all; }
+            .nav-links a { font-size: 1.1rem; letter-spacing: 3px; }
         }
 
-        /* MAIN CONTENT */
-        main {
-            margin-top: 80px;
-        }
-
-        section {
-            padding: 4rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        section.cream {
-            background-color: var(--dsp-cream);
-        }
-
-        section.warm-white {
-            background-color: var(--dsp-warm-white);
-        }
-
-        section.dark {
-            background: linear-gradient(135deg, var(--dsp-forest-dark) 0%, var(--dsp-forest) 100%);
-            color: white;
-        }
-
-        h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        h1 {
-            font-size: 3.5rem;
-            font-style: italic;
-            line-height: 1.2;
-        }
-
-        h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        h3 {
-            font-size: 1.5rem;
-            color: var(--dsp-forest);
-            margin-bottom: 1rem;
-        }
-
-        h4 {
-            font-size: 1.2rem;
-            margin-bottom: 0.8rem;
-        }
-
-        p {
-            font-size: 1rem;
-            color: var(--dsp-text-light);
-            margin-bottom: 1rem;
-            line-height: 1.8;
-        }
-
-        section.dark p {
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        /* HERO SECTION */
+        /* ===== PARALLAX HERO ===== */
         .hero {
-            background: linear-gradient(135deg, var(--dsp-forest-dark) 0%, var(--dsp-forest) 100%);
-            color: white;
-            text-align: center;
-            padding: 120px 2rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 500px;
-        }
-
-        .hero h1 {
-            color: white;
-            margin-bottom: 1rem;
-            font-size: 4rem;
-        }
-
-        .hero .subtitle {
-            font-size: 1.3rem;
-            color: rgba(255, 255, 255, 0.95);
-            margin-bottom: 3rem;
-            font-weight: 400;
-            letter-spacing: 0.5px;
-        }
-
-        /* IMAGE PLACEHOLDER */
-        .image-placeholder {
-            width: 100%;
-            height: 400px;
-            border: 3px dashed rgba(0, 0, 0, 0.2);
-            border-radius: 12px;
+            position: relative;
+            height: 100vh;
+            min-height: 700px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: rgba(212, 168, 67, 0.05);
-            color: var(--dsp-text-light);
-            font-size: 1rem;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute;
+            inset: -20%;
+            background-image: url('https://res.cloudinary.com/dyq7rnjjw/image/upload/w_1920,q_auto/Screenshot_2026-03-26_at_11.36.36_AM_gqfag6.jpg');
+            background-size: cover;
+            background-position: center 30%;
+            will-change: transform;
+            transition: transform 0.1s linear;
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(27, 67, 50, 0.7) 0%,
+                rgba(92, 61, 46, 0.5) 50%,
+                rgba(27, 67, 50, 0.65) 100%
+            );
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
             text-align: center;
-            margin: 2rem 0;
-            font-family: 'Inter', sans-serif;
-        }
-
-        /* CARDS */
-        .card {
-            background-color: white;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-        }
-
-        .card h3 {
-            color: var(--dsp-forest);
-            margin-bottom: 0.5rem;
-        }
-
-        .card-price {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--dsp-gold);
-            margin-bottom: 1rem;
-        }
-
-        .card-meta {
-            font-size: 0.9rem;
-            color: var(--dsp-text-light);
-            margin-bottom: 1.5rem;
-            font-weight: 500;
-        }
-
-        .card ul {
-            list-style: none;
-            margin-bottom: 1.5rem;
-        }
-
-        .card li {
-            padding: 0.5rem 0;
-            font-size: 0.95rem;
-            color: var(--dsp-text-light);
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-        }
-
-        .card li:before {
-            content: "✓";
-            color: var(--dsp-gold);
-            font-weight: 700;
-            flex-shrink: 0;
-            margin-top: 2px;
-        }
-
-        .card-duration {
-            font-size: 0.9rem;
-            color: var(--dsp-forest);
-            font-weight: 600;
-            padding-top: 1rem;
-            border-top: 1px solid #e0e0e0;
-        }
-
-        /* GRID LAYOUTS */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        @media (max-width: 768px) {
-            .cards-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        @media (max-width: 768px) {
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* BUTTONS */
-        .btn {
-            display: inline-block;
-            padding: 14px 32px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .btn-primary {
-            background-color: var(--dsp-gold);
-            color: var(--dsp-forest-dark);
-        }
-
-        .btn-primary:hover {
-            background-color: #c2922d;
-            transform: translateY(-2px);
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-
-        .btn-secondary:hover {
-            background-color: white;
-            color: var(--dsp-forest-dark);
-        }
-
-        .btn-cta {
-            margin-right: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        @media (max-width: 600px) {
-            .btn-cta {
-                display: block;
-                width: 100%;
-                margin-bottom: 1rem;
-                text-align: center;
-            }
-        }
-
-        /* CTA SECTION */
-        .cta-content {
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .cta-content h2 {
-            color: white;
-            font-size: 2.8rem;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        /* INTRO TEXT */
-        .section-intro {
-            font-size: 1.1rem;
-            color: var(--dsp-text-light);
-            max-width: 800px;
-            margin: 0 auto 3rem;
-            text-align: center;
-            line-height: 1.8;
-        }
-
-        /* PHILOSOPHY SECTION */
-        .philosophy-content {
+            padding: 0 24px;
             max-width: 900px;
-            margin: 0 auto;
         }
-
-        .philosophy-content p {
-            margin-bottom: 1.5rem;
-            font-size: 1.05rem;
-            line-height: 1.9;
-        }
-
-        section.dark .philosophy-content p {
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        /* FOOTER */
-        footer {
-            background-color: var(--dsp-forest-dark);
-            color: white;
-            padding: 4rem 2rem;
-        }
-
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        footer h4 {
-            color: white;
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
-
-        footer p {
-            color: rgba(255, 255, 255, 0.85);
-            margin-bottom: 0.8rem;
-            font-size: 0.95rem;
-        }
-
-        footer a {
-            color: var(--dsp-gold);
-            text-decoration: none;
-            transition: color 0.3s ease;
-            display: inline-block;
-            margin-bottom: 0.5rem;
-            font-size: 0.95rem;
-        }
-
-        footer a:hover {
-            color: #F4F2ED;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-form {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .footer-form input {
-            flex: 1;
-            padding: 10px 12px;
-            border: none;
-            border-radius: 4px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.9rem;
-        }
-
-        .footer-form button {
-            padding: 10px 20px;
-            background-color: var(--dsp-gold);
-            color: var(--dsp-forest-dark);
-            border: none;
-            border-radius: 4px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.9rem;
-        }
-
-        .footer-form button:hover {
-            background-color: #c2922d;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            padding-top: 2rem;
-            text-align: center;
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        /* FADE-IN ANIMATION */
-        .fade-in {
+        .hero-badge {
+            width: 220px;
+            height: auto;
+            margin-bottom: 28px;
             opacity: 0;
-            transform: translateY(30px);
+            animation: fadeUp 1s 0.2s forwards;
+            filter: drop-shadow(0 4px 20px rgba(0,0,0,0.3));
+        }
+        @media (min-width: 768px) {
+            .hero-badge { width: 280px; }
+        }
+        @media (min-width: 1200px) {
+            .hero-badge { width: 320px; }
+        }
+        .hero-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 24px;
+            font-weight: 600;
+            opacity: 0;
+            animation: fadeUp 1s 0.3s forwards;
+        }
+        .hero h1 {
+            font-size: clamp(2.8rem, 7vw, 5.5rem);
+            color: white;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeUp 1s 0.5s forwards;
+        }
+        .hero h1 em {
+            font-style: italic;
+            color: var(--gold-light);
+        }
+        .hero-sub {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: rgba(255,255,255,0.85);
+            font-weight: 300;
+            line-height: 1.7;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            opacity: 0;
+            animation: fadeUp 1s 0.7s forwards;
+        }
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeUp 1s 0.9s forwards;
+        }
+        .btn {
+            padding: 14px 36px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+        .btn-gold {
+            background: var(--gold);
+            color: var(--green-forest);
+        }
+        .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(200,168,78,0.3); }
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 1.5px solid rgba(255,255,255,0.5);
+        }
+        .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            opacity: 0;
+            animation: fadeUp 1s 1.2s forwards;
+        }
+        .scroll-indicator .line {
+            width: 1px;
+            height: 50px;
+            background: rgba(255,255,255,0.4);
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+        .scroll-indicator .line::after {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gold);
+            animation: scrollLine 2s infinite;
+        }
+        .scroll-indicator span {
+            display: block;
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+            margin-top: 12px;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes scrollLine {
+            0% { top: -100%; }
+            100% { top: 100%; }
+        }
+
+        /* ===== FULL-WIDTH IMAGE SECTIONS ===== */
+        .image-section {
+            position: relative;
+            height: 85vh;
+            min-height: 550px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+        .image-section .bg {
+            position: absolute;
+            inset: -15%;
+            background-size: cover;
+            background-position: center;
+            will-change: transform;
+        }
+        .image-section .overlay {
+            position: absolute;
+            inset: 0;
+        }
+        .image-section .content {
+            position: relative;
+            z-index: 2;
+            padding: 60px;
+            max-width: 600px;
+        }
+        .image-section.align-left .content { margin-left: 8%; }
+        .image-section.align-right .content { margin-left: auto; margin-right: 8%; }
+        .image-section.align-center .content { margin: 0 auto; text-align: center; max-width: 700px; }
+
+        .image-section h2 {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            color: white;
+            margin-bottom: 16px;
+        }
+        .image-section p {
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.88);
+            line-height: 1.8;
+            font-weight: 300;
+        }
+        .image-section .tag {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 16px;
+            display: block;
+            font-weight: 600;
+        }
+        .image-section .cta-link {
+            display: inline-block;
+            margin-top: 24px;
+            color: var(--gold-light);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--gold);
+            padding-bottom: 4px;
+            transition: all 0.3s ease;
+        }
+        .image-section .cta-link:hover { color: white; border-color: white; }
+
+        /* ===== TEXT INTERLUDE SECTIONS ===== */
+        .interlude {
+            padding: 120px 40px;
+            text-align: center;
+            background: var(--cream);
+        }
+        .interlude h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--brown-deep);
+            margin-bottom: 24px;
+        }
+        .interlude p {
+            max-width: 680px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: #6B5B4E;
+            line-height: 1.9;
+            font-weight: 300;
+        }
+        .interlude .gold-rule {
+            width: 60px;
+            height: 2px;
+            background: var(--gold);
+            margin: 0 auto 32px;
+        }
+
+        /* ===== TRAINING PROGRAMS GRID (4-COL) ===== */
+        .pillars {
+            padding: 100px 40px;
+            background: var(--green-forest);
+        }
+        .pillars-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+        .pillars-header .tag {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 16px;
+            display: block;
+        }
+        .pillars-header h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: white;
+        }
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .pillar-card {
+            text-align: center;
+            padding: 40px 24px;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 2px;
+            transition: all 0.4s ease;
+        }
+        .pillar-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-4px);
+            background: rgba(255,255,255,0.03);
+        }
+        .pillar-icon {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+        .pillar-card h3 {
+            font-size: 1.3rem;
+            color: var(--gold-light);
+            margin-bottom: 12px;
+        }
+        .pillar-card p {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.65);
+            line-height: 1.7;
+        }
+        .program-price {
+            font-size: 1.1rem;
+            color: var(--gold);
+            font-weight: 700;
+            margin: 16px 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 16px 0;
+        }
+        .program-duration {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 12px;
+        }
+        .program-features {
+            list-style: none;
+            text-align: left;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.6);
+            margin-top: 20px;
+        }
+        .program-features li {
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .program-features li::before {
+            content: '✓ ';
+            color: var(--gold-light);
+            font-weight: 700;
+            margin-right: 8px;
+        }
+        @media (max-width: 1024px) {
+            .pillars-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        }
+        @media (max-width: 480px) {
+            .pillars-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ===== SPLIT SECTION ===== */
+        .split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 70vh;
+        }
+        .split-image {
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 400px;
+        }
+        .split-image .bg-inner {
+            position: absolute;
+            inset: -10%;
+            background-size: cover;
+            background-position: center;
+            will-change: transform;
+        }
+        .split-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 80px 60px;
+        }
+        .split-text .tag {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold-accent);
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+        .split-text h2 {
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            color: var(--brown-deep);
+            margin-bottom: 20px;
+        }
+        .split-text p {
+            font-size: 1.05rem;
+            color: #6B5B4E;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+        .split-text.dark {
+            background: var(--green-forest);
+        }
+        .split-text.dark h2 { color: white; }
+        .split-text.dark p { color: rgba(255,255,255,0.75); }
+        .split-text.dark .tag { color: var(--gold-light); }
+        .split-text .cta-link {
+            display: inline-block;
+            margin-top: 28px;
+            color: var(--green-spring);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-bottom: 1.5px solid var(--green-spring);
+            padding-bottom: 3px;
+            transition: all 0.3s ease;
+            align-self: flex-start;
+        }
+        .split-text .cta-link:hover { color: var(--gold-accent); border-color: var(--gold-accent); }
+        .split-text.dark .cta-link { color: var(--gold-light); border-color: var(--gold); }
+        .split-text.dark .cta-link:hover { color: white; border-color: white; }
+
+        /* ===== INCLUSIONS GRID ===== */
+        .inclusions-section {
+            padding: 100px 40px;
+            background: var(--cream);
+        }
+        .inclusions-section h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: var(--brown-deep);
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        .inclusions-intro {
+            text-align: center;
+            color: #6B5B4E;
+            margin-bottom: 48px;
+            font-size: 1.05rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .inclusions-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .inclusion-card {
+            background: white;
+            padding: 40px 32px;
+            border-left: 3px solid var(--gold);
+            text-align: center;
+        }
+        .inclusion-card h3 {
+            font-size: 1.2rem;
+            color: var(--brown-deep);
+            margin-bottom: 12px;
+        }
+        .inclusion-card p {
+            font-size: 0.95rem;
+            color: #6B5B4E;
+            line-height: 1.7;
+        }
+        @media (max-width: 768px) {
+            .inclusions-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ===== CONTACT STRIP ===== */
+        .contact-strip {
+            position: relative;
+            height: 60vh;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .contact-strip .bg {
+            position: absolute;
+            inset: -15%;
+            background: url('https://res.cloudinary.com/dyq7rnjjw/image/upload/w_1920,q_auto/Screenshot_2026-03-26_at_11.40.05_AM_pg8iyc.jpg') center/cover;
+            will-change: transform;
+        }
+        .contact-strip .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(27,67,50,0.85), rgba(92,61,46,0.75));
+        }
+        .contact-strip .content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            padding: 0 24px;
+        }
+        .contact-strip h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: white;
+            margin-bottom: 12px;
+        }
+        .contact-strip p {
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 8px;
+            font-weight: 300;
+        }
+        .contact-strip .contact-details {
+            margin-top: 28px;
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .contact-strip .contact-details a {
+            color: var(--gold-light);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+        .contact-strip .contact-details a:hover { color: white; }
+        .contact-strip .btn { margin-top: 32px; }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--charcoal);
+            padding: 60px 40px 40px;
+            text-align: center;
+        }
+        .footer-logo {
+            height: 40px;
+            margin-bottom: 24px;
+            opacity: 0.8;
+        }
+        .footer-links {
+            display: flex;
+            gap: 28px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+        .footer-links a {
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover { color: var(--gold); }
+        .footer-copy {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.3);
+            letter-spacing: 1px;
+        }
+
+        /* ===== SCROLL ANIMATIONS ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
             transition: opacity 0.8s ease, transform 0.8s ease;
         }
-
-        .fade-in.visible {
+        .reveal.visible {
             opacity: 1;
             transform: translateY(0);
         }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-
-            h2 {
-                font-size: 2rem;
-            }
-
-            .hero {
-                padding: 80px 2rem;
-                min-height: auto;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero .subtitle {
-                font-size: 1.1rem;
-            }
-
-            section {
-                padding: 2.5rem 1.5rem;
-            }
-
-            .image-placeholder {
-                height: 250px;
-            }
-
-            .cta-content h2 {
-                font-size: 2rem;
-            }
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal-right.visible {
+            opacity: 1;
+            transform: translateX(0);
         }
 
-        @media (max-width: 480px) {
-            .header-content {
-                padding: 1rem 1.5rem;
-            }
-
-            .logo {
-                font-size: 1.3rem;
-                letter-spacing: 2px;
-            }
-
-            h1 {
-                font-size: 2rem;
-            }
-
-            h2 {
-                font-size: 1.5rem;
-            }
-
-            .hero h1 {
-                font-size: 1.8rem;
-            }
-
-            section {
-                padding: 2rem 1rem;
-            }
+        /* ===== INSIDERS BANNER ===== */
+        .insiders-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            background: linear-gradient(90deg, var(--green-forest), var(--brown-deep));
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transform: translateY(100%);
+            animation: slideUp 0.6s 3s forwards;
         }
+        .insiders-banner .pulse {
+            width: 8px; height: 8px;
+            background: #ff4444;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+        .insiders-banner span {
+            color: var(--gold-light);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .insiders-banner a {
+            color: white;
+            text-decoration: underline;
+            font-size: 0.8rem;
+        }
+        .insiders-banner .close-banner {
+            position: absolute;
+            right: 16px;
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.5);
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+        @keyframes slideUp { to { transform: translateY(0); } }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
     </style>
 </head>
 <body>
-    <!-- HEADER -->
-    <header>
-        <div class="header-content">
-            <a href="index.html" class="logo"><img src="Dakota%20SKY%20for%20CLEAR%20no%20color.png" alt="Dakota Sky Pudelpointers" style="height: 65px;width:auto;"></a><a href="index.html" style="margin-left:1rem;display:flex;align-items:center;"><img src="key%20gun%20logo%20FINAL.png" alt="Dakota Sky Gun Dog" style="height:35px;width:auto;"></a>
-            <nav id="nav-menu">
-                <a href="index.html">Home</a>
-                <a href="breeding.html">Breeding</a>
-                <a href="training.html">Training</a>
-                <a href="boarding.html">Boarding</a>
-                <a href="nutrition.html">Nutrition</a>
-                <a href="about.html">About</a>
-                <a href="contact.html">Contact</a>
-            </nav>
-            <div class="hamburger-menu" id="hamburger">
-                <span></span><span></span><span></span>
+
+    <!-- NAVIGATION -->
+    <nav id="navbar">
+        <a href="/">
+            <img src="https://res.cloudinary.com/dyq7rnjjw/image/upload/h_120,q_auto/v1774544524/Dakota_SKY_for_CLEAR_no_color_etv2yz.png" alt="Dakota Sky Pudelpointers" class="nav-logo">
+        </a>
+        <div class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
+        </div>
+        <ul class="nav-links" id="nav-menu">
+            <li><a href="breeding.html">Breeding</a></li>
+            <li><a href="training.html">Training</a></li>
+            <li><a href="boarding.html">Boarding</a></li>
+            <li><a href="nutrition.html">Nutrition</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="hero-bg" data-parallax="0.3"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <img src="https://res.cloudinary.com/dyq7rnjjw/image/upload/w_600,q_auto/v1774544524/Dakota_SKY_for_CLEAR_no_color_etv2yz.png" alt="Dakota Sky Pudelpointers Badge" class="hero-badge">
+            <span class="hero-tag">Professional Training</span>
+            <h1>From First Birds to <em>Finished Dogs.</em></h1>
+            <p class="hero-sub">Custom training programs for Pudelpointers at every stage. From foundation work to championship-level finishes.</p>
+            <div class="hero-cta">
+                <a href="contact.html" class="btn btn-gold">Start Training</a>
+                <a href="#programs" class="btn btn-outline">View Programs</a>
             </div>
         </div>
-    </header>
+        <div class="scroll-indicator">
+            <div class="line"></div>
+            <span>Scroll</span>
+        </div>
+    </section>
 
-    <!-- MAIN CONTENT -->
-    <main>
-        <!-- HERO SECTION -->
-        <section class="hero">
-            <h1 class="fade-in">From First Birds to Finished Dogs.</h1>
-            <p class="subtitle fade-in">Professional training for hunting companions.</p>
-        </section>
+    <!-- TRAINING PHILOSOPHY INTERLUDE -->
+    <section class="interlude">
+        <div class="reveal">
+            <div class="gold-rule"></div>
+            <h2>Our Training Philosophy</h2>
+            <p>Every dog has natural instinct and personality. Our job is to build on those foundations with consistent, positive methodology. We develop drive, steadiness, and obedience that translates from the training yard to opening day and beyond.</p>
+        </div>
+    </section>
 
-        <!-- TRAINING PROGRAMS SECTION -->
-        <section class="cream">
-            <h2 class="fade-in">Training Programs</h2>
-            <p class="section-intro fade-in">We offer specialized training programs tailored to your dog's age, experience, and goals. Every program is built on positive reinforcement, field-proven methods, and individual attention.</p>
-
-            <div class="cards-grid">
-                <div class="card fade-in">
-                    <h3>Puppy Foundation</h3>
-                    <div class="card-price">$1,200/month</div>
-                    <div class="card-meta">Age: 8-16 weeks</div>
-                    <ul>
-                        <li>Socialization foundation</li>
-                        <li>Basic obedience</li>
-                        <li>Introduction to birds</li>
-                        <li>Crate training</li>
-                        <li>Recall development</li>
-                        <li>Steadiness foundations</li>
-                    </ul>
-                    <div class="card-duration">Duration: 4-6 weeks minimum</div>
-                </div>
-
-                <div class="card fade-in">
-                    <h3>Started Dog Program</h3>
-                    <div class="card-price">$1,400/month</div>
-                    <div class="card-meta">Age: 6-12 months</div>
-                    <ul>
-                        <li>Bird introduction &amp; pointing</li>
-                        <li>Backing training</li>
-                        <li>Retrieve to hand (land)</li>
-                        <li>Water introduction</li>
-                        <li>Whistle commands</li>
-                        <li>Quartering patterns</li>
-                    </ul>
-                    <div class="card-duration">Duration: 3-4 months</div>
-                </div>
-
-                <div class="card fade-in">
-                    <h3>Finished Dog Program</h3>
-                    <div class="card-price">$1,500/month</div>
-                    <div class="card-meta">Age: 12+ months</div>
-                    <ul>
-                        <li>Steady to wing &amp; shot</li>
-                        <li>Blind retrieves</li>
-                        <li>Honor training</li>
-                        <li>Hunt test prep (NAVHDA, AKC)</li>
-                        <li>Advanced field work</li>
-                        <li>Off-season conditioning</li>
-                    </ul>
-                    <div class="card-duration">Duration: 4-6 months</div>
-                </div>
-
-                <div class="card fade-in">
-                    <h3>Tune-Up / Refresher</h3>
-                    <div class="card-price">$1,200/month</div>
-                    <div class="card-meta">For any age</div>
-                    <ul>
-                        <li>Pre-season conditioning</li>
-                        <li>Command reinforcement</li>
-                        <li>Problem-solving specific issues</li>
-                        <li>Hunting readiness prep</li>
-                        <li>Behavior correction</li>
-                        <li>Confidence building</li>
-                    </ul>
-                    <div class="card-duration">Duration: 1-2 months</div>
-                </div>
+    <!-- TRAINING PROGRAMS (4-COLUMN) -->
+    <section class="pillars" id="programs">
+        <div class="pillars-header reveal">
+            <span class="tag">Training Programs</span>
+            <h2>Choose Your Path</h2>
+        </div>
+        <div class="pillars-grid">
+            <div class="pillar-card reveal">
+                <h3>Puppy Foundation</h3>
+                <div class="program-price">$1,200/mo</div>
+                <div class="program-duration">8–16 weeks | 4–6 weeks minimum</div>
+                <ul class="program-features">
+                    <li>Early socialization & handling</li>
+                    <li>Gunfire desensitization</li>
+                    <li>Basic obedience</li>
+                    <li>Water introduction</li>
+                    <li>Daily exercise & play</li>
+                </ul>
             </div>
-        </section>
-
-        <!-- WHAT'S INCLUDED SECTION -->
-        <section class="warm-white">
-            <h2 class="fade-in">What's Included in Every Training Program</h2>
-
-            <div class="features-grid">
-                <div class="card fade-in">
-                    <h3>Professional Training</h3>
-                    <p>6 days per week, structured sessions led by Glen and Stacey's team</p>
-                </div>
-
-                <div class="card fade-in">
-                    <h3>Daily Exercise</h3>
-                    <p>Multiple training sessions and field work</p>
-                </div>
-
-                <div class="card fade-in">
-                    <h3>Premium Nutrition</h3>
-                    <p>Fed Inukshuk premium performance food</p>
-                </div>
-
-                <div class="card fade-in">
-                    <h3>Weekly Updates</h3>
-                    <p>Photos and videos showing progress</p>
-                </div>
-
-                <div class="card fade-in">
-                    <h3>Monthly Reports</h3>
-                    <p>Detailed progress notes on training milestones</p>
-                </div>
-
-                <div class="card fade-in">
-                    <h3>Veterinary Care</h3>
-                    <p>Coordination with local veterinarians</p>
-                </div>
+            <div class="pillar-card reveal">
+                <h3>Started Dog</h3>
+                <div class="program-price">$1,400/mo</div>
+                <div class="program-duration">6–12 months | 3–4 months minimum</div>
+                <ul class="program-features">
+                    <li>Point development</li>
+                    <li>Flush & chase control</li>
+                    <li>Retrieve foundation</li>
+                    <li>Steady to wing & shot</li>
+                    <li>Release training</li>
+                </ul>
             </div>
-        </section>
-
-        <!-- TRAINING PHILOSOPHY SECTION -->
-        <section class="dark">
-            <h2 class="fade-in" style="color: white;">Our Training Philosophy</h2>
-            <div class="philosophy-content fade-in">
-                <p>At Dakota Sky Pudelpointers, we believe that exceptional hunting dogs are developed through a combination of positive reinforcement, patience, and respect for each dog's natural abilities. Our training philosophy centers on understanding the individual temperament and drive of every dog that comes through our program. We don't believe in one-size-fits-all approaches—instead, we tailor our methods to bring out the best in each animal while building confidence and trust.</p>
-
-                <p>Positive reinforcement is at the heart of everything we do. We use proven field methods that reward desired behaviors, creating a dog that is eager to work and responsive to commands. Whether we're introducing a young puppy to birds for the first time or polishing a nearly-finished hunting companion, we emphasize consistency, clarity, and patience. Our team takes time to understand what motivates each dog, creating training sessions that are both effective and enjoyable.</p>
-
-                <p>We're committed to developing well-rounded hunting companions that not only excel in the field but also integrate seamlessly into family life. Every dog graduates from our program with foundational skills, confidence, and the tools needed to hunt safely and successfully. We view ourselves as partners in your dog's development, providing the guidance and expertise needed to transform potential into excellence.</p>
+            <div class="pillar-card reveal">
+                <h3>Finished Dog</h3>
+                <div class="program-price">$1,500/mo</div>
+                <div class="program-duration">12+ months | 4–6 months minimum</div>
+                <ul class="program-features">
+                    <li>Whoa & steadiness</li>
+                    <li>Blind retrieves</li>
+                    <li>Multi-bird work</li>
+                    <li>Transition to field</li>
+                    <li>Hunt preparation</li>
+                </ul>
             </div>
-        </section>
-
-        <!-- CTA SECTION -->
-        <section class="dark">
-            <div class="cta-content">
-                <h2>Ready to Train Your Hunting Companion?</h2>
-                <div class="cta-buttons">
-                    <a href="training-consultation.html" class="btn btn-primary btn-cta">Schedule a Consultation</a>
-                    <a href="contact.html" class="btn btn-secondary btn-cta">Contact Us</a>
-                </div>
+            <div class="pillar-card reveal">
+                <h3>Tune-Up</h3>
+                <div class="program-price">$1,200/mo</div>
+                <div class="program-duration">Any age | 1–2 months</div>
+                <ul class="program-features">
+                    <li>Refresher training</li>
+                    <li>Behavior correction</li>
+                    <li>Advanced techniques</li>
+                    <li>Off-season conditioning</li>
+                    <li>Hunt scenario prep</li>
+                </ul>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
+
+    <!-- WHAT'S INCLUDED IMAGE SECTION -->
+    <section class="split">
+        <div class="split-text reveal-left">
+            <span class="tag">Daily Commitment</span>
+            <h2>What's Included</h2>
+            <p>Professional training means six days a week of dedicated work. Your dog receives consistent instruction, premium nutrition, proper exercise, and veterinary care. We document progress with weekly updates and monthly training reports so you're never in the dark.</p>
+            <a href="contact.html" class="cta-link">Get in Touch &rarr;</a>
+        </div>
+        <div class="split-image">
+            <div class="bg-inner" data-parallax="0.15" style="background-image: url('https://res.cloudinary.com/dyq7rnjjw/image/upload/w_1200,q_auto/Screenshot_2026-03-26_at_11.35.50_AM_dpcvrz.jpg');"></div>
+        </div>
+    </section>
+
+    <!-- TRAINING INCLUSIONS (6-CARD) -->
+    <section class="inclusions-section">
+        <h2>Every Training Day Includes</h2>
+        <p class="inclusions-intro">We believe in transparency and comprehensive care. Here's what your dog receives during training with us.</p>
+        <div class="inclusions-grid">
+            <div class="inclusion-card reveal">
+                <h3>Professional Training</h3>
+                <p>6 days a week of one-on-one work with experienced trainers using proven methodologies.</p>
+            </div>
+            <div class="inclusion-card reveal">
+                <h3>Daily Exercise</h3>
+                <p>Multiple sessions in our 200-acre facility. Your dog stays fit, mentally sharp, and conditioned.</p>
+            </div>
+            <div class="inclusion-card reveal">
+                <h3>Premium Nutrition</h3>
+                <p>Inukshuk professional-grade food supports muscle development and peak athletic performance.</p>
+            </div>
+            <div class="inclusion-card reveal">
+                <h3>Weekly Updates</h3>
+                <p>Video training clips and progress notes keep you connected to your dog's development.</p>
+            </div>
+            <div class="inclusion-card reveal">
+                <h3>Monthly Reports</h3>
+                <p>Detailed assessments of training progress, behavior observations, and recommendations for home work.</p>
+            </div>
+            <div class="inclusion-card reveal">
+                <h3>Veterinary Care</h3>
+                <p>Emergency care and wellness checks included. Your dog's health is our priority.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRAINING PHILOSOPHY IMAGE SECTION -->
+    <section class="image-section align-left">
+        <div class="bg" data-parallax="0.2" style="background-image: url('https://res.cloudinary.com/dyq7rnjjw/image/upload/w_1920,q_auto/Screenshot_2026-03-26_at_11.40.20_AM_k2a0xj.jpg');"></div>
+        <div class="overlay" style="background: linear-gradient(90deg, rgba(45,45,45,0.85) 0%, rgba(45,45,45,0.4) 60%, transparent 100%);"></div>
+        <div class="content reveal-left">
+            <span class="tag">The Approach</span>
+            <h2>Training Philosophy</h2>
+            <p>We build hunters through patience, repetition, and positive reinforcement. Every dog learns differently — we adjust our methodology to match each individual's personality and learning style. The goal is confidence, reliability, and a dog that loves to work.</p>
+            <a href="contact.html" class="cta-link">Schedule a Consultation &rarr;</a>
+        </div>
+    </section>
+
+    <!-- CONTACT STRIP — CTA -->
+    <section class="contact-strip">
+        <div class="bg" data-parallax="0.2"></div>
+        <div class="overlay"></div>
+        <div class="content reveal">
+            <h2>Ready to Train Your Hunting Companion?</h2>
+            <p>10525 Highway 10 • Dickinson, ND 58601</p>
+            <div class="contact-details">
+                <a href="tel:7012901492">(701) 290-1492</a>
+                <a href="mailto:dakotasky.nd@gmail.com">dakotasky.nd@gmail.com</a>
+            </div>
+            <a href="contact.html" class="btn btn-gold">Start Training Today</a>
+        </div>
+    </section>
 
     <!-- FOOTER -->
     <footer>
-        <div class="footer-logo" style="margin-bottom:1.5rem;"><a href="index.html"><img src="Dakota%20SKY%20for%20CLEAR%20no%20color.png" alt="Dakota Sky Pudelpointers" style="height:50px;width:auto;"></a></div>
-        <div class="footer-content">
-            <div>
-                <h4>Contact</h4>
-                <p>10525 Highway 10<br>Dickinson, ND 58601</p>
-                <p>Phone: <a href="tel:+17012901492">(701) 290-1492</a></p>
-                <p>Email: <a href="mailto:dakotasky.nd@gmail.com">dakotasky.nd@gmail.com</a></p>
-            </div>
-            <div>
-                <h4>Quick Links</h4>
-                <a href="breeding.html">Breeding Program</a><br>
-                <a href="training.html">Professional Training</a><br>
-                <a href="boarding.html">Boarding &amp; Daycare</a><br>
-                <a href="nutrition.html">Inukshuk Nutrition</a><br>
-                <a href="about.html">About Glen &amp; Stacey</a>
-            </div>
-            <div>
-                <h4>Follow Us</h4>
-                <div class="social-links">
-                    <a href="#">Facebook</a>
-                    <a href="#">Instagram</a>
-                    <a href="#">YouTube</a>
-                </div>
-                <h4>Stay Updated</h4>
-                <form class="footer-form">
-                    <input type="email" placeholder="Your email" required>
-                    <button type="submit">Join</button>
-                </form>
-            </div>
+        <img src="https://res.cloudinary.com/dyq7rnjjw/image/upload/h_120,q_auto/v1774544524/Dakota_SKY_for_CLEAR_no_color_etv2yz.png" alt="Dakota Sky" class="footer-logo">
+        <div class="footer-links">
+            <a href="breeding.html">Breeding</a>
+            <a href="training.html">Training</a>
+            <a href="boarding.html">Boarding</a>
+            <a href="nutrition.html">Nutrition</a>
+            <a href="shop.html">Shop</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="members.html">Insiders</a>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Dakota Sky Pudelpointers. All rights reserved. | Dickinson, North Dakota</p>
-        </div>
+        <p class="footer-copy">&copy; 2026 Dakota Sky Pudelpointers. All rights reserved. • Dickinson, North Dakota</p>
     </footer>
 
+    <!-- INSIDERS BANNER -->
+    <div class="insiders-banner" id="insiders-banner">
+        <div class="pulse"></div>
+        <span>Dakota Sky Insiders — Limited to First 100 Members</span>
+        <a href="members.html">Join Now</a>
+        <button class="close-banner" onclick="document.getElementById('insiders-banner').style.display='none'">&times;</button>
+    </div>
+
+    <!-- SCRIPTS -->
     <script>
-        // HAMBURGER MENU FUNCTIONALITY
+        // ===== NAVBAR SCROLL =====
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 80);
+        });
+
+        // ===== HAMBURGER =====
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('nav-menu');
-
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
         });
-
-        // Close menu when a link is clicked
-        const navLinks = navMenu.querySelectorAll('a');
-        navLinks.forEach(link => {
+        document.querySelectorAll('#nav-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 hamburger.classList.remove('active');
                 navMenu.classList.remove('active');
             });
         });
 
-        // FADE-IN SCROLL ANIMATION
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        // ===== PARALLAX ON SCROLL =====
+        const parallaxElements = document.querySelectorAll('[data-parallax]');
+        let ticking = false;
+        function updateParallax() {
+            const scrollY = window.scrollY;
+            parallaxElements.forEach(el => {
+                const speed = parseFloat(el.dataset.parallax);
+                const rect = el.parentElement.getBoundingClientRect();
+                const offsetTop = rect.top + scrollY;
+                const viewportMiddle = scrollY + window.innerHeight / 2;
+                const elementMiddle = offsetTop + rect.height / 2;
+                const distance = viewportMiddle - elementMiddle;
+                el.style.transform = `translateY(${distance * speed}px)`;
+            });
+            ticking = false;
+        }
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        });
+        updateParallax();
 
-        const observer = new IntersectionObserver((entries) => {
+        // ===== REVEAL ON SCROLL =====
+        const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
+                    revealObserver.unobserve(entry.target);
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
 
-        // Observe all fade-in elements
-        const fadeInElements = document.querySelectorAll('.fade-in');
-        fadeInElements.forEach(element => {
-            observer.observe(element);
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+            revealObserver.observe(el);
         });
-
-        // FOOTER FORM SUBMISSION
-        const footerForm = document.querySelector('.footer-form');
-        if (footerForm) {
-            footerForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const input = footerForm.querySelector('input[type="email"]');
-                if (input.value) {
-                    alert('Thank you for subscribing! Check your email for updates.');
-                    input.value = '';
-                }
-            });
-        }
     </script>
+
 </body>
 </html>

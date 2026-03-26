@@ -1,1156 +1,1061 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact - Dakota Sky Pudelpointers</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --dsp-forest-dark: #1a3c34;
-      --dsp-forest: #2d6a4f;
-      --dsp-forest-light: #52796f;
-      --dsp-cream: #F4F2ED;
-      --dsp-warm-white: #FAFAF7;
-      --dsp-earth: #8B5E3C;
-      --dsp-gold: #D4A843;
-      --dsp-charcoal: #333333;
-      --dsp-text-light: #6b6b6b;
-      --dsp-shadow: 0 2px 12px rgba(0,0,0,0.08);
-      --dsp-radius: 8px;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      color: var(--dsp-charcoal);
-      line-height: 1.6;
-      background-color: var(--dsp-warm-white);
-    }
-
-    /* Header & Navigation */
-    header {
-      background-color: var(--dsp-forest-dark);
-      color: white;
-      padding: 1.5rem 2rem;
-      box-shadow: var(--dsp-shadow);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .header-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-    }
-
-    nav {
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 0.95rem;
-      transition: color 0.3s ease;
-    }
-
-    nav a:hover {
-      color: var(--dsp-gold);
-    }
-
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      gap: 6px;
-    }
-
-    .hamburger span {
-      width: 25px;
-      height: 3px;
-      background-color: white;
-      transition: all 0.3s ease;
-    }
-
-    .hamburger.active span:nth-child(1) {
-      transform: rotate(45deg) translate(8px, 8px);
-    }
-
-    .hamburger.active span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .hamburger.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(7px, -7px);
-    }
-
-    @media (max-width: 768px) {
-      nav {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background-color: var(--dsp-forest);
-        padding: 2rem;
-        gap: 1.5rem;
-        width: 100%;
-      }
-
-      nav.active {
-        display: flex;
-      }
-
-      .hamburger {
-        display: flex;
-      }
-    }
-
-    /* Hero Section */
-    .hero {
-      background: linear-gradient(135deg, var(--dsp-forest-dark) 0%, var(--dsp-forest) 100%);
-      color: white;
-      min-height: 40vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 3rem 2rem;
-    }
-
-    .hero-content h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 4rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      line-height: 1.2;
-    }
-
-    .hero-content p {
-      font-size: 1.2rem;
-      font-weight: 300;
-      max-width: 600px;
-    }
-
-    @media (max-width: 768px) {
-      .hero-content h1 {
-        font-size: 2.5rem;
-      }
-
-      .hero-content p {
-        font-size: 1rem;
-      }
-    }
-
-    /* Contact Info Cards */
-    .contact-info-section {
-      background-color: var(--dsp-cream);
-      padding: 4rem 2rem;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .contact-cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      margin-bottom: 3rem;
-    }
-
-    .contact-card {
-      background-color: white;
-      padding: 2rem;
-      border-radius: var(--dsp-radius);
-      box-shadow: var(--dsp-shadow);
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .contact-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-    }
-
-    .contact-card-icon {
-      width: 60px;
-      height: 60px;
-      background-color: var(--dsp-cream);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1.5rem;
-      font-size: 1.8rem;
-      color: var(--dsp-forest);
-    }
-
-    .contact-card h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
-      color: var(--dsp-forest-dark);
-      margin-bottom: 0.5rem;
-    }
-
-    .contact-card p {
-      color: var(--dsp-text-light);
-      margin-bottom: 0.5rem;
-    }
-
-    .contact-card .highlight {
-      font-weight: 600;
-      color: var(--dsp-charcoal);
-      font-size: 1.1rem;
-    }
-
-    @media (max-width: 768px) {
-      .contact-cards {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* Form Section */
-    .forms-section {
-      background-color: var(--dsp-warm-white);
-      padding: 4rem 2rem;
-    }
-
-    .forms-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .form-card h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
-      color: var(--dsp-forest-dark);
-      margin-bottom: 0.5rem;
-    }
-
-    .form-card .subtitle {
-      color: var(--dsp-text-light);
-      font-size: 0.95rem;
-      margin-bottom: 2rem;
-    }
-
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
-
-    .form-group.two-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 0.5rem;
-      color: var(--dsp-charcoal);
-      font-weight: 500;
-      font-size: 0.95rem;
-    }
-
-    input[type="text"],
-    input[type="email"],
-    input[type="tel"],
-    select,
-    textarea {
-      width: 100%;
-      padding: 0.75rem;
-      border: 1px solid #e0e0e0;
-      border-radius: var(--dsp-radius);
-      font-family: 'Inter', sans-serif;
-      font-size: 0.95rem;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    input[type="text"]:focus,
-    input[type="email"]:focus,
-    input[type="tel"]:focus,
-    select:focus,
-    textarea:focus {
-      outline: none;
-      border-color: var(--dsp-forest);
-      box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.1);
-    }
-
-    textarea {
-      resize: vertical;
-      min-height: 120px;
-    }
-
-    .btn-primary {
-      background-color: var(--dsp-forest);
-      color: white;
-      padding: 0.85rem 2rem;
-      border: none;
-      border-radius: var(--dsp-radius);
-      font-weight: 600;
-      font-size: 0.95rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-      font-family: 'Inter', sans-serif;
-      width: 100%;
-    }
-
-    .btn-primary:hover {
-      background-color: var(--dsp-forest-dark);
-      transform: translateY(-2px);
-    }
-
-    .btn-primary:active {
-      transform: translateY(0);
-    }
-
-    .btn-outline {
-      background-color: transparent;
-      color: var(--dsp-forest);
-      padding: 0.85rem 2rem;
-      border: 2px solid var(--dsp-forest);
-      border-radius: var(--dsp-radius);
-      font-weight: 600;
-      font-size: 0.95rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-family: 'Inter', sans-serif;
-      width: 100%;
-    }
-
-    .btn-outline:hover {
-      background-color: var(--dsp-forest);
-      color: white;
-    }
-
-    @media (max-width: 768px) {
-      .forms-container {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-
-      .form-group.two-col {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* Success Message */
-    .toast {
-      position: fixed;
-      top: 2rem;
-      right: 2rem;
-      background-color: var(--dsp-forest);
-      color: white;
-      padding: 1.5rem 2rem;
-      border-radius: var(--dsp-radius);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-      z-index: 1000;
-      animation: slideIn 0.3s ease, slideOut 0.3s ease 4.7s;
-      max-width: 400px;
-    }
-
-    @keyframes slideIn {
-      from {
-        transform: translateX(500px);
-        opacity: 0;
-      }
-      to {
-        transform: translateX(0);
-        opacity: 1;
-      }
-    }
-
-    @keyframes slideOut {
-      from {
-        transform: translateX(0);
-        opacity: 1;
-      }
-      to {
-        transform: translateX(500px);
-        opacity: 0;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .toast {
-        right: 1rem;
-        left: 1rem;
-        max-width: none;
-      }
-    }
-
-    /* Puppy Application Section */
-    .application-section {
-      background-color: var(--dsp-cream);
-      padding: 4rem 2rem;
-    }
-
-    .application-section h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      color: var(--dsp-forest-dark);
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-
-    .application-intro {
-      text-align: center;
-      max-width: 700px;
-      margin: 0 auto 3rem;
-      color: var(--dsp-text-light);
-      line-height: 1.7;
-    }
-
-    .application-form {
-      background-color: white;
-      padding: 3rem;
-      border-radius: var(--dsp-radius);
-      box-shadow: var(--dsp-shadow);
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .form-section {
-      margin-bottom: 2.5rem;
-      padding-bottom: 2.5rem;
-      border-bottom: 1px solid #e8e8e8;
-    }
-
-    .form-section:last-child {
-      border-bottom: none;
-      margin-bottom: 0;
-      padding-bottom: 0;
-    }
-
-    .form-section h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.3rem;
-      color: var(--dsp-forest);
-      margin-bottom: 1.5rem;
-      font-weight: 600;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .form-row.full {
-      grid-template-columns: 1fr;
-    }
-
-    @media (max-width: 768px) {
-      .form-row {
-        grid-template-columns: 1fr;
-      }
-
-      .application-form {
-        padding: 2rem 1.5rem;
-      }
-
-      .application-section h2 {
-        font-size: 1.8rem;
-      }
-    }
-
-    /* Find Us Section */
-    .findus-section {
-      background-color: var(--dsp-warm-white);
-      padding: 4rem 2rem;
-    }
-
-    .findus-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: start;
-    }
-
-    .findus-content h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
-      color: var(--dsp-forest-dark);
-      margin-bottom: 1.5rem;
-    }
-
-    .findus-content p {
-      color: var(--dsp-text-light);
-      line-height: 1.8;
-      margin-bottom: 1.5rem;
-    }
-
-    .contact-details {
-      background-color: var(--dsp-cream);
-      padding: 2rem;
-      border-radius: var(--dsp-radius);
-      border-left: 4px solid var(--dsp-forest);
-    }
-
-    .contact-details p {
-      margin-bottom: 1rem;
-      color: var(--dsp-charcoal);
-    }
-
-    .contact-details strong {
-      font-weight: 600;
-      color: var(--dsp-forest-dark);
-    }
-
-    .map-placeholder {
-      background-color: white;
-      border: 2px solid var(--dsp-forest-light);
-      border-radius: var(--dsp-radius);
-      padding: 3rem 2rem;
-      text-align: center;
-      box-shadow: var(--dsp-shadow);
-      min-height: 350px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .map-placeholder h3 {
-      font-family: 'Playfair Display', serif;
-      color: var(--dsp-forest);
-      margin-bottom: 1rem;
-    }
-
-    .map-placeholder p {
-      color: var(--dsp-text-light);
-    }
-
-    @media (max-width: 768px) {
-      .findus-container {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* Footer */
-    footer {
-      background-color: var(--dsp-forest-dark);
-      color: white;
-      padding: 3rem 2rem;
-      margin-top: 4rem;
-    }
-
-    .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      margin-bottom: 2rem;
-      padding-bottom: 2rem;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
-    }
-
-    .footer-col h4 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
-      margin-bottom: 1rem;
-      font-weight: 600;
-    }
-
-    .footer-col a {
-      color: rgba(255,255,255,0.9);
-      text-decoration: none;
-      display: block;
-      margin-bottom: 0.5rem;
-      transition: color 0.3s ease;
-    }
-
-    .footer-col a:hover {
-      color: var(--dsp-gold);
-    }
-
-    .footer-copyright {
-      text-align: center;
-      color: rgba(255,255,255,0.7);
-      font-size: 0.9rem;
-    }
-
-    @media (max-width: 768px) {
-      .footer-content {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* Fade-in on Scroll */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact — Dakota Sky Pudelpointers</title>
+    <meta name="description" content="Get in touch with Dakota Sky Pudelpointers. Contact us about puppies, training, boarding, or nutrition. Apply for a puppy or schedule a consultation.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+        body {
+            font-family: 'Nunito Sans', sans-serif;
+            color: #2D2D2D;
+            background: #FAF8F5;
+            overflow-x: hidden;
+        }
+
+        /* ===== COLOR PALETTE ===== */
+        :root {
+            --brown-deep: #5C3D2E;
+            --brown-warm: #8B5E3C;
+            --brown-light: #C4956A;
+            --brown-tan: #D4B896;
+            --cream: #FAF8F5;
+            --cream-dark: #F0EBE3;
+            --green-spring: #4A7C59;
+            --green-dark: #2D5A3D;
+            --green-forest: #1B4332;
+            --gold: #C8A84E;
+            --gold-light: #E8D48B;
+            --gold-accent: #D4A843;
+            --charcoal: #2D2D2D;
+            --white-soft: rgba(255,255,255,0.95);
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        h1, h2, h3, h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            line-height: 1.15;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.5s ease;
+            background: transparent;
+        }
+        nav.scrolled {
+            background: rgba(27, 67, 50, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 12px 40px;
+            box-shadow: 0 2px 30px rgba(0,0,0,0.15);
+        }
+        .nav-logo {
+            height: 65px;
+            transition: height 0.4s ease;
+        }
+        nav.scrolled .nav-logo { height: 48px; }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            padding-bottom: 4px;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        .hamburger span {
+            width: 28px;
+            height: 2px;
+            background: white;
+            transition: all 0.3s ease;
+        }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            .nav-links {
+                position: fixed;
+                top: 0; left: 0; right: 0; bottom: 0;
+                background: rgba(27, 67, 50, 0.97);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 28px;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.4s ease;
+            }
+            .nav-links.active { opacity: 1; pointer-events: all; }
+            .nav-links a { font-size: 1.1rem; letter-spacing: 3px; }
+        }
+
+        /* ===== PARALLAX HERO ===== */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute;
+            inset: -20%;
+            background-size: cover;
+            background-position: center;
+            will-change: transform;
+            transition: transform 0.1s linear;
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(27, 67, 50, 0.7) 0%,
+                rgba(92, 61, 46, 0.5) 50%,
+                rgba(27, 67, 50, 0.65) 100%
+            );
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 24px;
+            max-width: 900px;
+        }
+        .hero-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 24px;
+            font-weight: 600;
+            opacity: 0;
+            animation: fadeUp 1s 0.3s forwards;
+        }
+        .hero h1 {
+            font-size: clamp(2.8rem, 7vw, 5.5rem);
+            color: white;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeUp 1s 0.5s forwards;
+        }
+        .hero h1 em {
+            font-style: italic;
+            color: var(--gold-light);
+        }
+        .hero-sub {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: rgba(255,255,255,0.85);
+            font-weight: 300;
+            line-height: 1.7;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0;
+            animation: fadeUp 1s 0.7s forwards;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes scrollLine {
+            0% { top: -100%; }
+            100% { top: 100%; }
+        }
+
+        /* ===== CONTACT INFO SECTION ===== */
+        .contact-info {
+            padding: 100px 40px;
+            background: var(--cream);
+            text-align: center;
+        }
+        .contact-info h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--brown-deep);
+            margin-bottom: 40px;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto 60px;
+        }
+        .info-card {
+            text-align: center;
+        }
+        .info-card h3 {
+            font-size: 1.1rem;
+            color: var(--gold-accent);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+        }
+        .info-card p {
+            font-size: 1rem;
+            color: #6B5B4E;
+            line-height: 1.7;
+        }
+        .info-card a {
+            color: var(--green-spring);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .info-card a:hover { color: var(--gold-accent); }
+        .gold-divider {
+            width: 60px;
+            height: 2px;
+            background: var(--gold);
+            margin: 0 auto 20px;
+        }
+        @media (max-width: 768px) {
+            .info-grid { grid-template-columns: 1fr; gap: 32px; }
+        }
+
+        /* ===== FORMS SECTION ===== */
+        .forms-section {
+            padding: 100px 40px;
+            background: white;
+        }
+        .forms-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .forms-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .forms-header h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: var(--brown-deep);
+            margin-bottom: 12px;
+        }
+        .forms-header p {
+            font-size: 1rem;
+            color: #6B5B4E;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Form Grid */
+        .forms-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        .form-block {
+            padding: 40px;
+            background: var(--cream-dark);
+            border-top: 3px solid var(--gold);
+        }
+        .form-block h3 {
+            font-size: 1.2rem;
+            color: var(--brown-deep);
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        .form-block p {
+            font-size: 0.85rem;
+            color: #6B5B4E;
+            margin-bottom: 20px;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        /* Form Styles */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--brown-deep);
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        input, textarea, select {
+            padding: 12px;
+            border: 1px solid #D4B896;
+            background: white;
+            color: #2D2D2D;
+            font-family: 'Nunito Sans', sans-serif;
+            font-size: 0.9rem;
+            transition: border-color 0.3s ease;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 2px rgba(200, 168, 78, 0.1);
+        }
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .form-row.full {
+            grid-template-columns: 1fr;
+        }
+
+        /* Submit Button */
+        .form-submit {
+            padding: 12px 24px;
+            background: var(--gold);
+            color: var(--green-forest);
+            border: none;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        .form-submit:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(200,168,78,0.3);
+        }
+
+        /* Puppy Application Grid */
+        .puppy-application {
+            padding: 40px;
+            background: var(--cream-dark);
+            border-top: 3px solid var(--gold);
+            grid-column: 1 / -1;
+        }
+        .puppy-application h3 {
+            font-size: 1.3rem;
+            color: var(--brown-deep);
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        .puppy-application form {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .checkbox-item input {
+            width: 16px;
+            height: 16px;
+            margin: 0;
+            padding: 0;
+            cursor: pointer;
+        }
+        .checkbox-item label {
+            margin: 0;
+            font-size: 0.9rem;
+            letter-spacing: 0;
+            text-transform: none;
+            font-weight: 400;
+            cursor: pointer;
+        }
+
+        @media (max-width: 1024px) {
+            .forms-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ===== MAP SECTION ===== */
+        .map-section {
+            padding: 100px 40px;
+            background: var(--cream);
+            text-align: center;
+        }
+        .map-section h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: var(--brown-deep);
+            margin-bottom: 12px;
+        }
+        .map-section p {
+            font-size: 1rem;
+            color: #6B5B4E;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .map-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .map-container iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+            display: block;
+        }
+
+        /* ===== CONTACT STRIP ===== */
+        .contact-strip {
+            position: relative;
+            height: 60vh;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .contact-strip .bg {
+            position: absolute;
+            inset: -15%;
+            background: center/cover;
+            will-change: transform;
+        }
+        .contact-strip .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(27,67,50,0.85), rgba(92,61,46,0.75));
+        }
+        .contact-strip .content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            padding: 0 24px;
+        }
+        .contact-strip h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: white;
+            margin-bottom: 12px;
+        }
+        .contact-strip p {
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 8px;
+            font-weight: 300;
+        }
+        .contact-strip .contact-details {
+            margin-top: 28px;
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .contact-strip .contact-details a {
+            color: var(--gold-light);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+        .contact-strip .contact-details a:hover { color: white; }
+        .contact-strip .btn { margin-top: 32px; }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--charcoal);
+            padding: 60px 40px 40px;
+            text-align: center;
+        }
+        .footer-logo {
+            height: 40px;
+            margin-bottom: 24px;
+            opacity: 0.8;
+        }
+        .footer-links {
+            display: flex;
+            gap: 28px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+        .footer-links a {
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover { color: var(--gold); }
+        .footer-copy {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.3);
+            letter-spacing: 1px;
+        }
+
+        /* ===== SCROLL ANIMATIONS ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== INSIDERS BANNER ===== */
+        .insiders-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            background: linear-gradient(90deg, var(--green-forest), var(--brown-deep));
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transform: translateY(100%);
+            animation: slideUp 0.6s 3s forwards;
+        }
+        .insiders-banner .pulse {
+            width: 8px; height: 8px;
+            background: #ff4444;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+        .insiders-banner span {
+            color: var(--gold-light);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .insiders-banner a {
+            color: white;
+            text-decoration: underline;
+            font-size: 0.8rem;
+        }
+        .insiders-banner .close-banner {
+            position: absolute;
+            right: 16px;
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.5);
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+        @keyframes slideUp { to { transform: translateY(0); } }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--gold);
+            color: var(--green-forest);
+            padding: 16px 32px;
+            border-radius: 4px;
+            font-weight: 600;
+            z-index: 998;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+    </style>
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <div class="header-container">
-      <a href="index.html" class="logo"><img src="Dakota%20SKY%20for%20CLEAR%20no%20color.png" alt="Dakota Sky Pudelpointers" style="height: 65px;width:auto;"></a><a href="index.html" style="margin-left:1rem;display:flex;align-items:center;"><img src="key%20gun%20logo%20FINAL.png" alt="Dakota Sky Gun Dog" style="height:35px;width:auto;"></a>
-      <nav id="nav-menu">
-        <a href="index.html">Home</a>
-        <a href="breeding.html">Breeding</a>
-        <a href="training.html">Training</a>
-        <a href="boarding.html">Boarding</a>
-        <a href="nutrition.html">Nutrition</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-      <div class="hamburger" id="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+
+    <!-- NAVIGATION -->
+    <nav id="navbar">
+        <a href="/">
+            <img src="https://res.cloudinary.com/dyq7rnjjw/image/upload/h_120,q_auto/v1774544524/Dakota_SKY_for_CLEAR_no_color_etv2yz.png" alt="Dakota Sky Pudelpointers" class="nav-logo">
+        </a>
+        <div class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
+        </div>
+        <ul class="nav-links" id="nav-menu">
+            <li><a href="breeding.html">Breeding</a></li>
+            <li><a href="training.html">Training</a></li>
+            <li><a href="boarding.html">Boarding</a></li>
+            <li><a href="nutrition.html">Nutrition</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="hero-bg" data-parallax="0.3" style="background-image: url('https://res.cloudinary.com/dyq7rnjjw/image/upload/w_1920,q_auto/Screenshot_2026-03-26_at_11.40.20_AM_k2a0xj.jpg');"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <span class="hero-tag">Get in Touch</span>
+            <h1>Let's Talk <em>Dogs</em></h1>
+            <p class="hero-sub">Questions about puppies, training, boarding, or nutrition? We're here to help. Reach out anytime.</p>
+        </div>
+    </section>
+
+    <!-- CONTACT INFO -->
+    <section class="contact-info">
+        <div class="reveal">
+            <h2>How to Reach Us</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="gold-divider"></div>
+                    <h3>Phone</h3>
+                    <p><a href="tel:7012901492">(701) 290-1492</a></p>
+                </div>
+                <div class="info-card">
+                    <div class="gold-divider"></div>
+                    <h3>Email</h3>
+                    <p><a href="mailto:dakotasky.nd@gmail.com">dakotasky.nd@gmail.com</a></p>
+                </div>
+                <div class="info-card">
+                    <div class="gold-divider"></div>
+                    <h3>Address</h3>
+                    <p>10525 Highway 10<br>Dickinson, ND 58601</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FORMS SECTION -->
+    <section class="forms-section">
+        <div class="forms-container">
+            <div class="forms-header reveal">
+                <h2>Get in Touch</h2>
+                <p>Choose the form that best fits your inquiry. We respond to all inquiries within 24 hours.</p>
+            </div>
+
+            <div class="forms-grid">
+                <!-- General Inquiry Form -->
+                <div class="form-block reveal">
+                    <h3>General Inquiry</h3>
+                    <p>Ask us about our services, facility, or general questions.</p>
+                    <form onsubmit="handleFormSubmit(event, 'general')">
+                        <div class="form-group">
+                            <label for="general-name">Name</label>
+                            <input type="text" id="general-name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="general-email">Email</label>
+                            <input type="email" id="general-email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="general-phone">Phone</label>
+                            <input type="tel" id="general-phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="general-subject">Subject</label>
+                            <select id="general-subject" name="subject" required>
+                                <option value="">Select a topic...</option>
+                                <option value="breeding">Breeding Program</option>
+                                <option value="training">Training Services</option>
+                                <option value="boarding">Boarding & Daycare</option>
+                                <option value="nutrition">Nutrition Consultation</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="general-message">Message</label>
+                            <textarea id="general-message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="form-submit">Send Message</button>
+                    </form>
+                </div>
+
+                <!-- Callback Request Form -->
+                <div class="form-block reveal">
+                    <h3>Callback Request</h3>
+                    <p>Request a callback from Glen or Stacey at your convenience.</p>
+                    <form onsubmit="handleFormSubmit(event, 'callback')">
+                        <div class="form-group">
+                            <label for="callback-name">Name</label>
+                            <input type="text" id="callback-name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="callback-phone">Phone</label>
+                            <input type="tel" id="callback-phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="callback-email">Email</label>
+                            <input type="email" id="callback-email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="callback-topic">Topic</label>
+                            <select id="callback-topic" name="topic" required>
+                                <option value="">Select topic...</option>
+                                <option value="puppy">Puppy Inquiry</option>
+                                <option value="training">Training Consultation</option>
+                                <option value="breeding">Breeding Discussion</option>
+                                <option value="boarding">Boarding Info</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="callback-time">Best Time to Call</label>
+                            <input type="text" id="callback-time" name="time" placeholder="e.g., Evenings after 5pm" required>
+                        </div>
+                        <button type="submit" class="form-submit">Request Callback</button>
+                    </form>
+                </div>
+
+                <!-- Quick Contact Form -->
+                <div class="form-block reveal">
+                    <h3>Quick Question</h3>
+                    <p>Got a quick question? Send us a message and we'll get back to you fast.</p>
+                    <form onsubmit="handleFormSubmit(event, 'quick')">
+                        <div class="form-group">
+                            <label for="quick-email">Email</label>
+                            <input type="email" id="quick-email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="quick-message">Your Question</label>
+                            <textarea id="quick-message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="form-submit">Send Question</button>
+                    </form>
+                </div>
+
+                <!-- Full Puppy Application -->
+                <div class="puppy-application reveal">
+                    <h3>Full Puppy Application</h3>
+                    <form onsubmit="handleFormSubmit(event, 'puppy')">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="puppy-fname">First Name *</label>
+                                <input type="text" id="puppy-fname" name="firstname" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="puppy-lname">Last Name *</label>
+                                <input type="text" id="puppy-lname" name="lastname" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="puppy-email">Email *</label>
+                                <input type="email" id="puppy-email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="puppy-phone">Phone *</label>
+                                <input type="tel" id="puppy-phone" name="phone" required>
+                            </div>
+                        </div>
+                        <div class="form-row full">
+                            <div class="form-group">
+                                <label for="puppy-address">Address *</label>
+                                <input type="text" id="puppy-address" name="address" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="puppy-city">City/State/ZIP *</label>
+                                <input type="text" id="puppy-city" name="city_state_zip" required>
+                            </div>
+                        </div>
+                        <div class="form-row full">
+                            <div class="form-group">
+                                <label for="puppy-hunting">Hunting Experience *</label>
+                                <textarea id="puppy-hunting" name="hunting_experience" required></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Have you owned a pointing breed? *</label>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="radio" id="pointing-yes" name="pointing_breed" value="yes" required>
+                                    <label for="pointing-yes">Yes</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="radio" id="pointing-no" name="pointing_breed" value="no" required>
+                                    <label for="pointing-no">No</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Breed types you're interested in *</label>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="type-upland" name="breed_types" value="upland">
+                                    <label for="type-upland">Upland</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="type-waterfowl" name="breed_types" value="waterfowl">
+                                    <label for="type-waterfowl">Waterfowl</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="type-versatile" name="breed_types" value="versatile">
+                                    <label for="type-versatile">Versatile</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="type-family" name="breed_types" value="family">
+                                    <label for="type-family">Family Companion</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="puppy-living">Living Situation *</label>
+                            <select id="puppy-living" name="living_situation" required>
+                                <option value="">Select...</option>
+                                <option value="house">House with Yard</option>
+                                <option value="ranch">Ranch/Acreage</option>
+                                <option value="apartment">Apartment</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="puppy-yard">Yard Size *</label>
+                            <select id="puppy-yard" name="yard_size" required>
+                                <option value="">Select...</option>
+                                <option value="small">Small (less than 1/4 acre)</option>
+                                <option value="medium">Medium (1/4 to 1 acre)</option>
+                                <option value="large">Large (more than 1 acre)</option>
+                                <option value="none">No Fenced Yard</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="puppy-other-pets">Other Pets (describe)</label>
+                            <textarea id="puppy-other-pets" name="other_pets"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="puppy-children">Children in Home (ages)</label>
+                            <textarea id="puppy-children" name="children"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="puppy-activity">Activity Level *</label>
+                            <select id="puppy-activity" name="activity_level" required>
+                                <option value="">Select...</option>
+                                <option value="high">High - Very Active</option>
+                                <option value="medium">Medium - Balanced</option>
+                                <option value="low">Low - Less Active</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="puppy-goals">Goals & Expectations *</label>
+                            <textarea id="puppy-goals" name="goals" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="puppy-training">Training Plans *</label>
+                            <textarea id="puppy-training" name="training_plans" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="puppy-timeline">Timeline *</label>
+                            <input type="text" id="puppy-timeline" name="timeline" placeholder="e.g., Spring 2026" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="puppy-waitlists">On Other Waitlists? (please list)</label>
+                            <textarea id="puppy-waitlists" name="other_waitlists"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="puppy-heard">How did you hear about Dakota Sky? *</label>
+                            <input type="text" id="puppy-heard" name="how_heard" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="puppy-additional">Additional Information</label>
+                            <textarea id="puppy-additional" name="additional_info"></textarea>
+                        </div>
+                        <button type="submit" class="form-submit">Submit Application</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAP SECTION -->
+    <section class="map-section">
+        <div class="reveal">
+            <h2>Find Us</h2>
+            <p>10525 Highway 10, Dickinson, North Dakota 58601</p>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2747.7854629435397!2d-103.19477!3d47.31044!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x533c8e8e8e8e8e8f%3A0x0!2sDakota%20Sky%20Pudelpointers!5e0!3m2!1sen!2sus!4v1000000000000" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT STRIP -->
+    <section class="contact-strip">
+        <div class="bg" data-parallax="0.2" style="background-image: url('https://res.cloudinary.com/dyq7rnjjw/image/upload/w_1920,q_auto/Screenshot_2026-03-26_at_11.40.05_AM_pg8iyc.jpg');"></div>
+        <div class="overlay"></div>
+        <div class="content reveal">
+            <h2>Ready to Get Started?</h2>
+            <p>We're here to answer your questions and help you find the perfect dog.</p>
+            <div class="contact-details">
+                <a href="tel:7012901492">(701) 290-1492</a>
+                <a href="mailto:dakotasky.nd@gmail.com">dakotasky.nd@gmail.com</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <img src="https://res.cloudinary.com/dyq7rnjjw/image/upload/h_120,q_auto/v1774544524/Dakota_SKY_for_CLEAR_no_color_etv2yz.png" alt="Dakota Sky" class="footer-logo">
+        <div class="footer-links">
+            <a href="breeding.html">Breeding</a>
+            <a href="training.html">Training</a>
+            <a href="boarding.html">Boarding</a>
+            <a href="nutrition.html">Nutrition</a>
+            <a href="shop.html">Shop</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="members.html">Insiders</a>
+        </div>
+        <p class="footer-copy">&copy; 2026 Dakota Sky Pudelpointers. All rights reserved. &bull; Dickinson, North Dakota</p>
+    </footer>
+
+    <!-- INSIDERS BANNER -->
+    <div class="insiders-banner" id="insiders-banner">
+        <div class="pulse"></div>
+        <span>Dakota Sky Insiders — Limited to First 100 Members</span>
+        <a href="members.html">Join Now</a>
+        <button class="close-banner" onclick="document.getElementById('insiders-banner').style.display='none'">&times;</button>
     </div>
-  </header>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-content fade-in">
-      <h1>Let's Talk Dogs</h1>
-      <p>Questions about puppies, training, boarding, or nutrition? We're here to help.</p>
-    </div>
-  </section>
+    <!-- TOAST NOTIFICATION -->
+    <div class="toast" id="toast"></div>
 
-  <!-- Contact Info Cards -->
-  <section class="contact-info-section">
-    <div class="container">
-      <div class="contact-cards">
-        <div class="contact-card fade-in">
-          <div class="contact-card-icon">📞</div>
-          <h3>Call Us</h3>
-          <p class="highlight">(701) 290-1492</p>
-          <p>Best times: Mornings 8-10am, Evenings 5-7pm (CT)</p>
-        </div>
-        <div class="contact-card fade-in">
-          <div class="contact-card-icon">✉️</div>
-          <h3>Email</h3>
-          <p class="highlight">dakotasky.nd@gmail.com</p>
-          <p>We respond to emails within 24 hours.</p>
-        </div>
-        <div class="contact-card fade-in">
-          <div class="contact-card-icon">📍</div>
-          <h3>Visit Us</h3>
-          <p class="highlight">10525 Highway 10<br>Dickinson, ND 58601</p>
-          <p>By appointment. Give us a call to schedule a visit.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+    <!-- SCRIPTS -->
+    <script>
+        // ===== NAVBAR SCROLL =====
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 80);
+        });
 
-  <!-- Forms Section -->
-  <section class="forms-section">
-    <div class="forms-container">
-      <!-- Get in Touch Form -->
-      <div class="form-card fade-in">
-        <h2>Get in Touch</h2>
-        <form id="inquiry-form">
-          <div class="form-group">
-            <label for="name">Your Name</label>
-            <input type="text" id="name" name="name" required>
-          </div>
+        // ===== HAMBURGER =====
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+        document.querySelectorAll('#nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
 
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
-          </div>
-
-          <div class="form-group">
-            <label for="phone">Phone</label>
-            <input type="tel" id="phone" name="phone">
-          </div>
-
-          <div class="form-group">
-            <label for="subject">Subject</label>
-            <select id="subject" name="subject" required>
-              <option value="">Select a subject...</option>
-              <option value="puppy-inquiry">Puppy Inquiry</option>
-              <option value="training-question">Training Question</option>
-              <option value="boarding-inquiry">Boarding Inquiry</option>
-              <option value="nutrition-question">Nutrition Question</option>
-              <option value="general">General Question</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" required></textarea>
-          </div>
-
-          <button type="submit" class="btn-primary">Send Message</button>
-        </form>
-      </div>
-
-      <!-- Call Request Form -->
-      <div class="form-card fade-in">
-        <h2>Quick Call Request</h2>
-        <p class="subtitle">Schedule a callback at a time that works for you. We'll call within 24 hours.</p>
-        <form id="callback-form">
-          <div class="form-group">
-            <label for="cb-name">Your Name</label>
-            <input type="text" id="cb-name" name="name" required>
-          </div>
-
-          <div class="form-group">
-            <label for="cb-phone">Phone</label>
-            <input type="tel" id="cb-phone" name="phone" required>
-          </div>
-
-          <div class="form-group">
-            <label for="cb-email">Email</label>
-            <input type="email" id="cb-email" name="email" required>
-          </div>
-
-          <div class="form-group">
-            <label for="cb-topic">What's This About?</label>
-            <select id="cb-topic" name="topic" required>
-              <option value="">Select a topic...</option>
-              <option value="waiting-puppy">Waiting for a Puppy</option>
-              <option value="training-info">Training Program Info</option>
-              <option value="boarding">Boarding Availability</option>
-              <option value="inukshuk-nutrition">Inukshuk Nutrition</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="cb-time">Best Time to Call</label>
-            <select id="cb-time" name="time" required>
-              <option value="">Select a time...</option>
-              <option value="morning">Morning 8am-12pm</option>
-              <option value="afternoon">Afternoon 12pm-5pm</option>
-              <option value="evening">Evening 5pm-8pm</option>
-            </select>
-          </div>
-
-          <button type="submit" class="btn-outline">Request Call</button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- Puppy Application Section -->
-  <section class="application-section">
-    <div class="container">
-      <h2>Puppy Application</h2>
-      <p class="application-intro">
-        Interested in a Dakota Sky puppy? Start here. This application helps us understand your situation and match you with the right dog. There's no obligation—just a conversation about whether Dakota Sky is the right fit for your family and hunting goals.
-      </p>
-
-      <form id="puppy-application" class="application-form">
-        <!-- Personal Information -->
-        <div class="form-section">
-          <h3>Personal Information</h3>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="app-first-name">First Name</label>
-              <input type="text" id="app-first-name" name="first_name" required>
-            </div>
-            <div class="form-group">
-              <label for="app-last-name">Last Name</label>
-              <input type="text" id="app-last-name" name="last_name" required>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="app-email">Email</label>
-              <input type="email" id="app-email" name="email" required>
-            </div>
-            <div class="form-group">
-              <label for="app-phone">Phone</label>
-              <input type="tel" id="app-phone" name="phone" required>
-            </div>
-          </div>
-
-          <div class="form-row full">
-            <div class="form-group">
-              <label for="app-address">Street Address</label>
-              <input type="text" id="app-address" name="address" required>
-            </div>
-          </div>
-
-          <div class="form-row full">
-            <div class="form-group">
-              <label for="app-city">City, State, Zip</label>
-              <input type="text" id="app-city" name="city_state_zip" required>
-            </div>
-          </div>
-        </div>
-
-        <!-- Hunting Experience -->
-        <div class="form-section">
-          <h3>Hunting Experience</h3>
-
-          <div class="form-row full">
-            <div class="form-group">
-              <label for="app-hunt-experience">Tell us about your hunting experience. What game do you hunt? How long have you been hunting?</label>
-              <textarea id="app-hunt-experience" name="hunt_experience" required></textarea>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="app-pointing-breed">Have you owned a pointing breed before?</label>
-              <select id="app-pointing-breed" name="pointing_breed" required>
-                <option value="">Select...</option>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="app-breed-types">If yes, what breed(s)?</label>
-              <input type="text" id="app-breed-types" name="breed_types">
-            </div>
-          </div>
-        </div>
-
-        <!-- Living Situation -->
-        <div class="form-section">
-          <h3>Living Situation</h3>
-
-          <div class="form-row full">
-            <div class="form-group">
-              <label for="app-living">Tell us about your living situation. Do you have a house, yard, other pets, kids?</label>
-              <textarea id="app-living" name="living_situation" required></textarea>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="app-yard">Yard Size</label>
-              <select id="app-yard" name="yard_size" required>
-                <option value="">Select...</option>
-                <option value="large">Large fenced yard 1+ acres</option>
-                <option value="medium">Medium yard typical suburban</option>
-                <option value="small">Small yard or no yard</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="app-other-pets">Other pets?</label>
-              <input type="text" id="app-other-pets" name="other_pets">
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="app-children">Children in home?</label>
-              <select id="app-children" name="children" required>
-                <option value="">Select...</option>
-                <option value="no">No</option>
-                <option value="young">Yes young under 8</option>
-                <option value="school">Yes school age 8-13</option>
-                <option value="teenagers">Yes teenagers</option>
-                <option value="adults">Yes adults only</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="app-activity">Activity Level</label>
-              <select id="app-activity" name="activity_level" required>
-                <option value="">Select...</option>
-                <option value="very-active">Very active</option>
-                <option value="active">Active</option>
-                <option value="moderate">Moderate</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <!-- Goals & Expectations -->
-        <div class="form-section">
-          <h3>Goals & Expectations</h3>
-
-          <div class="form-row full">
-            <div class="form-group">
-              <label for="app-goals">What are your goals for a Pudelpointer?</label>
-              <textarea id="app-goals" name="goals" required></textarea>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="app-training">Training plan</label>
-              <select id="app-training" name="training_plan" required>
-                <option value="">Select...</option>
-                <option value="self">Self training</option>
-                <option value="professional">Professional training</option>
-                <option value="both">Both</option>
-                <option value="dakota-sky">Dakota Sky training</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="app-timeline">When looking to bring puppy home?</label>
-              <select id="app-timeline" name="timeline" required>
-                <option value="">Select...</option>
-                <option value="asap">ASAP</option>
-                <option value="6-months">6 months</option>
-                <option value="1-year">1 year</option>
-                <option value="flexible">Flexible/No rush</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <!-- Other -->
-        <div class="form-section">
-          <h3>Other</h3>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="app-waitlists">On other breeders' waitlists?</label>
-              <select id="app-waitlists" name="other_waitlists" required>
-                <option value="">Select...</option>
-                <option value="no">No</option>
-                <option value="few">Yes a few</option>
-                <option value="several">Yes several</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="app-heard">How did you hear about Dakota Sky?</label>
-              <select id="app-heard" name="heard_about" required>
-                <option value="">Select...</option>
-                <option value="facebook">Facebook</option>
-                <option value="instagram">Instagram</option>
-                <option value="website">Website</option>
-                <option value="referral">Referral</option>
-                <option value="hunt-test">Hunt test or show</option>
-                <option value="google">Google search</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-row full">
-            <div class="form-group">
-              <label for="app-other">Anything else you'd like us to know?</label>
-              <textarea id="app-other" name="additional_info"></textarea>
-            </div>
-          </div>
-
-          <button type="submit" class="btn-primary" style="font-size: 1.05rem; padding: 1rem 2rem;">Submit Application</button>
-        </div>
-      </form>
-    </div>
-  </section>
-
-  <!-- Find Us Section -->
-  <section class="findus-section">
-    <div class="findus-container">
-      <div class="findus-content fade-in">
-        <h2>Find Us</h2>
-        <p>Located just off Highway 10 in Dickinson, North Dakota. On the way to or coming from Theodore Roosevelt National Park.</p>
-
-        <div class="contact-details">
-          <p><strong>Address:</strong><br>10525 Highway 10<br>Dickinson, ND 58601</p>
-          <p><strong>Phone:</strong> <a href="tel:+17012901492" style="color: var(--dsp-forest); text-decoration: none;">(701) 290-1492</a></p>
-          <p><strong>Email:</strong> <a href="mailto:dakotasky.nd@gmail.com" style="color: var(--dsp-forest); text-decoration: none;">dakotasky.nd@gmail.com</a></p>
-          <p style="margin-top: 1.5rem; font-size: 0.95rem; color: var(--dsp-text-light);">Visit by appointment. Please call ahead to schedule.</p>
-        </div>
-      </div>
-
-      <div class="map-placeholder fade-in">
-        <h3>Interactive Map Coming Soon</h3>
-        <p>10525 Highway 10, Dickinson, ND 58601</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-        <div class="footer-logo" style="margin-bottom:1.5rem;"><a href="index.html"><img src="Dakota%20SKY%20for%20CLEAR%20no%20color.png" alt="Dakota Sky Pudelpointers" style="height:50px;width:auto;"></a></div>
-    <div class="footer-content">
-      <div class="footer-col">
-        <h4>Dakota Sky</h4>
-        <p style="margin-bottom: 1rem;">Pudelpointers bred for excellence in hunting and family life.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Quick Links</h4>
-        <a href="index.html">Home</a>
-        <a href="breeding.html">Breeding</a>
-        <a href="training.html">Training</a>
-        <a href="contact.html">Contact</a>
-      </div>
-      <div class="footer-col">
-        <h4>Contact</h4>
-        <p style="margin-bottom: 0.5rem;">(701) 290-1492</p>
-        <p>dakotasky.nd@gmail.com</p>
-      </div>
-    </div>
-    <div class="footer-copyright">
-      <p>&copy; 2026 Dakota Sky Pudelpointers. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <!-- JavaScript -->
-  <script>
-    // Mobile Navigation Toggle
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.getElementById('nav-menu');
-
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      navMenu.classList.toggle('active');
-    });
-
-    // Close menu when a link is clicked
-    navMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
-      });
-    });
-
-    // Show Toast Message
-    function showToast(message) {
-      const toast = document.createElement('div');
-      toast.className = 'toast';
-      toast.textContent = message;
-      document.body.appendChild(toast);
-
-      setTimeout(() => {
-        toast.remove();
-      }, 5000);
-    }
-
-    // General Inquiry Form
-    document.getElementById('inquiry-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const formData = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        phone: document.getElementById('phone').value,
-        subject: document.getElementById('subject').value,
-        message: document.getElementById('message').value
-      };
-      console.log('Inquiry Form Data:', formData);
-      showToast('Thank you! We\'ll be in touch soon.');
-      this.reset();
-    });
-
-    // Callback Request Form
-    document.getElementById('callback-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const formData = {
-        name: document.getElementById('cb-name').value,
-        phone: document.getElementById('cb-phone').value,
-        email: document.getElementById('cb-email').value,
-        topic: document.getElementById('cb-topic').value,
-        time: document.getElementById('cb-time').value
-      };
-      console.log('Callback Form Data:', formData);
-      showToast('Call request received! We\'ll contact you soon.');
-      this.reset();
-    });
-
-    // Puppy Application Form
-    document.getElementById('puppy-application').addEventListener('submit', function(e) {
-      e.preventDefault();
-
-      // Validate required fields
-      const requiredFields = [
-        'app-first-name', 'app-last-name', 'app-email', 'app-phone',
-        'app-address', 'app-city', 'app-hunt-experience', 'app-pointing-breed',
-        'app-living', 'app-yard', 'app-children', 'app-activity',
-        'app-goals', 'app-training', 'app-timeline', 'app-waitlists', 'app-heard'
-      ];
-
-      let allValid = true;
-      requiredFields.forEach(id => {
-        const field = document.getElementById(id);
-        if (!field.value) {
-          allValid = false;
+        // ===== PARALLAX ON SCROLL =====
+        const parallaxElements = document.querySelectorAll('[data-parallax]');
+        let ticking = false;
+        function updateParallax() {
+            const scrollY = window.scrollY;
+            parallaxElements.forEach(el => {
+                const speed = parseFloat(el.dataset.parallax);
+                const rect = el.parentElement.getBoundingClientRect();
+                const offsetTop = rect.top + scrollY;
+                const viewportMiddle = scrollY + window.innerHeight / 2;
+                const elementMiddle = offsetTop + rect.height / 2;
+                const distance = viewportMiddle - elementMiddle;
+                el.style.transform = `translateY(${distance * speed}px)`;
+            });
+            ticking = false;
         }
-      });
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        });
+        updateParallax();
 
-      if (!allValid) {
-        showToast('Please fill in all required fields.');
-        return;
-      }
+        // ===== REVEAL ON SCROLL =====
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
 
-      const formData = {
-        first_name: document.getElementById('app-first-name').value,
-        last_name: document.getElementById('app-last-name').value,
-        email: document.getElementById('app-email').value,
-        phone: document.getElementById('app-phone').value,
-        address: document.getElementById('app-address').value,
-        city_state_zip: document.getElementById('app-city').value,
-        hunt_experience: document.getElementById('app-hunt-experience').value,
-        pointing_breed: document.getElementById('app-pointing-breed').value,
-        breed_types: document.getElementById('app-breed-types').value,
-        living_situation: document.getElementById('app-living').value,
-        yard_size: document.getElementById('app-yard').value,
-        other_pets: document.getElementById('app-other-pets').value,
-        children: document.getElementById('app-children').value,
-        activity_level: document.getElementById('app-activity').value,
-        goals: document.getElementById('app-goals').value,
-        training_plan: document.getElementById('app-training').value,
-        timeline: document.getElementById('app-timeline').value,
-        other_waitlists: document.getElementById('app-waitlists').value,
-        heard_about: document.getElementById('app-heard').value,
-        additional_info: document.getElementById('app-other').value
-      };
+        document.querySelectorAll('.reveal').forEach(el => {
+            revealObserver.observe(el);
+        });
 
-      console.log('Puppy Application Data:', formData);
-      showToast('Application submitted! We\'ll review it and be in touch within 24 hours.');
-      this.reset();
-    });
+        // ===== FORM SUBMISSION HANDLER =====
+        function handleFormSubmit(event, formType) {
+            event.preventDefault();
 
-    // Fade-in on Scroll
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -100px 0px'
-    };
+            const form = event.target;
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData);
 
-    const observer = new IntersectionObserver(function(entries) {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
+            console.log(`${formType.toUpperCase()} Form Submitted:`, data);
+
+            showToast(`Thank you! We received your ${formType === 'puppy' ? 'puppy application' : formType === 'callback' ? 'callback request' : 'message'}. We'll be in touch soon!`);
+
+            form.reset();
         }
-      });
-    }, observerOptions);
 
-    document.querySelectorAll('.fade-in').forEach(el => {
-      observer.observe(el);
-    });
-  </script>
+        // ===== TOAST NOTIFICATION =====
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 4000);
+        }
+    </script>
 </body>
 </html>

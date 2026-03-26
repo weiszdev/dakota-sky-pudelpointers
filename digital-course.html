@@ -3,21 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dakota Sky Training System | Coming 2026</title>
+    <title>Dakota Sky Training System — Coming 2026</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Nunito+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --dsp-forest-dark: #1a3c34;
-            --dsp-forest: #2d6a4f;
-            --dsp-forest-light: #52796f;
-            --dsp-cream: #F4F2ED;
-            --dsp-warm-white: #FAFAF7;
-            --dsp-earth: #8B5E3C;
-            --dsp-gold: #D4A843;
-            --dsp-charcoal: #333333;
-            --dsp-text-light: #6b6b6b;
+            --brown-deep: #5C3D2E;
+            --brown-warm: #8B5E3C;
+            --brown-light: #C4956A;
+            --brown-tan: #D4B896;
+            --cream: #FAF8F5;
+            --cream-dark: #F0EBE3;
+            --green-spring: #4A7C59;
+            --green-dark: #2D5A3D;
+            --green-forest: #1B4332;
+            --gold: #C8A84E;
+            --gold-light: #E8D48B;
+            --gold-accent: #D4A843;
+            --charcoal: #2D2D2D;
         }
 
         * {
@@ -27,840 +31,971 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            color: var(--dsp-charcoal);
+            font-family: 'Nunito Sans', sans-serif;
+            color: var(--charcoal);
+            background-color: var(--cream);
             line-height: 1.6;
         }
 
-        /* HEADER */
-        header {
-            background-color: var(--dsp-forest-dark);
-            color: white;
-            padding: 1.25rem 2rem;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
         }
 
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 2rem;
+            background: rgba(255, 255, 255, 0);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            z-index: 1000;
+            transition: all 0.3s ease;
         }
 
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            font-size: 1.75rem;
-            letter-spacing: 3px;
-            color: white;
+        nav.scrolled {
+            background: var(--green-forest);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
-        nav {
+        nav .logo {
+            height: 65px;
+            transition: height 0.3s ease;
+        }
+
+        nav.scrolled .logo {
+            height: 48px;
+        }
+
+        nav .logo img {
+            height: 100%;
+            width: auto;
+        }
+
+        nav .nav-links {
             display: flex;
             gap: 2rem;
+            list-style: none;
+            align-items: center;
         }
 
-        nav a {
-            color: white;
+        nav .nav-links a {
             text-decoration: none;
-            font-size: 0.95rem;
+            color: var(--charcoal);
             font-weight: 500;
             transition: color 0.3s ease;
         }
 
-        nav a:hover {
-            color: var(--dsp-gold);
+        nav.scrolled .nav-links a {
+            color: var(--cream);
         }
 
-        .hamburger-menu {
+        nav .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .hamburger {
             display: none;
             flex-direction: column;
             cursor: pointer;
             gap: 6px;
         }
 
-        .hamburger-menu span {
+        .hamburger span {
             width: 25px;
             height: 3px;
-            background-color: white;
-            border-radius: 2px;
-            transition: all 0.3s ease;
+            background: var(--charcoal);
+            transition: 0.3s ease;
         }
 
-        .hamburger-menu.active span:nth-child(1) {
-            transform: rotate(45deg) translate(8px, 8px);
+        nav.scrolled .hamburger span {
+            background: var(--cream);
         }
 
-        .hamburger-menu.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger-menu.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
-        }
-
-        /* MOBILE MENU */
         @media (max-width: 768px) {
-            nav {
+            .hamburger {
+                display: flex;
+            }
+
+            nav .nav-links {
                 display: none;
                 position: absolute;
-                top: 70px;
+                top: 100%;
                 left: 0;
                 right: 0;
                 flex-direction: column;
-                background-color: var(--dsp-forest);
-                padding: 1rem 2rem;
-                gap: 0.5rem;
+                background: var(--green-forest);
+                padding: 2rem;
+                gap: 1rem;
             }
 
-            nav.active {
+            nav .nav-links.active {
                 display: flex;
             }
 
-            .hamburger-menu {
-                display: flex;
+            nav .nav-links a {
+                color: var(--cream);
+            }
+
+            nav .logo {
+                height: 48px;
+            }
+
+            nav.scrolled .logo {
+                height: 40px;
             }
         }
 
-        /* SECTIONS */
-        .cream {
-            background-color: var(--dsp-cream);
-        }
-
-        .warm-white {
-            background-color: var(--dsp-warm-white);
-        }
-
-        .dark {
-            background-color: var(--dsp-forest-dark);
-            color: white;
-        }
-
-        section {
-            padding: 4rem 2rem;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        /* HERO */
+        /* Hero Section */
         .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+                        url('https://res.cloudinary.com/dyq7rnjjw/image/upload/w_1920,q_auto/Screenshot_2026-03-26_at_11.36.36_AM_gqfag6.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            padding: 6rem 2rem;
+            color: var(--cream);
             position: relative;
+            margin-top: 80px;
         }
 
-        .hero-badge {
-            display: inline-block;
-            background-color: var(--dsp-gold);
-            color: var(--dsp-charcoal);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            letter-spacing: 1px;
+        .hero-content {
+            z-index: 1;
+            max-width: 800px;
+            padding: 2rem;
         }
 
         .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            font-weight: 700;
+            font-size: 4rem;
             margin-bottom: 1rem;
-            color: var(--dsp-forest-dark);
-            line-height: 1.2;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
         }
 
         .hero p {
-            font-size: 1.25rem;
-            color: var(--dsp-text-light);
+            font-size: 1.5rem;
             margin-bottom: 2rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
         }
 
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 2.25rem;
+                font-size: 2.5rem;
             }
 
             .hero p {
-                font-size: 1rem;
+                font-size: 1.2rem;
             }
         }
 
-        /* HEADINGS */
-        h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--dsp-forest-dark);
-        }
-
-        h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-            color: var(--dsp-forest-dark);
-        }
-
-        .dark h2,
-        .dark h3 {
-            color: white;
-        }
-
-        /* CARDS */
-        .card {
-            background-color: white;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-        }
-
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .card h3 {
-            color: var(--dsp-forest);
-            margin-bottom: 1rem;
-        }
-
-        .card p {
-            color: var(--dsp-text-light);
-            line-height: 1.7;
-        }
-
-        /* BUTTONS */
+        /* Buttons */
         .btn {
-            background-color: var(--dsp-gold);
-            color: var(--dsp-charcoal);
-            padding: 14px 32px;
-            border-radius: 8px;
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--gold);
+            color: var(--charcoal);
+            text-decoration: none;
             border: none;
+            border-radius: 4px;
             font-weight: 600;
             cursor: pointer;
-            font-size: 1rem;
             transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
+            font-size: 1rem;
         }
 
         .btn:hover {
-            background-color: #c29730;
+            background: var(--gold-accent);
             transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
         .btn-secondary {
-            background-color: var(--dsp-forest);
-            color: white;
+            background: var(--green-forest);
+            color: var(--cream);
         }
 
         .btn-secondary:hover {
-            background-color: var(--dsp-forest-dark);
+            background: var(--green-dark);
         }
 
-        /* FORM */
-        .form-group {
-            margin-bottom: 1.25rem;
+        /* What's Coming Section */
+        .whats-coming {
+            padding: 6rem 2rem;
+            background: white;
         }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: var(--dsp-charcoal);
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--brown-deep);
         }
 
-        .form-group input {
-            width: 100%;
-            padding: 12px 16px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: var(--dsp-gold);
-            box-shadow: 0 0 0 3px rgba(212, 168, 67, 0.1);
-        }
-
-        .waitlist-form {
-            max-width: 500px;
-            margin: 2rem auto 0;
-            background-color: white;
-            padding: 2.5rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        }
-
-        .form-note {
-            font-size: 0.9rem;
-            color: var(--dsp-text-light);
-            margin-top: 1.5rem;
-            font-style: italic;
-        }
-
-        /* TIMELINE */
-        .timeline {
+        .coming-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
-            margin-top: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
-        .timeline-item {
+        .coming-card {
+            background: var(--cream-dark);
+            padding: 2.5rem;
+            border-radius: 8px;
+            text-align: center;
+            border-left: 4px solid var(--gold);
+            transition: all 0.3s ease;
+        }
+
+        .coming-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .coming-card h3 {
+            font-size: 1.3rem;
+            color: var(--brown-warm);
+            margin-bottom: 0.5rem;
+        }
+
+        .coming-card p {
+            color: var(--charcoal);
+        }
+
+        /* Modules Section */
+        .modules-section {
+            padding: 6rem 2rem;
+            background: var(--cream-dark);
+        }
+
+        .modules-section h2 {
+            font-size: 2rem;
+            color: var(--brown-deep);
+            margin-bottom: 3rem;
             text-align: center;
         }
 
-        .timeline-number {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            background-color: var(--dsp-gold);
-            color: var(--dsp-charcoal);
-            border-radius: 50%;
-            font-weight: 700;
-            font-size: 1.5rem;
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .module-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 6px;
+            text-align: center;
+            border-top: 3px solid var(--brown-warm);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .module-item h4 {
+            font-size: 1rem;
+            color: var(--brown-warm);
+            margin: 0;
+        }
+
+        /* Waitlist Section */
+        .waitlist-section {
+            padding: 4rem 2rem;
+            background: white;
+            text-align: center;
+        }
+
+        .waitlist-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .waitlist-content h2 {
+            font-size: 2rem;
+            color: var(--brown-deep);
             margin-bottom: 1rem;
         }
 
+        .waitlist-form {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .waitlist-form input {
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--brown-light);
+            border-radius: 4px;
+            font-family: 'Nunito Sans', sans-serif;
+            font-size: 1rem;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .waitlist-form input:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(200, 168, 78, 0.1);
+        }
+
+        .waitlist-form button {
+            padding: 0.75rem 2rem;
+        }
+
+        /* Why Section */
+        .why-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, var(--green-forest), var(--green-dark));
+            color: var(--cream);
+            text-align: center;
+        }
+
+        .why-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .why-content h2 {
+            font-size: 2.5rem;
+            color: var(--gold-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .why-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Timeline Section */
+        .timeline-section {
+            padding: 6rem 2rem;
+            background: var(--cream-dark);
+        }
+
+        .timeline-section h2 {
+            font-size: 2rem;
+            color: var(--brown-deep);
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-item::before {
+            content: attr(data-step);
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 30px;
+            background: var(--gold);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
         .timeline-item h3 {
+            font-size: 1.2rem;
+            color: var(--brown-warm);
+            margin-top: 1rem;
             margin-bottom: 0.5rem;
         }
 
         .timeline-item p {
-            color: var(--dsp-text-light);
+            color: var(--charcoal);
+            font-size: 0.95rem;
         }
 
-        /* ACCORDION */
-        .faq-item {
-            margin-bottom: 1.5rem;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 1.5rem;
-        }
-
-        .faq-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-
-        .faq-question {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            cursor: pointer;
-            user-select: none;
-            padding: 1rem 0;
-        }
-
-        .faq-question h3 {
-            margin-bottom: 0;
-            flex: 1;
-            text-align: left;
-        }
-
-        .faq-toggle {
-            width: 24px;
-            height: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--dsp-gold);
-            font-size: 1.5rem;
-            flex-shrink: 0;
-            margin-left: 1rem;
-            transition: transform 0.3s ease;
-        }
-
-        .faq-toggle.active {
-            transform: rotate(45deg);
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-            color: var(--dsp-text-light);
-            line-height: 1.7;
-            padding: 0;
-        }
-
-        .faq-answer.active {
-            max-height: 500px;
-            padding: 0 0 1rem 0;
-        }
-
-        /* FOOTER */
-        footer {
-            background-color: var(--dsp-forest-dark);
-            color: white;
+        /* Meanwhile Section */
+        .meanwhile-section {
+            padding: 4rem 2rem;
+            background: white;
             text-align: center;
-            padding: 2rem;
-            font-size: 0.9rem;
         }
 
-        /* TEXT SECTION */
-        .text-section {
-            max-width: 800px;
+        .meanwhile-content {
+            max-width: 900px;
             margin: 0 auto;
-            line-height: 1.8;
         }
 
-        .text-section p {
-            margin-bottom: 1.5rem;
-            color: var(--dsp-text-light);
-        }
-
-        .dark .text-section p {
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        /* CTA SECTION */
-        .cta-section {
-            text-align: center;
-        }
-
-        .cta-section h2 {
+        .meanwhile-content h2 {
+            font-size: 2rem;
+            color: var(--brown-deep);
             margin-bottom: 2rem;
         }
 
-        /* FADE IN */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* LINKS SECTION */
-        .links-cards {
+        .meanwhile-links {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
         }
 
-        .links-card {
-            background-color: white;
-            border-radius: 12px;
-            padding: 2rem;
+        .meanwhile-card {
+            padding: 1.5rem;
+            background: var(--cream-dark);
+            border-radius: 6px;
+            text-decoration: none;
+            color: var(--charcoal);
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .meanwhile-card:hover {
+            border-bottom-color: var(--gold);
+            transform: translateY(-3px);
+        }
+
+        .meanwhile-card h3 {
+            font-size: 1.2rem;
+            color: var(--brown-warm);
+            margin-bottom: 0.5rem;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 6rem 2rem;
+            background: var(--cream-dark);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-section h2 {
+            font-size: 2rem;
+            color: var(--brown-deep);
+            margin-bottom: 2rem;
             text-align: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .accordion {
+            border: 1px solid var(--brown-light);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid var(--brown-light);
+        }
+
+        .accordion-item:last-child {
+            border-bottom: none;
+        }
+
+        .accordion-header {
+            padding: 1.5rem;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background: var(--cream);
+        }
+
+        .accordion-header h3 {
+            font-size: 1.1rem;
+            color: var(--brown-warm);
+            margin: 0;
+        }
+
+        .accordion-icon {
             transition: transform 0.3s ease;
+            color: var(--gold);
+            font-size: 1.5rem;
         }
 
-        .links-card:hover {
-            transform: translateY(-4px);
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
         }
 
-        .links-card h3 {
-            color: var(--dsp-forest);
-            margin-bottom: 1.5rem;
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: var(--cream);
         }
 
-        .links-card p {
-            color: var(--dsp-text-light);
-            margin-bottom: 1.5rem;
+        .accordion-item.active .accordion-content {
+            max-height: 500px;
         }
 
-        /* MODULES LIST */
-        .modules-list {
+        .accordion-content p {
+            padding: 1.5rem;
+            color: var(--charcoal);
+            line-height: 1.8;
+        }
+
+        /* Insiders Banner */
+        .insiders-banner {
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--brown-warm), var(--gold));
+            color: white;
+            text-align: center;
+            margin: 4rem 2rem;
+            border-radius: 8px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .insiders-banner h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .insiders-banner p {
+            margin-bottom: 1rem;
+        }
+
+        .insiders-banner a {
+            display: inline-block;
+            background: white;
+            color: var(--brown-deep);
+            padding: 0.75rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .insiders-banner a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Contact Strip */
+        .contact-strip {
+            padding: 3rem 2rem;
+            background: var(--brown-deep);
+            color: var(--cream);
+            text-align: center;
+        }
+
+        .contact-strip h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--gold-light);
+        }
+
+        .contact-strip p {
+            margin-bottom: 1rem;
+        }
+
+        .contact-strip a {
+            color: var(--gold-light);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-strip a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            color: var(--cream);
+            padding: 3rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 3rem;
+            gap: 2rem;
+            margin-bottom: 2rem;
         }
 
-        .module-item {
-            background-color: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            border-left: 4px solid var(--dsp-gold);
-            color: var(--dsp-charcoal);
-            font-weight: 500;
+        .footer-section h4 {
+            color: var(--gold-light);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
         }
 
-        @media (max-width: 768px) {
-            section {
-                padding: 2.5rem 1.5rem;
-            }
+        .footer-section ul {
+            list-style: none;
+        }
 
-            h2 {
-                font-size: 1.75rem;
-            }
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
 
-            h3 {
-                font-size: 1.25rem;
-            }
+        .footer-section a {
+            color: var(--cream);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
 
-            .timeline {
-                grid-template-columns: 1fr;
-            }
+        .footer-section a:hover {
+            color: var(--gold-light);
+        }
 
-            .modules-list {
-                grid-template-columns: 1fr;
-            }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
-    <!-- HEADER -->
-    <header>
-        <div class="header-content">
-            <a href="index.html" class="logo"><img src="Dakota%20SKY%20for%20CLEAR%20no%20color.png" alt="Dakota Sky Pudelpointers" style="height: 65px;width:auto;"></a><a href="index.html" style="margin-left:1rem;display:flex;align-items:center;"><img src="key%20gun%20logo%20FINAL.png" alt="Dakota Sky Gun Dog" style="height:35px;width:auto;"></a>
-            <nav id="nav-menu">
-                <a href="index.html">Home</a>
-                <a href="breeding.html">Breeding</a>
-                <a href="training.html">Training</a>
-                <a href="boarding.html">Boarding</a>
-                <a href="nutrition.html">Nutrition</a>
-                <a href="about.html">About</a>
-                <a href="contact.html">Contact</a>
-            </nav>
-            <div class="hamburger-menu" id="hamburger"><span></span><span></span><span></span></div>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="logo">
+            <img src="https://res.cloudinary.com/dyq7rnjjw/image/upload/h_120,q_auto/v1774544524/Dakota_SKY_for_CLEAR_no_color_etv2yz.png" alt="Dakota Sky Pudelpointers">
         </div>
-    </header>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#breeding">Breeding</a></li>
+            <li><a href="#training">Training</a></li>
+            <li><a href="#boarding">Boarding</a></li>
+            <li><a href="#nutrition">Nutrition</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
 
-    <!-- HERO -->
-    <section class="hero warm-white fade-in">
-        <div class="container">
-            <div class="hero-badge">Coming 2026</div>
-            <h1>Learn to Train Your Gun Dog — From Home.</h1>
-            <p>Glen and Stacey's complete training system, available online.</p>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Learn to Train Your Gun Dog</h1>
+            <p>From Home.</p>
+            <p style="font-size: 1.2rem; margin-top: 1rem;">Glen and Stacey's complete training system, available online.</p>
         </div>
     </section>
 
-    <!-- WHAT'S COMING -->
-    <section class="cream fade-in">
-        <div class="container">
-            <h2>What's Coming</h2>
-            <div class="cards-grid">
-                <div class="card fade-in">
-                    <h3>Video-Based Curriculum</h3>
-                    <p>Step-by-step training videos that guide you through every phase of development, from puppies to advanced field dogs.</p>
-                </div>
-                <div class="card fade-in">
-                    <h3>Real Methods, Proven Results</h3>
-                    <p>The same philosophy we've used successfully for over 20 years, adapted specifically for home trainers.</p>
-                </div>
-                <div class="card fade-in">
-                    <h3>Complete Modules</h3>
-                    <p>Comprehensive training coverage from foundation skills through advanced field work and hunting preparation.</p>
-                </div>
-                <div class="card fade-in">
-                    <h3>Accessible Everywhere</h3>
-                    <p>Learn on any device. Stream videos and guides whenever you need them, at your own pace.</p>
-                </div>
+    <!-- What's Coming Section -->
+    <section class="whats-coming">
+        <h2 class="section-title">What's Coming</h2>
+        <div class="coming-grid">
+            <div class="coming-card">
+                <h3>Video Curriculum</h3>
+                <p>High-quality, easy-to-follow training videos created by professional instructors.</p>
+            </div>
+            <div class="coming-card">
+                <h3>Proven Results</h3>
+                <p>Methods tested and refined through years of successful training programs.</p>
+            </div>
+            <div class="coming-card">
+                <h3>Complete Modules</h3>
+                <p>Everything from puppy foundation through advanced hunting skills.</p>
+            </div>
+            <div class="coming-card">
+                <h3>Accessible Everywhere</h3>
+                <p>Learn at your own pace, any time, anywhere with internet access.</p>
             </div>
         </div>
     </section>
 
-    <!-- TRAINING MODULES -->
-    <section class="warm-white fade-in">
-        <div class="container">
-            <h2>Training Modules (Coming Soon)</h2>
-            <p style="color: var(--dsp-text-light); margin-top: 1rem;">Our comprehensive curriculum covers every aspect of gun dog training:</p>
-            <div class="modules-list">
-                <div class="module-item fade-in">Puppy Foundation (4-12 weeks)</div>
-                <div class="module-item fade-in">House Training & Crate Work</div>
-                <div class="module-item fade-in">Recall & Name Response</div>
-                <div class="module-item fade-in">Introduction to Birds & Scenting</div>
-                <div class="module-item fade-in">Building Drive & Motivation</div>
-                <div class="module-item fade-in">Pointing & Staunchness</div>
-                <div class="module-item fade-in">Retrieving (Land & Water)</div>
-                <div class="module-item fade-in">Steadiness to Flush & Shot</div>
-                <div class="module-item fade-in">Water Work & Swimming</div>
-                <div class="module-item fade-in">Hunt Preparation & Field Manners</div>
-                <div class="module-item fade-in">NAVHDA Natural Ability Prep</div>
-                <div class="module-item fade-in">Advanced Hunting Skills</div>
+    <!-- Training Modules Section -->
+    <section class="modules-section">
+        <h2>Training Modules</h2>
+        <div class="modules-grid">
+            <div class="module-item">
+                <h4>Puppy Foundation (4-12 weeks)</h4>
+            </div>
+            <div class="module-item">
+                <h4>House Training</h4>
+            </div>
+            <div class="module-item">
+                <h4>Recall</h4>
+            </div>
+            <div class="module-item">
+                <h4>Intro to Birds</h4>
+            </div>
+            <div class="module-item">
+                <h4>Building Drive</h4>
+            </div>
+            <div class="module-item">
+                <h4>Pointing</h4>
+            </div>
+            <div class="module-item">
+                <h4>Retrieving</h4>
+            </div>
+            <div class="module-item">
+                <h4>Steadiness</h4>
+            </div>
+            <div class="module-item">
+                <h4>Water Work</h4>
+            </div>
+            <div class="module-item">
+                <h4>Hunt Prep</h4>
+            </div>
+            <div class="module-item">
+                <h4>NAVHDA Prep</h4>
+            </div>
+            <div class="module-item">
+                <h4>Advanced Skills</h4>
             </div>
         </div>
     </section>
 
-    <!-- WAITLIST -->
-    <section class="cream fade-in">
-        <div class="container">
-            <h2>Be the First to Know</h2>
-            <p style="text-align: center; color: var(--dsp-text-light); margin-top: 1rem;">Get exclusive early access and founding member pricing.</p>
-            <form class="waitlist-form fade-in" id="waitlist-form">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <button type="submit" class="btn" style="width: 100%;">Notify Me</button>
-                <p class="form-note">Early subscribers will receive founding member pricing — a special discount locked in for life.</p>
+    <!-- Waitlist Section -->
+    <section class="waitlist-section">
+        <div class="waitlist-content">
+            <h2>Join the Waitlist</h2>
+            <p>Be first to know when the Dakota Sky Training System launches.</p>
+            <form class="waitlist-form" id="waitlistForm">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <button type="submit" class="btn">Notify Me</button>
             </form>
         </div>
     </section>
 
-    <!-- WHY WE'RE BUILDING THIS -->
-    <section class="warm-white fade-in">
-        <div class="container">
+    <!-- Why We're Building This -->
+    <section class="why-section">
+        <div class="why-content">
             <h2>Why We're Building This</h2>
-            <div class="text-section fade-in">
-                <p>Professional gun dog training doesn't come cheap. Sending your dog to a professional trainer typically costs $1,200 to $1,500 per month, and many owners don't have access to trainers who specialize in Pudelpointers or their specific hunting style.</p>
-                <p>We've spent over 20 years refining our training methods and working with hundreds of dogs. We know there's a better way — one that puts the training directly in your hands, with guidance from us every step of the way.</p>
-                <p>This isn't a basic "tricks and obedience" course. It's a complete, systematic approach to developing a finished hunting dog. Every module is built on principles we've tested thousands of times in the field.</p>
+            <p>We've trained hundreds of Pudelpointers and watched countless owners struggle to translate that into their own training. Our online system brings our proven methods directly to you — video-guided, step-by-step, with the same principles that have produced champion hunters and beloved family companions.</p>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline-section">
+        <h2>Launch Timeline</h2>
+        <div class="timeline">
+            <div class="timeline-item" data-step="1">
+                <h3>Spring 2026</h3>
+                <p>Beta launch with founding members</p>
+            </div>
+            <div class="timeline-item" data-step="2">
+                <h3>Early Summer</h3>
+                <p>Founding member pricing closes</p>
+            </div>
+            <div class="timeline-item" data-step="3">
+                <h3>Summer 2026</h3>
+                <p>Public launch and standard pricing</p>
+            </div>
+            <div class="timeline-item" data-step="4">
+                <h3>Ongoing</h3>
+                <p>New modules and updates added regularly</p>
             </div>
         </div>
     </section>
 
-    <!-- LAUNCH TIMELINE -->
-    <section class="cream fade-in">
-        <div class="container">
-            <h2>Launch Timeline</h2>
-            <div class="timeline">
-                <div class="timeline-item fade-in">
-                    <div class="timeline-number">1</div>
-                    <h3>Spring 2026</h3>
-                    <p>Course development and beta testing with select trainers</p>
-                </div>
-                <div class="timeline-item fade-in">
-                    <div class="timeline-number">2</div>
-                    <h3>Early Summer 2026</h3>
-                    <p>Founding member access begins with lifetime pricing locked in</p>
-                </div>
-                <div class="timeline-item fade-in">
-                    <div class="timeline-number">3</div>
-                    <h3>Summer 2026</h3>
-                    <p>Public launch and general availability</p>
-                </div>
-                <div class="timeline-item fade-in">
-                    <div class="timeline-number">4</div>
-                    <h3>Ongoing</h3>
-                    <p>New modules, Q&A sessions, and community support</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- IN THE MEANTIME -->
-    <section class="warm-white fade-in">
-        <div class="container">
-            <h2>In the Meantime...</h2>
-            <p style="text-align: center; color: var(--dsp-text-light); margin-top: 1rem;">Explore our other services while you wait for the course launch.</p>
-            <div class="links-cards">
-                <div class="links-card fade-in">
+    <!-- Meanwhile Section -->
+    <section class="meanwhile-section">
+        <div class="meanwhile-content">
+            <h2>In the Meantime</h2>
+            <p>Check out these resources to get started on your training journey:</p>
+            <div class="meanwhile-links">
+                <div class="meanwhile-card">
                     <h3>Board & Train</h3>
-                    <p>Send your dog to our facility for professional hands-on training by Glen and Stacey.</p>
-                    <a href="training-consultation.html" class="btn btn-secondary">Learn More</a>
+                    <p>One-on-one intensive training at Dakota Sky</p>
                 </div>
-                <div class="links-card fade-in">
+                <div class="meanwhile-card">
                     <h3>Puppy Package</h3>
-                    <p>Start your puppy off right with early socialization and foundation training.</p>
-                    <a href="puppy-package.html" class="btn btn-secondary">Learn More</a>
+                    <p>Early foundation training with our team</p>
                 </div>
-                <div class="links-card fade-in">
-                    <h3>Free Guide</h3>
-                    <p>Download our beginner's guide to gun dog training and get started today.</p>
-                    <a href="lead-magnet.html" class="btn btn-secondary">Get Guide</a>
+                <div class="meanwhile-card">
+                    <h3>Free Training Guide</h3>
+                    <p>Download our beginner's guide to gun dog training</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FAQ -->
-    <section class="cream fade-in">
-        <div class="container">
-            <h2>Frequently Asked Questions</h2>
-            <div style="max-width: 800px; margin: 3rem auto 0;">
-                <div class="faq-item fade-in">
-                    <div class="faq-question">
-                        <h3>Will the course be available everywhere?</h3>
-                        <div class="faq-toggle">+</div>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Yes. The course will be accessible on any device — desktop, tablet, or smartphone. You can stream videos and access guides whenever and wherever you need them.</p>
-                    </div>
-                </div>
+    <!-- Insiders Banner -->
+    <section class="insiders-banner">
+        <h3>Get Exclusive Access</h3>
+        <p>Join Dakota Sky Insiders for pre-launch access, founding member pricing, and behind-the-scenes course development updates.</p>
+        <a href="members.html">Learn About Insiders</a>
+    </section>
 
-                <div class="faq-item fade-in">
-                    <div class="faq-question">
-                        <h3>Can I get a refund?</h3>
-                        <div class="faq-toggle">+</div>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Yes. Founding members receive a 30-day satisfaction guarantee. If the course doesn't meet your expectations, we'll provide a full refund within the first 30 days of access.</p>
-                    </div>
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <h2>Frequently Asked Questions</h2>
+        <div class="accordion">
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <h3>Will it be available everywhere?</h3>
+                    <span class="accordion-icon">▼</span>
                 </div>
-
-                <div class="faq-item fade-in">
-                    <div class="faq-question">
-                        <h3>Is this just for Pudelpointers?</h3>
-                        <div class="faq-toggle">+</div>
-                    </div>
-                    <div class="faq-answer">
-                        <p>The course is designed specifically for Pudelpointers, but the principles and methods apply to all hunting dogs. Pointer and setter owners will find it highly valuable.</p>
-                    </div>
+                <div class="accordion-content">
+                    <p>Yes. The Dakota Sky Training System will be accessible from any device with internet access. You can watch on your phone, tablet, or computer, and progress is synced across all devices.</p>
                 </div>
-
-                <div class="faq-item fade-in">
-                    <div class="faq-question">
-                        <h3>What if I already have a dog?</h3>
-                        <div class="faq-toggle">+</div>
-                    </div>
-                    <div class="faq-answer">
-                        <p>The curriculum covers all ages, from puppies through adult dogs. Whether you're starting with an 8-week-old puppy or a 3-year-old dog, you'll find modules and techniques tailored to your situation.</p>
-                    </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <h3>What about refunds?</h3>
+                    <span class="accordion-icon">▼</span>
                 </div>
-
-                <div class="faq-item fade-in">
-                    <div class="faq-question">
-                        <h3>Will there be live support?</h3>
-                        <div class="faq-toggle">+</div>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Absolutely. Founding members get access to monthly Q&A sessions with Glen and Stacey, a community forum for peer support, and email support for specific questions about your training.</p>
-                    </div>
+                <div class="accordion-content">
+                    <p>We offer a 30-day money-back guarantee. If you're not satisfied with the course, we'll refund your money, no questions asked.</p>
                 </div>
-
-                <div class="faq-item fade-in">
-                    <div class="faq-question">
-                        <h3>What's the founding member discount?</h3>
-                        <div class="faq-toggle">+</div>
-                    </div>
-                    <div class="faq-answer">
-                        <p>We'll announce the exact discount closer to launch, but founding members will lock in a lifetime rate — meaning you'll never pay more, even if the course price increases in the future.</p>
-                    </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <h3>Is this just for Pudelpointers?</h3>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p>While designed specifically for Pudelpointers, these fundamentals apply to most hunting and gun dog breeds. The training principles are universal.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <h3>What if I already have a dog?</h3>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p>Many modules can be adapted for adult dogs. We include sections on transitioning older dogs to new training methods.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <h3>Is there live support?</h3>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p>Founding members get access to monthly live Q&A sessions with Glen and Stacey. Public launch members have access to our support team via email.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <h3>What's the founding member discount?</h3>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p>Founding members who join during beta get 40% off lifetime access. Join the waitlist now to get notified when beta opens.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FINAL CTA -->
-    <section class="dark fade-in">
-        <div class="container" style="text-align: center;">
-            <h2>Ready to Train Like a Pro?</h2>
-            <p style="margin-top: 1rem; font-size: 1.1rem;">Join the waitlist and be first to access our complete training system.</p>
-            <a href="#waitlist-form" class="btn" style="margin-top: 2rem;">Get on the Waitlist</a>
-        </div>
+    <!-- Contact Strip -->
+    <section class="contact-strip">
+        <h3>Ready to Learn More?</h3>
+        <p>Email us at <a href="mailto:hello@dakotaskypdp.com">hello@dakotaskypdp.com</a> or call <a href="tel:+15551234567">(555) 123-4567</a></p>
+        <p>We typically respond within 24 hours.</p>
     </section>
 
-    <!-- FOOTER -->
+    <!-- Footer -->
     <footer>
-        <div class="footer-logo" style="margin-bottom:1.5rem;"><a href="index.html"><img src="Dakota%20SKY%20for%20CLEAR%20no%20color.png" alt="Dakota Sky Pudelpointers" style="height:50px;width:auto;"></a></div>
-        <p>&copy; 2026 Dakota Sky Pudelpointers. Dickinson, North Dakota. All rights reserved.</p>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#breeding">Breeding</a></li>
+                    <li><a href="#training">Training</a></li>
+                    <li><a href="#boarding">Boarding</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#nutrition">Nutrition</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="members.html">Insiders</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <ul>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">YouTube</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Dakota Sky Pudelpointers. All rights reserved.</p>
+        </div>
     </footer>
 
     <script>
-        // HAMBURGER MENU
+        // Navigation scroll effect
+        const navbar = document.getElementById('navbar');
+        const navLinks = document.getElementById('navLinks');
         const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('nav-menu');
 
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Hamburger menu
         hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
+            navLinks.classList.toggle('active');
         });
 
-        // Close menu when nav link is clicked
-        const navLinks = navMenu.querySelectorAll('a');
-        navLinks.forEach(link => {
+        navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
+                navLinks.classList.remove('active');
             });
         });
 
-        // FADE IN ON SCROLL
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(element => {
-            observer.observe(element);
-        });
-
-        // FAQ ACCORDION
-        const faqQuestions = document.querySelectorAll('.faq-question');
-
-        faqQuestions.forEach(question => {
-            question.addEventListener('click', () => {
-                const answer = question.nextElementSibling;
-                const toggle = question.querySelector('.faq-toggle');
-
-                // Close all other open FAQs
-                faqQuestions.forEach(otherQuestion => {
-                    if (otherQuestion !== question) {
-                        const otherAnswer = otherQuestion.nextElementSibling;
-                        const otherToggle = otherQuestion.querySelector('.faq-toggle');
-                        otherAnswer.classList.remove('active');
-                        otherToggle.classList.remove('active');
-                    }
-                });
-
-                // Toggle current FAQ
-                answer.classList.toggle('active');
-                toggle.classList.toggle('active');
-            });
-        });
-
-        // WAITLIST FORM
-        const waitlistForm = document.getElementById('waitlist-form');
-
+        // Waitlist form
+        const waitlistForm = document.getElementById('waitlistForm');
         waitlistForm.addEventListener('submit', (e) => {
             e.preventDefault();
-
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-
-            // Show thank you message
-            alert(`Thank you, ${name}! We've added ${email} to our founding member waitlist. You'll hear from us soon with exclusive early access details.`);
-
-            // Reset form
+            alert('Thank you for joining the waitlist! Check your email for updates.');
             waitlistForm.reset();
         });
 
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
+        // Accordion
+        const accordionItems = document.querySelectorAll('.accordion-item');
+
+        accordionItems.forEach(item => {
+            const header = item.querySelector('.accordion-header');
+            header.addEventListener('click', () => {
+                accordionItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                item.classList.toggle('active');
             });
         });
     </script>

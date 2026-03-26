@@ -1,780 +1,892 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About — Dakota Sky Pudelpointers</title>
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --dsp-forest-dark: #1a3c34;
-      --dsp-forest: #2d6a4f;
-      --dsp-forest-light: #52796f;
-      --dsp-cream: #F4F2ED;
-      --dsp-warm-white: #FAFAF7;
-      --dsp-earth: #8B5E3C;
-      --dsp-gold: #D4A843;
-      --dsp-charcoal: #333333;
-      --dsp-text-light: #6b6b6b;
-      --dsp-shadow: 0 2px 12px rgba(0,0,0,0.08);
-      --dsp-radius: 8px;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      color: var(--dsp-charcoal);
-      line-height: 1.6;
-      background-color: var(--dsp-warm-white);
-    }
-
-    h1, h2, h3, h4, h5, h6 {
-      font-family: 'Playfair Display', serif;
-      color: var(--dsp-forest-dark);
-      line-height: 1.2;
-    }
-
-    /* ===== HEADER ===== */
-    header {
-      background-color: var(--dsp-forest-dark);
-      color: white;
-      padding: 1.5rem 2rem;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: var(--dsp-shadow);
-    }
-
-    .header-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-    }
-
-    .nav-menu {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .nav-menu a {
-      color: white;
-      text-decoration: none;
-      font-size: 0.95rem;
-      font-weight: 500;
-      transition: color 0.3s ease;
-      border-bottom: 2px solid transparent;
-      padding-bottom: 0.25rem;
-    }
-
-    .nav-menu a:hover {
-      color: var(--dsp-gold);
-      border-bottom-color: var(--dsp-gold);
-    }
-
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-    }
-
-    .hamburger span {
-      width: 25px;
-      height: 3px;
-      background-color: white;
-      margin: 5px 0;
-      transition: 0.3s;
-    }
-
-    .hamburger.active span:nth-child(1) {
-      transform: rotate(-45deg) translate(-8px, 8px);
-    }
-
-    .hamburger.active span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .hamburger.active span:nth-child(3) {
-      transform: rotate(45deg) translate(-7px, -7px);
-    }
-
-    /* ===== HERO ===== */
-    .hero {
-      height: 50vh;
-      background: linear-gradient(135deg, var(--dsp-forest-dark) 0%, var(--dsp-forest) 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: white;
-      position: relative;
-      overflow: hidden;
-      animation: fadeIn 0.8s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
-    }
-
-    .hero-content h1 {
-      font-size: 4rem;
-      color: white;
-      margin-bottom: 1rem;
-      font-weight: 600;
-      letter-spacing: -1px;
-    }
-
-    .hero-content p {
-      font-size: 1.25rem;
-      color: rgba(255, 255, 255, 0.85);
-      font-weight: 400;
-    }
-
-    /* ===== STORY SECTION ===== */
-    .story-section {
-      background-color: var(--dsp-cream);
-      padding: 5rem 2rem;
-    }
-
-    .story-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-    }
-
-    .story-image {
-      width: 100%;
-      height: 500px;
-      background: linear-gradient(135deg, var(--dsp-earth) 0%, var(--dsp-forest) 100%);
-      border-radius: var(--dsp-radius);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 0.95rem;
-      text-align: center;
-      padding: 2rem;
-      box-shadow: var(--dsp-shadow);
-      animation: fadeInOnScroll 0.8s ease-in-out;
-    }
-
-    .story-content h2 {
-      font-size: 2.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .story-content p {
-      color: var(--dsp-text-light);
-      margin-bottom: 1.25rem;
-      line-height: 1.8;
-      font-size: 1rem;
-    }
-
-    /* ===== LAND SECTION ===== */
-    .land-section {
-      background-color: var(--dsp-warm-white);
-      padding: 5rem 2rem;
-    }
-
-    .land-container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .land-section h2 {
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
-      text-align: center;
-    }
-
-    .land-image {
-      width: 100%;
-      height: 400px;
-      background: linear-gradient(to right, var(--dsp-forest-light) 0%, var(--dsp-forest) 50%, var(--dsp-earth) 100%);
-      border-radius: var(--dsp-radius);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 0.95rem;
-      text-align: center;
-      padding: 2rem;
-      box-shadow: var(--dsp-shadow);
-      margin-bottom: 2.5rem;
-      animation: fadeInOnScroll 0.8s ease-in-out;
-    }
-
-    .land-text {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-    }
-
-    .land-text p {
-      color: var(--dsp-text-light);
-      line-height: 1.8;
-      font-size: 1rem;
-    }
-
-    /* ===== CREDENTIALS SECTION ===== */
-    .credentials-section {
-      background-color: var(--dsp-cream);
-      padding: 5rem 2rem;
-    }
-
-    .credentials-container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .credentials-section h2 {
-      font-size: 2.5rem;
-      margin-bottom: 3rem;
-      text-align: center;
-    }
-
-    .credentials-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-    }
-
-    .credential-card {
-      background-color: white;
-      border-top: 4px solid var(--dsp-forest);
-      border-radius: var(--dsp-radius);
-      padding: 2rem;
-      box-shadow: var(--dsp-shadow);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      animation: fadeInOnScroll 0.8s ease-in-out;
-    }
-
-    .credential-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-    }
-
-    .credential-icon {
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(135deg, var(--dsp-forest) 0%, var(--dsp-forest-light) 100%);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1.5rem;
-    }
-
-    .credential-card h3 {
-      font-size: 1.25rem;
-      margin-bottom: 0.75rem;
-      text-align: center;
-      color: var(--dsp-forest);
-    }
-
-    .credential-card p {
-      font-size: 0.95rem;
-      color: var(--dsp-text-light);
-      line-height: 1.6;
-      text-align: center;
-    }
-
-    /* ===== LIFETIME COMMITMENT ===== */
-    .commitment-section {
-      background-color: var(--dsp-forest-dark);
-      color: white;
-      padding: 5rem 2rem;
-    }
-
-    .commitment-container {
-      max-width: 800px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .commitment-section h2 {
-      font-size: 2.5rem;
-      color: white;
-      margin-bottom: 2rem;
-    }
-
-    .commitment-section p {
-      font-size: 1.1rem;
-      line-height: 1.8;
-      color: rgba(255, 255, 255, 0.95);
-      margin-bottom: 1.5rem;
-    }
-
-    .commitment-section p:last-child {
-      margin-bottom: 0;
-    }
-
-    /* ===== GUARANTEE SECTION ===== */
-    .guarantee-section {
-      background-color: var(--dsp-cream);
-      padding: 5rem 2rem;
-    }
-
-    .guarantee-container {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .guarantee-section h2 {
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
-      text-align: center;
-    }
-
-    .guarantee-card {
-      background-color: white;
-      padding: 3rem;
-      border-radius: var(--dsp-radius);
-      box-shadow: var(--dsp-shadow);
-      animation: fadeInOnScroll 0.8s ease-in-out;
-    }
-
-    .guarantee-item {
-      display: flex;
-      align-items: flex-start;
-      margin-bottom: 1.5rem;
-      font-size: 1.05rem;
-      color: var(--dsp-charcoal);
-      line-height: 1.6;
-    }
-
-    .guarantee-item:last-child {
-      margin-bottom: 0;
-    }
-
-    .guarantee-checkmark {
-      color: var(--dsp-gold);
-      font-weight: 700;
-      font-size: 1.5rem;
-      margin-right: 1rem;
-      flex-shrink: 0;
-    }
-
-    /* ===== FOOTER ===== */
-    footer {
-      background-color: var(--dsp-forest-dark);
-      color: white;
-      padding: 3rem 2rem 2rem;
-    }
-
-    .footer-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      margin-bottom: 2rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      padding-bottom: 2rem;
-    }
-
-    .footer-column h3 {
-      color: white;
-      font-size: 1rem;
-      margin-bottom: 1rem;
-      font-weight: 600;
-      font-family: 'Inter', sans-serif;
-    }
-
-    .footer-column a,
-    .footer-column p {
-      color: rgba(255, 255, 255, 0.8);
-      text-decoration: none;
-      font-size: 0.9rem;
-      line-height: 1.6;
-    }
-
-    .footer-column a:hover {
-      color: var(--dsp-gold);
-    }
-
-    .footer-bottom {
-      text-align: center;
-      font-size: 0.85rem;
-      color: rgba(255, 255, 255, 0.6);
-    }
-
-    /* ===== ANIMATIONS ===== */
-    @keyframes fadeInOnScroll {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* ===== MOBILE RESPONSIVE ===== */
-    @media (max-width: 768px) {
-      .hamburger {
-        display: flex;
-      }
-
-      .nav-menu {
-        position: absolute;
-        top: 60px;
-        left: 0;
-        right: 0;
-        background-color: var(--dsp-forest-dark);
-        flex-direction: column;
-        gap: 0;
-        padding: 1.5rem 2rem;
-        display: none;
-        box-shadow: var(--dsp-shadow);
-      }
-
-      .nav-menu.active {
-        display: flex;
-      }
-
-      .nav-menu a {
-        padding: 0.75rem 0;
-        border-bottom: none;
-      }
-
-      .hero-content h1 {
-        font-size: 2.5rem;
-      }
-
-      .hero-content p {
-        font-size: 1rem;
-      }
-
-      .story-container {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-
-      .story-image {
-        order: -1;
-      }
-
-      .story-content h2 {
-        font-size: 2rem;
-      }
-
-      .land-text {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
-
-      .credentials-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .commitment-section {
-        padding: 3rem 2rem;
-      }
-
-      .commitment-section h2 {
-        font-size: 2rem;
-      }
-
-      .commitment-section p {
-        font-size: 1rem;
-      }
-
-      .guarantee-section {
-        padding: 3rem 2rem;
-      }
-
-      .guarantee-section h2 {
-        font-size: 2rem;
-      }
-
-      .guarantee-card {
-        padding: 2rem;
-      }
-
-      .footer-container {
-        grid-template-columns: 1fr;
-      }
-
-      .story-section,
-      .land-section,
-      .credentials-section {
-        padding: 3rem 2rem;
-      }
-
-      .story-container,
-      .land-container,
-      .credentials-container,
-      .commitment-container,
-      .guarantee-container {
-        padding: 0;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .hero-content h1 {
-        font-size: 1.75rem;
-      }
-
-      .story-content h2,
-      .land-section h2,
-      .credentials-section h2,
-      .commitment-section h2,
-      .guarantee-section h2 {
-        font-size: 1.5rem;
-      }
-
-      .header-container {
-        flex-direction: column;
-        gap: 1rem;
-      }
-    }
-
-    /* ===== FOCUS & ACCESSIBILITY ===== */
-    a:focus {
-      outline: 2px solid var(--dsp-gold);
-      outline-offset: 2px;
-    }
-
-    button:focus {
-      outline: 2px solid var(--dsp-gold);
-      outline-offset: 2px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About — Dakota Sky Pudelpointers</title>
+    <meta name="description" content="Learn about Glen and Stacey's mission to breed world-class Pudelpointers. Discover the Dakota Sky guarantee and our commitment to excellence.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+        body {
+            font-family: 'Nunito Sans', sans-serif;
+            color: #2D2D2D;
+            background: #FAF8F5;
+            overflow-x: hidden;
+        }
+
+        /* ===== COLOR PALETTE ===== */
+        :root {
+            --brown-deep: #5C3D2E;
+            --brown-warm: #8B5E3C;
+            --brown-light: #C4956A;
+            --brown-tan: #D4B896;
+            --cream: #FAF8F5;
+            --cream-dark: #F0EBE3;
+            --green-spring: #4A7C59;
+            --green-dark: #2D5A3D;
+            --green-forest: #1B4332;
+            --gold: #C8A84E;
+            --gold-light: #E8D48B;
+            --gold-accent: #D4A843;
+            --charcoal: #2D2D2D;
+            --white-soft: rgba(255,255,255,0.95);
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        h1, h2, h3, h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            line-height: 1.15;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.5s ease;
+            background: transparent;
+        }
+        nav.scrolled {
+            background: rgba(27, 67, 50, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 12px 40px;
+            box-shadow: 0 2px 30px rgba(0,0,0,0.15);
+        }
+        .nav-logo {
+            height: 65px;
+            transition: height 0.4s ease;
+        }
+        nav.scrolled .nav-logo { height: 48px; }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            padding-bottom: 4px;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        .hamburger span {
+            width: 28px;
+            height: 2px;
+            background: white;
+            transition: all 0.3s ease;
+        }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            .nav-links {
+                position: fixed;
+                top: 0; left: 0; right: 0; bottom: 0;
+                background: rgba(27, 67, 50, 0.97);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 28px;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.4s ease;
+            }
+            .nav-links.active { opacity: 1; pointer-events: all; }
+            .nav-links a { font-size: 1.1rem; letter-spacing: 3px; }
+        }
+
+        /* ===== PARALLAX HERO ===== */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute;
+            inset: -20%;
+            background-size: cover;
+            background-position: center;
+            will-change: transform;
+            transition: transform 0.1s linear;
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(27, 67, 50, 0.7) 0%,
+                rgba(92, 61, 46, 0.5) 50%,
+                rgba(27, 67, 50, 0.65) 100%
+            );
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 24px;
+            max-width: 900px;
+        }
+        .hero-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 24px;
+            font-weight: 600;
+            opacity: 0;
+            animation: fadeUp 1s 0.3s forwards;
+        }
+        .hero h1 {
+            font-size: clamp(2.8rem, 7vw, 5.5rem);
+            color: white;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeUp 1s 0.5s forwards;
+        }
+        .hero h1 em {
+            font-style: italic;
+            color: var(--gold-light);
+        }
+        .hero-sub {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: rgba(255,255,255,0.85);
+            font-weight: 300;
+            line-height: 1.7;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            opacity: 0;
+            animation: fadeUp 1s 0.7s forwards;
+        }
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeUp 1s 0.9s forwards;
+        }
+        .btn {
+            padding: 14px 36px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+        .btn-gold {
+            background: var(--gold);
+            color: var(--green-forest);
+        }
+        .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(200,168,78,0.3); }
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 1.5px solid rgba(255,255,255,0.5);
+        }
+        .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            opacity: 0;
+            animation: fadeUp 1s 1.2s forwards;
+        }
+        .scroll-indicator .line {
+            width: 1px;
+            height: 50px;
+            background: rgba(255,255,255,0.4);
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+        .scroll-indicator .line::after {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gold);
+            animation: scrollLine 2s infinite;
+        }
+        .scroll-indicator span {
+            display: block;
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+            margin-top: 12px;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes scrollLine {
+            0% { top: -100%; }
+            100% { top: 100%; }
+        }
+
+        /* ===== FULL-WIDTH IMAGE SECTIONS ===== */
+        .image-section {
+            position: relative;
+            height: 85vh;
+            min-height: 550px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+        .image-section .bg {
+            position: absolute;
+            inset: -15%;
+            background-size: cover;
+            background-position: center;
+            will-change: transform;
+        }
+        .image-section .overlay {
+            position: absolute;
+            inset: 0;
+        }
+        .image-section .content {
+            position: relative;
+            z-index: 2;
+            padding: 60px;
+            max-width: 600px;
+        }
+        .image-section.align-left .content { margin-left: 8%; }
+        .image-section.align-right .content { margin-left: auto; margin-right: 8%; }
+        .image-section.align-center .content { margin: 0 auto; text-align: center; max-width: 700px; }
+
+        .image-section h2 {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            color: white;
+            margin-bottom: 16px;
+        }
+        .image-section p {
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.88);
+            line-height: 1.8;
+            font-weight: 300;
+        }
+        .image-section .tag {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 16px;
+            display: block;
+            font-weight: 600;
+        }
+
+        /* ===== TEXT INTERLUDE SECTIONS ===== */
+        .interlude {
+            padding: 120px 40px;
+            text-align: center;
+            background: var(--cream);
+        }
+        .interlude h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--brown-deep);
+            margin-bottom: 24px;
+        }
+        .interlude p {
+            max-width: 680px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: #6B5B4E;
+            line-height: 1.9;
+            font-weight: 300;
+        }
+        .interlude .gold-rule {
+            width: 60px;
+            height: 2px;
+            background: var(--gold);
+            margin: 0 auto 32px;
+        }
+
+        /* ===== SPLIT SECTION ===== */
+        .split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 70vh;
+        }
+        .split-image {
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 400px;
+        }
+        .split-image .bg-inner {
+            position: absolute;
+            inset: -10%;
+            background-size: cover;
+            background-position: center;
+            will-change: transform;
+        }
+        .split-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 80px 60px;
+        }
+        .split-text .tag {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold-accent);
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+        .split-text h2 {
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            color: var(--brown-deep);
+            margin-bottom: 20px;
+        }
+        .split-text p {
+            font-size: 1.05rem;
+            color: #6B5B4E;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+        .split-text.dark {
+            background: var(--green-forest);
+        }
+        .split-text.dark h2 { color: white; }
+        .split-text.dark p { color: rgba(255,255,255,0.75); }
+        .split-text.dark .tag { color: var(--gold-light); }
+
+        /* ===== PILLARS GRID ===== */
+        .pillars {
+            padding: 100px 40px;
+            background: var(--green-forest);
+        }
+        .pillars-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+        .pillars-header .tag {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 16px;
+            display: block;
+        }
+        .pillars-header h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: white;
+        }
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .pillar-card {
+            text-align: center;
+            padding: 40px 24px;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 2px;
+            transition: all 0.4s ease;
+        }
+        .pillar-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-4px);
+            background: rgba(255,255,255,0.03);
+        }
+        .pillar-icon {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+        .pillar-card h3 {
+            font-size: 1.3rem;
+            color: var(--gold-light);
+            margin-bottom: 12px;
+        }
+        .pillar-card p {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.65);
+            line-height: 1.7;
+        }
+        @media (max-width: 768px) {
+            .pillars-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        }
+        @media (max-width: 480px) {
+            .pillars-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ===== CONTACT STRIP ===== */
+        .contact-strip {
+            position: relative;
+            height: 60vh;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .contact-strip .bg {
+            position: absolute;
+            inset: -15%;
+            background: center/cover;
+            will-change: transform;
+        }
+        .contact-strip .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(27,67,50,0.85), rgba(92,61,46,0.75));
+        }
+        .contact-strip .content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            padding: 0 24px;
+        }
+        .contact-strip h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: white;
+            margin-bottom: 12px;
+        }
+        .contact-strip p {
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 8px;
+            font-weight: 300;
+        }
+        .contact-strip .contact-details {
+            margin-top: 28px;
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .contact-strip .contact-details a {
+            color: var(--gold-light);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+        .contact-strip .contact-details a:hover { color: white; }
+        .contact-strip .btn { margin-top: 32px; }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--charcoal);
+            padding: 60px 40px 40px;
+            text-align: center;
+        }
+        .footer-logo {
+            height: 40px;
+            margin-bottom: 24px;
+            opacity: 0.8;
+        }
+        .footer-links {
+            display: flex;
+            gap: 28px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+        .footer-links a {
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover { color: var(--gold); }
+        .footer-copy {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.3);
+            letter-spacing: 1px;
+        }
+
+        /* ===== SCROLL ANIMATIONS ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* ===== INSIDERS BANNER ===== */
+        .insiders-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            background: linear-gradient(90deg, var(--green-forest), var(--brown-deep));
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transform: translateY(100%);
+            animation: slideUp 0.6s 3s forwards;
+        }
+        .insiders-banner .pulse {
+            width: 8px; height: 8px;
+            background: #ff4444;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+        .insiders-banner span {
+            color: var(--gold-light);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .insiders-banner a {
+            color: white;
+            text-decoration: underline;
+            font-size: 0.8rem;
+        }
+        .insiders-banner .close-banner {
+            position: absolute;
+            right: 16px;
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.5);
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+        @keyframes slideUp { to { transform: translateY(0); } }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+        /* ===== CUSTOM STYLES FOR ABOUT PAGE ===== */
+        .guarantee-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .guarantee-item {
+            padding: 32px;
+            background: white;
+            border-left: 3px solid var(--gold);
+        }
+        .guarantee-item h3 {
+            font-size: 1.2rem;
+            color: var(--brown-deep);
+            margin-bottom: 12px;
+        }
+        .guarantee-item p {
+            font-size: 0.95rem;
+            color: #6B5B4E;
+            line-height: 1.7;
+        }
+        @media (max-width: 768px) {
+            .guarantee-grid { grid-template-columns: 1fr; gap: 24px; }
+        }
+
+        @media (max-width: 768px) {
+            .split { grid-template-columns: 1fr; }
+            .split-image { min-height: 50vh; }
+            .split-text { padding: 60px 32px; }
+            .split.reverse-mobile .split-image { order: -1; }
+        }
+    </style>
 </head>
 <body>
-  <!-- HEADER -->
-  <header>
-    <div class="header-container">
-      <a href="index.html" class="logo"><img src="Dakota%20SKY%20for%20CLEAR%20no%20color.png" alt="Dakota Sky Pudelpointers" style="height: 65px;width:auto;"></a><a href="index.html" style="margin-left:1rem;display:flex;align-items:center;"><img src="key%20gun%20logo%20FINAL.png" alt="Dakota Sky Gun Dog" style="height:35px;width:auto;"></a>
-      <nav>
-        <ul class="nav-menu">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="breeding.html">Breeding</a></li>
-          <li><a href="training.html">Training</a></li>
-          <li><a href="boarding.html">Boarding</a></li>
-          <li><a href="nutrition.html">Nutrition</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
+
+    <!-- NAVIGATION -->
+    <nav id="navbar">
+        <a href="/">
+            <img src="https://res.cloudinary.com/dyq7rnjjw/image/upload/h_120,q_auto/v1774544524/Dakota_SKY_for_CLEAR_no_color_etv2yz.png" alt="Dakota Sky Pudelpointers" class="nav-logo">
+        </a>
+        <div class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
+        </div>
+        <ul class="nav-links" id="nav-menu">
+            <li><a href="breeding.html">Breeding</a></li>
+            <li><a href="training.html">Training</a></li>
+            <li><a href="boarding.html">Boarding</a></li>
+            <li><a href="nutrition.html">Nutrition</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
         </ul>
-      </nav>
-      <div class="hamburger" id="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+    </nav>
+
+    <!-- HERO — Full viewport parallax -->
+    <section class="hero" id="hero">
+        <div class="hero-bg" data-parallax="0.3" style="background-image: url('https://res.cloudinary.com/dyq7rnjjw/image/upload/w_1920,q_auto/Screenshot_2026-03-26_at_11.40.05_AM_pg8iyc.jpg');"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <span class="hero-tag">Glen & Stacey's Vision</span>
+            <h1>Two Lives Dedicated<br>to <em>One Mission</em></h1>
+            <p class="hero-sub">Glen and Stacey's journey with Dakota Sky Pudelpointers — Built on passion, proven in the field, grounded in lifetime commitment.</p>
+        </div>
+        <div class="scroll-indicator">
+            <div class="line"></div>
+            <span>Scroll</span>
+        </div>
+    </section>
+
+    <!-- GLEN & STACEY'S STORY -->
+    <section class="image-section align-left">
+        <div class="bg" data-parallax="0.2" style="background-image: url('https://res.cloudinary.com/dyq7rnjjw/image/upload/w_1920,q_auto/Screenshot_2026-03-26_at_11.37.06_AM_xvxr5o.jpg');"></div>
+        <div class="overlay" style="background: linear-gradient(90deg, rgba(45,45,45,0.8) 0%, rgba(45,45,45,0.3) 60%, transparent 100%);"></div>
+        <div class="content reveal-left">
+            <span class="tag">The Founders</span>
+            <h2>A Journey That Began 20+ Years Ago</h2>
+            <p>Glen and Stacey discovered Pudelpointers over two decades ago while hunting across the Northern Plains. Captivated by the breed's versatility, intelligence, and steady temperament, they built their lives around these remarkable dogs. In 2010, they founded Dakota Sky — a small, purpose-driven breeding program dedicated to raising world-class Pudelpointers.</p>
+            <p style="margin-top: 16px;">They personally raise every litter, mentor every puppy owner, and maintain lifetime relationships with their dogs. For Glen and Stacey, Dakota Sky isn't a business — it's a life calling.</p>
+        </div>
+    </section>
+
+    <!-- OUR LAND -->
+    <section class="split">
+        <div class="split-image">
+            <div class="bg-inner" data-parallax="0.15" style="background-image: url('https://res.cloudinary.com/dyq7rnjjw/image/upload/w_1200,q_auto/Screenshot_2026-03-26_at_11.35.50_AM_dpcvrz.jpg');"></div>
+        </div>
+        <div class="split-text reveal-right">
+            <span class="tag">Where Excellence Grows</span>
+            <h2>Our Land</h2>
+            <p>Situated on 10 acres off Highway 10 in Dickinson, North Dakota, Dakota Sky's facility is purpose-built for breeding and training excellence. Our land features diverse terrain — bird fields, ponds, spacious kennels, and training grounds — where every dog develops the skills and confidence they need to thrive in the field and beyond.</p>
+            <p style="margin-top: 16px;">This is where puppies first learn to hunt, where breeding stock is evaluated, and where lifelong partnerships with our dogs begin.</p>
+        </div>
+    </section>
+
+    <!-- CREDENTIALS & STANDARDS -->
+    <section class="pillars">
+        <div class="pillars-header reveal">
+            <span class="tag">Our Commitment</span>
+            <h2>Credentials & Standards</h2>
+        </div>
+        <div class="pillars-grid">
+            <div class="pillar-card reveal">
+                <div class="pillar-icon">✓</div>
+                <h3>NAVHDA Certified</h3>
+                <p>North American Versatile Hunting Dog Association standards for field performance and temperament.</p>
+            </div>
+            <div class="pillar-card reveal">
+                <div class="pillar-icon">✓</div>
+                <h3>NAPS Member</h3>
+                <p>National Association of Pudelpointer Specialists — upholding breed integrity and ethical breeding.</p>
+            </div>
+            <div class="pillar-card reveal">
+                <div class="pillar-icon">✓</div>
+                <h3>Inukshuk Partner</h3>
+                <p>Premium nutrition partnership ensuring every dog receives optimal health and performance support.</p>
+            </div>
+            <div class="pillar-card reveal">
+                <div class="pillar-icon">✓</div>
+                <h3>OFA Health Standards</h3>
+                <p>Orthopedic Foundation for Animals certified — rigorous health testing for hereditary conditions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- THE DAKOTA SKY GUARANTEE -->
+    <section class="interlude">
+        <div class="reveal">
+            <div class="gold-rule"></div>
+            <h2>The Dakota Sky Guarantee</h2>
+            <p style="margin-bottom: 56px;">Every puppy that leaves our care comes with our lifetime commitment. This isn't just a warranty — it's a promise to be your partner every step of your dog's life.</p>
+            <div class="guarantee-grid">
+                <div class="guarantee-item reveal">
+                    <h3>2-Year Health Guarantee</h3>
+                    <p>Every puppy is health tested and guaranteed against hereditary conditions. If issues arise within two years, we'll work with you — including replacement options.</p>
+                </div>
+                <div class="guarantee-item reveal">
+                    <h3>Initial Training Included</h3>
+                    <p>Foundational puppy training and socialization begin at our facility. Your puppy arrives ready to bond and learn in their new home.</p>
+                </div>
+                <div class="guarantee-item reveal">
+                    <h3>3 Months Inukshuk Support</h3>
+                    <p>Every puppy starts on our premium nutrition partnership. We provide nutrition guidance and support through the critical growth phase.</p>
+                </div>
+                <div class="guarantee-item reveal">
+                    <h3>Lifetime Support</h3>
+                    <p>Questions about training, health, behavior, or breeding? Glen and Stacey are here — for the life of your dog. We answer calls, give advice, and celebrate successes.</p>
+                </div>
+                <div class="guarantee-item reveal">
+                    <h3>Right of First Refusal</h3>
+                    <p>If your dog's life circumstances change, Dakota Sky has first right to take the dog back — no questions asked.</p>
+                </div>
+                <div class="guarantee-item reveal">
+                    <h3>Breeding Program Access</h3>
+                    <p>If your Dakota Sky Pudelpointer is exceptional, we'd like to know. We collaborate with owners on future breeding opportunities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT STRIP -->
+    <section class="contact-strip">
+        <div class="bg" data-parallax="0.2" style="background-image: url('https://res.cloudinary.com/dyq7rnjjw/image/upload/w_1920,q_auto/Screenshot_2026-03-26_at_11.40.05_AM_pg8iyc.jpg');"></div>
+        <div class="overlay"></div>
+        <div class="content reveal">
+            <h2>Ready to Join the Dakota Sky Family?</h2>
+            <p>10525 Highway 10 • Dickinson, ND 58601</p>
+            <div class="contact-details">
+                <a href="tel:7012901492">(701) 290-1492</a>
+                <a href="mailto:dakotasky.nd@gmail.com">dakotasky.nd@gmail.com</a>
+            </div>
+            <a href="contact.html" class="btn btn-gold" style="margin-top:32px; display:inline-block;">Get in Touch</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <img src="https://res.cloudinary.com/dyq7rnjjw/image/upload/h_120,q_auto/v1774544524/Dakota_SKY_for_CLEAR_no_color_etv2yz.png" alt="Dakota Sky" class="footer-logo">
+        <div class="footer-links">
+            <a href="breeding.html">Breeding</a>
+            <a href="training.html">Training</a>
+            <a href="boarding.html">Boarding</a>
+            <a href="nutrition.html">Nutrition</a>
+            <a href="shop.html">Shop</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="members.html">Insiders</a>
+        </div>
+        <p class="footer-copy">&copy; 2026 Dakota Sky Pudelpointers. All rights reserved. &bull; Dickinson, North Dakota</p>
+    </footer>
+
+    <!-- INSIDERS BANNER -->
+    <div class="insiders-banner" id="insiders-banner">
+        <div class="pulse"></div>
+        <span>Dakota Sky Insiders — Limited to First 100 Members</span>
+        <a href="members.html">Join Now</a>
+        <button class="close-banner" onclick="document.getElementById('insiders-banner').style.display='none'">&times;</button>
     </div>
-  </header>
 
-  <!-- HERO SECTION -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Two Lives Dedicated to One Mission</h1>
-      <p>Glen and Stacey's Journey with the Dakota Sky</p>
-    </div>
-  </section>
+    <!-- SCRIPTS -->
+    <script>
+        // ===== NAVBAR SCROLL =====
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 80);
+        });
 
-  <!-- GLEN & STACEY'S STORY -->
-  <section class="story-section">
-    <div class="story-container">
-      <div class="story-image">
-        PHOTO: Glen and Stacey Koffler, Dakota Sky Pudelpointers
-      </div>
-      <div class="story-content">
-        <h2>Glen & Stacey's Story</h2>
-        <p>Glen and Stacey discovered Pudelpointers over two decades ago and never looked back. What began as a passion for this remarkable breed evolved into a lifelong commitment to producing dogs that excel equally in the field and the home.</p>
-        <p>They've hunted across the Northern Plains with their dogs—pheasants in South Dakota, ducks in the Missouri breaks, Hungarian partridge in Montana. Every hunt, every season, every dog taught them something new about what makes a truly versatile hunting companion.</p>
-        <p>In 2010, they founded Dakota Sky on a simple principle: breed for the complete dog. Not just hunting ability. Not just looks. Not just temperament. Every Dakota Sky Pudelpointer must earn its place through proven performance, health, and character.</p>
-        <p>Today, they maintain a small, carefully selected breeding program on their land in Dickinson. They personally raise every litter, train dogs year-round, board hunters, and remain available to their puppies—and their puppies' puppies—for life.</p>
-      </div>
-    </div>
-  </section>
+        // ===== HAMBURGER =====
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+        document.querySelectorAll('#nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
 
-  <!-- OUR LAND SECTION -->
-  <section class="land-section">
-    <div class="land-container">
-      <h2>Our Land</h2>
-      <div class="land-image">
-        PHOTO: Dakota Sky property — 10 acres of rolling prairie and training grounds, Dickinson ND
-      </div>
-      <div class="land-text">
-        <div>
-          <p>Dakota Sky sits on 10 acres just off Highway 10 in Dickinson, North Dakota—the heart of the Northern Plains. This landscape has shaped us and our dogs.</p>
-          <p>The property includes training grounds with natural upland cover, bird fields for early season work, ponds for water training, and spacious kennels designed for comfort and security.</p>
-        </div>
-        <div>
-          <p>The rolling prairie, big sky, and honest weather of this region create the perfect training environment for versatile hunting dogs.</p>
-          <p>This is where our dogs live, train, and develop. This is where families come to meet their future hunting partners. The Northern Plains provide the perfect backdrop for dogs built to handle any condition and any game. We're proud to operate Dakota Sky right here, in the place we call home.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CREDENTIALS SECTION -->
-  <section class="credentials-section">
-    <div class="credentials-container">
-      <h2>Credentials & Affiliations</h2>
-      <div class="credentials-grid">
-        <div class="credential-card">
-          <div class="credential-icon"></div>
-          <h3>NAVHDA</h3>
-          <p>North American Versatile Hunting Dog Association. Our breeding and training programs are guided by NAVHDA standards for versatile hunting dogs.</p>
-        </div>
-        <div class="credential-card">
-          <div class="credential-icon"></div>
-          <h3>NAPS</h3>
-          <p>North American Pudelpointer Society. We're proud members supporting the preservation and promotion of this remarkable breed.</p>
-        </div>
-        <div class="credential-card">
-          <div class="credential-icon"></div>
-          <h3>Inukshuk Partner</h3>
-          <p>Official authorized dealer and user of Inukshuk premium Canadian nutrition. We feed and recommend Inukshuk exclusively.</p>
-        </div>
-        <div class="credential-card">
-          <div class="credential-icon"></div>
-          <h3>Health Standards</h3>
-          <p>OFA certification for hips, elbows, and cardiac health. All breeding dogs undergo rigorous health screening and testing.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- LIFETIME COMMITMENT SECTION -->
-  <section class="commitment-section">
-    <div class="commitment-container">
-      <h2>Our Lifetime Commitment</h2>
-      <p>Every dog that leaves Dakota Sky is a reflection of our program. That's why we stand behind them—always.</p>
-      <p>We provide lifetime breeder support. That means when you buy a Dakota Sky puppy, you're not just getting a dog—you're gaining a partner in that dog's entire life.</p>
-      <p>Health questions? Training challenges? Behavioral concerns? Life changes require rehoming? We're here. We answer calls. We help problem-solve. We take dogs back if necessary.</p>
-      <p>This isn't just a tagline. It's how we operate. Glen and Stacey have rehomed dogs, adjusted feeding programs, counseled owners through training plateaus, and maintained relationships with families for decades.</p>
-    </div>
-  </section>
-
-  <!-- GUARANTEE SECTION -->
-  <section class="guarantee-section">
-    <div class="guarantee-container">
-      <h2>The Dakota Sky Guarantee</h2>
-      <div class="guarantee-card">
-        <div class="guarantee-item">
-          <span class="guarantee-checkmark">✓</span>
-          <span>2-year health guarantee against genetic issues</span>
-        </div>
-        <div class="guarantee-item">
-          <span class="guarantee-checkmark">✓</span>
-          <span>Initial training foundation from our team</span>
-        </div>
-        <div class="guarantee-item">
-          <span class="guarantee-checkmark">✓</span>
-          <span>3 months of Inukshuk nutrition to establish feeding</span>
-        </div>
-        <div class="guarantee-item">
-          <span class="guarantee-checkmark">✓</span>
-          <span>Lifetime breeder support — calls, advice, counsel</span>
-        </div>
-        <div class="guarantee-item">
-          <span class="guarantee-checkmark">✓</span>
-          <span>Right of first refusal if your situation ever changes</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-        <div class="footer-logo" style="margin-bottom:1.5rem;"><a href="index.html"><img src="Dakota%20SKY%20for%20CLEAR%20no%20color.png" alt="Dakota Sky Pudelpointers" style="height:50px;width:auto;"></a></div>
-    <div class="footer-container">
-      <div class="footer-column">
-        <h3>CONTACT</h3>
-        <p>10525 Highway 10<br>Dickinson, ND 58601</p>
-        <p><a href="tel:+17012901492">(701) 290-1492</a></p>
-        <p><a href="mailto:dakotasky.nd@gmail.com">dakotasky.nd@gmail.com</a></p>
-      </div>
-      <div class="footer-column">
-        <h3>LINKS</h3>
-        <p><a href="index.html">Home</a></p>
-        <p><a href="breeding.html">Breeding</a></p>
-        <p><a href="training.html">Training</a></p>
-        <p><a href="boarding.html">Boarding</a></p>
-        <p><a href="nutrition.html">Nutrition</a></p>
-      </div>
-      <div class="footer-column">
-        <h3>SOCIAL</h3>
-        <p><a href="#">Facebook</a></p>
-        <p><a href="#">Instagram</a></p>
-        <p><a href="#">YouTube</a></p>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 Dakota Sky Pudelpointers. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <script>
-    // Hamburger Menu Toggle
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.querySelector('.nav-menu');
-
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      navMenu.classList.toggle('active');
-    });
-
-    // Close menu when nav link is clicked
-    document.querySelectorAll('.nav-menu a').forEach(link => {
-      link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
-      });
-    });
-
-    // Fade-in on scroll animation
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -100px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.animation = 'fadeInOnScroll 0.8s ease-in-out forwards';
-          observer.unobserve(entry.target);
+        // ===== PARALLAX ON SCROLL =====
+        const parallaxElements = document.querySelectorAll('[data-parallax]');
+        let ticking = false;
+        function updateParallax() {
+            const scrollY = window.scrollY;
+            parallaxElements.forEach(el => {
+                const speed = parseFloat(el.dataset.parallax);
+                const rect = el.parentElement.getBoundingClientRect();
+                const offsetTop = rect.top + scrollY;
+                const viewportMiddle = scrollY + window.innerHeight / 2;
+                const elementMiddle = offsetTop + rect.height / 2;
+                const distance = viewportMiddle - elementMiddle;
+                el.style.transform = `translateY(${distance * speed}px)`;
+            });
+            ticking = false;
         }
-      });
-    }, observerOptions);
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        });
+        updateParallax();
 
-    // Observe all cards and images for fade-in animation
-    document.querySelectorAll('.story-image, .land-image, .credential-card, .guarantee-card').forEach(el => {
-      el.style.opacity = '0';
-      observer.observe(el);
-    });
-  </script>
+        // ===== REVEAL ON SCROLL =====
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+            revealObserver.observe(el);
+        });
+    </script>
 </body>
 </html>

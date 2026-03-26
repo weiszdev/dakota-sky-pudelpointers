@@ -1,897 +1,940 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inukshuk Premium Nutrition - Dakota Sky Pudelpointers</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --dsp-forest-dark: #1a3c34;
-      --dsp-forest: #2d6a4f;
-      --dsp-forest-light: #52796f;
-      --dsp-cream: #F4F2ED;
-      --dsp-warm-white: #FAFAF7;
-      --dsp-earth: #8B5E3C;
-      --dsp-gold: #D4A843;
-      --dsp-charcoal: #333333;
-      --dsp-text-light: #6b6b6b;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      color: var(--dsp-charcoal);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    /* HEADER */
-    header {
-      background-color: var(--dsp-forest-dark);
-      color: white;
-      padding: 1rem 0;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-
-    .header-content {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.6rem;
-      font-weight: 700;
-      letter-spacing: 3px;
-      color: white;
-    }
-
-    #nav-menu {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    #nav-menu a {
-      color: white;
-      text-decoration: none;
-      font-size: 0.85rem;
-      font-weight: 500;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      transition: color 0.3s ease;
-    }
-
-    #nav-menu a:hover {
-      color: var(--dsp-gold);
-    }
-
-    .hamburger-menu {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      gap: 6px;
-    }
-
-    .hamburger-menu span {
-      width: 25px;
-      height: 3px;
-      background-color: white;
-      border-radius: 2px;
-      transition: all 0.3s ease;
-    }
-
-    .hamburger-menu.active span:nth-child(1) {
-      transform: rotate(45deg) translate(10px, 10px);
-    }
-
-    .hamburger-menu.active span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .hamburger-menu.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(7px, -7px);
-    }
-
-    /* RESPONSIVE NAV */
-    @media (max-width: 768px) {
-      .hamburger-menu {
-        display: flex;
-      }
-
-      #nav-menu {
-        position: absolute;
-        top: 70px;
-        left: 0;
-        right: 0;
-        background-color: var(--dsp-forest);
-        flex-direction: column;
-        gap: 0;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease;
-      }
-
-      #nav-menu.active {
-        max-height: 400px;
-      }
-
-      #nav-menu a {
-        padding: 1rem 2rem;
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-      }
-
-      .header-content {
-        padding: 0 1rem;
-      }
-    }
-
-    /* HERO SECTION */
-    .hero {
-      background: linear-gradient(135deg, var(--dsp-forest-dark) 0%, var(--dsp-forest) 100%);
-      color: white;
-      padding: 120px 2rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: radial-gradient(circle at 20% 50%, rgba(212, 168, 67, 0.1) 0%, transparent 50%);
-      pointer-events: none;
-    }
-
-    .hero-content {
-      max-width: 900px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.5rem, 8vw, 4rem);
-      font-weight: 700;
-      font-style: italic;
-      margin-bottom: 1rem;
-      line-height: 1.2;
-    }
-
-    .hero-subtitle {
-      font-size: 1.25rem;
-      font-weight: 300;
-      letter-spacing: 1px;
-      opacity: 0.95;
-    }
-
-    /* SECTIONS */
-    section {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 80px 2rem;
-    }
-
-    .cream {
-      background-color: var(--dsp-cream);
-    }
-
-    .warm-white {
-      background-color: var(--dsp-warm-white);
-    }
-
-    .dark {
-      background-color: var(--dsp-forest-dark);
-      color: white;
-    }
-
-    section h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 700;
-      margin-bottom: 1rem;
-      color: var(--dsp-forest-dark);
-    }
-
-    .dark h2 {
-      color: white;
-    }
-
-    section p {
-      font-size: 1.05rem;
-      color: var(--dsp-text-light);
-      margin-bottom: 1.5rem;
-      line-height: 1.8;
-    }
-
-    .dark p {
-      color: rgba(255,255,255,0.9);
-    }
-
-    .section-intro {
-      font-size: 1.1rem;
-      margin-bottom: 3rem;
-      max-width: 800px;
-    }
-
-    /* CARDS */
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-
-    .card {
-      background: white;
-      border-radius: 12px;
-      padding: 2rem;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-      transition: all 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
-    }
-
-    .card h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      color: var(--dsp-forest);
-      margin-bottom: 0.5rem;
-    }
-
-    .card-tagline {
-      font-size: 0.95rem;
-      color: var(--dsp-gold);
-      font-weight: 600;
-      margin-bottom: 1.5rem;
-    }
-
-    .card-stats {
-      background-color: var(--dsp-cream);
-      padding: 1rem;
-      border-radius: 8px;
-      margin-bottom: 1.5rem;
-      text-align: center;
-    }
-
-    .card-stat {
-      display: inline-block;
-      margin: 0.5rem 1rem;
-    }
-
-    .card-stat-label {
-      font-size: 0.85rem;
-      color: var(--dsp-text-light);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .card-stat-value {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--dsp-forest-dark);
-    }
-
-    .card-features {
-      list-style: none;
-      margin-top: 1.5rem;
-    }
-
-    .card-features li {
-      padding: 0.5rem 0;
-      padding-left: 1.5rem;
-      position: relative;
-      font-size: 0.95rem;
-      color: var(--dsp-text-light);
-    }
-
-    .card-features li::before {
-      content: '✓';
-      position: absolute;
-      left: 0;
-      color: var(--dsp-gold);
-      font-weight: bold;
-    }
-
-    /* QUOTE */
-    .quote-block {
-      background-color: rgba(45, 106, 79, 0.05);
-      border-left: 4px solid var(--dsp-gold);
-      padding: 2rem;
-      margin: 2rem 0;
-      font-size: 1.1rem;
-      font-style: italic;
-      color: var(--dsp-forest-dark);
-    }
-
-    /* INFO BOXES */
-    .info-box {
-      background-color: white;
-      padding: 2rem;
-      border-radius: 12px;
-      margin: 1.5rem 0;
-      border-left: 4px solid var(--dsp-forest);
-    }
-
-    .info-box h4 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
-      color: var(--dsp-forest-dark);
-      margin-bottom: 0.75rem;
-    }
-
-    .info-box p {
-      margin-bottom: 0;
-    }
-
-    /* PRICING TABLE */
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      margin: 2rem 0;
-    }
-
-    .pricing-item {
-      background: white;
-      padding: 1.5rem;
-      border-radius: 12px;
-      border: 2px solid var(--dsp-cream);
-      text-align: center;
-      transition: all 0.3s ease;
-    }
-
-    .pricing-item:hover {
-      border-color: var(--dsp-gold);
-      box-shadow: 0 4px 20px rgba(212, 168, 67, 0.2);
-    }
-
-    .pricing-item h4 {
-      font-size: 1rem;
-      color: var(--dsp-text-light);
-      margin-bottom: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      font-weight: 500;
-    }
-
-    .pricing-item .price {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--dsp-forest-dark);
-      margin-bottom: 0.5rem;
-    }
-
-    .pricing-item .unit {
-      font-size: 0.85rem;
-      color: var(--dsp-text-light);
-    }
-
-    /* BUTTONS */
-    .button {
-      display: inline-block;
-      background-color: var(--dsp-gold);
-      color: var(--dsp-forest-dark);
-      padding: 14px 32px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.95rem;
-      border: none;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .button:hover {
-      background-color: var(--dsp-earth);
-      color: white;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 15px rgba(139, 94, 60, 0.3);
-    }
-
-    .button-group {
-      margin-top: 2rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    /* CTA SECTION */
-    .cta-box {
-      background: linear-gradient(135deg, var(--dsp-forest-dark) 0%, var(--dsp-forest) 100%);
-      color: white;
-      padding: 3rem 2rem;
-      border-radius: 12px;
-      text-align: center;
-      margin: 2rem 0;
-    }
-
-    .cta-box h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-
-    .cta-box p {
-      font-size: 1.1rem;
-      margin-bottom: 1.5rem;
-      color: rgba(255,255,255,0.95);
-    }
-
-    .cta-box .button {
-      margin-top: 1rem;
-    }
-
-    /* CONTACT INFO */
-    .contact-info {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      margin: 2rem 0;
-    }
-
-    .contact-item {
-      text-align: center;
-    }
-
-    .contact-item h4 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
-      color: var(--dsp-forest-dark);
-      margin-bottom: 0.75rem;
-    }
-
-    .contact-item p {
-      margin-bottom: 0.5rem;
-    }
-
-    .dark .contact-item h4 {
-      color: white;
-    }
-
-    /* FOOTER */
-    footer {
-      background-color: var(--dsp-forest-dark);
-      color: white;
-      padding: 4rem 2rem 1rem;
-    }
-
-    .footer-content {
-      max-width: 1400px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 3rem;
-      margin-bottom: 2rem;
-    }
-
-    .footer-section h4 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
-      color: var(--dsp-gold);
-    }
-
-    .footer-section p {
-      font-size: 0.95rem;
-      line-height: 1.8;
-      color: rgba(255,255,255,0.85);
-      margin-bottom: 0.5rem;
-    }
-
-    .footer-section a {
-      color: var(--dsp-gold);
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    .footer-section a:hover {
-      color: white;
-    }
-
-    .footer-section ul {
-      list-style: none;
-    }
-
-    .footer-section li {
-      margin-bottom: 0.5rem;
-    }
-
-    .footer-section li a {
-      color: rgba(255,255,255,0.85);
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    .footer-section li a:hover {
-      color: var(--dsp-gold);
-    }
-
-    .newsletter-form {
-      display: flex;
-      gap: 0.5rem;
-      margin-top: 1rem;
-    }
-
-    .newsletter-form input {
-      flex: 1;
-      padding: 10px 12px;
-      border: none;
-      border-radius: 6px;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.9rem;
-    }
-
-    .newsletter-form button {
-      padding: 10px 16px;
-      background-color: var(--dsp-gold);
-      color: var(--dsp-forest-dark);
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 0.85rem;
-      transition: all 0.3s ease;
-    }
-
-    .newsletter-form button:hover {
-      background-color: white;
-    }
-
-    .footer-bottom {
-      text-align: center;
-      padding-top: 2rem;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.7);
-    }
-
-    /* FADE IN ANIMATION */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    }
-
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* IMAGE PLACEHOLDER */
-    .image-placeholder {
-      background-color: #f0f0f0;
-      border: 2px dashed #ccc;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #999;
-      font-weight: 500;
-      margin: 2rem 0;
-      aspect-ratio: 16/9;
-    }
-
-    @media (max-width: 768px) {
-      section {
-        padding: 50px 1.5rem;
-      }
-
-      .hero {
-        padding: 80px 1.5rem;
-      }
-
-      .cards-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .cta-box {
-        padding: 2rem 1.5rem;
-      }
-
-      .cta-box h3 {
-        font-size: 1.5rem;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inukshuk Premium Nutrition — Dakota Sky Pudelpointers</title>
+    <meta name="description" content="Inukshuk Premium Canadian Performance Nutrition for hunting dogs. Professional-grade dog food trusted by elite teams. Shop online with free local delivery.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+        body {
+            font-family: 'Nunito Sans', sans-serif;
+            color: #2D2D2D;
+            background: #FAF8F5;
+            overflow-x: hidden;
+        }
+
+        /* ===== COLOR PALETTE ===== */
+        :root {
+            --brown-deep: #5C3D2E;
+            --brown-warm: #8B5E3C;
+            --brown-light: #C4956A;
+            --brown-tan: #D4B896;
+            --cream: #FAF8F5;
+            --cream-dark: #F0EBE3;
+            --green-spring: #4A7C59;
+            --green-dark: #2D5A3D;
+            --green-forest: #1B4332;
+            --gold: #C8A84E;
+            --gold-light: #E8D48B;
+            --gold-accent: #D4A843;
+            --charcoal: #2D2D2D;
+            --white-soft: rgba(255,255,255,0.95);
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        h1, h2, h3, h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            line-height: 1.15;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.5s ease;
+            background: transparent;
+        }
+        nav.scrolled {
+            background: rgba(27, 67, 50, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 12px 40px;
+            box-shadow: 0 2px 30px rgba(0,0,0,0.15);
+        }
+        .nav-logo {
+            height: 65px;
+            transition: height 0.4s ease;
+        }
+        nav.scrolled .nav-logo { height: 48px; }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            padding-bottom: 4px;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        .hamburger span {
+            width: 28px;
+            height: 2px;
+            background: white;
+            transition: all 0.3s ease;
+        }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            .nav-links {
+                position: fixed;
+                top: 0; left: 0; right: 0; bottom: 0;
+                background: rgba(27, 67, 50, 0.97);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 28px;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.4s ease;
+            }
+            .nav-links.active { opacity: 1; pointer-events: all; }
+            .nav-links a { font-size: 1.1rem; letter-spacing: 3px; }
+        }
+
+        /* ===== PARALLAX HERO ===== */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute;
+            inset: -20%;
+            background-image: url('https://res.cloudinary.com/dyq7rnjjw/image/upload/w_1920,q_auto/Screenshot_2026-03-26_at_11.40.20_AM_k2a0xj.jpg');
+            background-size: cover;
+            background-position: center 30%;
+            will-change: transform;
+            transition: transform 0.1s linear;
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(27, 67, 50, 0.7) 0%,
+                rgba(92, 61, 46, 0.5) 50%,
+                rgba(27, 67, 50, 0.65) 100%
+            );
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 24px;
+            max-width: 900px;
+        }
+        .hero-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 24px;
+            font-weight: 600;
+            opacity: 0;
+            animation: fadeUp 1s 0.3s forwards;
+        }
+        .hero h1 {
+            font-size: clamp(2.8rem, 7vw, 5.5rem);
+            color: white;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeUp 1s 0.5s forwards;
+        }
+        .hero h1 em {
+            font-style: italic;
+            color: var(--gold-light);
+        }
+        .hero-sub {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: rgba(255,255,255,0.85);
+            font-weight: 300;
+            line-height: 1.7;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            opacity: 0;
+            animation: fadeUp 1s 0.7s forwards;
+        }
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeUp 1s 0.9s forwards;
+        }
+        .btn {
+            padding: 14px 36px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+        .btn-gold {
+            background: var(--gold);
+            color: var(--green-forest);
+        }
+        .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(200,168,78,0.3); }
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 1.5px solid rgba(255,255,255,0.5);
+        }
+        .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            opacity: 0;
+            animation: fadeUp 1s 1.2s forwards;
+        }
+        .scroll-indicator .line {
+            width: 1px;
+            height: 50px;
+            background: rgba(255,255,255,0.4);
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+        .scroll-indicator .line::after {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gold);
+            animation: scrollLine 2s infinite;
+        }
+        .scroll-indicator span {
+            display: block;
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+            margin-top: 12px;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes scrollLine {
+            0% { top: -100%; }
+            100% { top: 100%; }
+        }
+
+        /* ===== TEXT INTERLUDE SECTIONS ===== */
+        .interlude {
+            padding: 120px 40px;
+            text-align: center;
+            background: var(--cream);
+        }
+        .interlude h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--brown-deep);
+            margin-bottom: 24px;
+        }
+        .interlude p {
+            max-width: 680px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: #6B5B4E;
+            line-height: 1.9;
+            font-weight: 300;
+        }
+        .interlude .gold-rule {
+            width: 60px;
+            height: 2px;
+            background: var(--gold);
+            margin: 0 auto 32px;
+        }
+
+        /* ===== FULL-WIDTH IMAGE SECTIONS ===== */
+        .image-section {
+            position: relative;
+            height: 85vh;
+            min-height: 550px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+        .image-section .bg {
+            position: absolute;
+            inset: -15%;
+            background-size: cover;
+            background-position: center;
+            will-change: transform;
+        }
+        .image-section .overlay {
+            position: absolute;
+            inset: 0;
+        }
+        .image-section .content {
+            position: relative;
+            z-index: 2;
+            padding: 60px;
+            max-width: 600px;
+        }
+        .image-section.align-left .content { margin-left: 8%; }
+        .image-section.align-right .content { margin-left: auto; margin-right: 8%; }
+        .image-section.align-center .content { margin: 0 auto; text-align: center; max-width: 700px; }
+
+        .image-section h2 {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            color: white;
+            margin-bottom: 16px;
+        }
+        .image-section p {
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.88);
+            line-height: 1.8;
+            font-weight: 300;
+        }
+        .image-section .tag {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 16px;
+            display: block;
+            font-weight: 600;
+        }
+        .image-section .cta-link {
+            display: inline-block;
+            margin-top: 24px;
+            color: var(--gold-light);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--gold);
+            padding-bottom: 4px;
+            transition: all 0.3s ease;
+        }
+        .image-section .cta-link:hover { color: white; border-color: white; }
+
+        /* ===== FORMULA CARDS GRID ===== */
+        .formulas {
+            padding: 100px 40px;
+            background: var(--green-forest);
+        }
+        .formulas-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+        .formulas-header .tag {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 16px;
+            display: block;
+        }
+        .formulas-header h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: white;
+        }
+        .formulas-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .formula-card {
+            text-align: center;
+            padding: 40px 24px;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 2px;
+            transition: all 0.4s ease;
+        }
+        .formula-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-4px);
+            background: rgba(255,255,255,0.03);
+        }
+        .formula-icon {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+        .formula-card h3 {
+            font-size: 1.3rem;
+            color: var(--gold-light);
+            margin-bottom: 8px;
+        }
+        .formula-specs {
+            font-size: 0.9rem;
+            color: var(--gold);
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+        .formula-card p {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.65);
+            line-height: 1.7;
+        }
+        @media (max-width: 768px) {
+            .formulas-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        }
+        @media (max-width: 480px) {
+            .formulas-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ===== PRICING SECTION ===== */
+        .pricing {
+            padding: 100px 40px;
+            background: var(--cream);
+        }
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+        .pricing-header h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: var(--brown-deep);
+            margin-bottom: 16px;
+        }
+        .pricing-header p {
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1rem;
+            color: #6B5B4E;
+        }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .pricing-card {
+            background: white;
+            padding: 40px 32px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 2px;
+            transition: all 0.4s ease;
+        }
+        .pricing-card:hover {
+            border-color: var(--gold);
+            box-shadow: 0 12px 40px rgba(200,168,78,0.15);
+            transform: translateY(-4px);
+        }
+        .pricing-card h3 {
+            font-size: 1.1rem;
+            color: var(--brown-deep);
+            margin-bottom: 16px;
+        }
+        .pricing-card .price {
+            font-size: 2rem;
+            color: var(--gold);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .pricing-card .subtext {
+            font-size: 0.85rem;
+            color: #999;
+            margin-bottom: 24px;
+        }
+        .pricing-card .btn {
+            width: 100%;
+        }
+        @media (max-width: 768px) {
+            .pricing-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ===== DELIVERY SECTION ===== */
+        .delivery {
+            padding: 100px 40px;
+            background: var(--cream-dark);
+        }
+        .delivery-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .delivery h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: var(--brown-deep);
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        .delivery-box {
+            background: white;
+            padding: 40px;
+            border-left: 4px solid var(--gold);
+            margin-bottom: 24px;
+        }
+        .delivery-box h3 {
+            font-size: 1.2rem;
+            color: var(--brown-deep);
+            margin-bottom: 12px;
+        }
+        .delivery-box p {
+            font-size: 0.95rem;
+            color: #6B5B4E;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+        .delivery-box .highlight {
+            font-weight: 600;
+            color: var(--gold-accent);
+        }
+
+        /* ===== CONTACT STRIP ===== */
+        .contact-strip {
+            position: relative;
+            height: 60vh;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .contact-strip .bg {
+            position: absolute;
+            inset: -15%;
+            background: url('https://res.cloudinary.com/dyq7rnjjw/image/upload/w_1920,q_auto/Screenshot_2026-03-26_at_11.35.50_AM_dpcvrz.jpg') center/cover;
+            will-change: transform;
+        }
+        .contact-strip .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(27,67,50,0.85), rgba(92,61,46,0.75));
+        }
+        .contact-strip .content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            padding: 0 24px;
+        }
+        .contact-strip h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: white;
+            margin-bottom: 12px;
+        }
+        .contact-strip p {
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 8px;
+            font-weight: 300;
+        }
+        .contact-strip .contact-details {
+            margin-top: 28px;
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .contact-strip .contact-details a {
+            color: var(--gold-light);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+        .contact-strip .contact-details a:hover { color: white; }
+        .contact-strip .btn { margin-top: 32px; }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--charcoal);
+            padding: 60px 40px 40px;
+            text-align: center;
+        }
+        .footer-logo {
+            height: 40px;
+            margin-bottom: 24px;
+            opacity: 0.8;
+        }
+        .footer-links {
+            display: flex;
+            gap: 28px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+        .footer-links a {
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover { color: var(--gold); }
+        .footer-copy {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.3);
+            letter-spacing: 1px;
+        }
+
+        /* ===== SCROLL ANIMATIONS ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* ===== INSIDERS BANNER ===== */
+        .insiders-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            background: linear-gradient(90deg, var(--green-forest), var(--brown-deep));
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transform: translateY(100%);
+            animation: slideUp 0.6s 3s forwards;
+        }
+        .insiders-banner .pulse {
+            width: 8px; height: 8px;
+            background: #ff4444;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+        .insiders-banner span {
+            color: var(--gold-light);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .insiders-banner a {
+            color: white;
+            text-decoration: underline;
+            font-size: 0.8rem;
+        }
+        .insiders-banner .close-banner {
+            position: absolute;
+            right: 16px;
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.5);
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+        @keyframes slideUp { to { transform: translateY(0); } }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+    </style>
 </head>
 <body>
-  <!-- HEADER -->
-  <header>
-    <div class="header-content">
-      <a href="index.html" class="logo"><img src="Dakota%20SKY%20for%20CLEAR%20no%20color.png" alt="Dakota Sky Pudelpointers" style="height: 65px;width:auto;"></a><a href="index.html" style="margin-left:1rem;display:flex;align-items:center;"><img src="key%20gun%20logo%20FINAL.png" alt="Dakota Sky Gun Dog" style="height:35px;width:auto;"></a>
-      <nav id="nav-menu">
-        <a href="index.html">Home</a>
-        <a href="breeding.html">Breeding</a>
-        <a href="training.html">Training</a>
-        <a href="boarding.html">Boarding</a>
-        <a href="nutrition.html">Nutrition</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-      <div class="hamburger-menu" id="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
-  </header>
 
-  <!-- HERO SECTION -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Fuel Your Dog Like a Champion.</h1>
-      <p class="hero-subtitle">Inukshuk Premium Canadian Performance Nutrition.</p>
-    </div>
-  </section>
-
-  <!-- WHY INUKSHUK -->
-  <section class="warm-white">
-    <h2 class="fade-in">Why Inukshuk?</h2>
-    <p class="fade-in">Inukshuk is Canadian-made, professional-grade performance food trusted by elite sled dog teams, K9 units, and top hunting kennels worldwide. Contains premium animal proteins with zero corn, wheat, or soy fillers.</p>
-    <div class="quote-block fade-in">
-      "If your dog hunts hard, works hard, or competes seriously—Inukshuk is the standard."
-    </div>
-  </section>
-
-  <!-- INUKSHUK FORMULAS -->
-  <section class="cream">
-    <h2 class="fade-in">Our Inukshuk Formulas</h2>
-    <p class="section-intro fade-in">Three protein-to-fat ratios designed for different work levels and seasons. Choose the formula that matches your dog's lifestyle.</p>
-
-    <div class="cards-grid">
-      <div class="card fade-in">
-        <h3>Inukshuk 32/32</h3>
-        <div class="card-tagline">The Pro Formula</div>
-        <div class="card-stats">
-          <div class="card-stat">
-            <div class="card-stat-label">Protein</div>
-            <div class="card-stat-value">32%</div>
-          </div>
-          <div class="card-stat">
-            <div class="card-stat-label">Fat</div>
-            <div class="card-stat-value">32%</div>
-          </div>
+    <!-- NAVIGATION -->
+    <nav id="navbar">
+        <a href="/">
+            <img src="https://res.cloudinary.com/dyq7rnjjw/image/upload/h_120,q_auto/v1774544524/Dakota_SKY_for_CLEAR_no_color_etv2yz.png" alt="Dakota Sky Pudelpointers" class="nav-logo">
+        </a>
+        <div class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
         </div>
-        <ul class="card-features">
-          <li>Elite energy levels</li>
-          <li>Maximum endurance</li>
-          <li>Premium animal proteins</li>
-          <li>Optimal coat condition</li>
-          <li>No corn/wheat/soy</li>
-          <li>Peak season formula</li>
+        <ul class="nav-links" id="nav-menu">
+            <li><a href="index-v2.html">Breeding</a></li>
+            <li><a href="training.html">Training</a></li>
+            <li><a href="boarding.html">Boarding</a></li>
+            <li><a href="nutrition.html">Nutrition</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
         </ul>
-      </div>
+    </nav>
 
-      <div class="card fade-in">
-        <h3>Inukshuk 30/25</h3>
-        <div class="card-tagline">The Active Formula</div>
-        <div class="card-stats">
-          <div class="card-stat">
-            <div class="card-stat-label">Protein</div>
-            <div class="card-stat-value">30%</div>
-          </div>
-          <div class="card-stat">
-            <div class="card-stat-label">Fat</div>
-            <div class="card-stat-value">25%</div>
-          </div>
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="hero-bg" data-parallax="0.3"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <span class="hero-tag">Premium Performance Nutrition</span>
+            <h1>Fuel Your Dog<br><em>Like a Champion.</em></h1>
+            <p class="hero-sub">Inukshuk Premium Canadian Performance Nutrition — trusted by elite hunting teams and backed by Dakota Sky's commitment to excellence.</p>
+            <div class="hero-cta">
+                <a href="#pricing" class="btn btn-gold">Shop Now</a>
+                <a href="#contact" class="btn btn-outline">Learn More</a>
+            </div>
         </div>
-        <ul class="card-features">
-          <li>Balanced energy</li>
-          <li>Ideal for training</li>
-          <li>Great all-season choice</li>
-          <li>Strong muscle development</li>
-          <li>Premium ingredients</li>
-          <li>Versatile for all ages</li>
-        </ul>
-      </div>
-
-      <div class="card fade-in">
-        <h3>Inukshuk 26/16</h3>
-        <div class="card-tagline">The Maintenance Formula</div>
-        <div class="card-stats">
-          <div class="card-stat">
-            <div class="card-stat-label">Protein</div>
-            <div class="card-stat-value">26%</div>
-          </div>
-          <div class="card-stat">
-            <div class="card-stat-label">Fat</div>
-            <div class="card-stat-value">16%</div>
-          </div>
+        <div class="scroll-indicator">
+            <div class="line"></div>
+            <span>Scroll</span>
         </div>
-        <ul class="card-features">
-          <li>Balanced nutrition</li>
-          <li>Weight management</li>
-          <li>Perfect for off-season</li>
-          <li>Senior dog support</li>
-          <li>Sustained energy</li>
-          <li>Complete wellness</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- LOCAL PICKUP & DELIVERY -->
-  <section class="warm-white">
-    <h2 class="fade-in">Local Pickup & Delivery</h2>
-    <div class="info-box fade-in">
-      <h4>Pick Up at Dakota Sky</h4>
-      <p>10525 Highway 10, Dickinson, ND 58601</p>
-      <p>Call ahead to arrange your pickup: <strong>(701) 290-1492</strong></p>
-    </div>
-    <div class="info-box fade-in">
-      <h4>Free Local Delivery</h4>
-      <p>Order 2 or more bags and we'll deliver free to the Dickinson area. Ask about our delivery schedule when placing your order.</p>
-    </div>
-    <div class="info-box fade-in">
-      <h4>Annual Nutrition Plans</h4>
-      <p>Contact us for custom annual nutrition plans tailored to your dog's seasonal needs. We can help you optimize formula choices throughout the year.</p>
-    </div>
-  </section>
-
-  <!-- PRICING -->
-  <section class="cream">
-    <h2 class="fade-in">Pricing - 44 lb Bags</h2>
-    <div class="pricing-grid">
-      <div class="pricing-item fade-in">
-        <h4>Single Bag</h4>
-        <div class="price">$64.99</div>
-        <div class="unit">per 44 lb bag</div>
-      </div>
-      <div class="pricing-item fade-in">
-        <h4>Case of 2</h4>
-        <div class="price">$127.99</div>
-        <div class="unit">$63.99 per bag</div>
-      </div>
-      <div class="pricing-item fade-in">
-        <h4>Case of 4</h4>
-        <div class="price">$251.99</div>
-        <div class="unit">$62.99 per bag</div>
-      </div>
-      <div class="pricing-item fade-in">
-        <h4>Monthly Subscribe & Save</h4>
-        <div class="price">10% Off</div>
-        <div class="unit">recurring orders</div>
-      </div>
-    </div>
-    <p class="fade-in" style="text-align: center; margin-top: 2rem; font-style: italic;">All prices include local delivery to Dickinson area.</p>
-  </section>
-
-  <!-- CTA SECTION -->
-  <section class="dark">
-    <div class="cta-box fade-in">
-      <h3>Order Inukshuk Today</h3>
-      <p>Contact Dakota Sky to place your order or discuss a nutrition plan for your dog.</p>
-      <div class="contact-info">
-        <div class="contact-item">
-          <h4 style="color: var(--dsp-gold);">Phone</h4>
-          <p>(701) 290-1492</p>
+    <!-- WHY INUKSHUK -->
+    <section class="interlude">
+        <div class="reveal">
+            <div class="gold-rule"></div>
+            <h2>Why Inukshuk?</h2>
+            <p>Canadian-made professional-grade nutrition with zero corn, wheat, or soy. Formulated for elite hunting dogs, trusted by field champions and everyday companions alike. Every formula delivers the protein, fat, and energy your dog needs to perform at peak level.</p>
         </div>
-        <div class="contact-item">
-          <h4 style="color: var(--dsp-gold);">Email</h4>
-          <p>dakotasky.nd@gmail.com</p>
+    </section>
+
+    <!-- FORMULAS -->
+    <section class="formulas">
+        <div class="formulas-header reveal">
+            <span class="tag">Our Formulas</span>
+            <h2>Three Performance Recipes</h2>
         </div>
-        <div class="contact-item">
-          <h4 style="color: var(--dsp-gold);">Visit Us</h4>
-          <p>10525 Highway 10<br>Dickinson, ND 58601</p>
+        <div class="formulas-grid">
+            <div class="formula-card reveal">
+                <div class="formula-icon">🔥</div>
+                <h3>32/32 Pro Formula</h3>
+                <p class="formula-specs">32% Protein • 32% Fat</p>
+                <p>Maximum energy and endurance for elite hunters. Ideal for dogs in rigorous field training or active hunting season.</p>
+            </div>
+            <div class="formula-card reveal">
+                <div class="formula-icon">⚡</div>
+                <h3>30/25 Active Formula</h3>
+                <p class="formula-specs">30% Protein • 25% Fat</p>
+                <p>Balanced nutrition for training dogs. Perfect for steady work, daily exercise, and year-round conditioning.</p>
+            </div>
+            <div class="formula-card reveal">
+                <div class="formula-icon">🌿</div>
+                <h3>26/16 Maintenance</h3>
+                <p class="formula-specs">26% Protein • 16% Fat</p>
+                <p>Off-season support for senior dogs or reduced-activity periods. Maintains health and vitality without excess calories.</p>
+            </div>
         </div>
-      </div>
-      <button class="button" onclick="location.href='contact.html'">Request an Order</button>
+    </section>
+
+    <!-- FORMULA BENEFITS -->
+    <section class="image-section align-center">
+        <div class="bg" data-parallax="0.2" style="background-image: url('https://res.cloudinary.com/dyq7rnjjw/image/upload/w_1920,q_auto/Screenshot_2026-03-26_at_11.36.36_AM_gqfag6.jpg');"></div>
+        <div class="overlay" style="background: rgba(27,67,50,0.6);"></div>
+        <div class="content reveal">
+            <span class="tag">What Makes Inukshuk Special</span>
+            <h2>Professional Grade Ingredients</h2>
+            <p>No fillers, no compromises. Every ingredient is chosen for nutritional value and performance benefit. Your dog deserves fuel that matches the demands you place on them — in the field and at home.</p>
+        </div>
+    </section>
+
+    <!-- PRICING & ORDERING -->
+    <section class="pricing" id="pricing">
+        <div class="pricing-header reveal">
+            <h2>44 lb Bags — Order Today</h2>
+            <p>Free local delivery on orders of 2 or more bags within Dickinson area.</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card reveal">
+                <h3>Single Bag</h3>
+                <div class="price">$64.99</div>
+                <div class="subtext">One 44 lb bag</div>
+                <button class="btn btn-gold" onclick="alert('Order functionality — contact us at (701) 290-1492 or dakotasky.nd@gmail.com')">Add to Order</button>
+            </div>
+            <div class="pricing-card reveal">
+                <h3>Case of 2</h3>
+                <div class="price">$127.99</div>
+                <div class="subtext">Two 44 lb bags</div>
+                <button class="btn btn-gold" onclick="alert('Order functionality — contact us at (701) 290-1492 or dakotasky.nd@gmail.com')">Add to Order</button>
+            </div>
+            <div class="pricing-card reveal">
+                <h3>Case of 4</h3>
+                <div class="price">$251.99</div>
+                <div class="subtext">Four 44 lb bags</div>
+                <button class="btn btn-gold" onclick="alert('Order functionality — contact us at (701) 290-1492 or dakotasky.nd@gmail.com')">Add to Order</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOCAL PICKUP & DELIVERY -->
+    <section class="delivery">
+        <div class="delivery-content">
+            <h2>Local Pickup & Delivery</h2>
+
+            <div class="delivery-box reveal">
+                <h3>Free Local Delivery</h3>
+                <p>Orders of 2 or more bags receive <span class="highlight">free delivery</span> within Dickinson and surrounding areas. Same-week delivery available for orders placed before Wednesday.</p>
+            </div>
+
+            <div class="delivery-box reveal">
+                <h3>Pickup at Our Facility</h3>
+                <p>Pick up your order at our facility: <span class="highlight">10525 Highway 10, Dickinson, ND 58601</span></p>
+                <p>Convenient hours and a chance to see our dogs and facility.</p>
+            </div>
+
+            <div class="delivery-box reveal">
+                <h3>Subscribe & Save</h3>
+                <p>Set up monthly or quarterly deliveries and receive <span class="highlight">10% off</span> all orders. Perfect for keeping your dog consistently fed on their preferred formula.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT STRIP -->
+    <section class="contact-strip" id="contact">
+        <div class="bg" data-parallax="0.2"></div>
+        <div class="overlay"></div>
+        <div class="content reveal">
+            <h2>Questions About Nutrition?</h2>
+            <p>10525 Highway 10 &bull; Dickinson, ND 58601</p>
+            <div class="contact-details">
+                <a href="tel:7012901492">(701) 290-1492</a>
+                <a href="mailto:dakotasky.nd@gmail.com">dakotasky.nd@gmail.com</a>
+            </div>
+            <a href="contact.html" class="btn btn-gold" style="margin-top:32px; display:inline-block;">Get in Touch</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <img src="https://res.cloudinary.com/dyq7rnjjw/image/upload/h_120,q_auto/v1774544524/Dakota_SKY_for_CLEAR_no_color_etv2yz.png" alt="Dakota Sky" class="footer-logo">
+        <div class="footer-links">
+            <a href="index-v2.html">Breeding</a>
+            <a href="training.html">Training</a>
+            <a href="boarding.html">Boarding</a>
+            <a href="nutrition.html">Nutrition</a>
+            <a href="shop.html">Shop</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="members.html">Insiders</a>
+        </div>
+        <p class="footer-copy">&copy; 2026 Dakota Sky Pudelpointers. All rights reserved. &bull; Dickinson, North Dakota</p>
+    </footer>
+
+    <!-- INSIDERS BANNER -->
+    <div class="insiders-banner" id="insiders-banner">
+        <div class="pulse"></div>
+        <span>Dakota Sky Insiders — Limited to First 100 Members</span>
+        <a href="members.html">Join Now</a>
+        <button class="close-banner" onclick="document.getElementById('insiders-banner').style.display='none'">&times;</button>
     </div>
-  </section>
 
-  <!-- FOOTER -->
-  <footer>
-        <div class="footer-logo" style="margin-bottom:1.5rem;"><a href="index.html"><img src="Dakota%20SKY%20for%20CLEAR%20no%20color.png" alt="Dakota Sky Pudelpointers" style="height:50px;width:auto;"></a></div>
-    <div class="footer-content">
-      <div class="footer-section">
-        <h4>Contact Info</h4>
-        <p><strong>10525 Highway 10</strong><br>Dickinson, ND 58601</p>
-        <p><strong>Phone:</strong> <a href="tel:+17012901492">(701) 290-1492</a></p>
-        <p><strong>Email:</strong> <a href="mailto:dakotasky.nd@gmail.com">dakotasky.nd@gmail.com</a></p>
-      </div>
-      <div class="footer-section">
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="breeding.html">Breeding</a></li>
-          <li><a href="training.html">Training</a></li>
-          <li><a href="boarding.html">Boarding</a></li>
-          <li><a href="nutrition.html">Nutrition</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Stay Updated</h4>
-        <p>Subscribe to receive updates about nutrition tips, special offers, and program announcements.</p>
-        <form class="newsletter-form" onsubmit="return false;">
-          <input type="email" placeholder="Your email" required>
-          <button type="submit">Subscribe</button>
-        </form>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 Dakota Sky Pudelpointers. All rights reserved.</p>
-    </div>
-  </footer>
+    <!-- SCRIPTS -->
+    <script>
+        // ===== NAVBAR SCROLL =====
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 80);
+        });
 
-  <script>
-    // HAMBURGER MENU
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.getElementById('nav-menu');
+        // ===== HAMBURGER =====
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+        document.querySelectorAll('#nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
 
-    hamburger.addEventListener('click', function() {
-      hamburger.classList.toggle('active');
-      navMenu.classList.toggle('active');
-    });
-
-    // Close menu when a link is clicked
-    const navLinks = navMenu.querySelectorAll('a');
-    navLinks.forEach(link => {
-      link.addEventListener('click', function() {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
-      });
-    });
-
-    // FADE IN ANIMATION
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver(function(entries) {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
+        // ===== PARALLAX ON SCROLL =====
+        const parallaxElements = document.querySelectorAll('[data-parallax]');
+        let ticking = false;
+        function updateParallax() {
+            const scrollY = window.scrollY;
+            parallaxElements.forEach(el => {
+                const speed = parseFloat(el.dataset.parallax);
+                const rect = el.parentElement.getBoundingClientRect();
+                const offsetTop = rect.top + scrollY;
+                const viewportMiddle = scrollY + window.innerHeight / 2;
+                const elementMiddle = offsetTop + rect.height / 2;
+                const distance = viewportMiddle - elementMiddle;
+                el.style.transform = `translateY(${distance * speed}px)`;
+            });
+            ticking = false;
         }
-      });
-    }, observerOptions);
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        });
+        updateParallax();
 
-    const fadeElements = document.querySelectorAll('.fade-in');
-    fadeElements.forEach(el => {
-      observer.observe(el);
-    });
+        // ===== REVEAL ON SCROLL =====
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
 
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        const href = this.getAttribute('href');
-        if (href !== '#') {
-          e.preventDefault();
-          const target = document.querySelector(href);
-          if (target) {
-            target.scrollIntoView({ behavior: 'smooth' });
-          }
-        }
-      });
-    });
-  </script>
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+            revealObserver.observe(el);
+        });
+    </script>
 </body>
 </html>
